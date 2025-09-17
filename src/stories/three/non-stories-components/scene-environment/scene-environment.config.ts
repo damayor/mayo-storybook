@@ -9,12 +9,12 @@ export const spotLightIntensity  = 2
 export const spotlightAngle = 1.57 
 export const spotLightPenumbra = 0.5
 export const spotLightPositionY = 1
-export const spotLightPosition = new Vector3(-20, spotLightPositionY, 20)
+export const spotLightPosition = new Vector3(0, spotLightPositionY, 1)
 
 export const contactShadowsRotation = Math.PI / 2
 export const contactShadowsPosition = new Vector3(0, -1, 0)
-export const contactShadowsOpacity = 0.3
-export const contactShadowsWidth = 10
-export const contactShadowsHeight = 10
-export const contactShadowsBlur = 2
+export const contactShadowsOpacity = 0.5
+export const contactShadowsWidth = 2
+export const contactShadowsHeight = 2
+export const contactShadowsBlur = 1
 export const contactShadowsFar = 2

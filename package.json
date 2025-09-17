@@ -11,6 +11,7 @@
     "tailwind:build": "tailwindcss -i ./src/index.css -o ./dist/tailwind.css --minify"
   },
   "dependencies": {
+    "@react-spring/three": "^10.0.2",
     "@react-three/drei": "latest",
     "@react-three/fiber": "9.3.0",
     "@types/three": "^0.180.0",

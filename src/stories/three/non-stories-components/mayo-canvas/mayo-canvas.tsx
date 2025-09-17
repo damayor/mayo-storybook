@@ -8,6 +8,7 @@ import Controls from '../controls/controls.component'
 import Gizmos from '../gizmos/gizmos.component'
 import SceneEnvironment from '../scene-environment/scene-environment.component'
 import type { GizmoType } from '../../../../helpers/types/commonTypes'
+import { setCanvasBackground } from '../../stories-components/homogeneus-background/background.config'
 
 
 interface MayoCanvasProps {
@@ -16,19 +17,22 @@ interface MayoCanvasProps {
   environmentPreset?: 'studio'
   gizmoType?: GizmoType
   lightPosition?: Vector3
+  background?: string
 }
 
 export default function MayoCanvas({
   children,
   enableOrbitControls = false,
   gizmoType = 'none',
-  lightPosition 
+  lightPosition,
+  background = '#ffffff',
 }: MayoCanvasProps) {
   return (
-    <div style={{ height: '500px', border: '1px solid black' }}>
+    <div style={{ height: '500px', border: '1px solid black'}}>
       <Canvas
         camera={{ position: DEFAULT_CAMERA_POSITION, fov: DEFAULT_CAMERA_FOV }}
       >
+        <color attach="background" args={[background]} /> 
         {children}
         <SceneEnvironment lightPosition={lightPosition} />
         {enableOrbitControls && <Controls />}
