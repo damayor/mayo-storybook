@@ -9,8 +9,7 @@ export const TerrainManager = () => {
     <MayoCanvas enableOrbitControls={true} environmentPreset='studio' gizmoType={'viewPort'}>
       <Suspense fallback={<mesh />}>
         <directionalLight position={[10, 20, 10]} intensity={1} castShadow />
-       <Terrain />
-        
+        <Terrain />
       </Suspense>
     </MayoCanvas>
 
