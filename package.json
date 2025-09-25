@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "storybook dev --ci -p 6006",
     "build-storybook": "storybook build",
     "tailwind:build": "tailwindcss -i ./src/index.css -o ./dist/tailwind.css --minify"
   },
@@ -15,6 +15,7 @@
     "@react-three/drei": "latest",
     "@react-three/fiber": "9.3.0",
     "@types/three": "^0.180.0",
+    "pixi.js": "^8.13.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwindcss": "latest",

@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto&family=Montserrat&display=swap');
+
+:root {
+  /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --font-family-graphik: 'Graphik', sans-serif;
+  --font-family-lato: 'Lato', sans-serif;
+  --font-family-roboto: 'Roboto', sans-serif;
+  --font-family-montserrat: 'Montserrat', sans-serif;
+
+  --text: #252b42; 
+  --second-text: #f5f5f5;;
+  
+  --Light-text: rgba(255, 255, 255, 1);
+  --Dark-background: rgba(37, 43, 66, 1);
+  --Light-background: rgba(255, 255, 255, 1);
+  --Background-Gradient: rgba(34, 43, 50, 1);
+  --gray-1: rgba(99, 99, 99, 1);
+  --gray-2-darker: rgba(65, 65, 65, 1);
+
+
+  /* el fondo del icono */
+  --clr-gray-light: #BEBEBE; 
+  --clr-black-100: #1E1E1E;
+  --clr-text-vscode: #252B42;
+
+  --clr-primary-light: #d68dab;
+  --clr-primary: #8f3056;
+  --clr-primary-dark: #48011d;
+
+  --clr-secondary-light: #738afd;
+  --clr-secondary-dark: #1e295f;
+  --clr-secondary: #3e4ea0;
+
+  --clr-tertiary-light: rgba(235, 244, 161, 1);
+  --clr-tertiary: #97a337;
+  --clr-tertiary-dark: rgba(73, 82, 1, 1);
+  --color-gray-light: rgba(190, 190, 190, 1);
+  --gray-dark-vscode: rgba(30, 30, 30, 1);
+  --clr-white: rgba(255, 255, 255, 1);
+  --clr-rgb-37-43-66: rgba(37, 43, 66, 1);
+  --clr-black: rgba(0, 0, 0, 1);
+
+
+
+
+
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+h1 {
+  font-family: var(--font-family-lato);
+  font-weight: 700;
+  font-size: 36px;
+  letter-spacing: 7%;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--clr-white);
+}
+
+
+h2 {
+
+  font-family: var(--font-family-lato);
+  font-weight: 700;
+  font-size: 25px;
+  letter-spacing: 12%;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  /* color: var(--clr-rgb-37-43-66); */
+}
+
+h3 {
+  font-family: var(--font-family-lato);
+  font-weight: normal;
+  font-size: 20px;
+  letter-spacing: 10%;
+  text-decoration: none;
+  text-transform: none;
+  color: var(--text-white);
+}

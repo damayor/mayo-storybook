@@ -1,7 +1,22 @@
 import type { Preview } from '@storybook/react-vite'
 import { themes } from 'storybook/internal/theming';
+import './styles.css';
 
 const preview: Preview = {
+  globalTypes: {
+    theme: {
+      description: 'Global theme for components',
+      toolbar: {
+        title: 'Theme',
+        icon: 'circlehollow',
+        items: ['light', 'dark'],
+        dynamicTitle: true,
+      },
+    },
+  },
+  initialGlobals: {
+    theme: 'dark',
+  },
   parameters: {
     controls: {
       matchers: {
@@ -9,16 +24,25 @@ const preview: Preview = {
        date: /Date$/i,
       },
     },
+    options: {
+      storySort: {
+        order: ['Welcome', 'Html', 'Three', 'Pixi', '*' , 'Example'],
+      },
+      // you can also use a custom sorter function
+    },
     docs: {
       theme: themes.dark,
     },
-    a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
-      test: 'todo'
-    }
+
+    test: { disable: true },
+    viewMode: 'docs',
+    previewTabs: {
+      'storybook/docs/panel': { hidden: false },
+      'storybook/test/panel': { hidden: true },      
+      canvas: { hidden: true },
+    },
   },
+  
 };
 
 export default preview;

@@ -1,0 +1,56 @@
+#storybook-explorer-tree .sidebar-subheading button[class^='css-']:hover {
+  color: var(--sb-color-white);
+}
+
+#root .os-content .sidebar-header img {
+  width: 100px;
+}
+
+#root .os-content .sidebar-header button:hover svg {
+  color: var(--sb-color-white);
+}
+
+[data-ref-id='storybook_internal'].sidebar-subheading {
+  color: var(--sb-color-white);
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+#storybook-explorer-tree .sidebar-item {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  transition: background-color var(--sb-motion-default);
+}
+
+#storybook-explorer-tree .sidebar-item:hover:not([data-selected='true']) {
+  background-color: var(--sb-color-burgundy);
+  color: var(--sb-color-white);
+}
+
+#storybook-explorer-tree .sidebar-item svg {
+  color: var(--sb-color-white);
+  display: none;
+}
+
+#storybook-explorer-tree .sidebar-item[data-selected='true'] svg {
+  color: var(--sb-color-yellow);
+}
+
+#storybook-explorer-tree .sidebar-item[id*='-e2e'] {
+  display: none;
+}
+
+.sidebar-container .sidebar-header button[title='Shortcuts'] {
+  border: unset;
+  border-radius: unset;
+  box-shadow: unset;
+}
+
+.sidebar-container #storybook-explorer-searchfield {
+  border-radius: 0;
+}

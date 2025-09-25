@@ -1,0 +1,32 @@
+:root {
+  --sb-color-white: #ffffff;
+  --sb-color-black-alpha-01: rgba(0, 0, 0, 0.1);
+  --sb-color-black: #000000;
+  --sb-color-light-grey: #e2e1e1;
+  --sb-color-light-silver: #f3f3f3;
+  --sb-color-grey: #999999;
+  --sb-color-dark-grey: #333333;
+  --sb-color-darker-grey: #202227;
+  --sb-color-aqua: #00ffff;
+  --sb-color-red: #f7392f;
+  --sb-color-green: #339902;
+  --sb-color-yellow: #ffc800;
+  --sb-typography-fontfamily-default: 'Nunito Sans',
+      -apple-system,
+          '.SFNSText-Regular',
+      'San Francisco',
+      blinkmacsystemfont,
+      'Segoe UI',
+          'Helvetica Neue',
+      helvetica,
+      arial,
+      sans-serif;
+  --sb-typography-fontsize-default: 14px;
+  --sb-typography-fontsize-small: 12px;
+  --sb-typography-font-smoothing-default: antialiased;
+  --sb-motion-default: 150ms ease-out;
+
+  --sb-color-burgundy:#8f3056;
+  --sb-color-burgundy-light: rgba(214, 141, 171, 1);
+  --sb-color-burgundy-dark: #48011d;
+}

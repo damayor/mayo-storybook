@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto&family=Montserrat&display=swap');
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
   line-height: 1.5;
   font-weight: 400;
 
@@ -11,6 +13,36 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --font-family-graphik: 'Graphik', sans-serif;
+  --font-family-lato: 'Lato', sans-serif;
+  --font-family-roboto: 'Roboto', sans-serif;
+  --font-family-montserrat: 'Montserrat', sans-serif;
+
+  --text: rgba(37, 43, 66, 1);
+  --second-text: rgba(56, 72, 89, 1);
+  --Light-text: rgba(255, 255, 255, 1);
+  --Dark-background: rgba(37, 43, 66, 1);
+  --Light-background: rgba(255, 255, 255, 1);
+  --Background-Gradient: rgba(34, 43, 50, 1);
+  --gray-1: rgba(99, 99, 99, 1);
+  --gray-2-darker: rgba(65, 65, 65, 1);
+  --primary-color-light: rgba(214, 141, 171, 1);
+  --primary-color: rgba(143, 48, 86, 1);
+  --primary-color-dark: rgba(72, 1, 29, 1);
+  --secondary-color-light: rgba(118, 179, 143, 1);
+  --secondary-color: rgba(40, 120, 72, 1);
+  --secondary-color-dark: rgba(1, 60, 25, 1);
+  --tertiary-color-light: rgba(235, 244, 161, 1);
+  --tertiary-color: rgba(151, 163, 55, 1);
+  --tertiary-color-dark: rgba(73, 82, 1, 1);
+  --color-gray-light: rgba(190, 190, 190, 1);
+  --gray-dark-vscode: rgba(30, 30, 30, 1);
+  --text-white: rgba(255, 255, 255, 1);
+  --text-rgb-37-43-66: rgba(37, 43, 66, 1);
+  --text-black: rgba(0, 0, 0, 1);
+  --text-rgb-143-48-86: rgba(143, 48, 86, 1);
+
 }
 
 a {
@@ -31,8 +63,13 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-family: var(--font-family-lato);
+  font-weight: 700;
+  font-size: 36px;
+  letter-spacing: 7%;
+  text-decoration: none;
+  text-transform: none;
+  color: var(--text-white);
 }
 
 button {
