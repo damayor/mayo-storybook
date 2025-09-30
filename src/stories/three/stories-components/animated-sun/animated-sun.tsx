@@ -2,7 +2,7 @@ import { useFrame } from '@react-three/fiber'
 import { Suspense, useState } from 'react'
 import { Vector3 } from 'three'
 
-import { type GizmoType } from '../../../../helpers/types/commonTypes'
+import { type GizmoType } from '../../non-stories-components/helpers/types/commonTypes'
 import MayoCanvas from '../../non-stories-components/mayo-canvas/mayo-canvas'
 import { spotLightPositionY } from '../../non-stories-components/scene-environment/scene-environment.config'
 import { lightPositionTimeScale, positionZOffset, radiusX, radiusZ } from './animated-sun.config'

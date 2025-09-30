@@ -1,7 +1,7 @@
 import { FootwearViews } from './product-rotating.config'
 
 import ProductRotating from './product-rotating'
-import { ProductModels } from '../../../../helpers/constants/scene-constants'
+import { ProductModels } from '../../non-stories-components/helpers/constants/scene-constants'
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {

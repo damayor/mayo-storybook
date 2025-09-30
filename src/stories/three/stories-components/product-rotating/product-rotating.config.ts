@@ -1,5 +1,5 @@
 import { Euler } from 'three'
-import { type GizmoType } from '../../../../helpers/types/commonTypes'
+import { type GizmoType } from '../../non-stories-components/helpers/types/commonTypes'
 
 export const gizmoTypeConfig: GizmoType = 'viewCube'
 export enum FootwearViews {

@@ -15,7 +15,7 @@ const Heading: React.FC<HeadingProps> = ({ level, children, ...props }) => {
         case 2:
             return <h2 {...props}>{children}</h2>;
         case 3:
-            return <h3 {...props}>{children}</h3>;
+            return <h3 className="text-3xl font-bold underline" {...props}>{children}</h3>;
         case 4:
             return <h4 {...props}>{children}</h4>;
         case 5:

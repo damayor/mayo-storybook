@@ -1,5 +1,9 @@
 import type { Preview } from '@storybook/react-vite'
 import { themes } from 'storybook/internal/theming';
+import { withThemeByClassName } from '@storybook/addon-themes';
+import '../src/index.css'; // replace with the name of your tailwind css file
+
+//este si lee desde /.storybook
 import './styles.css';
 
 const preview: Preview = {
@@ -42,6 +46,14 @@ const preview: Preview = {
       canvas: { hidden: true },
     },
   },
+  decorators: [
+    withThemeByClassName({
+      themes: {
+        dark: 'dark',
+      },
+      defaultTheme: 'dark',
+    }),
+  ]
   
 };
 

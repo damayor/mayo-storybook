@@ -3,7 +3,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { Suspense, useEffect, useRef, useState } from 'react'
 import { Vector3 } from 'three'
 
-import type { GizmoType } from '../../../../helpers/types/commonTypes'
+import type { GizmoType } from '../../non-stories-components/helpers/types/commonTypes'
 import MayoCanvas from '../../non-stories-components/mayo-canvas/mayo-canvas'
 // import LoaderAnimation from '../loader-animation/loader-animation'
 

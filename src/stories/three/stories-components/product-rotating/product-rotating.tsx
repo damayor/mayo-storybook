@@ -3,7 +3,7 @@ import { useThree } from '@react-three/fiber'
 import { Suspense, useEffect, useRef, useState } from 'react'
 // import { a, useSpring } from 'react-spring-three'
 import { Object3D } from 'three'
-import { DEFAULT_CAMERA_POSITION } from '../../../../helpers/constants/scene-constants'
+import { DEFAULT_CAMERA_POSITION } from '../../non-stories-components/helpers/constants/scene-constants'
 import {
   FootwearViews,
   getProductPosition,
@@ -12,9 +12,9 @@ import {
   springConfig,
 } from './product-rotating.config'
 
-import { type GizmoType } from '../../../../helpers/types/commonTypes'
+import { type GizmoType } from '../../non-stories-components/helpers/types/commonTypes'
 import MayoCanvas from '../../non-stories-components/mayo-canvas/mayo-canvas'
-import { productPosition, size } from '../../../../helpers/constants/product.config'
+import { productPosition, size } from '../../non-stories-components/helpers/constants/product.config'
 import { a, useSpring } from '@react-spring/three'
 // import LoaderAnimation from '../loader-animation/loader-animation'
 

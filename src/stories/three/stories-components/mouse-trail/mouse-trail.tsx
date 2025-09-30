@@ -3,7 +3,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { Suspense, useEffect, useRef, useState } from 'react'
 import { Euler, MathUtils, Vector3 } from 'three'
 
-import { type GizmoType } from '../../../../helpers/types/commonTypes'
+import { type GizmoType } from '../../non-stories-components/helpers/types/commonTypes'
 import MayoCanvas from '../../non-stories-components/mayo-canvas/mayo-canvas'
 import { lerpVelocity, mouseZ, pointSize, pointsN, rayPlaneColor, rayPlanePosition, rayPlaneRotation, rayPlaneScale } from './mouse-trail.config'
 
