@@ -5,6 +5,23 @@ import '../src/index.css'; // replace with the name of your tailwind css file
 
 //este si lee desde /.storybook
 import './styles.css';
+import { Decorator } from '@storybook/react';
+import { useEffect } from 'react';
+
+const withTheme:Decorator = (Story, context) => {
+  const theme = context.globals.theme || 'dark'; 
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
+  return (
+    <div data-theme={theme} className="p-1">
+      <Story />
+    </div>
+  );
+};
+
 
 const preview: Preview = {
   globalTypes: {
@@ -12,15 +29,18 @@ const preview: Preview = {
       description: 'Global theme for components',
       toolbar: {
         title: 'Theme',
-        icon: 'circlehollow',
-        items: ['light', 'dark'],
+        icon: 'paintbrush',
+        items: [
+          { value: 'light', title: 'Onn Light' },
+          { value: 'dark', title: 'Onn Dark' },
+        ],
         dynamicTitle: true,
       },
     },
   },
-  initialGlobals: {
-    theme: 'dark',
-  },
+  // initialGlobals: {
+  //   theme: 'dark',
+  // },
   parameters: {
     controls: {
       matchers: {
@@ -35,7 +55,7 @@ const preview: Preview = {
       // you can also use a custom sorter function
     },
     docs: {
-      theme: themes.dark,
+      theme: themes.normal,
     },
 
     test: { disable: true },
@@ -45,16 +65,24 @@ const preview: Preview = {
       'storybook/test/panel': { hidden: true },      
       canvas: { hidden: true },
     },
+    backgrounds: {
+      default: "onlight",
+      options: {
+        onlight: { name: 'onlight', value: '#fff' },
+        ondark: { name: 'ondark', value: 'oklch(25.33% 0.016 252.42)' },
+      },
+    }
   },
   decorators: [
-    withThemeByClassName({
-      themes: {
-        dark: 'dark',
-      },
-      defaultTheme: 'dark',
-    }),
+    // withThemeByClassName({
+    //   themes: {
+    //     dark: 'dark',
+    //     light: 'light'
+    //   },
+    //   defaultTheme: 'dark',
+    // }),
+    withTheme
   ]
-  
 };
 
 export default preview;

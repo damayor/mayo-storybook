@@ -11,11 +11,11 @@ interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
 const Heading: React.FC<HeadingProps> = ({ level, children, ...props }) => {
     switch (level) {
         case 1:
-            return <h1 {...props}>{children}</h1>;
+            return <h1  className="text-4xl font-lato font-bold uppercase text-white tracking-wider" {...props}>{children}</h1>;
         case 2:
-            return <h2 {...props}>{children}</h2>;
+            return <h2  className="text-2xl font-roboto font-bold uppercase tracking-widest" {...props}>{children}</h2>;
         case 3:
-            return <h3 className="text-3xl font-bold underline" {...props}>{children}</h3>;
+            return <h3 className="text-xl font-bold text-white normal-case tracking-widest" {...props}>{children}</h3>;
         case 4:
             return <h4 {...props}>{children}</h4>;
         case 5:

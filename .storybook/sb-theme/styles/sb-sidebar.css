@@ -34,7 +34,7 @@
 
 #storybook-explorer-tree .sidebar-item svg {
   color: var(--sb-color-white);
-  display: none;
+  /* display: none; */
 }
 
 #storybook-explorer-tree .sidebar-item[data-selected='true'] svg {

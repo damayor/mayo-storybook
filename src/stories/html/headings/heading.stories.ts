@@ -6,7 +6,7 @@ import Heading from './heading';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: 'Html/Heading',
+  title: 'Html/Components/Heading',
   component: Heading,
   parameters: {
     level: 'centered',

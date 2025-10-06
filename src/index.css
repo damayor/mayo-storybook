@@ -1,6 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto&family=Montserrat&display=swap');
+
+
 @import "tailwindcss";
+@theme {
+  --font-roboto: 'Roboto', sans-serif; 
+  --font-lato: 'Lato', sans-serif; 
+  --font-montserrat: 'Montserrat', sans-serif;
+}
+
 @plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: "dark";
+  default: true;
+  --color-primary: #8f3056;
+  --color-secondary: #455AC6;
+}
+
 
 :root {
   /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
@@ -8,8 +23,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* color: rgba(255, 255, 255, 0.87);
+  background-color: #242424; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -30,7 +45,7 @@
   --gray-1: rgba(99, 99, 99, 1);
   --gray-2-darker: rgba(65, 65, 65, 1);
   --primary-color-light: rgba(214, 141, 171, 1);
-  --primary-color: rgba(143, 48, 86, 1);
+  --primary-color: #8f3056;
   --primary-color-dark: rgba(72, 1, 29, 1);
   --secondary-color-light: rgba(118, 179, 143, 1);
   --secondary-color: rgba(40, 120, 72, 1);
@@ -64,45 +79,3 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-family: var(--font-family-lato);
-  font-weight: 700;
-  font-size: 36px;
-  letter-spacing: 7%;
-  text-decoration: none;
-  text-transform: none;
-  color: var(--text-white);
-}
-
-/* /nos vamos para tailwind */
-/* button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-} */
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}

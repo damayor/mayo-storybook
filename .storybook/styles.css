@@ -3,11 +3,12 @@
 :root {
   /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 500;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  
+  /* color: rgba(255, 255, 255, 0.87);
+  background-color: #242424; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -75,7 +76,7 @@ img {
   height: auto;
 }
 
-h1 {
+/* h1 {
   font-family: var(--font-family-lato);
   font-weight: 700;
   font-size: 36px;
@@ -96,9 +97,9 @@ h2 {
   text-transform: uppercase;
 
   /* color: var(--clr-rgb-37-43-66); */
-}
 
-h3 {
+
+/* h3 {
   font-family: var(--font-family-lato);
   font-weight: normal;
   font-size: 20px;
@@ -106,4 +107,4 @@ h3 {
   text-decoration: none;
   text-transform: none;
   color: var(--text-white);
-}
+} */
