@@ -25,7 +25,7 @@ export const Secondary: Story = {
   },
 };
 
-export const Neutral: Story = {
+export const Black: Story = {
   args: {
     color: 'neutral'
   },
@@ -33,7 +33,34 @@ export const Neutral: Story = {
 
 export const Outline: Story = {
   args: {
-    color: 'neutral'
+    color: 'outline'
+  },
+  globals: {
+    backgrounds: { value: 'onlight' },
+    theme: 'light',
+    
   },
 };
 
+
+export const TransparentOnDark: Story = {
+  args: {
+    color: 'neutral',
+    theme: 'ondark'
+  },
+  globals: {
+    backgrounds: { value: 'ondark' },
+    theme: 'dark',
+  },
+  
+};
+
+export const WhiteOnDark: Story = {
+  args: {
+    color: 'info'
+  },
+  globals: {
+    backgrounds: { value: 'ondark' },
+    theme: 'dark',
+  },
+};

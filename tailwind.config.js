@@ -18,6 +18,8 @@ module.exports = {
     "badge-secondary",
     "badge-accent",
     "badge-neutral",
+    "badge-info",
+
   ],
   plugins: [
     import("daisyui")

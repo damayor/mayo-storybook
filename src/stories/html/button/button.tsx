@@ -1,21 +1,11 @@
 import React from 'react';
-
-// import './button.css';
-
-export const GL_BUTTON_THEME = {
-  onlight: 'light',
-  ondark: 'dark'
-} as const
-
-export type GlButtonTheme = keyof typeof GL_BUTTON_THEME
-
-export type ButtonColor = 'primary' | 'secondary' | 'neutral' | 'white' | 'accent' | 'info' | 'success' |'warning' | 'error';
+import type { DmColor, DmTheme } from '../../../interfaces/story-variants';
 
 export interface ButtonProps {
 
-  color?: ButtonColor
+  color?: DmColor
   size?: 'small' | 'medium' | 'large';
-  theme?: GlButtonTheme
+  theme?: DmTheme
   label?: string;
   onClick?: () => void;
 }
@@ -27,18 +17,15 @@ export const Button = ({
   theme,
   ...props
 }: ButtonProps) => {
-  // const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
-  //Un map
-
   const getButtonClass = ()  => {
-    if (color !== "white") {
+    if (color !== "outline") {
       return `btn-${color} hover:bg-${color}/80`
     }
     else
     {
       if(theme == 'ondark') //Fixealo para que salga transparente, no fondo negro
       {
-         'btn-neutral btn-outline'
+        return 'btn-neutral btn-outline'
       }
       else
       {

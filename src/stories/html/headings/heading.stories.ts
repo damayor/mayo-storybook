@@ -3,21 +3,13 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 import Heading from './heading';
 
-
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
   title: 'Html/Components/Heading',
   component: Heading,
   parameters: {
     level: 'centered',
   },
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
-  tags: ['autodocs'],
-  // More on argTypes: https://storybook.js.org/docs/api/argtypes
-  // argTypes: {
-  //   backgroundColor: { control: 'color' },
-  // },
-  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
+  tags: ['autodocs'], 
   args: { onClick: fn() },
 } satisfies Meta<typeof Heading>;
 
@@ -28,7 +20,20 @@ type Story = StoryObj<typeof meta>;
 export const Heading1: Story = {
   args: {
     level: 1,
-    children: 'Heading 1'
+    children: 'Heading 1',
+    variant: 'neutral',
+  },
+};
+
+export const Heading1OnDark: Story = {
+  args: {
+    level: 1,
+    children: 'Heading 1',
+    variant: 'info',
+  },
+  globals: {
+    backgrounds: { value: 'ondark' },
+    theme: 'dark',
   },
 };
 
@@ -38,6 +43,19 @@ export const Heading2: Story = {
     children: 'Heading 2'
   },
 };
+
+export const Heading2OnDark: Story = {
+  args: {
+    level: 2,
+    children: 'Heading 2',
+    variant: 'info',
+  },
+  globals: {
+    backgrounds: { value: 'ondark' },
+    theme: 'dark',
+  },
+};
+
 export const Heading3: Story = {
   args: {
     level: 3,
@@ -50,15 +68,15 @@ export const Heading4: Story = {
     children: 'Heading 4'
   },
 };
-export const Heading5: Story = {
-  args: {
-    level: 5,
-    children: 'Heading 5'
-  },
-};
-export const Heading6: Story = {
-  args: {
-    level: 6,
-    children: 'Heading 6'
-  },
-};
+// export const Heading5: Story = {
+//   args: {
+//     level: 5,
+//     children: 'Heading 5'
+//   },
+// };
+// export const Heading6: Story = {
+//   args: {
+//     level: 6,
+//     children: 'Heading 6'
+//   },
+// };

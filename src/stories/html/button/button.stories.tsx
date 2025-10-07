@@ -36,7 +36,7 @@ export const Black: Story = {
 
 export const White: Story = {
   args: {
-    color: 'white'
+    color: 'info'
   },
   globals: {
     backgrounds: { value: 'onlight' },
@@ -45,9 +45,20 @@ export const White: Story = {
   },
 };
 
+export const WhiteOnDark: Story = {
+  args: {
+    color: 'info'
+  },
+  globals: {
+    backgrounds: { value: 'ondark' },
+    theme: 'dark',
+  },
+};
+
+//Is the same white
 export const TransparentOnLight: Story = {
   args: {
-    color: 'white'
+    color: 'outline'
   },
   globals: {
     backgrounds: { value: 'onlight' },

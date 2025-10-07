@@ -1,21 +1,28 @@
 import React, { type JSX } from 'react';
+import type { DmColor } from '../../../interfaces/story-variants';
 
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
 interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
     level: HeadingLevel;
     children: React.ReactNode;
-    // variant?: string;
+    variant?: DmColor
 }
 
-const Heading: React.FC<HeadingProps> = ({ level, children, ...props }) => {
+
+
+const Heading: React.FC<HeadingProps> = ({ level, children, variant = 'neutral', ...props }) => {
+
+    const getHeadingColor = () => 
+        variant == 'info' ? 'text-white' : `text-${variant}` 
+
     switch (level) {
         case 1:
-            return <h1  className="text-4xl font-lato font-bold uppercase text-white tracking-wider" {...props}>{children}</h1>;
+            return <h1 className={`text-4xl font-lato font-bold uppercase tracking-wider ${  getHeadingColor()}`} {...props}>{children}</h1>;
         case 2:
-            return <h2  className="text-2xl font-roboto font-bold uppercase tracking-widest" {...props}>{children}</h2>;
+            return <h2 className={`text-2xl font-roboto font-bold uppercase tracking-widest ${getHeadingColor()}`} {...props}>{children}</h2>;
         case 3:
-            return <h3 className="text-xl font-bold text-white normal-case tracking-widest" {...props}>{children}</h3>;
+            return <h3 className={`text-xl font-bold normal-case text-neutral tracking-widest ${getHeadingColor()}`} {...props}>{children}</h3>;
         case 4:
             return <h4 {...props}>{children}</h4>;
         case 5:
