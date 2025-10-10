@@ -32,7 +32,7 @@ export default create({
 
   brandTitle: 'May Interactive Storybook',
   brandUrl: '/',
-  brandImage: '/mayov_header.png',
+  brandImage: '/mayin_header.png',
   brandTarget: '_self',
 
 })

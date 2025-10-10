@@ -12,7 +12,7 @@ const meta = {
   title: 'Three/Components/GradientTextureBackground',
   component: GradientTextureBackground,
   decorators: [
-    (Story) => <MayoCanvas enableOrbitControls={true} environmentPreset='studio' gizmoType={'viewPort'}>
+    (Story) => <MayoCanvas enableOrbitControls={true} environmentPreset='studio'  background={'#fff'} gizmoType={'viewPort'}>
       <Suspense fallback={<mesh/>}>
         <Story />
         <Bounds fit clip margin={1.2}>
