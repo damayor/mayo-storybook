@@ -6,6 +6,20 @@
   --font-roboto: 'Roboto', sans-serif; 
   --font-lato: 'Lato', sans-serif; 
   --font-montserrat: 'Montserrat', sans-serif;
+  --color-camelot-50: #fbf4f8;
+  --color-camelot-100: #f9eaf3;
+  --color-camelot-200: #f4d6e7;
+  --color-camelot-300: #ecb5d3;
+  --color-camelot-400: #de88b5;
+  --color-camelot-500: #d16399;
+  --color-camelot-600: #bd457a;
+  --color-camelot-700: #a23462;
+  /* root color: */
+  --color-camelot-800: #8f3056; 
+  --color-camelot-900: #712a46;
+  --color-camelot-950: #441326;
+
+
 }
 
 @plugin "daisyui";
@@ -74,14 +88,14 @@
 
 }
 
-a {
+/* a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
 a:hover {
   color: #535bf2;
-}
+} */
 
 body {
   margin: 0;
