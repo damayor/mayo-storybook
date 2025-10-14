@@ -1,0 +1,77 @@
+{
+  "nav": {
+    "home":"Home",
+    "about":"About me",
+    "projects": "Projects",
+    "skills": "Skills",
+    "contact": "Contact me"
+  },
+  "home": {
+    "title": "David Mayorga Herrera / May Interactive",
+    "subtitle": "Full Stack Software Engineer • React & Three.js Specialist",
+    "description": "Creating unique web experiences that combine elegant design with cutting-edge technology",
+    "viewProjects": "View Projects", 
+    "contactMe": "Contact"
+  },
+  "about": {
+    "title": "About Me",
+    "intro": "I'm a Software Engineer (M.Sc) passionate about creating immersive and interactive web experiences. My specialty is combining modern technologies like React, Three.js, and Node.js to build applications that not only work perfectly in production but also visually delight.",
+    "experience": "With full-stack development experience, I focus on writing clean, scalable, and maintainable code. I especially enjoy working with 3D visualizations and complex animations that bring user interfaces to life.",
+    "mainSkills": {
+      "frontend": "Frontend Developer",
+      "vrar": "AR/VR",
+      "production": "Shell Production"
+    }
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "viewMore": "View more",
+    "items": [
+      {
+        "title": "E-Commerce 3D",
+        "description": "Tienda online con visualización 3D de productos usando Three.js",
+        "tech": ["React", "Three.js", "Node.js", "MongoDB"],
+        "image": "🛍️"
+      },
+      {
+        "title": "Dashboard Analytics",
+        "description": "Herramienta de visualización de datos con gráficos 3D interactivos",
+        "tech": ["React", "D3.js", "WebSocket", "Express"],
+        "image": "📊"
+      },
+      {
+        "title": "Visualization App",
+        "description": "Sistema de personalización 3D en tiempo real para e-commerce",
+        "tech": ["Redux", "Three.js", "GSAP", "Tailwind"],
+        "image": "📊"
+      }
+    ]
+  },
+  "skills": {
+    "title": "Technical Skills",
+    "categories": [
+      "Frontend",
+      "Backend",
+      "Tools",
+      "CI/CD",
+      "3D",
+      "Full-Stack"
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Have a project in mind? Let's talk!",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "message": "Message",
+      "messagePlaceholder": "Tell me about your project...",
+      "submit": "Send Message",
+      "successMessage": "Message sent!"
+    }
+  }
+
+
+}

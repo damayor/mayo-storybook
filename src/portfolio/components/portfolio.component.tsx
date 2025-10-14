@@ -2,8 +2,10 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
-import { Menu, X, Github, Linkedin, Mail, ExternalLink, Code, Palette, Zap } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Mail, ExternalLink, Code, Palette, Zap, Globe } from 'lucide-react';
 import mayintLogo from './../../assets/mayint.svg'
+import { useTranslation } from 'react-i18next';
+import { Badge } from '../../stories/html/badge/badge';
 
 // Componente de fondo 3D animado
 function AnimatedSphere({ position, color, speed } : any) { 
@@ -55,6 +57,37 @@ function Background3D() {
   );
 }
 
+function LanguageSelector() {
+  const { i18n } = useTranslation();
+
+  const languages = [
+    { code: 'es', name: 'Español', flag: '🇪🇸' },
+    { code: 'en', name: 'English', flag: '🇬🇧' },
+    // { code: 'de', name: 'Deutsch', flag: '🇩🇪' }
+  ];
+
+  return (
+    <div className="fixed top-6 right-6 z-30">
+      <div className="flex gap-2 bg-slate-800/80 backdrop-blur-sm rounded-lg p-2 border border-slate-700">
+        {languages.map((lang) => (
+          <button
+            key={lang.code}
+            onClick={() => i18n.changeLanguage(lang.code)}
+            className={`px-3 py-2 rounded-lg transition-all flex items-center gap-2 ${
+              i18n.language === lang.code
+                ? 'bg-blue-500 text-white'
+                : 'text-gray-300 hover:bg-slate-700'
+            }`}
+          >
+            <span>{lang.flag}</span>
+            <span className="hidden sm:inline">{lang.name}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 interface SidebarProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
@@ -63,12 +96,15 @@ interface SidebarProps {
 }
 // Componente Sidebar
 function Sidebar({ isOpen, setIsOpen, activeSection, setActiveSection } : SidebarProps) {
+  const { t } = useTranslation();
+
+  
   const sections = [
-    { id: 'home', label: 'Inicio', icon: '🏠' },
-    { id: 'about', label: 'Sobre mí', icon: '👤' },
-    { id: 'projects', label: 'Proyectos', icon: '💼' },
-    { id: 'skills', label: 'Habilidades', icon: '⚡' },
-    { id: 'contact', label: 'Contacto', icon: '📧' }
+    { id: 'home', label: t('nav.home') , icon: '🏠' },
+    { id: 'about', label: t('nav.about'),  icon: '👤' },
+    { id: 'projects', label: t('nav.projects') , icon: '💼' },
+    { id: 'skills', label: t('nav.skills'), icon: '⚡' },
+    { id: 'contact', label: t('nav.contact') , icon: '📧' }
   ];
 
   const handleNavClick = (sectionId : string) => {
@@ -95,9 +131,6 @@ function Sidebar({ isOpen, setIsOpen, activeSection, setActiveSection } : Sideba
       >
         <div className="flex flex-col h-full p-6">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent">
-              Navegación
-            </h2>
             <button 
               onClick={() => setIsOpen(false)}
               className="p-2 hover:bg-slate-700 rounded-lg transition-colors"
@@ -144,6 +177,9 @@ function Sidebar({ isOpen, setIsOpen, activeSection, setActiveSection } : Sideba
 
 // Secciones del Portfolio
 function HomeSection() {
+
+  const { t } = useTranslation();
+
   return (
     <section className="min-h-screen flex items-center justify-center px-6">
       <div className="max-w-4xl text-center">
@@ -156,20 +192,20 @@ function HomeSection() {
         </div>
         {/* deberia poner de hecho el heading 1... */}
         <h1 className="text-6xl font-bold mb-4 bg-camelot-800 bg-clip-text text-transparent">
-          Tu Nombre Aquí
+          {t('home.title')}
         </h1>
         <p className="text-2xl text-gray-300 mb-8">
-          Desarrollador Full Stack • Especialista en React & Three.js
+          {t('home.subtitle')}
         </p>
         <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
-          Creando experiencias web únicas que combinan diseño elegante con tecnología de vanguardia
+          {t('home.description')}
         </p>
         <div className="flex gap-4 justify-center">
           <button className="px-8 py-3 bg-gradient-to-r from-purple-700 to-camelot-600 rounded-lg font-medium hover:scale-105 transition-transform shadow-lg">
-            Ver Proyectos
+            {t('home.viewProjects')}
           </button>
           <button className="px-8 py-3 border-2 bg-burg border-camelot-800 rounded-lg font-medium hover:bg-camelot-700/10 transition-colors">
-            Contactar
+            {t('home.contactMe')}
           </button>
         </div>
       </div>
@@ -178,35 +214,33 @@ function HomeSection() {
 }
 
 function AboutSection() {
+
+  const { t } = useTranslation();
   return (
     <section className="min-h-screen flex items-center justify-center px-6 py-20">
       <div className="max-w-4xl">
         <h2 className="text-5xl font-bold mb-8 bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent">
-          Sobre mí
+          {t('about.title')}
         </h2>
         <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700">
           <p className="text-lg text-gray-300 mb-6 leading-relaxed">
-            Soy un desarrollador apasionado por crear experiencias web inmersivas e interactivas. 
-            Mi especialidad es combinar tecnologías modernas como React, Three.js y Node.js para 
-            construir aplicaciones que no solo funcionan perfectamente, sino que también deleitan visualmente.
+            {t('about.intro')}
           </p>
           <p className="text-lg text-gray-300 mb-6 leading-relaxed">
-            Con experiencia en desarrollo full-stack, me enfoco en escribir código limpio, 
-            escalable y mantenible. Disfruto especialmente trabajando con visualizaciones 3D 
-            y animaciones complejas que dan vida a las interfaces de usuario.
+            {t('about.experience')}
           </p>
           <div className="grid grid-cols-3 gap-4 mt-8">
             <div className="text-center p-4 bg-slate-700/50 rounded-lg">
               <Code className="mx-auto mb-2 text-blue-400" size={32} />
-              <p className="font-semibold text-gray-200">Clean Code</p>
+              <p className="font-semibold text-gray-200">{t('about.mainSkills.frontend')}</p>
             </div>
             <div className="text-center p-4 bg-slate-700/50 rounded-lg">
               <Palette className="mx-auto mb-2 text-purple-400" size={32} />
-              <p className="font-semibold text-gray-200">UI/UX</p>
+              <p className="font-semibold text-gray-200">{t('about.mainSkills.vrar')}</p>
             </div>
             <div className="text-center p-4 bg-slate-700/50 rounded-lg">
               <Zap className="mx-auto mb-2 text-yellow-400" size={32} />
-              <p className="font-semibold text-gray-200">Performance</p>
+              <p className="font-semibold text-gray-200">{t('about.mainSkills.production')}</p>
             </div>
           </div>
         </div>
@@ -216,32 +250,14 @@ function AboutSection() {
 }
 
 function ProjectsSection() {
-  const projects = [
-    {
-      title: 'E-Commerce 3D',
-      description: 'Tienda online con visualización 3D de productos usando Three.js',
-      tech: ['React', 'Three.js', 'Node.js', 'MongoDB'],
-      image: '🛍️'
-    },
-    {
-      title: 'Dashboard Analytics',
-      description: 'Panel de control con visualizaciones interactivas en tiempo real',
-      tech: ['React', 'D3.js', 'WebSocket', 'Express'],
-      image: '📊'
-    },
-    {
-      title: 'Portfolio Interactivo',
-      description: 'Portafolio con animaciones 3D y efectos parallax avanzados',
-      tech: ['React', 'Three.js', 'GSAP', 'Tailwind'],
-      image: '✨'
-    }
-  ];
+  const { t } = useTranslation();
+  const projects =  t('projects.items', {returnObjects: true}) as Array<any>
 
   return (
     <section className="min-h-screen flex items-center justify-center px-6 py-20">
       <div className="max-w-6xl w-full">
         <h2 className="text-5xl font-bold mb-12 bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent">
-          Proyectos Destacados
+         {t('projects.title')}
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
@@ -251,20 +267,20 @@ function ProjectsSection() {
             >
               <div className="text-6xl mb-4">{project.image}</div>
               <h3 className="text-2xl font-bold mb-3 text-gray-100 group-hover:text-camelot-400 transition-colors">
-                {project.title}
+                {t('projects.items.'+index+'.title')}
               </h3>
               <p className="text-gray-400 mb-4">
-                {project.description}
+                 {t('projects.items.'+index+'.description')}
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
-                {project.tech.map((tech, i) => (
+                {(t('projects.items.'+index+'.tech', {returnObjects: true}) as Array<string>).map((tech, i) => (
                   <span key={i} className="px-3 py-1 bg-camelot-700/20 text-camelot-300 rounded-full text-sm">
                     {tech}
                   </span>
                 ))}
               </div>
               <button className="flex items-center gap-2 text-camelot-400 hover:text-camelot-300 transition-colors">
-                Ver más <ExternalLink size={16} />
+                {t('projects.viewMore')} <ExternalLink size={16} /> 
               </button>
             </div>
           ))}
@@ -275,30 +291,39 @@ function ProjectsSection() {
 }
 
 function SkillsSection() {
+  const { t } = useTranslation();
+
+  // This should be in another data service script or json
   const skills = {
-    'Frontend': ['React', 'Three.js', 'TypeScript', 'Tailwind CSS', 'SCSS', 'Next.js'],
-    'Backend': ['Node.js', 'Express', 'MongoDB', 'PostgreSQL', 'GraphQL', 'REST APIs'],
-    'Tools': ['Git', 'Docker', 'Vite', 'Webpack', 'Storybook', 'Vitest']
+    'Frontend': ['React', 'TypeScript', 'Angular', 'Tailwind CSS', 'SCSS', 'Next.js', 'Storybook', 'Figma'],
+    'Backend': ['Node.js', 'Postman', 'MongoDB', 'PostgreSQL', 'REST'],
+    'Tools': ['Copilot', 'Git', 'Jira', 'Confluence','Vite', 'JUnit', 'Vitest'],
+    'CI/CD': ['Docker', 'Kubernetes', 'YAML','Jenkins','Groovy','Opsgenie', 'Grafana', 'Kibana', 'Instana'],
+    '3D': ['Unity', 'Unreal', 'UI/UX', 'AR', 'Oculus', 'VR', 'Hololens','ThreeJs', 'WebGL', 'Blender'],
+    'FullStack': ['Javascript', 'C#', 'Linux', 'bash', 'C++', 'Java', 'Python'],
+
   };
 
   return (
     <section className="min-h-screen flex items-center justify-center px-6 py-20">
       <div className="max-w-5xl w-full">
         <h2 className="text-5xl font-bold mb-12 bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent">
-          Habilidades Técnicas
+          {t('skills.title')}
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
-          {Object.entries(skills).map(([category, items]) => (
+          {Object.entries(skills).map(([category, items], index) => (
             <div key={category} className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700">
-              <h3 className="text-2xl font-bold mb-4 text-gray-100">{category}</h3>
-              <div className="space-y-2">
+              {/* //ToDo */}
+              <h3 className="text-2xl font-bold mb-4 text-gray-100">{ t('skills.categories.'+index) }</h3>
+              <div className="space-y-2 space-x-1">
                 {items.map((skill, index) => (
-                  <div 
-                    key={index}
-                    className="bg-slate-700/50 px-4 py-2 rounded-lg text-gray-300 hover:bg-camelot-700/20 hover:text-camelot-300 transition-colors cursor-pointer"
-                  >
-                    {skill}
-                  </div>
+                  <Badge key={index} color="outline" label={skill} />
+                  // <div 
+                  //   key={index}
+                  //   className="bg-slate-700/50 px-4 py-2 rounded-lg text-gray-300 hover:bg-camelot-700/20 hover:text-camelot-300 transition-colors cursor-pointer"
+                  // >
+                  //   {skill}
+                  // </div>
                 ))}
               </div>
             </div>
@@ -310,46 +335,49 @@ function SkillsSection() {
 }
 
 function ContactSection() {
+  const { t } = useTranslation();
+
   return (
     <section className="min-h-screen flex items-center justify-center px-6 py-20">
       <div className="max-w-2xl w-full">
         <h2 className="text-5xl font-bold mb-8 bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent text-center">
-          Contacto
+          {t('contact.title')}
         </h2>
         <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700">
           <p className="text-lg text-gray-300 mb-8 text-center">
-            ¿Tienes un proyecto en mente? ¡Hablemos!
+           {t('contact.description')}
           </p>
           <form className="space-y-6">
             <div>
-              <label className="block text-gray-300 mb-2">Nombre</label>
+              <label className="block text-gray-300 mb-2">{t('contact.form.name')}</label>
               <input 
                 type="text"
                 className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-gray-100 focus:border-camelot-500 focus:outline-none transition-colors"
-                placeholder="Tu nombre"
+                placeholder={t('contact.form.namePlaceholder')}
               />
             </div>
             <div>
-              <label className="block text-gray-300 mb-2">Email</label>
+              <label className="block text-gray-300 mb-2">{t('contact.form.email')}</label>
               <input 
                 type="email"
                 className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-gray-100 focus:border-camelot-500 focus:outline-none transition-colors"
-                placeholder="tu@email.com"
+                placeholder={t('contact.form.emailPlaceholder')}
               />
             </div>
             <div>
-              <label className="block text-gray-300 mb-2">Mensaje</label>
+              <label className="block text-gray-300 mb-2">{t('contact.form.message')}</label>
               <textarea 
                 rows={5}
                 className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-gray-100 focus:border-camelot-500 focus:outline-none transition-colors resize-none"
-                placeholder="Cuéntame sobre tu proyecto..."
+                placeholder={t('contact.form.messagePlaceholder')}
               />
             </div>
             <button 
               type="submit"
+              // onClick={() => console.log(t('contact.form.successMessage'))}
               className="w-full px-8 py-3 bg-gradient-to-r from-purple-700 to-camelot-800 rounded-lg font-medium hover:scale-105 transition-transform shadow-lg"
             >
-              Enviar Mensaje
+              {t('contact.form.submit')}
             </button>
           </form>
           <div className="flex justify-center gap-6 mt-8 pt-8 border-t border-slate-700">
@@ -388,6 +416,8 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen w-screen bg-purple-800/10 text-white overflow-x-hidden">
       <Background3D />
+
+      <LanguageSelector />
       
       <Sidebar 
         isOpen={sidebarOpen} 

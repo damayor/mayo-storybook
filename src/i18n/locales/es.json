@@ -1,0 +1,76 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre mí",
+    "projects": "Proyectos",
+    "skills": "Habilidades",
+    "contact": "Contacto",
+    "navigation": "Navegación"
+  },
+  "home": {
+    "title": "David Mayorga Herrera / May Interactive",
+    "subtitle": "Desarrollador Full Stack • Especialista en React & Three.js",
+    "description": "Creando experiencias web únicas que combinan diseño elegante con tecnología de vanguardia",
+    "viewProjects": "Ver Proyectos",
+    "contactMe": "Contactar"
+  },
+  "about": {
+    "title": "Sobre mí",
+    "intro": "Soy un desarrollador apasionado por crear experiencias web inmersivas e interactivas. Mi especialidad es combinar tecnologías modernas como React, Three.js y Node.js para construir aplicaciones que no solo funcionan perfectamente, sino que también deleitan visualmente.",
+    "experience": "Con experiencia en desarrollo full-stack, me enfoco en escribir código limpio, escalable y mantenible. Disfruto especialmente trabajando con visualizaciones 3D y animaciones complejas que dan vida a las interfaces de usuario.",
+    "mainSkills": {
+      "frontend": "Frontend Developer",
+      "vrar": "AR/VR",
+      "production": "Shell Production"
+    }
+  },
+  "projects": {
+    "title": "Proyectos Destacados",
+    "viewMore": "Ver más",
+     "items": [
+      {
+        "title": "E-Commerce 3D",
+        "description": "Tienda online con visualización 3D de productos usando Three.js",
+        "tech": ["React", "Three.js", "Node.js", "MongoDB"],
+        "image": "🛍️"
+      },
+      {
+        "title": "Dashboard Analytics",
+        "description": "Herramienta de visualización de datos con gráficos 3D interactivos",
+        "tech": ["React", "D3.js", "WebSocket", "Express"],
+        "image": "📊"
+      },
+      {
+        "title": "Visualization App",
+        "description": "Sistema de personalización 3D en tiempo real para e-commerce",
+        "tech": ["Redux", "Three.js", "GSAP", "Tailwind"],
+        "image": "📊"
+      }
+    ]
+  },
+  "skills": {
+    "title": "Habilidades Técnicas",
+    "categories": [
+      "Frontend",
+      "Backend",
+      "Tools",
+      "CI/CD",
+      "3D",
+      "Full-Stack"
+    ]
+  },
+  "contact": {
+    "title": "Contacto",
+    "description": "¿Tienes un proyecto en mente? ¡Hablemos!",
+    "form": {
+      "name": "Nombre",
+      "namePlaceholder": "Tu nombre",
+      "email": "Email",
+      "emailPlaceholder": "tu@email.com",
+      "message": "Mensaje",
+      "messagePlaceholder": "Cuéntame sobre tu proyecto...",
+      "submit": "Enviar Mensaje",
+      "successMessage": "¡Mensaje enviado!"
+    }
+  }
+}

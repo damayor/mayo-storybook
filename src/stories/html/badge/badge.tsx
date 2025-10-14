@@ -9,7 +9,7 @@ export interface BadgeProps {
 
 export const Badge = ({
   color = 'primary',
-  label = 'olakeace',
+  label = '',
   theme = 'onlight',
   ...props
 }: BadgeProps) => {
@@ -27,10 +27,7 @@ export const Badge = ({
 
 
   return (
-    <div>
-      {/* <div className={`badge-lg padding-x-10px badge badge-${color} rounded-sm`}>{label}</div> */}
       <div className={`w-32 h-10 font-montserrat badge rounded-sm border-1 border-gray-700 ${getBadgeColor()}  hover:border-gray-50 `}>{label}</div>
-    </div>
 
   );
 };
