@@ -2,10 +2,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
-import { Menu, X, Github, Linkedin, Mail, ExternalLink, Code, Palette, Zap, Globe } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Mail, ExternalLink, Code, Palette, Zap, Globe, Gamepad, FileJson2, Terminal, RectangleGoggles } from 'lucide-react';
 import mayintLogo from './../../assets/mayint.svg'
 import { useTranslation } from 'react-i18next';
-import { Badge } from '../../stories/html/badge/badge';
+
+import { Heading } from 'HtmlComponents/headings';
+import { Badge } from 'HtmlComponents/badge';
+import { Card } from 'HtmlComponents/card';
 
 // Componente de fondo 3D animado
 function AnimatedSphere({ position, color, speed } : any) { 
@@ -96,9 +99,7 @@ interface SidebarProps {
 }
 // Componente Sidebar
 function Sidebar({ isOpen, setIsOpen, activeSection, setActiveSection } : SidebarProps) {
-  const { t } = useTranslation();
-
-  
+  const { t } = useTranslation();  
   const sections = [
     { id: 'home', label: t('nav.home') , icon: '🏠' },
     { id: 'about', label: t('nav.about'),  icon: '👤' },
@@ -185,16 +186,17 @@ function HomeSection() {
       <div className="max-w-4xl text-center">
         <div className="mb-6 animate-fade-in">
           <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-camelot-950 to-camelot-500 p-1">
-            <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-5xl">
+            <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-5xl font-lato">
               <img className='rounded-full' src={mayintLogo} alt="May Interactive Logo" />
             </div>
           </div>
         </div>
         {/* deberia poner de hecho el heading 1... */}
+        <Heading level={1} children={t('home.title')} variant='primary'/>
         <h1 className="text-6xl font-bold mb-4 bg-camelot-800 bg-clip-text text-transparent">
-          {t('home.title')}
+          {t('home.brand')}
         </h1>
-        <p className="text-2xl text-gray-300 mb-8">
+        <p className="text-2xl text-gray-500 mb-8">
           {t('home.subtitle')}
         </p>
         <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
@@ -204,7 +206,7 @@ function HomeSection() {
           <button className="px-8 py-3 bg-gradient-to-r from-purple-700 to-camelot-600 rounded-lg font-medium hover:scale-105 transition-transform shadow-lg">
             {t('home.viewProjects')}
           </button>
-          <button className="px-8 py-3 border-2 bg-burg border-camelot-800 rounded-lg font-medium hover:bg-camelot-700/10 transition-colors">
+          <button className="px-8 py-3 border-2 border-camelot-800 rounded-lg font-medium hover:bg-camelot-700/10 transition-colors">
             {t('home.contactMe')}
           </button>
         </div>
@@ -213,13 +215,15 @@ function HomeSection() {
   );
 }
 
+
+// We can be Heroes Sections
 function AboutSection() {
 
   const { t } = useTranslation();
   return (
     <section className="min-h-screen flex items-center justify-center px-6 py-20">
       <div className="max-w-4xl">
-        <h2 className="text-5xl font-bold mb-8 bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent">
+        <h2 className="text-5xl font-lato font-lato font-bold mb-8 bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent">
           {t('about.title')}
         </h2>
         <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700">
@@ -231,16 +235,17 @@ function AboutSection() {
           </p>
           <div className="grid grid-cols-3 gap-4 mt-8">
             <div className="text-center p-4 bg-slate-700/50 rounded-lg">
-              <Code className="mx-auto mb-2 text-blue-400" size={32} />
+              <FileJson2 className="mx-auto mb-2 text-blue-400" size={32} />
+              {/* <Code/> */}
               <p className="font-semibold text-gray-200">{t('about.mainSkills.frontend')}</p>
             </div>
             <div className="text-center p-4 bg-slate-700/50 rounded-lg">
-              <Palette className="mx-auto mb-2 text-purple-400" size={32} />
-              <p className="font-semibold text-gray-200">{t('about.mainSkills.vrar')}</p>
+              <RectangleGoggles className="mx-auto mb-2 text-camelot-500" size={32} />
+              <p className="font-semibold text-gray-200">{t('about.mainSkills.xr')}</p>
             </div>
             <div className="text-center p-4 bg-slate-700/50 rounded-lg">
-              <Zap className="mx-auto mb-2 text-yellow-400" size={32} />
-              <p className="font-semibold text-gray-200">{t('about.mainSkills.production')}</p>
+              <Terminal className="mx-auto mb-2 text-purple-500" size={32} />
+              <p className="font-semibold text-gray-200">{t('about.mainSkills.reliability')}</p>
             </div>
           </div>
         </div>
@@ -256,7 +261,7 @@ function ProjectsSection() {
   return (
     <section className="min-h-screen flex items-center justify-center px-6 py-20">
       <div className="max-w-6xl w-full">
-        <h2 className="text-5xl font-bold mb-12 bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent">
+        <h2 className="text-5xl font-lato font-bold pb-2 mb-12 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent">
          {t('projects.title')}
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -284,6 +289,17 @@ function ProjectsSection() {
               </button>
             </div>
           ))}
+
+          <Card
+            picture="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=400&h=300&fit=crop"
+            projectField="VR Development"
+            projectTitle="ORTHÁPTICA"
+            resume="Simulators with one-to-one scale, not only with a visual interaction but on a haptic interaction too. I've developed training simulators with mixed reality in order to acquire immersive learning or like it's called nowadays 'serious games'."
+            toolsUsed={[
+              'virtual reality',
+              'oculus'
+            ]}
+          />
         </div>
       </div>
     </section>
@@ -307,7 +323,7 @@ function SkillsSection() {
   return (
     <section className="min-h-screen flex items-center justify-center px-6 py-20">
       <div className="max-w-5xl w-full">
-        <h2 className="text-5xl font-bold mb-12 bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent">
+        <h2 className="text-5xl font-lato font-bold mb-12 bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent">
           {t('skills.title')}
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
@@ -340,7 +356,7 @@ function ContactSection() {
   return (
     <section className="min-h-screen flex items-center justify-center px-6 py-20">
       <div className="max-w-2xl w-full">
-        <h2 className="text-5xl font-bold mb-8 bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent text-center">
+        <h2 className="text-5xl font-lato font-bold mb-8 bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent text-center">
           {t('contact.title')}
         </h2>
         <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700">

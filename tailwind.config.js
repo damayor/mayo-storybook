@@ -6,6 +6,11 @@ module.exports = {
   // Toggle dark-mode based on .dark class or data-mode="dark"
   darkMode: ['class', '[data-mode="dark"]'], 
   safelist: [
+    "text-primary",
+    "text-secondary",
+    "text-accent",
+    "text-neutral",
+    "text-info",
     "btn-primary",
     "btn-secondary",
     "btn-accent",

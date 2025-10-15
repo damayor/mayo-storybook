@@ -8,6 +8,7 @@ export interface ButtonProps {
   theme?: DmTheme
   label?: string;
   onClick?: () => void;
+  twStyle?: string
 }
 
 export const Button = ({
@@ -15,6 +16,7 @@ export const Button = ({
   size = 'medium',
   label = 'olakeace',
   theme,
+  twStyle,
   ...props
 }: ButtonProps) => {
   const getButtonClass = ()  => {
@@ -37,7 +39,7 @@ export const Button = ({
 
   return (
     <div>
-      <button className={`w-32 h-10 rounded-sm btn ${getButtonClass()} `}>{label}</button>
+      <button className={`w-32 h-10 rounded-sm btn ${getButtonClass()} ${twStyle} `} {...props}>{label}</button>
     </div>
 
   );

@@ -1,4 +1,4 @@
-import type { DmColor, DmTheme } from "../../../interfaces/story-variants";
+import type { DmColor, DmTheme } from "Interfaces/story-variants";
 
 export interface BadgeProps {
 

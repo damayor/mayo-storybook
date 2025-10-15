@@ -7,20 +7,21 @@
     "contact": "Contact me"
   },
   "home": {
-    "title": "David Mayorga Herrera / May Interactive",
-    "subtitle": "Full Stack Software Engineer • React & Three.js Specialist",
+    "title": "David MayorGuerrera",
+    "brand": "May Interactive",
+    "subtitle": "Full Stack Software Engineer • Frontend & Interactive Specialist",
     "description": "Creating unique web experiences that combine elegant design with cutting-edge technology",
     "viewProjects": "View Projects", 
     "contactMe": "Contact"
   },
   "about": {
     "title": "About Me",
-    "intro": "I'm a Software Engineer (M.Sc) passionate about creating immersive and interactive web experiences. My specialty is combining modern technologies like React, Three.js, and Node.js to build applications that not only work perfectly in production but also visually delight.",
-    "experience": "With full-stack development experience, I focus on writing clean, scalable, and maintainable code. I especially enjoy working with 3D visualizations and complex animations that bring user interfaces to life.",
+    "intro": "I'm a Software Engineer (M.Sc) passionate about creating immersive and interactive web experiences. My specialty is combining modern technologies like React, Angular, Three.js, and Node.js to build applications that not only work perfectly in production but also visually delight.",
+    "experience": "With full-stack development experience, I focus on writing clean, scalable, and maintainable code. I especially enjoy working with 3D visualizations and complex animations that bring user interfaces to life. //Dev",
     "mainSkills": {
-      "frontend": "Frontend Developer",
-      "vrar": "AR/VR",
-      "production": "Shell Production"
+      "frontend": "Frontend Engineering",
+      "xr": "3D / XR Development",
+      "reliability": "Systems & Reliability"
     }
   },
   "projects": {

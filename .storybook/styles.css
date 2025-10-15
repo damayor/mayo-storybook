@@ -59,22 +59,22 @@
 
 }
 
-* {
+/* * { //12oct
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 
-body {
+/* body {
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
-}
+} */
 
-img {
+/* img {
   max-width: 100%;
   height: auto;
-}
+} */
 
 /* h1 {
   font-family: var(--font-family-lato);

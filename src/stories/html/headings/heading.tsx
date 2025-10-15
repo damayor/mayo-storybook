@@ -11,15 +11,17 @@ interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
 
 
 
-const Heading: React.FC<HeadingProps> = ({ level, children, variant = 'neutral', ...props }) => {
+export const Heading: React.FC<HeadingProps> = ({ level, children, variant = 'neutral', ...props }) => {
 
     const getHeadingColor = () => 
         variant == 'info' ? 'text-white' : `text-${variant}` 
 
     switch (level) {
         case 1:
-            return <h1 className={`text-4xl font-lato font-bold uppercase tracking-wider ${  getHeadingColor()}`} {...props}>{children}</h1>;
+            //Todo Why so little? they've got in 6xl and bold
+            return <h1 className={`text-4xl font-lato font-bold uppercase tracking-wider text-primary ${  getHeadingColor()}`} {...props}>{children}</h1>;
         case 2:
+            //Todo 5xl este si para title de cada secion, bold
             return <h2 className={`text-2xl font-roboto font-bold uppercase tracking-widest ${getHeadingColor()}`} {...props}>{children}</h2>;
         case 3:
             return <h3 className={`text-xl font-bold normal-case text-neutral tracking-widest ${getHeadingColor()}`} {...props}>{children}</h3>;
@@ -34,4 +36,3 @@ const Heading: React.FC<HeadingProps> = ({ level, children, variant = 'neutral',
     }
 };
 
-export default Heading;
