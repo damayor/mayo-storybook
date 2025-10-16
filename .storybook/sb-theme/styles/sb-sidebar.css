@@ -2,8 +2,9 @@
   color: var(--sb-color-white);
 }
 
-#root .os-content .sidebar-header img {
-  width: 100px;
+.sidebar-header a img {
+  width: 200px;
+  max-width: none;
 }
 
 #root .os-content .sidebar-header button:hover svg {
@@ -53,4 +54,8 @@
 
 .sidebar-container #storybook-explorer-searchfield {
   border-radius: 0;
+}
+
+#storybook-preview-wrapper {
+  width: inherit;
 }

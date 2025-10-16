@@ -6,7 +6,6 @@ import sbTheme from './sb-theme'
  
 addons.setConfig({
   sidebar: {
-    renderLabel: ({ name }) => name, // didnt work
     // showRoots: false,
      collapsedRoots: [
       'three',

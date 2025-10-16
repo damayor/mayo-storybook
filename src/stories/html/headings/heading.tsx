@@ -10,6 +10,8 @@ interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
 }
 
 
+//ToDo Improve: className permitirlo tambien agregar a este , aparte de los props
+
 
 export const Heading: React.FC<HeadingProps> = ({ level, children, variant = 'neutral', ...props }) => {
 
@@ -22,9 +24,10 @@ export const Heading: React.FC<HeadingProps> = ({ level, children, variant = 'ne
             return <h1 className={`text-4xl font-lato font-bold uppercase tracking-wider text-primary ${  getHeadingColor()}`} {...props}>{children}</h1>;
         case 2:
             //Todo 5xl este si para title de cada secion, bold
-            return <h2 className={`text-2xl font-roboto font-bold uppercase tracking-widest ${getHeadingColor()}`} {...props}>{children}</h2>;
+            return <h2 className={`text-5xl font-roboto font-bold uppercase tracking-widest ${getHeadingColor()}`} {...props}>{children}</h2>;
         case 3:
-            return <h3 className={`text-xl font-bold normal-case text-neutral tracking-widest ${getHeadingColor()}`} {...props}>{children}</h3>;
+            // <h3 className="text-2xl font-bold text-gray-800 mb-3"></h3>
+            return <h3 className={`text-2xl font-roboto font-bold normal-case tracking-wider mb-3 ${getHeadingColor()}`} {...props}>{children}</h3>;
         case 4:
             return <h4 {...props}>{children}</h4>;
         case 5:

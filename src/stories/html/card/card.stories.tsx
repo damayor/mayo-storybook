@@ -1,6 +1,8 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { Card } from './card';
+import { projectsData } from './../../../../src/data/projects';
+
 
 const meta = {
   title: 'Html/Components/Card',
@@ -12,13 +14,16 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const project = projectsData["xr"]
+
 export const Primary: Story = {
   args: {
-      projectTitle: "ORTHÁPTICA",
-      resume: "Simulators with one-to-one scale, not only with a visual interaction but on a haptic interaction too. I've developed training simulators with mixed reality in order to acquire immersive learning or like it's called nowadays 'serious games'.",
-      picture: "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=400&h=300&fit=crop",
-      toolsUsed: ["virtual reality", "oculus"],
-      projectField: "VR Development"
+    picture:project.images.at(0)!,
+    projectField:project.projectField,
+    projectTitle:project.projectPublicTitle,
+    subtitle:project.subtitle,
+    tags:project.tags,
+    technologies:project.technologies,
   }
 };
 

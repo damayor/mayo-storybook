@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { Heading } from 'HtmlComponents/headings';
 import { Badge } from 'HtmlComponents/badge';
 import { Card } from 'HtmlComponents/card';
+import { projectsData } from '../../data/projects';
 
 // Componente de fondo 3D animado
 function AnimatedSphere({ position, color, speed } : any) { 
@@ -256,6 +257,10 @@ function AboutSection() {
 
 function ProjectsSection() {
   const { t } = useTranslation();
+
+  const proj = projectsData["xr"]
+
+  const projData = Object.values(projectsData)
   const projects =  t('projects.items', {returnObjects: true}) as Array<any>
 
   return (
@@ -265,41 +270,17 @@ function ProjectsSection() {
          {t('projects.title')}
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
-            <div 
-              key={index}
-              className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700 hover:border-camelot-500 transition-all hover:scale-105 cursor-pointer group"
-            >
-              <div className="text-6xl mb-4">{project.image}</div>
-              <h3 className="text-2xl font-bold mb-3 text-gray-100 group-hover:text-camelot-400 transition-colors">
-                {t('projects.items.'+index+'.title')}
-              </h3>
-              <p className="text-gray-400 mb-4">
-                 {t('projects.items.'+index+'.description')}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {(t('projects.items.'+index+'.tech', {returnObjects: true}) as Array<string>).map((tech, i) => (
-                  <span key={i} className="px-3 py-1 bg-camelot-700/20 text-camelot-300 rounded-full text-sm">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              <button className="flex items-center gap-2 text-camelot-400 hover:text-camelot-300 transition-colors">
-                {t('projects.viewMore')} <ExternalLink size={16} /> 
-              </button>
-            </div>
-          ))}
-
-          <Card
-            picture="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=400&h=300&fit=crop"
-            projectField="VR Development"
-            projectTitle="ORTHÁPTICA"
-            resume="Simulators with one-to-one scale, not only with a visual interaction but on a haptic interaction too. I've developed training simulators with mixed reality in order to acquire immersive learning or like it's called nowadays 'serious games'."
-            toolsUsed={[
-              'virtual reality',
-              'oculus'
-            ]}
-          />
+          {projData.map((project, index) => (
+            <Card
+              picture={project.images.at(0)!}
+              projectField={project.projectField}
+              projectTitle={project.projectPublicTitle}
+              subtitle={project.subtitle}
+              tags={project.tags}
+              technologies={project.technologies}
+            />
+            )
+          )}
         </div>
       </div>
     </section>
@@ -326,6 +307,7 @@ function SkillsSection() {
         <h2 className="text-5xl font-lato font-bold mb-12 bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent">
           {t('skills.title')}
         </h2>
+        <Heading level={2} children={t('skills.title')} variant='primary'/>
         <div className="grid md:grid-cols-3 gap-6">
           {Object.entries(skills).map(([category, items], index) => (
             <div key={category} className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700">
@@ -345,6 +327,8 @@ function SkillsSection() {
             </div>
           ))}
         </div>
+        <p>More details grouped by skills on <a href="https://stackshare.io/damayor/software-engineer">stackshare</a></p>
+
       </div>
     </section>
   );

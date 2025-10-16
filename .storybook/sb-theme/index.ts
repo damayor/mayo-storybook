@@ -9,7 +9,7 @@ export default create({
   colorPrimary: '#d68dab',
   colorSecondary: '#8f3056',
 
-  appBg: 'black',
+  appBg: '#1e1e1e',
   appContentBg: 'black',
   appBorderColor: 'white',
   appBorderRadius: 0,
@@ -22,7 +22,7 @@ export default create({
 
   barTextColor: '#999999',
   barSelectedColor: 'white',
-  barBg: 'black',
+  barBg: '#1e1e1e',
 
   //Ahh en controls!
   inputBg: 'black',

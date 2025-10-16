@@ -3,15 +3,18 @@ import './style.css'
 import { useState } from "react";
 import { Badge } from "HtmlComponents/badge";
 import { Button } from "HtmlComponents/button";
+import { Heading } from "HtmlComponents/headings";
+import { Icon } from "HtmlComponents/icons";
 
 export interface CardProps {
   color?: DmColor
   theme?: DmTheme
   label?: string;
   projectTitle: string;
-  resume: string;
+  subtitle: string;
   picture: string;
-  toolsUsed: string[];
+  tags: string[];
+  technologies: string[];
   projectField: string;
 
   //content params
@@ -21,24 +24,20 @@ export const Card = ({
   color = 'primary',
   label = '',
   theme = 'onlight',
-  projectTitle, resume, picture, toolsUsed, projectField,
+  projectTitle, 
+  subtitle, 
+  picture,
+  tags, 
+  technologies, 
+  projectField,
   ...props
 }: CardProps) => {
-
-  // const project1 = 
-  //   {
-  //     projectTitle: "ORTHÁPTICA",
-  //     resume: "Simulators with one-to-one scale, not only with a visual interaction but on a haptic interaction too. I've developed training simulators with mixed reality in order to acquire immersive learning or like it's called nowadays 'serious games'.",
-  //     picture: "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=400&h=300&fit=crop",
-  //     toolsUsed: ["virtual reality", "oculus"],
-  //     projectField: "VR Development"
-  //   }
 
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
     <div 
-      className="w-80 h-96 perspective-midrange"
+      className="w-90 h-[500px] perspective-midrange"
       onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={() => setIsFlipped(false)}
     >
@@ -78,49 +77,51 @@ export const Card = ({
 
           {/* Content */}
           <div className="p-6">
-            <h3 className="text-2xl font-bold text-gray-800 mb-3">
+            {/* <h3 className="text-2xl font-bold text-gray-800 mb-3">
               {projectTitle}
-            </h3>
+            </h3> */}
+            <Heading level={3} children={projectTitle} />
             <p className="text-gray-600 text-sm leading-relaxed line-clamp-4">
-              {resume}
+              {subtitle}
             </p>
+
+            <div className="flex flex-wrap gap-2 mb-4 mt-2 justify-center">
+              {tags.map((tool, i) => (
+                <span key={i} className="px-3 py-1 bg-camelot-700/20 text-camelot-800 rounded-full text-sm">
+                  {tool}
+                </span>
+              ))}
+            </div>
           </div>
 
-          {/* Indicador de hover
-          <div className="absolute bottom-4 right-4 text-gray-400 text-xs">
-            mouseOver →
-          </div> */}
+
+
         </div>
 
       {/* BACK SIDE */}
         <div 
-          className="absolute w-full h-full backface-hidden bg-gradient-to-br from-camelot-800 to-camelot-900 rounded-2xl shadow-xl p-6 flex flex-col justify-center"
+          className="absolute w-full h-full backface-hidden bg-gradient-to-br from-camelot-100 to-white rounded-2xl shadow-xl p-6 flex flex-col justify-center"
           style={{ 
             backfaceVisibility: 'hidden',
             transform: 'rotateY(180deg)'
           }}
         >
 
-          {/* ToDo */}
-          {/* Logo o icono (ejemplo con Unity) */} 
-          <div className="text-center mb-6">
-            <div className="inline-block bg-white rounded-lg p-4 mb-4">
-              <svg className="w-16 h-16" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2L2 7V17L12 22L22 17V7L12 2Z" fill="#000" stroke="#000" strokeWidth="1"/>
-                <path d="M12 8V16M8 10L12 14L16 10" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
-              </svg>
-            </div>
+          <div className="flex flex-wrap gap-6 mb-8 justify-center">
+            {technologies.map((tech) => (
+              <Icon
+                size="medium"
+                technology={tech}
+                className="mb-2"
+              />
+            ))}
           </div>
 
-          {/* Título */}
-          {/* <h3 className="text-2xl font-bold text-white text-center mb-4">
-            {projectTitle}
-          </h3> */}
-
           {/* Tools/Technologies */}
-          <div className="mb-6">
+          {/* My Comp Style */}
+          {/* <div className="mb-6">
             <div className="flex flex-wrap gap-2 justify-center p-2">
-              {toolsUsed.map((tool, index) => (
+              {tags.map((tool, index) => (
                 <Badge
                   color="primary"
                   key={index}
@@ -128,10 +129,12 @@ export const Card = ({
                 />
               ))}
             </div>
-          </div>
+          </div> */}
+
+
           <div className="text-center mb-6">
             {/*ToDo Call to Action */}
-            <Button twStyle="p-2" color='info' label={"EXPLORE NOW!"} />
+            <Button twStyle="p-2" color='info' label={"EXPLORE NOW"} />
           </div>
         </div>
       </div>
