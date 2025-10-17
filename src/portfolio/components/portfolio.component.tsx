@@ -10,6 +10,8 @@ import { Heading } from 'HtmlComponents/headings';
 import { Badge } from 'HtmlComponents/badge';
 import { Card } from 'HtmlComponents/card';
 import { projectsData } from '../../data/projects';
+import { toolsAndExprience } from '../../data/experience';
+import SkillsTabPanel from '../../components/skills-panel/skills-panel-component';
 
 // Componente de fondo 3D animado
 function AnimatedSphere({ position, color, speed } : any) { 
@@ -257,11 +259,7 @@ function AboutSection() {
 
 function ProjectsSection() {
   const { t } = useTranslation();
-
-  const proj = projectsData["xr"]
-
   const projData = Object.values(projectsData)
-  const projects =  t('projects.items', {returnObjects: true}) as Array<any>
 
   return (
     <section className="min-h-screen flex items-center justify-center px-6 py-20">
@@ -270,7 +268,7 @@ function ProjectsSection() {
          {t('projects.title')}
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projData.map((project, index) => (
+          {projData.map((project) => (
             <Card
               picture={project.images.at(0)!}
               projectField={project.projectField}
@@ -287,52 +285,52 @@ function ProjectsSection() {
   );
 }
 
-function SkillsSection() {
-  const { t } = useTranslation();
+// function SkillsSection() {
+//   const { t } = useTranslation();
 
-  // This should be in another data service script or json
-  const skills = {
-    'Frontend': ['React', 'TypeScript', 'Angular', 'Tailwind CSS', 'SCSS', 'Next.js', 'Storybook', 'Figma'],
-    'Backend': ['Node.js', 'Postman', 'MongoDB', 'PostgreSQL', 'REST'],
-    'Tools': ['Copilot', 'Git', 'Jira', 'Confluence','Vite', 'JUnit', 'Vitest'],
-    'CI/CD': ['Docker', 'Kubernetes', 'YAML','Jenkins','Groovy','Opsgenie', 'Grafana', 'Kibana', 'Instana'],
-    '3D': ['Unity', 'Unreal', 'UI/UX', 'AR', 'Oculus', 'VR', 'Hololens','ThreeJs', 'WebGL', 'Blender'],
-    'FullStack': ['Javascript', 'C#', 'Linux', 'bash', 'C++', 'Java', 'Python'],
+//   // This should be in another data service script or json
+//   // const skills = {
+//   //   'Frontend': ['React', 'TypeScript', 'Angular', 'Tailwind CSS', 'SCSS', 'Next.js', 'Storybook', 'Figma'],
+//   //   'Backend': ['Node.js', 'Postman', 'MongoDB', 'PostgreSQL', 'REST'],
+//   //   'Tools': ['Copilot', 'Git', 'Jira', 'Confluence','Vite', 'JUnit', 'Vitest'],
+//   //   'CI/CD': ['Docker', 'Kubernetes', 'YAML','Jenkins','Groovy','Opsgenie', 'Grafana', 'Kibana', 'Instana'],
+//   //   '3D': ['Unity', 'Unreal', 'UI/UX', 'AR', 'Oculus', 'VR', 'Hololens','ThreeJs', 'WebGL', 'Blender'],
+//   //   'FullStack': ['Javascript', 'C#', 'Linux', 'bash', 'C++', 'Java', 'Python'],
 
-  };
+//   // };
 
-  return (
-    <section className="min-h-screen flex items-center justify-center px-6 py-20">
-      <div className="max-w-5xl w-full">
-        <h2 className="text-5xl font-lato font-bold mb-12 bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent">
-          {t('skills.title')}
-        </h2>
-        <Heading level={2} children={t('skills.title')} variant='primary'/>
-        <div className="grid md:grid-cols-3 gap-6">
-          {Object.entries(skills).map(([category, items], index) => (
-            <div key={category} className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700">
-              {/* //ToDo */}
-              <h3 className="text-2xl font-bold mb-4 text-gray-100">{ t('skills.categories.'+index) }</h3>
-              <div className="space-y-2 space-x-1">
-                {items.map((skill, index) => (
-                  <Badge key={index} color="outline" label={skill} />
-                  // <div 
-                  //   key={index}
-                  //   className="bg-slate-700/50 px-4 py-2 rounded-lg text-gray-300 hover:bg-camelot-700/20 hover:text-camelot-300 transition-colors cursor-pointer"
-                  // >
-                  //   {skill}
-                  // </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-        <p>More details grouped by skills on <a href="https://stackshare.io/damayor/software-engineer">stackshare</a></p>
+//   return (
+//     <section className="min-h-screen flex items-center justify-center px-6 py-20">
+//       <div className="max-w-5xl w-full">
+//         <h2 className="text-5xl font-lato font-bold mb-12 bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent">
+//           {t('skills.title')}
+//         </h2>
+//         <Heading level={2} children={t('skills.title')} variant='primary'/>
+//         <div className="grid md:grid-cols-3 gap-6">
+//           {Object.entries(skills).map(([category, items], index) => (
+//             <div key={category} className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700">
+//               {/* //ToDo */}
+//               <h3 className="text-2xl font-bold mb-4 text-gray-100">{ t('skills.categories.'+index) }</h3>
+//               <div className="space-y-2 space-x-1">
+//                 {items.map((skill, index) => (
+//                   <Badge key={index} color="outline" label={skill} />
+//                   // <div 
+//                   //   key={index}
+//                   //   className="bg-slate-700/50 px-4 py-2 rounded-lg text-gray-300 hover:bg-camelot-700/20 hover:text-camelot-300 transition-colors cursor-pointer"
+//                   // >
+//                   //   {skill}
+//                   // </div>
+//                 ))}
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+//         <p>More details grouped by skills on <a href="https://stackshare.io/damayor/software-engineer">stackshare</a></p>
 
-      </div>
-    </section>
-  );
-}
+//       </div>
+//     </section>
+//   );
+// }
 
 function ContactSection() {
   const { t } = useTranslation();
@@ -407,7 +405,7 @@ export default function Portfolio() {
       case 'home': return <HomeSection />;
       case 'about': return <AboutSection />;
       case 'projects': return <ProjectsSection />;
-      case 'skills': return <SkillsSection />;
+      case 'skills': return <SkillsTabPanel {...toolsAndExprience} />;
       case 'contact': return <ContactSection />;
       default: return <HomeSection />;
     }
