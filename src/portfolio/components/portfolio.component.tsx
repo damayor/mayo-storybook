@@ -3,22 +3,20 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 import { Menu, X, Github, Linkedin, Mail, ExternalLink, Code, Palette, Zap, Globe, Gamepad, FileJson2, Terminal, RectangleGoggles } from 'lucide-react';
-import mayintLogo from './../../assets/mayint.svg'
+import mayintLogo from '/assets/mayint.svg'
 import { useTranslation } from 'react-i18next';
 
 import { Heading } from 'HtmlComponents/headings';
-import { Badge } from 'HtmlComponents/badge';
 import { Card } from 'HtmlComponents/card';
 import { projectsData } from '../../data/projects';
 import { toolsAndExprience } from '../../data/experience';
 import SkillsTabPanel from '../../components/skills-panel/skills-panel-component';
-import { useFullPageScroll } from '../../hooks/useFullPageScroll';
 import { contactData } from 'Data/contact';
+import { type SectionType, SECTIONS, SECTIONS_ARRAY } from 'Interfaces/portfolio-sections';
 
 // Componente de fondo 3D animado
 function AnimatedSphere({ position, color, speed } : any) { 
   const meshRef = useRef<THREE.Mesh | null>(null)
-
   
   useFrame((state) => {
     if (meshRef.current) {
@@ -65,9 +63,10 @@ function Background3D() {
   );
 }
 
+
+
 function LanguageSelector() {
   const { i18n } = useTranslation();
-
   const languages = [
     { code: 'en', name: 'English', flag: '🇬🇧' },
     { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
@@ -75,20 +74,19 @@ function LanguageSelector() {
   ];
 
   return (
-    <div className="fixed top-6 right-6 z-30">
-      <div className="flex gap-2 bg-slate-800/80 backdrop-blur-sm rounded-lg p-2 border border-slate-700">
+    <div className="px-4 pb-4">
+      <div className="flex gap-2">
         {languages.map((lang) => (
           <button
             key={lang.code}
             onClick={() => i18n.changeLanguage(lang.code)}
-            className={`px-3 py-2 rounded-lg transition-all flex items-center gap-2 ${
+            className={`flex-1 px-2 py-1 text-xs rounded transition-all ${
               i18n.language === lang.code
                 ? 'bg-blue-500 text-white'
-                : 'text-gray-300 hover:bg-slate-700'
+                : 'bg-slate-700 text-gray-300 hover:bg-slate-600'
             }`}
           >
-            <span>{lang.flag}</span>
-            {/* <span className="hidden sm:inline">{lang.name}</span> */}
+            {lang.flag}
           </button>
         ))}
       </div>
@@ -96,41 +94,28 @@ function LanguageSelector() {
   );
 }
 
-interface SidebarSection{
-    id: string;
-    label: string;
-    icon: string;
-}
-
 interface SidebarProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
-  activeSection: string;
-  setActiveSection: (section: string) => void;
+  onNavigate: (section: SectionType) => void;
 }
+
 // Componente Sidebar
-function Sidebar({ isOpen, setIsOpen, activeSection, setActiveSection } : SidebarProps) {
+function Sidebar({ isOpen, setIsOpen, onNavigate } : SidebarProps) {
   const { t } = useTranslation();  
-  const sections :SidebarSection[]= [
-    { id: 'home', label: t('nav.home') , icon: '🏠' },
-    { id: 'about', label: t('nav.about'),  icon: '👤' },
-    { id: 'projects', label: t('nav.projects') , icon: '💼' },
-    { id: 'skills', label: t('nav.skills'), icon: '⚡' },
-    { id: 'contact', label: t('nav.contact') , icon: '📧' }
+
+  const sections= [
+    { id: 'home' as const, label: t('nav.home') , icon: '🏠' },
+    { id: 'about' as const, label: t('nav.about'),  icon: '👤' },
+    { id: 'projects' as const, label: t('nav.projects') , icon: '💼' },
+    { id: 'skills' as const, label: t('nav.skills'), icon: '⚡' },
+    { id: 'contact' as const, label: t('nav.contact') , icon: '📧' }
   ];
-
-  const sflat = sections.flatMap((section) => section.id)
-
-  const handleNavClick = (sectionId : string) => {
-    setActiveSection(sectionId);
+  
+  const handleNavClick = (sectionId : SectionType) => {
+    onNavigate(sectionId);
     setIsOpen(false);
   };
-
-  useFullPageScroll({
-    sections: sflat,
-    activeSection,
-    setActiveSection
-  });
 
   return (
     <>
@@ -164,11 +149,7 @@ function Sidebar({ isOpen, setIsOpen, activeSection, setActiveSection } : Sideba
               <button
                 key={section.id}
                 onClick={() => handleNavClick(section.id)}
-                className={`w-full flex items-center gap-4 px-4 py-3 rounded-lg transition-all duration-200 ${
-                  activeSection === section.id
-                    ? 'bg-gradient-to-r from-purple-700 to-camelot-950 text-white shadow-lg scale-105'
-                    : 'text-gray-300 hover:bg-slate-700 hover:translate-x-1'
-                }`}
+                className="w-full flex items-center gap-4 px-4 py-3 rounded-lg transition-all duration-200 text-gray-300 hover:bg-slate-700 hover:translate-x-1"
               >
                 <span className="text-2xl">{section.icon}</span>
                 <span className="font-medium">{section.label}</span>
@@ -176,7 +157,8 @@ function Sidebar({ isOpen, setIsOpen, activeSection, setActiveSection } : Sideba
             ))}
           </nav>
 
-          <div className="border-t border-slate-700 pt-6 space-y-4">
+          <div className="border-t border-slate-700 pt-6 space-y-4"> 
+            <LanguageSelector/>
             <div className="flex justify-center gap-4">
               <a href={contactData.github} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
                 <Github size={20} />
@@ -189,7 +171,6 @@ function Sidebar({ isOpen, setIsOpen, activeSection, setActiveSection } : Sideba
               </a>
             </div>
           </div>
-          <LanguageSelector />
         </div>
       </div>
     </>
@@ -201,7 +182,6 @@ function HomeSection() {
 
   const { t } = useTranslation();
   
-
   return (
     <section className="min-h-screen flex items-center justify-center px-6">
       <div className="max-w-4xl text-center">
@@ -244,9 +224,9 @@ function AboutSection() {
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
       <div className="max-w-4xl">
-        <h2 className="text-5xl font-lato font-bold mb-8 bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent">
+        <Heading level={2} className='text-5xl font-lato font-bold mb-8 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center'  variant='primary'>
           {t('about.title')}
-        </h2>
+        </Heading>
         <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700">
           <p className="text-lg text-gray-300 mb-6 leading-relaxed">
             {t('about.intro')}
@@ -282,9 +262,12 @@ function ProjectsSection() {
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
       <div className="max-w-6xl w-full">
-        <h2 className="text-5xl font-lato font-bold pb-2 mb-12 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent">
+        {/* <h2 className="text-5xl font-lato font-bold pb-2 mb-12 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent"> */}
+        <Heading level={2} className='text-5xl font-lato font-bold mb-8 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center'  variant='primary'>
+
          {t('projects.title')}
-        </h2>
+        
+        </Heading>
         <div className="grid grids-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projData.map((project) => (
             <Card
@@ -304,62 +287,15 @@ function ProjectsSection() {
   );
 }
 
-// function SkillsSection() {
-//   const { t } = useTranslation();
-
-//   // This should be in another data service script or json
-//   // const skills = {
-//   //   'Frontend': ['React', 'TypeScript', 'Angular', 'Tailwind CSS', 'SCSS', 'Next.js', 'Storybook', 'Figma'],
-//   //   'Backend': ['Node.js', 'Postman', 'MongoDB', 'PostgreSQL', 'REST'],
-//   //   'Tools': ['Copilot', 'Git', 'Jira', 'Confluence','Vite', 'JUnit', 'Vitest'],
-//   //   'CI/CD': ['Docker', 'Kubernetes', 'YAML','Jenkins','Groovy','Opsgenie', 'Grafana', 'Kibana', 'Instana'],
-//   //   '3D': ['Unity', 'Unreal', 'UI/UX', 'AR', 'Oculus', 'VR', 'Hololens','ThreeJs', 'WebGL', 'Blender'],
-//   //   'FullStack': ['Javascript', 'C#', 'Linux', 'bash', 'C++', 'Java', 'Python'],
-
-//   // };
-
-//   return (
-//     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
-//       <div className="max-w-5xl w-full">
-//         <h2 className="text-5xl font-lato font-bold mb-12 bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent">
-//           {t('skills.title')}
-//         </h2>
-//         <Heading level={2} children={t('skills.title')} variant='primary'/>
-//         <div className="grid md:grid-cols-3 gap-6">
-//           {Object.entries(skills).map(([category, items], index) => (
-//             <div key={category} className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700">
-//               {/* //ToDo */}
-//               <h3 className="text-2xl font-bold mb-4 text-gray-100">{ t('skills.categories.'+index) }</h3>
-//               <div className="space-y-2 space-x-1">
-//                 {items.map((skill, index) => (
-//                   <Badge key={index} color="outline" label={skill} />
-//                   // <div 
-//                   //   key={index}
-//                   //   className="bg-slate-700/50 px-4 py-2 rounded-lg text-gray-300 hover:bg-camelot-700/20 hover:text-camelot-300 transition-colors cursor-pointer"
-//                   // >
-//                   //   {skill}
-//                   // </div>
-//                 ))}
-//               </div>
-//             </div>
-//           ))}
-//         </div>
-//         <p>More details grouped by skills on <a href="https://stackshare.io/damayor/software-engineer">stackshare</a></p>
-
-//       </div>
-//     </section>
-//   );
-// }
-
 function ContactSection() {
   const { t } = useTranslation();
 
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
       <div className="max-w-2xl w-full">
-        <h2 className="text-5xl font-lato font-bold mb-8 bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent text-center">
+        <Heading level={2} className='text-5xl font-lato font-bold mb-8 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center'  variant='primary'>
           {t('contact.title')}
-        </h2>
+        </Heading>        
         <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700">
           <p className="text-lg text-gray-300 mb-8 text-center">
            {t('contact.description')}
@@ -417,30 +353,32 @@ function ContactSection() {
 // Componente Principal
 export default function Portfolio() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = useState<SectionType>(SECTIONS.home);
 
-  const renderSection = () => {
-    switch (activeSection) {
-      case 'home': return <HomeSection />;
-      case 'about': return <AboutSection />;
-      case 'projects': return <ProjectsSection />;
-      case 'skills': return <SkillsTabPanel {...toolsAndExprience} />;
-      case 'contact': return <ContactSection />;
-      default: return <HomeSection />;
-    }
+  const sectionRefs = {
+    home: useRef<HTMLDivElement>(null),
+    about: useRef<HTMLDivElement>(null),
+    projects: useRef<HTMLDivElement>(null),
+    skills: useRef<HTMLDivElement>(null),
+    contact: useRef<HTMLDivElement>(null),
+  };
+
+  const scrollToSection = (sectionKey: keyof typeof sectionRefs) => {
+    sectionRefs[sectionKey].current?.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
+    setSidebarOpen(false);
+    setActiveSection(sectionKey);
   };
 
   return (
     <div className="min-h-screen w-screen bg-purple-800/10 text-white overflow-x-hidden">
-      <Background3D />
-
-      <LanguageSelector />
-      
+      <Background3D />      
       <Sidebar 
         isOpen={sidebarOpen} 
         setIsOpen={setSidebarOpen}
-        activeSection={activeSection}
-        setActiveSection={setActiveSection}
+        onNavigate={scrollToSection}
       />
 
       {/* Botón del menú hamburguesa Mobile*/}
@@ -460,39 +398,42 @@ export default function Portfolio() {
 
       {/* Contenido principal */}
       <main className="relative z-10">
-        {renderSection()}
+         <div ref={sectionRefs.home}>
+          <HomeSection />
+        </div>
+        
+        <div ref={sectionRefs.about}>
+          <AboutSection />
+        </div>
+        
+        <div ref={sectionRefs.projects}>
+          <ProjectsSection />
+        </div>
+        
+        <div ref={sectionRefs.skills}>
+          <SkillsTabPanel {...toolsAndExprience} />
+        </div>
+        
+        <div ref={sectionRefs.contact}>
+          <ContactSection />
+        </div>
       </main>
 
       {/* Indicador de sección */}
-      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-30 space-y-3">
-        {['home', 'about', 'projects', 'skills', 'contact'].map((section) => (
-          <button
-            key={section}
-            onClick={() => setActiveSection(section)}
-            className={`block w-3 h-3 rounded-full transition-all ${
-              activeSection === section 
-                ? 'bg-camelot-700 scale-150' 
-                : 'bg-slate-600 hover:bg-slate-500'
-            }`}
-            title={section}
-          />
-        ))}
-      </div>
-
-      {/* Indicador de sección - MOBILE */}
-      <div className="fixed right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 space-y-2 sm:space-y-3">
-        {['home', 'about', 'projects', 'skills', 'contact'].map((section) => (
-          <button
-            key={section}
-            onClick={() => setActiveSection(section)}
-            className={`hidden sm:block w-3 h-3 rounded-full transition-all ${
-              activeSection === section 
-                ? 'bg-camelot-700 scale-150' 
-                : 'bg-slate-600 hover:bg-slate-500'
-            }`}
-            title={section}
-          />
-        ))}
+      <div className="fixed right-1 sm:right-6 top-1/2 -translate-y-1/2 z-30 space-y-1 sm:space-y-3 hidden sm:block">
+      {SECTIONS_ARRAY.map((section) => (
+        <button
+          key={section}
+          onClick={() => scrollToSection(section)}
+          className={`block w-3 h-3 rounded-full transition-all duration-300 ${
+            activeSection === section 
+              ? 'bg-camelot-700 scale-150' 
+              : 'bg-slate-600 hover:bg-slate-500'
+          }`}
+          title={section}
+          aria-label={`Go to ${section} section`}
+        />
+      ))}
       </div>
     </div>
   );

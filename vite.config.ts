@@ -12,5 +12,5 @@ export default defineConfig({
     react(),
     tsconfigPaths()
   ],
- 
+  base: './'
 });

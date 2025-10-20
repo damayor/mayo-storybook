@@ -37,7 +37,7 @@ export const Card = ({
 
   return (
     <div 
-      className="w-90 h-[500px] perspective-midrange"
+      className="w-full sm:w-90 h-[500px] perspective-midrange"
       onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={() => setIsFlipped(false)}
     >

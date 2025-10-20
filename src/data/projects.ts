@@ -10,14 +10,14 @@ export const projectsData: Record<string, Project> =
     technologies: ["Typescript", "React","CSS", "SCSS", "ThreeJs", "Figma"],
     projectField: "Frontend",
     images: [
-      "src/assets/images/projects/frontend/VolvoInteractive.PNG",
-      "src/assets/images/projects/frontend/volvo-home.PNG"
+      "/assets/images/projects/frontend/VolvoInteractive.PNG",
+      "/assets/images/projects/frontend/volvo-home.PNG"
     ],
     mediaLinks: [
       "https://umbraint.com/catalogosdigitales/catalogovolvo"
     ],
     gifs: [
-      "src/assets/images/projects/frontend/volvo-3d.gif"
+      "/assets/images/projects/frontend/volvo-3d.gif"
     ],
     initDate: new Date(2020, 0, 1),
     endDate: new Date(2020, 10, 1),
@@ -32,11 +32,11 @@ export const projectsData: Record<string, Project> =
     technologies: ["Unity", "CSharp", "Unreal", "Cpp", "Android"],
     projectField: "XR",
     images: [
-      "src/assets/images/projects/xr/OH_Resident.JPG",
-      "src/assets/images/projects/xr/OHdavid.JPG"
+      "/assets/images/projects/xr/OH_Resident.JPG",
+      "/assets/images/projects/xr/OHdavid.JPG"
     ],
     gifs: [
-      "src/assets/images/projects/xr/OH_2D.gif"
+      "/assets/images/projects/xr/OH_2D.gif"
     ],
     mediaLinks: [
       "https://www.youtube.com/watch?v=Buu8ReSidRE"
@@ -59,11 +59,11 @@ export const projectsData: Record<string, Project> =
     technologies: ["NodeJS","Postman","Mongo", "Redux", "Filezilla"],
     projectField: "Reliability",
     images: [
-      "src/assets/images/projects/reliability/1E_quad_4.JPG",
-      "src/assets/images/projects/reliability/1E_quad_mail.JPG",
+      "/assets/images/projects/reliability/1E_quad_4.JPG",
+      "/assets/images/projects/reliability/1E_quad_mail.JPG",
     ],
     gifs: [
-      "src/assets/images/projects/reliability/1E_intro.gif",
+      "/assets/images/projects/reliability/1E_intro2.gif",
     ],
     mediaLinks: [
       "https://www.youtube.com/watch?v=JUJl6v0Scas", //1a Este 
@@ -98,13 +98,13 @@ export const newerProjects: Record<string, Project> =
     //Fotos de un zapato volando en el vaino
     //El Hotstpot
     images: [
-      "src/assets/images/projects/frontend/volvoInteractive.PNG",
-      "src/assets/images/projects/frontend/volvo-home.PNG"
+      "/assets/images/projects/frontend/volvoInteractive.PNG",
+      "/assets/images/projects/frontend/volvo-home.PNG"
     ],
 
     //Todo El Hotstpot actuando, o la rotacion
     gifs: [
-      "src/assets/images/projects/frontend/volvo-3d.gif"
+      "/assets/images/projects/frontend/volvo-3d.gif"
     ],
     mediaLinks: [
       "https://www.youtube.com/watch?v=Buu8ReSidRE"
