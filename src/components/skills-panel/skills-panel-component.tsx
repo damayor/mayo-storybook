@@ -141,9 +141,9 @@ export default function SkillsTabPanel({
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
       <div className="max-w-4xl w-full">
-        <h2 className="text-5xl font-lato font-bold mb-4 bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent">
+        <Heading level={2} className='text-5xl font-lato font-bold mb-8 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center'  variant='primary'>
           Experience & Skills
-        </h2>
+        </Heading>
         {/* Tab Navigation */}
         <div className="bg-white/60 backdrop-blur-sm border border-gray-200/50 rounded-2xl mb-8 p-1 overflow-x-auto shadow-lg">
           <div className="flex gap-1">

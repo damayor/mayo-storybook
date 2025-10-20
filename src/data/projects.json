@@ -9,11 +9,11 @@
     "technologies": ["Unity", "Oculus"],
     "projectField": "XR",
     "images": [
-        "src/assets/images/projects/xr/OH_Resident.JPG",
-        "src/assets/images/projects/xr/OHdavid.JPG"
+        "/assets/images/projects/xr/OH_Resident.JPG",
+        "/assets/images/projects/xr/OHdavid.JPG"
     ],
     "gifs": [
-        "src/assets/images/projects/xr/OH_2D.gif"
+        "/assets/images/projects/xr/OH_2D.gif"
     ],
     "mediaLinks": [
         "https://www.youtube.com/watch?v=jXI6X0najy0"
@@ -31,11 +31,11 @@
     "technologies": ["Unity", "Oculus"],
     "projectField": "XR",
     "images": [
-        "src/assets/images/projects/xr/OH_Resident.JPG",
-        "src/assets/images/projects/xr/OHdavid.JPG"
+        "/assets/images/projects/xr/OH_Resident.JPG",
+        "/assets/images/projects/xr/OHdavid.JPG"
     ],
     "gifs": [
-        "src/assets/images/projects/xr/OH_2D.gif"
+        "/assets/images/projects/xr/OH_2D.gif"
     ],
     "mediaLinks": [
         "https://www.youtube.com/watch?v=jXI6X0najy0"
