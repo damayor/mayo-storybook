@@ -12,6 +12,8 @@ import { Card } from 'HtmlComponents/card';
 import { projectsData } from '../../data/projects';
 import { toolsAndExprience } from '../../data/experience';
 import SkillsTabPanel from '../../components/skills-panel/skills-panel-component';
+import { useFullPageScroll } from '../../hooks/useFullPageScroll';
+import { contactData } from 'Data/contact';
 
 // Componente de fondo 3D animado
 function AnimatedSphere({ position, color, speed } : any) { 
@@ -67,9 +69,9 @@ function LanguageSelector() {
   const { i18n } = useTranslation();
 
   const languages = [
-    { code: 'es', name: 'Español', flag: '🇪🇸' },
     { code: 'en', name: 'English', flag: '🇬🇧' },
-    // { code: 'de', name: 'Deutsch', flag: '🇩🇪' }
+    { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+    { code: 'es', name: 'Español', flag: '🇪🇸' },
   ];
 
   return (
@@ -86,12 +88,18 @@ function LanguageSelector() {
             }`}
           >
             <span>{lang.flag}</span>
-            <span className="hidden sm:inline">{lang.name}</span>
+            {/* <span className="hidden sm:inline">{lang.name}</span> */}
           </button>
         ))}
       </div>
     </div>
   );
+}
+
+interface SidebarSection{
+    id: string;
+    label: string;
+    icon: string;
 }
 
 interface SidebarProps {
@@ -103,7 +111,7 @@ interface SidebarProps {
 // Componente Sidebar
 function Sidebar({ isOpen, setIsOpen, activeSection, setActiveSection } : SidebarProps) {
   const { t } = useTranslation();  
-  const sections = [
+  const sections :SidebarSection[]= [
     { id: 'home', label: t('nav.home') , icon: '🏠' },
     { id: 'about', label: t('nav.about'),  icon: '👤' },
     { id: 'projects', label: t('nav.projects') , icon: '💼' },
@@ -111,10 +119,18 @@ function Sidebar({ isOpen, setIsOpen, activeSection, setActiveSection } : Sideba
     { id: 'contact', label: t('nav.contact') , icon: '📧' }
   ];
 
+  const sflat = sections.flatMap((section) => section.id)
+
   const handleNavClick = (sectionId : string) => {
     setActiveSection(sectionId);
     setIsOpen(false);
   };
+
+  useFullPageScroll({
+    sections: sflat,
+    activeSection,
+    setActiveSection
+  });
 
   return (
     <>
@@ -128,7 +144,7 @@ function Sidebar({ isOpen, setIsOpen, activeSection, setActiveSection } : Sideba
       
       {/* Sidebar */}
       <div 
-        className={`fixed top-0 left-0 h-full w-72 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 
+        className={`fixed top-0 left-0 h-full w-72 sm:w-96 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 
         shadow-2xl z-50 transform transition-transform duration-300 ease-out ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
@@ -162,17 +178,18 @@ function Sidebar({ isOpen, setIsOpen, activeSection, setActiveSection } : Sideba
 
           <div className="border-t border-slate-700 pt-6 space-y-4">
             <div className="flex justify-center gap-4">
-              <a href="#" className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+              <a href={contactData.github} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
                 <Github size={20} />
               </a>
-              <a href="#" className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+              <a href={contactData.linkedin} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
                 <Linkedin size={20} />
               </a>
-              <a href="#" className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+              <a href={contactData.github} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
                 <Mail size={20} />
               </a>
             </div>
           </div>
+          <LanguageSelector />
         </div>
       </div>
     </>
@@ -183,6 +200,7 @@ function Sidebar({ isOpen, setIsOpen, activeSection, setActiveSection } : Sideba
 function HomeSection() {
 
   const { t } = useTranslation();
+  
 
   return (
     <section className="min-h-screen flex items-center justify-center px-6">
@@ -195,9 +213,9 @@ function HomeSection() {
           </div>
         </div>
         {/* deberia poner de hecho el heading 1... */}
-        <Heading level={1} children={t('home.title')} variant='primary'/>
-        <h1 className="text-6xl font-bold mb-4 bg-camelot-800 bg-clip-text text-transparent">
-          {t('home.brand')}
+        <Heading className='' level={1} children={t('home.brand')} variant='primary'/>
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-montserrat mb-8 mt-4 text-camelot-800">
+          {t('home.title')}
         </h1>
         <p className="text-2xl text-gray-500 mb-8">
           {t('home.subtitle')}
@@ -209,7 +227,7 @@ function HomeSection() {
           <button className="px-8 py-3 bg-gradient-to-r from-purple-700 to-camelot-600 rounded-lg font-medium hover:scale-105 transition-transform shadow-lg">
             {t('home.viewProjects')}
           </button>
-          <button className="px-8 py-3 border-2 border-camelot-800 rounded-lg font-medium hover:bg-camelot-700/10 transition-colors">
+          <button /*ToDo onClick={}*/ className="px-8 py-3 border-2 border-camelot-800 rounded-lg text-camelot-800 font-medium hover:bg-camelot-700/10 transition-colors">
             {t('home.contactMe')}
           </button>
         </div>
@@ -224,9 +242,9 @@ function AboutSection() {
 
   const { t } = useTranslation();
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 py-20">
+    <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
       <div className="max-w-4xl">
-        <h2 className="text-5xl font-lato font-lato font-bold mb-8 bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent">
+        <h2 className="text-5xl font-lato font-bold mb-8 bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent">
           {t('about.title')}
         </h2>
         <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700">
@@ -236,7 +254,7 @@ function AboutSection() {
           <p className="text-lg text-gray-300 mb-6 leading-relaxed">
             {t('about.experience')}
           </p>
-          <div className="grid grid-cols-3 gap-4 mt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
             <div className="text-center p-4 bg-slate-700/50 rounded-lg">
               <FileJson2 className="mx-auto mb-2 text-blue-400" size={32} />
               {/* <Code/> */}
@@ -262,12 +280,12 @@ function ProjectsSection() {
   const projData = Object.values(projectsData)
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 py-20">
+    <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
       <div className="max-w-6xl w-full">
         <h2 className="text-5xl font-lato font-bold pb-2 mb-12 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent">
          {t('projects.title')}
         </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grids-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projData.map((project) => (
             <Card
               picture={project.images.at(0)!}
@@ -276,6 +294,7 @@ function ProjectsSection() {
               subtitle={project.subtitle}
               tags={project.tags}
               technologies={project.technologies}
+              ctaLink={project.mediaLinks?.at(0)}          
             />
             )
           )}
@@ -300,7 +319,7 @@ function ProjectsSection() {
 //   // };
 
 //   return (
-//     <section className="min-h-screen flex items-center justify-center px-6 py-20">
+//     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
 //       <div className="max-w-5xl w-full">
 //         <h2 className="text-5xl font-lato font-bold mb-12 bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent">
 //           {t('skills.title')}
@@ -336,7 +355,7 @@ function ContactSection() {
   const { t } = useTranslation();
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 py-20">
+    <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
       <div className="max-w-2xl w-full">
         <h2 className="text-5xl font-lato font-bold mb-8 bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent text-center">
           {t('contact.title')}
@@ -372,20 +391,20 @@ function ContactSection() {
             </div>
             <button 
               type="submit"
-              // onClick={() => console.log(t('contact.form.successMessage'))}
+              onClick={() => window.alert("This service is still on development")}
               className="w-full px-8 py-3 bg-gradient-to-r from-purple-700 to-camelot-800 rounded-lg font-medium hover:scale-105 transition-transform shadow-lg"
             >
               {t('contact.form.submit')}
             </button>
           </form>
           <div className="flex justify-center gap-6 mt-8 pt-8 border-t border-slate-700">
-            <a href="#" className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+            <a href={contactData.github} className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
               <Github size={24} />
             </a>
-            <a href="#" className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+            <a href={contactData.linkedin} className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
               <Linkedin size={24} />
             </a>
-            <a href="#" className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+            <a href={contactData.linkedin} className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
               <Mail size={24} />
             </a>
           </div>
@@ -424,10 +443,17 @@ export default function Portfolio() {
         setActiveSection={setActiveSection}
       />
 
-      {/* Botón del menú hamburguesa */}
+      {/* Botón del menú hamburguesa Mobile*/}
       <button
         onClick={() => setSidebarOpen(true)}
-        className="fixed top-6 left-6 z-30 p-3 bg-slate-800/80 backdrop-blur-sm rounded-lg shadow-lg hover:bg-slate-700 transition-colors border border-slate-700"
+        className="fixed top-6 left-6 z-30 p-3 bg-slate-800/80 backdrop-blur-sm rounded-lg shadow-lg hover:bg-slate-700 transition-colors border border-slate-700 sm:hidden" //ToDo 
+      >
+        <Menu size={24} />
+      </button>
+
+      <button
+        onClick={() => setSidebarOpen(true)}
+        className="fixed top-6 left-6 z-30 p-3 bg-slate-800/80 backdrop-blur-sm rounded-lg shadow-lg hover:bg-slate-700 transition-colors border border-slate-700" 
       >
         <Menu size={24} />
       </button>
@@ -444,6 +470,22 @@ export default function Portfolio() {
             key={section}
             onClick={() => setActiveSection(section)}
             className={`block w-3 h-3 rounded-full transition-all ${
+              activeSection === section 
+                ? 'bg-camelot-700 scale-150' 
+                : 'bg-slate-600 hover:bg-slate-500'
+            }`}
+            title={section}
+          />
+        ))}
+      </div>
+
+      {/* Indicador de sección - MOBILE */}
+      <div className="fixed right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 space-y-2 sm:space-y-3">
+        {['home', 'about', 'projects', 'skills', 'contact'].map((section) => (
+          <button
+            key={section}
+            onClick={() => setActiveSection(section)}
+            className={`hidden sm:block w-3 h-3 rounded-full transition-all ${
               activeSection === section 
                 ? 'bg-camelot-700 scale-150' 
                 : 'bg-slate-600 hover:bg-slate-500'

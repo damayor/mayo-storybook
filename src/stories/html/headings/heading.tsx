@@ -18,7 +18,7 @@ export const Heading: React.FC<HeadingProps> = ({ level, children, variant = 'ne
     switch (level) {
         case 1:
             //Todo Why so little? they've got in 6xl and bold
-            return <h1 className={`text-4xl font-lato font-bold uppercase tracking-wider text-primary ${  getHeadingColor()} ${className}`} {...props}>{children}</h1>;
+            return <h1 className={`text-3xl sm:text-4xl lg:text-5xl font-lato font-bold uppercase tracking-wider text-primary ${  getHeadingColor()} ${className}`} {...props}>{children}</h1>;
         case 2:
             //Todo 5xl este si para title de cada secion, bold
             return <h2 className={`text-5xl font-roboto font-bold uppercase tracking-widest ${getHeadingColor()} ${className}`} {...props}>{children}</h2>;

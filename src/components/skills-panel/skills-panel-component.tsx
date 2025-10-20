@@ -77,7 +77,7 @@ function SkillsTab({ skills }: { skills: SkillCategory[] }) {
       {skills.map((category) => (
         <div key={category.category}>
           <Heading level={3} className='mb-5 mt-8 flex gap-2 items-center'>          
-            <span className="w-2 h-2 rounded-full bg-gradient-to-r from-camelot-700 to-camelot-800"></span>
+            <span className="w-2 h-2 rounded-full bg-gradient-to-r from-camelot-700 to-camelot-800 hidden sm:block"></span>
             {category.category}
           </Heading>
           <div className="flex flex-wrap gap-3">
@@ -139,7 +139,7 @@ export default function SkillsTabPanel({
   ];
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 py-20">
+    <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
       <div className="max-w-4xl w-full">
         <h2 className="text-5xl font-lato font-bold mb-4 bg-gradient-to-r from-camelot-600 to-camelot-950 bg-clip-text text-transparent">
           Experience & Skills

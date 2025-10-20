@@ -17,6 +17,7 @@ export const Button = ({
   label = 'olakeace',
   theme,
   twStyle,
+  onClick,
   ...props
 }: ButtonProps) => {
   const getButtonClass = ()  => {
@@ -39,7 +40,7 @@ export const Button = ({
 
   return (
     <div>
-      <button className={`w-32 h-10 rounded-sm btn ${getButtonClass()} ${twStyle} `} {...props}>{label}</button>
+      <button onClick={onClick} className={`w-32 h-10 rounded-sm btn ${getButtonClass()} ${twStyle} `} {...props}>{label}</button>
     </div>
 
   );

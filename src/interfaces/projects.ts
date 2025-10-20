@@ -12,7 +12,7 @@ export interface Project {
     projectField:       string;
     images:             string[];
     gifs:               string[];
-    mediaLinks?:         string[];
+    mediaLinks:         string[];
     initDate:           Date;
     endDate:            Date;
     content:            string;
