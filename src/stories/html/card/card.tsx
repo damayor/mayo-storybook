@@ -16,8 +16,7 @@ export interface CardProps {
   tags: string[];
   technologies: string[];
   projectField: string;
-
-  //content params
+  ctaLink?: string
 }
 
 export const Card = ({
@@ -30,6 +29,7 @@ export const Card = ({
   tags, 
   technologies, 
   projectField,
+  ctaLink,
   ...props
 }: CardProps) => {
 
@@ -93,9 +93,6 @@ export const Card = ({
               ))}
             </div>
           </div>
-
-
-
         </div>
 
       {/* BACK SIDE */}
@@ -133,8 +130,7 @@ export const Card = ({
 
 
           <div className="text-center mb-6">
-            {/*ToDo Call to Action */}
-            <Button twStyle="p-2" color='info' label={"EXPLORE NOW"} />
+            <Button onClick={() =>  window.open(ctaLink, "_blank")} twStyle="p-2" color='info' label={"EXPLORE NOW"} />
           </div>
         </div>
       </div>

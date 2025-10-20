@@ -13,6 +13,9 @@ export const projectsData: Record<string, Project> =
       "src/assets/images/projects/frontend/VolvoInteractive.PNG",
       "src/assets/images/projects/frontend/volvo-home.PNG"
     ],
+    mediaLinks: [
+      "https://umbraint.com/catalogosdigitales/catalogovolvo"
+    ],
     gifs: [
       "src/assets/images/projects/frontend/volvo-3d.gif"
     ],
@@ -63,7 +66,8 @@ export const projectsData: Record<string, Project> =
       "src/assets/images/projects/reliability/1E_intro.gif",
     ],
     mediaLinks: [
-      "https://www.youtube.com/watch?v=jXI6X0najy0"
+      "https://www.youtube.com/watch?v=JUJl6v0Scas", //1a Este 
+      "https://www.youtube.com/watch?v=jXI6X0najy0" //Zipa
     ],
     initDate: new Date(2020, 0, 1),
     endDate: new Date(2020, 10, 1),
