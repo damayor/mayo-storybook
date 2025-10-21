@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
-import { Menu, X, Github, Linkedin, Mail, ExternalLink, Code, Palette, Zap, Globe, Gamepad, FileJson2, Terminal, RectangleGoggles } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Mail, ExternalLink, Code, Palette, Zap, Globe, Gamepad, FileJson2, Terminal, RectangleGoggles, Instagram } from 'lucide-react';
 import mayintLogo from '/assets/mayint.svg'
 import { useTranslation } from 'react-i18next';
 
@@ -13,6 +13,7 @@ import { toolsAndExprience } from '../../data/experience';
 import SkillsTabPanel from '../../components/skills-panel/skills-panel-component';
 import { contactData } from 'Data/contact';
 import { type SectionType, SECTIONS, SECTIONS_ARRAY } from 'Interfaces/portfolio-sections';
+import { useScrollDetection } from '../../hooks/useScrollDetection';
 
 // Componente de fondo 3D animado
 function AnimatedSphere({ position, color, speed } : any) { 
@@ -63,14 +64,12 @@ function Background3D() {
   );
 }
 
-
-
 function LanguageSelector() {
   const { i18n } = useTranslation();
   const languages = [
-    { code: 'en', name: 'English', flag: '🇬🇧' },
-    { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
-    { code: 'es', name: 'Español', flag: '🇪🇸' },
+    { code: 'en', name: 'English', flag: 'gb' },
+    { code: 'de', name: 'Deutsch', flag: 'de' },
+    { code: 'es', name: 'Español', flag: 'es' },
   ];
 
   return (
@@ -80,13 +79,16 @@ function LanguageSelector() {
           <button
             key={lang.code}
             onClick={() => i18n.changeLanguage(lang.code)}
-            className={`flex-1 px-2 py-1 text-xs rounded transition-all ${
+            className={`flex-1 px-2 py-1 text-xs rounded transition-all flex justify-center ${
               i18n.language === lang.code
                 ? 'bg-blue-500 text-white'
                 : 'bg-slate-700 text-gray-300 hover:bg-slate-600'
             }`}
           >
-            {lang.flag}
+            <img
+              src={`https://flagcdn.com/${lang.flag}.svg`}
+              width="20"
+              alt={lang.name}/>
           </button>
         ))}
       </div>
@@ -166,6 +168,9 @@ function Sidebar({ isOpen, setIsOpen, onNavigate } : SidebarProps) {
               <a href={contactData.linkedin} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
                 <Linkedin size={20} />
               </a>
+              <a href={contactData.instagram} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+                <Instagram size={20} />
+              </a>
               <a href={contactData.github} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
                 <Mail size={20} />
               </a>
@@ -186,31 +191,27 @@ function HomeSection() {
     <section className="min-h-screen flex items-center justify-center px-6">
       <div className="max-w-4xl text-center">
         <div className="mb-6 animate-fade-in">
-          <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-camelot-950 to-camelot-500 p-1">
+          <div className="w-27 h-27 mx-auto mb-6 rounded-full bg-gradient-to-br from-camelot-950 to-camelot-500 p-1">
             <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-5xl font-lato">
               <img className='rounded-full' src={mayintLogo} alt="May Interactive Logo" />
             </div>
           </div>
         </div>
-        {/* deberia poner de hecho el heading 1... */}
-        <Heading className='' level={1} children={t('home.brand')} variant='primary'/>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-montserrat mb-8 mt-4 text-camelot-800">
-          {t('home.title')}
-        </h1>
-        <p className="text-2xl text-gray-500 mb-8">
-          {t('home.subtitle')}
+        <Heading className='' level={1} children={t('home.title')} variant='primary'/>
+        <hr className="h-px my-6 bg-camelot-900 border-0 dark:bg-gray-700"/>
+
+        {/* <h1 className="text-4xl sm:text-5xl lg:text-6xl font-montserrat mb-8 mt-4 text-camelot-800">
+          {t('home.brand')} | {t('home.role') }
+        </h1> */}
+        <p className="text-2xl text-camelot-800 mb-8 uppercase tracking-widest">
+          {t('home.brand')} • {t('home.role') }
         </p>
-        <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
+        <hr className="h-px my-6 bg-camelot-900 border-0 dark:bg-gray-700"/>
+
+        {/* <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
           {t('home.description')}
-        </p>
-        <div className="flex gap-4 justify-center">
-          <button className="px-8 py-3 bg-gradient-to-r from-purple-700 to-camelot-600 rounded-lg font-medium hover:scale-105 transition-transform shadow-lg">
-            {t('home.viewProjects')}
-          </button>
-          <button /*ToDo onClick={}*/ className="px-8 py-3 border-2 border-camelot-800 rounded-lg text-camelot-800 font-medium hover:bg-camelot-700/10 transition-colors">
-            {t('home.contactMe')}
-          </button>
-        </div>
+        </p> */}
+
       </div>
     </section>
   );
@@ -228,11 +229,11 @@ function AboutSection() {
           {t('about.title')}
         </Heading>
         <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700">
-          <p className="text-lg text-gray-300 mb-6 leading-relaxed">
-            {t('about.intro')}
+          <p className="text-lg text-gray-200 mb-6 leading-relaxed" dangerouslySetInnerHTML={{__html:t('about.intro')}}>
+            
           </p>
-          <p className="text-lg text-gray-300 mb-6 leading-relaxed">
-            {t('about.experience')}
+          <p className="text-lg text-gray-200 mb-6 leading-relaxed" dangerouslySetInnerHTML={{__html:t('about.experience')}}>
+    
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
             <div className="text-center p-4 bg-slate-700/50 rounded-lg">
@@ -260,7 +261,7 @@ function ProjectsSection() {
   const projData = Object.values(projectsData)
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
+    <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20 animate-fadeIn">
       <div className="max-w-6xl w-full">
         {/* <h2 className="text-5xl font-lato font-bold pb-2 mb-12 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent"> */}
         <Heading level={2} className='text-5xl font-lato font-bold mb-8 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center'  variant='primary'>
@@ -269,6 +270,7 @@ function ProjectsSection() {
         
         </Heading>
         <div className="grid grids-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/*ToDo traducelo a otros idiomas */}
           {projData.map((project) => (
             <Card
               picture={project.images.at(0)!}
@@ -283,6 +285,12 @@ function ProjectsSection() {
           )}
         </div>
       </div>
+
+      <style>{`
+        .animate-fadeIn {
+          animation: fadeIn 0.4s ease-out;
+        }
+      `}</style>
     </section>
   );
 }
@@ -340,6 +348,9 @@ function ContactSection() {
             <a href={contactData.linkedin} className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
               <Linkedin size={24} />
             </a>
+            <a href={contactData.instagram} className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+              <Instagram size={24} />
+            </a>
             <a href={contactData.linkedin} className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
               <Mail size={24} />
             </a>
@@ -362,6 +373,11 @@ export default function Portfolio() {
     skills: useRef<HTMLDivElement>(null),
     contact: useRef<HTMLDivElement>(null),
   };
+
+  useScrollDetection({ 
+    sectionRefs, 
+    setActiveSection 
+  });
 
   const scrollToSection = (sectionKey: keyof typeof sectionRefs) => {
     sectionRefs[sectionKey].current?.scrollIntoView({ 

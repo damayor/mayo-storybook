@@ -9,15 +9,18 @@
   "home": {
     "title": "David Mayorga-Herrera",
     "brand": "May Interactive",
-    "subtitle": "Full Stack Software Engineer • Frontend & Interactive Specialist",
-    "description": "Creating unique web experiences that combine elegant design with cutting-edge technology",
+    "role": "Immersive Development",
+    "profession": "Systems and Computing Engineering",
+    "university": "Uniandes",
+    "subtitle": "Uniandes Class of 2017 • Systems and Computing Engineering",
+    "description": "<b>Major</b>: Software Engineering \n <b>Minors</b> Interactive and Visual Computing ",
     "viewProjects": "View Projects", 
     "contactMe": "Contact"
   },
   "about": {
     "title": "About Me",
-    "intro": "I'm a Software Engineer (M.Sc) passionate about creating immersive and interactive web experiences. My specialty is combining modern technologies like React, Angular, Three.js, and Node.js to build applications that not only work perfectly in production but also visually delight.",
-    "experience": "With full-stack development experience, I focus on writing clean, scalable, and maintainable code. I especially enjoy working with 3D visualizations and complex animations that bring user interfaces to life.",
+    "intro": "I’m a <b>Systems and Computing Engineer</b> with a strong foundation in visualization, interaction, and creative technology. My academic path in <b>Visual Computing</b> —covering areas such as visual analytics, augmented reality (Vuforia), and 3D interaction (Unity, WebGL, Oculus)—shaped my focus on how people <i>see</i> and <i>feel</i> technology, transforming data, motion, and interaction into meaningful digital experiences. Throughout my career, I’ve combined technologies like <b>React, Unity, Three.js, Node.js</b>, and <b>C++</b> to craft interfaces where creativity meets precision.",
+    "experience": "Since joining adidas, this global enterprise has strengthened my focus on <b>quality, reliability</b>, and teamwork across cultures. Beyond development, I’m deeply drawn to sharing knowledge—I love teaching, mentoring, and helping others grow in their technical and creative journeys. Having worked and lived across different cultures—from my beloved <b>Bogotá, Colombia</b>, to my dream come true in <b>Berlin, Germany</b>—I’ve learned that curiosity and adaptability are my greatest tools. Whether I’m writing code or traveling the world, I’m driven by the same goal: <b>to connect people through technology.</b>",
     "mainSkills": {
       "frontend": "Frontend Engineering",
       "xr": "3D / XR Development",

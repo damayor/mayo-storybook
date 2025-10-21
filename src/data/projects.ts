@@ -5,7 +5,7 @@ export const projectsData: Record<string, Project> =
   "frontend": {
     projectPublicTitle: "Interactive E-commerce",
     projectRealTitle: "Volvo Customization",
-    subtitle: "My goal was to bring innovation to e-commerce by building a web application that allows customers to personalize their products — changing colors, materials, and viewing them from different angles in real time.",
+    subtitle: "Bring innovation to e-commerce by building a web application that allows customers to personalize their products, and interact with them from different angles.",
     tags: ["Frontend", "UI/UX", "WebGL", "Visual Computing"],
     technologies: ["Typescript", "React","CSS", "SCSS", "ThreeJs", "Figma"],
     projectField: "Frontend",
@@ -21,13 +21,19 @@ export const projectsData: Record<string, Project> =
     ],
     initDate: new Date(2020, 0, 1),
     endDate: new Date(2020, 10, 1),
-    content: `Development and design of visual and interactive experiences for international brands in Colombia. My specialty is creating interactive content for web projects, Unity or Unreal applications, 360° tours, and VR/XR experiences. I have strong expertise in web technologies and led several projects based on Node.js, React.js, and Three.js — covering all layers of implementation (JavaScript, TypeScript, HTML5, CSS/SCSS, and hosting) along with frameworks for 3D, 360°, and interactive visualization. (*All 3D models or renders shown are property of Umbra3D.studio and adidas.)`
+    content: `Development and design of visual and interactive experiences for 
+    international brands in Colombia. My specialty is creating interactive 
+    content for web projects, Unity or Unreal applications, 360° tours, 
+    and VR/XR experiences. I have strong expertise in web technologies and 
+    led several projects based on Node.js, React.js, and Three.js — 
+    covering all layers of implementation (JavaScript, TypeScript, HTML5, CSS/SCSS, 
+    and hosting) along with frameworks for 3D, 360°, and interactive visualization. 
+    (*All 3D models or renders shown are property of Umbra3D.studio and adidas.)`
   },
   "xr": {
     projectRealTitle: "ORTHÁPTICA",
     projectPublicTitle: "Immersive Medical Trainer",
-    subtitle: "One-to-one scale simulators combining visual and haptic interaction. I developed mixed-reality training tools — also known as ‘serious games’ — to provide immersive and practical learning experiences.",
-    // resume: "I have got yet the experience in simulators with an one-to-one scale, not only with a visual interaction but on a haptic interaction too. I have also developed training simulators with mixed reality in order to acquire immersive learning or as it's called nowadays 'serious games'.",
+    subtitle: "One-to-one scale simulators combining visual and haptic interaction. I developed mixed-reality training tools — also known as ‘serious games’ — to provide immersive learning experiences.",
     tags: ["Mixed Reality", "Oculus", "Hololens", "Haptic Interacion", "Serious Games"],
     technologies: ["Unity", "CSharp", "Unreal", "Cpp", "Android"],
     projectField: "XR",

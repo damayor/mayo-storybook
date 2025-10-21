@@ -23,6 +23,7 @@ export const skills: SkillCategory[] = [
     //   "WebGL / Three.js",
     //   "Shader Programming (GLSL)",
       "Mixed Reality (AR/VR/XR)",
+      "Image and Video Analysis",
     //   "Real-Time Rendering",
       "Physics Integration",
     //   "360° Web Experiences", // 2do plano
@@ -83,7 +84,7 @@ export const tools: ToolsCategory[] = [
     },
     {
       category: 'VR/AR & Game Dev',
-      items: ['Unity', 'C#','Unreal Engine', 'C++', 'Oculus SDK', 'Vuforia', 'Hololens', 'WebXR', 'WebGL', 'Blender', '3dMax']
+      items: ['Unity', 'C#','Unreal Engine', 'C++', 'OpenCV', 'Oculus SDK', 'Vuforia', 'Hololens', 'WebXR', 'WebGL', 'Blender', '3dMax']
     },
     {
       category: 'Tools',

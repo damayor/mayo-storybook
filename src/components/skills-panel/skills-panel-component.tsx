@@ -177,7 +177,6 @@ export default function SkillsTabPanel({
         </div>
       </div>
 
-      {/*Todo verificar si fadeIn en el index.css si lo lee */}
       <style>{`
         .animate-fadeIn {
           animation: fadeIn 0.4s ease-out;
