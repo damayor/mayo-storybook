@@ -88,20 +88,14 @@
 
 }
 
-
-/* body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-} */
-
+html, body {
+  overflow-x: hidden;
+}
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(50px);
   }
   to {
     opacity: 1;

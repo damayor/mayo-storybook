@@ -74,6 +74,7 @@ export function Icon({ technology, size = 'medium', className = '' }: IconProps)
       src={iconUrl}
       alt={`${technology} icon`}
       className={`object-contain ${className}`}
+      title={name}
       style={{ width: pixelSize, height: pixelSize }}
       onError={(e) => {
         // Fallback si la imagen no carga
