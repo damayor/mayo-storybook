@@ -49,9 +49,9 @@ function Background3D() {
         <directionalLight position={[10, 10, 5]} intensity={1} />
         <pointLight position={[-10, -10, -5]} intensity={0.5} color="#4f46e5" />
         
-        <AnimatedSphere position={[-3, 0, 0]} color="#4f46e5" speed={0.3} />
-        <AnimatedSphere position={[3, 1, -2]} color="#06b6d4" speed={0.2} />
-        <AnimatedSphere position={[0, -2, -1]} color="#8b5cf6" speed={0.25} />
+        <AnimatedSphere position={[-3, 0, 0]} color="#C09B00" speed={0.3} />
+        <AnimatedSphere position={[3, 1, -2]} color="#003893" speed={0.2} />
+        <AnimatedSphere position={[0, -2, -1]} color="#C8102E" speed={0.25} />
         
         <OrbitControls 
           enableZoom={false} 
@@ -160,7 +160,7 @@ function Sidebar({ isOpen, setIsOpen, onNavigate } : SidebarProps) {
           </nav>
 
           <div className="border-t border-slate-700 pt-6 space-y-4"> 
-            <LanguageSelector/>
+            {/* ToDo when you have all translated <LanguageSelector/> */}
             <div className="flex justify-center gap-4">
               <a href={contactData.github} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
                 <Github size={20} />

@@ -2,16 +2,15 @@ import type { Project } from "Interfaces/projects";
 
 export const projectsData: Record<string, Project> =
 {
-  "frontend": {
+  "frontend":{
     projectPublicTitle: "Interactive E-commerce",
-    projectRealTitle: "Volvo Customization",
-    subtitle: "Bring innovation to e-commerce by building a web application that allows customers to personalize their products, and interact with them from different angles.",
-    tags: ["Frontend", "UI/UX", "WebGL", "Visual Computing"],
+    projectRealTitle: "3d-das",
+    subtitle: "Bring innovation to e-commerce by building a web microservice that allows customers to personalize their products, and interact with them from different angles.",
+    tags: ["Frontend", "UI/UX", "WebGL", "Visual Computing", "Responsive", "Storybook"],
     technologies: ["Typescript", "React","CSS", "SCSS", "ThreeJs", "Figma"],
     projectField: "Frontend",
     images: [
-      "/assets/images/projects/frontend/VolvoInteractive.PNG",
-      "/assets/images/projects/frontend/volvo-home.PNG"
+      "/assets/images/projects/frontend/3ddas_tbt.png"
     ],
     mediaLinks: [
       "https://umbraint.com/catalogosdigitales/catalogovolvo"
@@ -19,8 +18,8 @@ export const projectsData: Record<string, Project> =
     gifs: [
       "/assets/images/projects/frontend/volvo-3d.gif"
     ],
-    initDate: new Date(2020, 0, 1),
-    endDate: new Date(2020, 10, 1),
+    initDate: new Date(2022, 0, 1),
+    endDate: new Date(2023, 10, 1),
     content: `Development and design of visual and interactive experiences for 
     international brands in Colombia. My specialty is creating interactive 
     content for web projects, Unity or Unreal applications, 360° tours, 
@@ -90,34 +89,62 @@ export const projectsData: Record<string, Project> =
 }
 
 
-export const newerProjects: Record<string, Project> =
+export const backups: Record<string, Project> =
 {
-  "frontend": {
+  "volvo": {
     projectPublicTitle: "Interactive E-commerce",
-    projectRealTitle: "3d-das",
-    //ToDo
-    subtitle: "With meshes of adidas market, to show more deeply and interactive if that would be the best fir for you",
-    tags: ["Typescript", "React", "ThreeJs", "SCSS", "Unity"],
-    technologies: ["Unity", "NodeJs", "React"],
+    projectRealTitle: "Volvo Customization",
+    subtitle: "Bring innovation to e-commerce by building a web application that allows customers to personalize their products, and interact with them from different angles.",
+    tags: ["Frontend", "UI/UX", "WebGL", "Visual Computing"],
+    technologies: ["Typescript", "React","CSS", "SCSS", "ThreeJs", "Figma"],
     projectField: "Frontend",
-
-    //Fotos de un zapato volando en el vaino
-    //El Hotstpot
     images: [
-      "/assets/images/projects/frontend/volvoInteractive.PNG",
+      "/assets/images/projects/frontend/VolvoInteractive.PNG",
       "/assets/images/projects/frontend/volvo-home.PNG"
     ],
-
-    //Todo El Hotstpot actuando, o la rotacion
+    mediaLinks: [
+      "https://umbraint.com/catalogosdigitales/catalogovolvo"
+    ],
     gifs: [
       "/assets/images/projects/frontend/volvo-3d.gif"
     ],
+    initDate: new Date(2020, 0, 1),
+    endDate: new Date(2020, 10, 1),
+    content: `Development and design of visual and interactive experiences for 
+    international brands in Colombia. My specialty is creating interactive 
+    content for web projects, Unity or Unreal applications, 360° tours, 
+    and VR/XR experiences. I have strong expertise in web technologies and 
+    led several projects based on Node.js, React.js, and Three.js — 
+    covering all layers of implementation (JavaScript, TypeScript, HTML5, CSS/SCSS, 
+    and hosting) along with frameworks for 3D, 360°, and interactive visualization. 
+    (*All 3D models or renders shown are property of Umbra3D.studio and adidas.)`
+  },
+  "adidas":
+  {
+    projectPublicTitle: "Interactive E-commerce",
+    projectRealTitle: "3d-das",
+    subtitle: "Bring innovation to e-commerce by building a web application that allows customers to personalize their products, and interact with them from different angles.",
+    tags: ["Typescript", "React", "ThreeJs", "SCSS", "Unity"],
+    technologies: ["Typescript", "React","CSS", "SCSS", "ThreeJs", "Figma"],
+    projectField: "Frontend",
+    images: [
+      "/assets/images/projects/frontend/3ddas_tbt.png"
+    ],
     mediaLinks: [
-      "https://www.youtube.com/watch?v=Buu8ReSidRE"
+      "https://umbraint.com/catalogosdigitales/catalogovolvo"
+    ],
+    gifs: [
+      "/assets/images/projects/frontend/volvo-3d.gif"
     ],
     initDate: new Date(2022, 0, 1),
     endDate: new Date(2023, 10, 1),
-    content: `Todo`
-  },
-
+    content: `Development and design of visual and interactive experiences for 
+    international brands in Colombia. My specialty is creating interactive 
+    content for web projects, Unity or Unreal applications, 360° tours, 
+    and VR/XR experiences. I have strong expertise in web technologies and 
+    led several projects based on Node.js, React.js, and Three.js — 
+    covering all layers of implementation (JavaScript, TypeScript, HTML5, CSS/SCSS, 
+    and hosting) along with frameworks for 3D, 360°, and interactive visualization. 
+    (*All 3D models or renders shown are property of Umbra3D.studio and adidas.)`
+  }
 }

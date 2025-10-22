@@ -1,8 +1,8 @@
 import { useFBX, useGLTF } from '@react-three/drei'
 import { useThree } from '@react-three/fiber'
-import { Suspense, useEffect, useRef, useState } from 'react'
+import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 // import { a, useSpring } from 'react-spring-three'
-import { Object3D } from 'three'
+import { CanvasTexture, Object3D } from 'three'
 import { DEFAULT_CAMERA_POSITION } from '../../non-stories-components/helpers/constants/scene-constants'
 import {
   FootwearViews,
@@ -16,7 +16,6 @@ import { type GizmoType } from '../../non-stories-components/helpers/types/commo
 import MayoCanvas from '../../non-stories-components/mayo-canvas/mayo-canvas'
 import { productPosition, size } from '../../non-stories-components/helpers/constants/product.config'
 import { a, useSpring } from '@react-spring/three'
-// import LoaderAnimation from '../loader-animation/loader-animation'
 
 export interface ProductRotatingProps {
   cameraView: FootwearViews
@@ -131,6 +130,35 @@ function ProductRotatingComponent({
       },
     })
   }
+
+    const  firstColor = '#eeffdd';
+   const secondColor = '#030';
+  const direction = "vertical";
+
+    const { scene } = useThree();
+    const texture = useMemo(() => {
+      const canvas = document.createElement("canvas");
+      canvas.width = 256;
+      canvas.height = 256;
+      const context = canvas.getContext("2d")!;
+  
+      const gradient =
+        direction === "vertical"
+          ? context.createLinearGradient(0, 0, 0, canvas.height)
+          : context.createLinearGradient(0, 0, canvas.width, 0);
+  
+      gradient.addColorStop(0, firstColor);
+      gradient.addColorStop(1, secondColor);
+  
+      context.fillStyle = gradient;
+      context.fillRect(0, 0, canvas.width, canvas.height);
+  
+      const tex = new CanvasTexture(canvas);
+      tex.needsUpdate = true;
+      return tex;
+    }, [firstColor, secondColor, direction]);
+  
+    scene.background = texture;
 
   return (
     <group>
