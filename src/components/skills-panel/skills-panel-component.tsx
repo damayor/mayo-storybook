@@ -1,41 +1,41 @@
 import React, { useState } from 'react';
-import { ChevronDown, Award, Clock, Wrench, Star } from 'lucide-react';
-import type { TimelineEvent, SkillCategory, TabPanelProps, ToolsCategory } from 'Interfaces/projects';
+import { ChevronDown, Award, Clock, Wrench, Star, Flag, Gem } from 'lucide-react';
+import type { TimelineEvent, SkillCategory, TabPanelProps, ToolsCategory, Achievement } from 'Interfaces/projects';
 import { Badge } from 'HtmlComponents/badge';
 import { Heading } from 'HtmlComponents/headings';
 
-type TabType = /*'achievements'*/ | 'timeline' | 'skills' | 'tools';
+type TabType = 'achievements' | 'timeline' | 'skills' | 'tools';
 
 // Tabs Content Components
-// function AchievementsTab({ achievements }: { achievements: Achievement[] }) {
-//   return (
-//     <div className="space-y-4 animate-fadeIn">
-//       {achievements.map((achievement) => (
-//         <div
-//           key={achievement.id}
-//           className="group relative bg-white/50 backdrop-blur-sm border border-gray-300/50 hover:border-camelot-800/50 rounded-xl p-5 transition-all duration-300 hover:bg-white/70"
-//         >
-//           <div className="flex items-start gap-4">
-//             <div className="flex-shrink-0 mt-1">
-//               <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-br from-camelot-700 to-camelot-800">
-//                 <Award size={20} className="text-white" />
-//               </div>
-//             </div>
-//             <div className="flex-1">
-//               <h3 className="text-lg font-bold text-gray-900 mb-1">
-//                 {achievement.title} <span className="text-sm font-semibold text-camelot-800">• {achievement.year}</span>
-//               </h3>
-//               <p className="text-gray-700 text-sm leading-relaxed">
-//                 {achievement.description}
-//               </p>
-//             </div>
-//           </div>
-//           <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-camelot-800 to-transparent rounded-r-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// }
+function AchievementsTab({ achievements }: { achievements: Achievement[] }) {
+  return (
+    <div className="animate-fadeIn flex flex-wrap gap-4 justify-center">
+      {achievements.map((achievement) => (
+        <div
+          key={achievement.id}
+          className="group relative bg-white/50 backdrop-blur-sm border border-gray-300/50 hover:border-camelot-800/50 rounded-xl p-3 transition-all duration-300 hover:bg-white/70"
+        >
+          <div className="flex flex-wrap">
+            {/* <div className=" mt-1">
+              <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-br from-camelot-700 to-camelot-800">
+                <Gem size={20} className="text-white" />
+              </div>
+            </div> */}
+            <div >
+              <h3 className="text-lg text-gray-900 ">
+                <span className="font-bold">{achievement.title}</span> • {achievement.place} • <span className="text-sm font-semibold text-camelot-800">{achievement.year}</span>
+              </h3>
+              {/* <p className="text-gray-700 text-sm leading-relaxed">
+                {achievement.place}
+              </p> */}
+            </div>
+          </div>
+          <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-camelot-800 to-transparent rounded-r-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 
 function TimelineTab({ timeline }: { timeline: TimelineEvent[] }) {
@@ -124,7 +124,7 @@ function ToolsTab({ tools }: { tools: ToolsCategory[] }) {
 
 // Main Component
 export default function SkillsTabPanel({ 
-  // achievements = [], 
+  achievements = [], 
   timeline = [], 
   skills = [], 
   tools = [] 
@@ -132,15 +132,15 @@ export default function SkillsTabPanel({
   const [activeTab, setActiveTab] = useState<TabType>('skills');
 
   const tabConfig = [
-    // { id: 'achievements', label: 'Achievements', icon: <Award size={18} /> },
     { id: 'timeline', label: 'Timeline', icon: <Clock size={18} /> },
     { id: 'skills', label: 'Skills', icon: <Star size={18} /> },
-    { id: 'tools', label: 'Tools', icon: <Wrench size={18} /> }
+    { id: 'tools', label: 'Tools', icon: <Wrench size={18} /> },
+    { id: 'achievements', label: 'Achievements', icon: <Gem size={18} /> },
   ];
 
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
-      <div className="max-w-4xl w-full">
+      <div className="max-w-4xl w-full z-10">
         <Heading level={2} className='text-5xl font-lato font-bold mb-8 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center'  variant='primary'>
           Experience & Skills
         </Heading>
@@ -170,10 +170,10 @@ export default function SkillsTabPanel({
 
         {/* Tab Content */}
         <div className="bg-white/40 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-8 shadow-lg">
-          {/* {activeTab === 'achievements' && <AchievementsTab achievements={achievements} />} */}
           {activeTab === 'timeline' && <TimelineTab timeline={timeline} />}
           {activeTab === 'skills' && <SkillsTab skills={skills} />}
           {activeTab === 'tools' && <ToolsTab tools={tools} />}
+          {activeTab === 'achievements' && <AchievementsTab achievements={achievements} />}
         </div>
       </div>
 
