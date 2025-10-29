@@ -37,12 +37,13 @@ export const Card = ({
 
   return (
     <div 
-      className="w-full sm:w-90 h-[500px] perspective-midrange"
+      className="w-full h-auto md:h-[500px] sm:w-90 perspective-midrange"
       onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={() => setIsFlipped(false)}
     >
       <div 
-        className={`relative w-full h-full transition-transform duration-700 transform-style-3d ${
+        className={`relative w-full h-full transition-transform duration-700 transform-style-3d 
+          md:transform-style-3d ${
           isFlipped ? 'rotate-y-180' : ''
         }`}
         style={{
@@ -52,18 +53,16 @@ export const Card = ({
       >
         {/* FRONT SIDE */}
         <div 
-          className="absolute w-full h-full backface-hidden bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-gray-200"
-          style={{ backfaceVisibility: 'hidden' }}
+          className="
+            md:absolute w-full h-full 
+            md:backface-hidden   
+           bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-gray-200"
+         style={{ backfaceVisibility: window.innerWidth >= 768 ? 'hidden' : 'visible' }}
         >
           {/* Header con campo/categoría */}
           <div className="relative">
 
             {/* ToDo Badge de categoría */}
-            {/* <div className="absolute top-4 right-4 z-10">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-camelot-800 text-white shadow-lg">
-                {projectField}
-              </span>
-            </div> */}
             
             {/* Imagen */}
             <div className="h-48 w-full overflow-hidden bg-gray-100">
@@ -77,9 +76,6 @@ export const Card = ({
 
           {/* Content */}
           <div className="p-6">
-            {/* <h3 className="text-2xl font-bold text-gray-800 mb-3">
-              {projectTitle}
-            </h3> */}
             <Heading level={3} children={projectTitle} />
             <p className="text-gray-600 text-sm leading-relaxed line-clamp-4">
               {subtitle}
@@ -92,12 +88,30 @@ export const Card = ({
                 </span>
               ))}
             </div>
+
+            <div className="md:hidden flex flex-wrap py-4 gap-4 justify-center">
+              {technologies.map((tech) => (
+                <Icon
+                  size="small"
+                  technology={tech}
+                />
+              ))}
+            </div>
+            <div className="md:hidden text-center ">
+              <Button onClick={() =>  window.open(ctaLink, "_blank")} twStyle="p-2" color='info' label={"EXPLORE NOW"} />
+            </div>
           </div>
+
+     
         </div>
 
       {/* BACK SIDE */}
         <div 
-          className="absolute w-full h-full backface-hidden bg-gradient-to-br from-camelot-100 to-white rounded-2xl shadow-xl p-6 flex flex-col justify-center"
+          className="
+            hidden md:flex               
+            md:absolute w-full h-full 
+            md:backface-hidden 
+            bg-gradient-to-br from-camelot-100 to-white rounded-2xl shadow-xl p-6 flex-col justify-center"
           style={{ 
             backfaceVisibility: 'hidden',
             transform: 'rotateY(180deg)'

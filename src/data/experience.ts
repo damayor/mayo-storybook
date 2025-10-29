@@ -112,40 +112,59 @@ export const getAllTools = (): string[] => {
 export const toolsAndExprience : TabPanelProps = {
     achievements: [
       //1BQE
-      //2Internship en TUKL
-      //5 ... teaching in adidas campus programs
-      //3 Research Monitor - IDI Imagine Group
       // 4 Opcion Academica! en Computacion visual
-      // 5 Monitor de Introducction to programming
+      //2Internship en TUKL
+      //3 Research Monitor - IDI Imagine Group
+      //5 ... teaching in adidas campus programs
+      // 5 Monitor de Introducction to programming en Unity
       {
         id: '1',
-        title: 'ETHDenver 2022',
-        description: 'Immersive Gallery - Developed an interactive VR experience showcasing digital art with Three.js and WebXR',
-        year: 2022
-      },
-      {
-        id: '2',
-        title: 'Red Dot Design Award 2018',
-        description: 'Communication Design Award - Recognition for innovative UI/UX design in immersive experiences',
-        year: 2018
+        title: 'Quiero Estudiar Scholarship',
+        place: 'Universidad de los Andes',
+        description: 'Given to the best ICFES in Colombia',
+        year: 2012
       },
       {
         id: '3',
-        title: 'User Experience Awards 2017',
+        title: 'Internship in Visualization & HCI',
+        place:'TU Kaiserslautern',
         description: 'Award Winner & Speaker - Shared insights on immersive web technologies and user interaction patterns',
+        year: 2018
+      },
+      {
+        id: '2',
+        title: 'Interactive and Visual Computing',
+        place: 'Universidad de los Andes',
+        description: 'Academical Option UI/UX design in immersive experiences',
         year: 2017
       },
       {
         id: '4',
-        title: 'SXSW 2018 Innovation',
-        description: 'Innovation Award Finalist - Selected for groundbreaking work in XR/VR applications',
-        year: 2018
+        title: '"VR in Unity" Instructor',
+        place: 'Science Clubs by SENA & UNAL',
+        description: 'Introduction to games and immersive development for highschool students, touching topics aboutmaterials, humanoids, animations, and script programming.',
+        year: 2019
       },
       {
         id: '5',
-        title: 'Cannes Future Lions 2017',
+        title: 'adidas Campus Program Instructor',
+        place: 'adidas TechHub Bogotá',
         description: 'Awards Shortlist - Recognized for creative excellence in digital innovation',
-        year: 2017
+        year: 2022
+      },
+      {
+        id: '6',
+        title: 'Fashion Model',
+        place: 'Castel Magazine Models',
+        description: "Fashion model focused on photography, performance and body expression.",
+        year: 2025
+      },
+      {
+        id: '7',
+        title: 'Chancenkarte Visa',
+        place: 'Germany',
+        description: "Fashion model focused on photography, performance and body expression.",
+        year: 2025
       }
     ],
     timeline: [
