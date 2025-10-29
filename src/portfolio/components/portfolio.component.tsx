@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
-import { Menu, X, Github, Linkedin, Mail, ExternalLink, Code, Palette, Zap, Globe, Gamepad, FileJson2, Terminal, RectangleGoggles, Instagram } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Mail, FileJson2, Terminal, RectangleGoggles, Instagram } from 'lucide-react';
 import mayintLogo from '/assets/mayint.svg'
 import { useTranslation } from 'react-i18next';
 
@@ -14,6 +14,7 @@ import SkillsTabPanel from '../../components/skills-panel/skills-panel-component
 import { contactData } from 'Data/contact';
 import { type SectionType, SECTIONS, SECTIONS_ARRAY } from 'Interfaces/portfolio-sections';
 import { useScrollDetection } from '../../hooks/useScrollDetection';
+import InteractiveBackground3D from '../../components/interactive-background-3d/InteractiveBackground3D';
 
 // Componente de fondo 3D animado
 function AnimatedSphere({ position, color, speed } : any) { 
@@ -28,7 +29,7 @@ function AnimatedSphere({ position, color, speed } : any) {
   });
 
   return (
-    <Sphere ref={meshRef} args={[1, 32, 32]} position={position}>
+    <Sphere ref={meshRef} args={[1, 32, 32]} position={position} onClick={()=>('vamos para atras!')}>
       <MeshDistortMaterial
         color={color}
         attach="material"
@@ -189,30 +190,31 @@ function HomeSection() {
   
   return (
     <section className="min-h-screen flex items-center justify-center px-6">
-      <div className="max-w-4xl text-center">
-        <div className="mb-6 animate-fade-in">
-          <div className="w-27 h-27 mx-auto mb-6 rounded-full bg-gradient-to-br from-camelot-950 to-camelot-500 p-1">
-            <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-5xl font-lato">
-              <img className='rounded-full' src={mayintLogo} alt="May Interactive Logo" />
+        <div className="max-w-4xl text-center z-10 pointer-events-none">
+          <div className="mb-6 animate-fade-in">
+            <div className="w-27 h-27 mx-auto mb-6 rounded-full bg-gradient-to-br from-camelot-950 to-camelot-500 p-1">
+              <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-5xl font-lato">
+                <img className='rounded-full' src={mayintLogo} alt="May Interactive Logo" />
+              </div>
             </div>
           </div>
+          <Heading className='' level={1} children={t('home.title')} variant='primary'/>
+          <hr className="h-px my-6 bg-camelot-900 border-0 dark:bg-gray-700"/>
+
+          {/* <h1 className="text-4xl sm:text-5xl lg:text-6xl font-montserrat mb-8 mt-4 text-camelot-800">
+            {t('home.brand')} | {t('home.role') }
+          </h1> */}
+          <p className="text-2xl text-camelot-800 mb-8 uppercase tracking-widest">
+            {t('home.brand')} • {t('home.role') }
+          </p>
+          <hr className="h-px my-6 bg-camelot-900 border-0 dark:bg-gray-700"/>
+
+          {/* <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
+            {t('home.description')}
+          </p> */}
+
         </div>
-        <Heading className='' level={1} children={t('home.title')} variant='primary'/>
-        <hr className="h-px my-6 bg-camelot-900 border-0 dark:bg-gray-700"/>
 
-        {/* <h1 className="text-4xl sm:text-5xl lg:text-6xl font-montserrat mb-8 mt-4 text-camelot-800">
-          {t('home.brand')} | {t('home.role') }
-        </h1> */}
-        <p className="text-2xl text-camelot-800 mb-8 uppercase tracking-widest">
-          {t('home.brand')} • {t('home.role') }
-        </p>
-        <hr className="h-px my-6 bg-camelot-900 border-0 dark:bg-gray-700"/>
-
-        {/* <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
-          {t('home.description')}
-        </p> */}
-
-      </div>
     </section>
   );
 }
@@ -224,7 +226,7 @@ function AboutSection() {
   const { t } = useTranslation();
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
-      <div className="max-w-4xl">
+      <div className="max-w-4xl z-10">
         <Heading level={2} className='text-5xl font-lato font-bold mb-8 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center'  variant='primary'>
           {t('about.title')}
         </Heading>
@@ -251,7 +253,7 @@ function AboutSection() {
             </div>
           </div>
         </div>
-      </div>
+        </div>
     </section>
   );
 }
@@ -262,7 +264,7 @@ function ProjectsSection() {
 
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20 animate-fadeIn">
-      <div className="max-w-6xl w-full">
+      <div className="max-w-6xl w-full z-10">
         {/* <h2 className="text-5xl font-lato font-bold pb-2 mb-12 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent"> */}
         <Heading level={2} className='text-5xl font-lato font-bold mb-8 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center'  variant='primary'>
 
@@ -284,7 +286,7 @@ function ProjectsSection() {
             )
           )}
         </div>
-      </div>
+        </div>
 
       <style>{`
         .animate-fadeIn {
@@ -300,7 +302,7 @@ function ContactSection() {
 
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
-      <div className="max-w-2xl w-full">
+      <div className="max-w-2xl w-full z-10">
         <Heading level={2} className='text-5xl font-lato font-bold mb-8 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center'  variant='primary'>
           {t('contact.title')}
         </Heading>        
@@ -389,8 +391,11 @@ export default function Portfolio() {
   };
 
   return (
-    <div className="min-h-screen w-screen bg-purple-800/10 text-white overflow-x-hidden">
-      <Background3D />      
+    <div className="min-h-screen w-screen text-white overflow-x-hidden">
+      {/* <Background3D />       */}
+
+      <InteractiveBackground3D />
+
       <Sidebar 
         isOpen={sidebarOpen} 
         setIsOpen={setSidebarOpen}
@@ -413,24 +418,24 @@ export default function Portfolio() {
       </button>
 
       {/* Contenido principal */}
-      <main className="relative z-10">
-         <div ref={sectionRefs.home}>
+      <main className="pointer-events-none">         
+        <div ref={sectionRefs.home} className="pointer-events-auto z-10">
           <HomeSection />
         </div>
         
-        <div ref={sectionRefs.about}>
+        <div ref={sectionRefs.about} className="pointer-events-auto z-10">
           <AboutSection />
         </div>
         
-        <div ref={sectionRefs.projects}>
+        <div ref={sectionRefs.projects} className="pointer-events-auto z-10">
           <ProjectsSection />
         </div>
         
-        <div ref={sectionRefs.skills}>
+        <div ref={sectionRefs.skills} className="pointer-events-auto z-10">
           <SkillsTabPanel {...toolsAndExprience} />
         </div>
         
-        <div ref={sectionRefs.contact}>
+        <div ref={sectionRefs.contact} className="pointer-events-auto">
           <ContactSection />
         </div>
       </main>
@@ -450,7 +455,7 @@ export default function Portfolio() {
           aria-label={`Go to ${section} section`}
         />
       ))}
-      </div>
+      </div> 
     </div>
   );
 }

@@ -73,7 +73,7 @@
       "message": "Message",
       "messagePlaceholder": "Tell me about your project...",
       "submit": "Send Message",
-      "successMessage": "Message sent!"
+      "successMessage": "Message received! I will get in touch with you."
     }
   }
 
