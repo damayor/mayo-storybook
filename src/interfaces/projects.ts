@@ -18,9 +18,10 @@ export interface Project {
     content:            string;
 }
 
-interface Achievement {
+export interface Achievement {
   id: string;
   title: string;
+  place?: string;
   description: string;
   year: number;
 }
