@@ -402,19 +402,14 @@ export default function Portfolio() {
         onNavigate={scrollToSection}
       />
 
-      {/* Botón del menú hamburguesa Mobile*/}
-      <button
-        onClick={() => setSidebarOpen(true)}
-        className="fixed top-6 left-6 z-30 p-3 bg-slate-800/80 backdrop-blur-sm rounded-lg shadow-lg hover:bg-slate-700 transition-colors border border-slate-700 sm:hidden" //ToDo 
-      >
-        <Menu size={24} />
-      </button>
 
       <button
         onClick={() => setSidebarOpen(true)}
-        className="fixed top-6 left-6 z-30 p-3 bg-slate-800/80 backdrop-blur-sm rounded-lg shadow-lg hover:bg-slate-700 transition-colors border border-slate-700" 
+        className="fixed top-3 left-3 md:top-6 md:left-6 z-30 w-15 h-15 md:w-18 md:h-18 mx-auto rounded-full bg-gradient-to-br from-camelot-950 to-camelot-500 p-1 cursor-pointer" 
       >
-        <Menu size={24} />
+        <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-5xl font-lato">
+          <img className='rounded-full' src={mayintLogo} alt="May Interactive Logo" />
+        </div>
       </button>
 
       {/* Contenido principal */}

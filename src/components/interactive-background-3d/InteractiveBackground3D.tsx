@@ -5,10 +5,15 @@ import CursorTrail from '../cursor-trail/CursorTrail';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { MeshDistortMaterial, OrbitControls, Sphere } from '@react-three/drei';
 
-interface Sphere {
-  mesh: THREE.Mesh;
-  velocity: THREE.Vector3;
-  radius: number;
+interface PhysicsSphereProps {
+  position: [number, number, number];
+  color: number;
+  onWallCollision: () => void;
+  spheres: React.MutableRefObject<Array<{
+    mesh: THREE.Mesh | null;
+    velocity: THREE.Vector3;
+  }>>;
+  index: number;
 }
 
 const gridDivisions = 11;
@@ -22,12 +27,10 @@ const BLACKOUT_TIME = 2.5;
 function PhysicsSphere({ 
   position, 
   color, 
-  onWallCollision 
-}: { 
-  position: [number, number, number]; 
-  color: number;
-  onWallCollision: () => void;
-}) {
+  onWallCollision,
+  spheres,
+  index
+}: PhysicsSphereProps) {
   const meshRef = useRef<THREE.Mesh>(null);
   const velocityRef = useRef(new THREE.Vector3(
     (Math.random() - 0.5) * 0.02,
@@ -35,6 +38,16 @@ function PhysicsSphere({
     (Math.random() - 0.5) * 0.02
   ));
   const [isHovered, setIsHovered] = useState(false);
+
+  // Registrar esta esfera en el array compartido
+  React.useEffect(() => {
+    if (meshRef.current) {
+      spheres.current[index] = {
+        mesh: meshRef.current,
+        velocity: velocityRef.current
+      };
+    }
+  }, [spheres, index]);
 
   useFrame((state, delta) => {
     if (!meshRef.current) return;
@@ -51,9 +64,6 @@ function PhysicsSphere({
 
     // Fricción
     velocity.multiplyScalar(DAMPING);
-
-
-    //ToDo Collisiones con spheres
 
     // Colisiones con paredes (roomSize = 10)
     const roomSize = 10;
@@ -75,18 +85,54 @@ function PhysicsSphere({
       mesh.position.z = Math.sign(mesh.position.z) * (halfRoom - radius);
       onWallCollision();
     }
+
+    // Colisiones entre esferas (usando world position)
+    const worldPosition = new THREE.Vector3();
+    mesh.getWorldPosition(worldPosition);
+
+    spheres.current.forEach((other, otherIndex) => {
+      if (otherIndex === index || !other.mesh) return;
+
+      const otherWorldPosition = new THREE.Vector3();
+      other.mesh.getWorldPosition(otherWorldPosition);
+
+      const distance = worldPosition.distanceTo(otherWorldPosition);
+      const minDistance = radius * 2;
+
+      if (distance < minDistance) {
+        const normal = new THREE.Vector3()
+          .subVectors(otherWorldPosition, worldPosition)
+          .normalize();
+
+        const relativeVelocity = new THREE.Vector3()
+          .subVectors(velocity, other.velocity);
+        const speed = relativeVelocity.dot(normal);
+
+        if (speed < 0) return;
+
+        velocity.sub(normal.clone().multiplyScalar(speed * 0.8));
+        other.velocity.add(normal.clone().multiplyScalar(speed * 0.8));
+
+        // Separar esferas
+        const overlap = minDistance - distance;
+        const separation = normal.clone().multiplyScalar(overlap / 2);
+        mesh.position.sub(separation);
+        other.mesh.position.add(separation);
+      }
+    });
   });
+
+
+
+  
 
   const handleClick = (e: any) => {
     e.stopPropagation(); 
-    
     const forceX = (Math.random()- 0.5) * FORCE_RATE
     const forceY = (Math.random()- 0.5) * FORCE_RATE
     const forceZ = (Math.random()- 1) * FORCE_RATE
     const force = new THREE.Vector3(forceX, forceY, forceZ);
-
     velocityRef.current.add(force);
-    console.log('Uy se cliqueooo!')
   };
 
   return (
@@ -140,16 +186,7 @@ function Room({  opacity }: {  opacity: number }) {
         material-transparent
       />
       
-      {/* Paredes - necesitas rotar los grids */}
-      {/* <gridHelper 
-        args={[roomSize, 10, 0xbbb, 0xbbb]} 
-        position={[0, 0, roomSize/2]}
-        rotation={[Math.PI/2, 0, 0]}
-        material-opacity={opacity}
-        material-transparent
-      /> */}
-      
-      
+      {/* Paredes - necesitas rotar los grids */}      
       <gridHelper 
         args={[roomSize, 10, 0xbbb, 0xbbb]} 
         position={[0, 0, -roomSize/2]}
@@ -192,26 +229,27 @@ const backgrounCollisionColor = new THREE.Color(0x000000);
 const backgroundDefaultColor = new THREE.Color('rgb(241,237,244)');
 const defaultWallOpacity = 0.05;
 const collisionWallOpacity = 0.9;
+const lightIntensity = 1;
+const delayUntilNextWall = 2.5;
 
-
-function SceneController({ 
-  showRoom, 
-  setShowRoom 
-}: { 
-  showRoom: boolean; 
-  setShowRoom: (val: boolean) => void;
-}) {
+function SceneController() {
   const { scene } = useThree();
+  const [showRoom, setShowRoom] = useState(false);
+  
 
   // const {
   //   opacity
   // } = useControls({
   //   opacity: { value: 0.2, min: 0, max: 1, step: 0.05 },
   // });
-  const lightIntensity = 1;
+
   const [roomOpacity, setRoomOpacity] = useState(0);
   const timerRef = useRef(0);
 
+  const spheresRef = useRef<Array<{
+    mesh: THREE.Mesh | null;
+    velocity: THREE.Vector3;
+  }>>([]);
   const groupSpheresRef = useRef<THREE.Group>(null);
   const lastCollisionTimeRef= useRef(0);
 
@@ -236,7 +274,7 @@ function SceneController({
       const timeSinceLastCollision = (Date.now() - lastCollisionTimeRef.current) / 1000;
       
       //Vuelva a la normalidad cuando esta cambiando
-      if (timeSinceLastCollision >= 2) {
+      if (timeSinceLastCollision >= delayUntilNextWall) {
         setTimeout(() => setShowRoom(false), 100);
       }
     }
@@ -264,9 +302,18 @@ function SceneController({
       <Lights intensity={lightIntensity} />
       <Room opacity={roomOpacity} />
       <group ref={groupSpheresRef}>
-        <PhysicsSphere position={[-3, 0, 0]} color={0xC09B00} onWallCollision={handleWallCollision} />
-        <PhysicsSphere position={[3, 1, -2]} color={0x003893} onWallCollision={handleWallCollision} />
-        <PhysicsSphere position={[0, -2, -1]} color={0xC8102E} onWallCollision={handleWallCollision} />
+        <PhysicsSphere position={[-3, 0, 0]} color={0xC09B00} onWallCollision={handleWallCollision}
+          spheres={spheresRef}
+          index={0}
+        />
+        <PhysicsSphere position={[3, 1, -2]} color={0x003893} onWallCollision={handleWallCollision} 
+          spheres={spheresRef}
+          index={1}
+        />
+        <PhysicsSphere position={[0, -2, -1]} color={0xC8102E} onWallCollision={handleWallCollision}
+          spheres={spheresRef}
+          index={2}
+         />
       </group>
     </>
   );
@@ -274,7 +321,6 @@ function SceneController({
 
 
 export function InteractiveBackground3D() {
-  const [showRoom, setShowRoom] = useState(true); //Paselo pa dentro del SceneController
 
   return (
     <div className="fixed inset-0" style={{ width: '100vw', height: '100vh' }}>
@@ -284,7 +330,7 @@ export function InteractiveBackground3D() {
         camera={{ position: [0, 0, 8], fov: 55 }}
       >
         <color attach="background" args={[backgroundDefaultColor]} /> 
-        <SceneController showRoom={showRoom} setShowRoom={setShowRoom} />
+        <SceneController/>
       </Canvas>
 
       {/* Cursor trail effect */}
