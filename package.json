@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "storybook": "storybook dev --ci -p 6006",
+    "storybook:prod": "STORYBOOK_ENV=production storybook dev --ci -p 6006",
     "build-storybook": "storybook build",
     "tailwind:build": "tailwindcss -i ./src/index.css -o ./dist/tailwind.css --minify"
   },
@@ -33,6 +34,7 @@
     "@storybook/addon-vitest": "^9.1.5",
     "@storybook/react": "latest",
     "@storybook/react-vite": "^9.1.5",
+    "@types/node": "^24.10.1",
     "@types/react": "^19.1.12",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.2",

@@ -9,7 +9,7 @@ import { bufferGeometry, metalness, roughness } from "./background-texture-gradi
 
 
 const meta = {
-  title: 'Three/Components/GradientTextureBackground',
+  title: 'Three/Components/GradientBackground',
   component: GradientTextureBackground,
   decorators: [
     (Story) => <MayoCanvas enableOrbitControls={true} environmentPreset='studio'  background={'#fff'} gizmoType={'viewPort'}>
@@ -45,7 +45,7 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-export const Default: Story = {
+export const GradientBackground: Story = {
   args: {
     firstColor: '#eeffdd',
     secondColor: '#ffffff',

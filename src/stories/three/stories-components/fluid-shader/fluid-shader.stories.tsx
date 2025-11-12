@@ -5,7 +5,7 @@ import FluidShader from './fluid-shader'
 import { Canvas } from '@react-three/fiber'
 
 const meta = {
-  title: 'Three/Fluid Shader',
+  title: 'Three/FluidShaderTest',
   component: FluidShader,
   decorators: [
     (Story) => 
@@ -35,7 +35,7 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-export const Default: Story = {
+export const FluidShaderTest: Story = {
   args: {
     // lineWidth: 15, 
     // followMouse: true,

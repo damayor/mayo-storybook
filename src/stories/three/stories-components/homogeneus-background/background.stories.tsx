@@ -4,7 +4,7 @@ import Background from "./background";
 
 
 const meta = {
-  title: 'Three/Components/Background',
+  title: 'Three/Components/SolidBackground',
   component: Background,
 
   argTypes: {
@@ -15,7 +15,7 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-export const Default: Story = {
+export const SolidBackground: Story = {
     args: {
         backgroundColor: '#f0fff0'
     }

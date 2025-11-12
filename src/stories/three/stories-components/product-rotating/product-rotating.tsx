@@ -1,8 +1,7 @@
-import { useFBX, useGLTF } from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
 import { useThree } from '@react-three/fiber'
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
-// import { a, useSpring } from 'react-spring-three'
-import { CanvasTexture, Object3D } from 'three'
+import { CanvasTexture, Object3D, Vector3 } from 'three'
 import { DEFAULT_CAMERA_POSITION } from '../../non-stories-components/helpers/constants/scene-constants'
 import {
   FootwearViews,
@@ -61,11 +60,10 @@ function ProductRotatingComponent({
   console.log('gltf', model)
 
   const { camera } = useThree()
-  const INIT_CAMERA_POSITION = DEFAULT_CAMERA_POSITION.toArray().slice(0, 3)
+  const INIT_CAMERA_POSITION = DEFAULT_CAMERA_POSITION.toArray().slice(0, 3) as [number, number, number]
   const ORBIT_RADIUS = DEFAULT_CAMERA_POSITION.length()
   const [currentRotation, setCurrentRotation] = useState(getProductRotation(FootwearViews.FRONT))
   const [currentPosition, setCurrentPosition] = useState(getProductPosition(FootwearViews.FRONT))
-  const refOrbitPosition = useRef(INIT_CAMERA_POSITION)
 
   const [spring, setSpring] = useSpring(() => ({
     from: {
@@ -81,6 +79,7 @@ function ProductRotatingComponent({
     },
   }))
 
+  // FIX: Usar interpolación directa en lugar de recalcular coordenadas polares
   const [_, setCameraSpring] = useSpring(() => ({
     to: {
       cameraX: DEFAULT_CAMERA_POSITION.x,
@@ -89,9 +88,8 @@ function ProductRotatingComponent({
     },
     config: springConfig,
     onChange: ({ value }) => {
-      const currentTheta = Math.acos(value.cameraZ / ORBIT_RADIUS)
-      const cameraRadialX = (value.cameraX > 0 ? ORBIT_RADIUS : -ORBIT_RADIUS) * Math.sin(currentTheta)
-      camera.position.set(cameraRadialX, value.cameraY, value.cameraZ)
+      // Simplemente usar los valores interpolados directamente
+      camera.position.set(value.cameraX, value.cameraY, value.cameraZ)
       camera.lookAt(productPosition)
       camera.updateProjectionMatrix()
     },
@@ -116,12 +114,13 @@ function ProductRotatingComponent({
   }, [enableOrbitControl])
 
   const startCameraReset = () => {
-    refOrbitPosition.current = [camera.position.x, camera.position.y, camera.position.z]
+    const currentCameraPos = camera.position.clone()
+    
     setCameraSpring({
       from: {
-        cameraX: refOrbitPosition.current[0],
-        cameraY: refOrbitPosition.current[1],
-        cameraZ: refOrbitPosition.current[2],
+        cameraX: currentCameraPos.x,
+        cameraY: currentCameraPos.y,
+        cameraZ: currentCameraPos.z,
       },
       to: {
         cameraX: DEFAULT_CAMERA_POSITION.x,
@@ -131,34 +130,34 @@ function ProductRotatingComponent({
     })
   }
 
-    const  firstColor = '#eeffdd';
-   const secondColor = '#030';
+  const firstColor = '#eeffdd';
+  const secondColor = '#030';
   const direction = "vertical";
 
-    const { scene } = useThree();
-    const texture = useMemo(() => {
-      const canvas = document.createElement("canvas");
-      canvas.width = 256;
-      canvas.height = 256;
-      const context = canvas.getContext("2d")!;
-  
-      const gradient =
-        direction === "vertical"
-          ? context.createLinearGradient(0, 0, 0, canvas.height)
-          : context.createLinearGradient(0, 0, canvas.width, 0);
-  
-      gradient.addColorStop(0, firstColor);
-      gradient.addColorStop(1, secondColor);
-  
-      context.fillStyle = gradient;
-      context.fillRect(0, 0, canvas.width, canvas.height);
-  
-      const tex = new CanvasTexture(canvas);
-      tex.needsUpdate = true;
-      return tex;
-    }, [firstColor, secondColor, direction]);
-  
-    scene.background = texture;
+  const { scene } = useThree();
+  const texture = useMemo(() => {
+    const canvas = document.createElement("canvas");
+    canvas.width = 256;
+    canvas.height = 256;
+    const context = canvas.getContext("2d")!;
+
+    const gradient =
+      direction === "vertical"
+        ? context.createLinearGradient(0, 0, 0, canvas.height)
+        : context.createLinearGradient(0, 0, canvas.width, 0);
+
+    gradient.addColorStop(0, firstColor);
+    gradient.addColorStop(1, secondColor);
+
+    context.fillStyle = gradient;
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    const tex = new CanvasTexture(canvas);
+    tex.needsUpdate = true;
+    return tex;
+  }, [firstColor, secondColor, direction]);
+
+  scene.background = texture;
 
   return (
     <group>

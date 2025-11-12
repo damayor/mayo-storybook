@@ -12,9 +12,7 @@ export const projectsData: Record<string, Project> =
     images: [
       "/assets/images/projects/frontend/3ddas_tbt.png"
     ],
-    mediaLinks: [
-      "https://umbraint.com/catalogosdigitales/catalogovolvo"
-    ],
+
     gifs: [
       "/assets/images/projects/frontend/volvo-3d.gif"
     ],

@@ -5,7 +5,7 @@ import { Icon, techIconMap } from './icon';
 const meta = {
   title: 'Html/Components/Icon',
   component: Icon,
-  tags: ['autodocs'],
+  tags: ['autodocs','production'],
   argTypes: {
     technology: {
       options: Object.keys(techIconMap),

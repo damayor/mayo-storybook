@@ -4,7 +4,7 @@ import AnimatedSun from './animated-sun'
 import type MouseTrail from '../mouse-trail/mouse-trail';
 
 const meta = {
-  title: 'Three/Views/Animated Sun',
+  title: 'Three/Views/SunOverTerrain',
   component: AnimatedSun,
   argTypes: {
     gizmoType: {
@@ -25,16 +25,10 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-export const Default: Story = {
+export const SunOverTerrain: Story = {
   args: {
     gizmoType: 'none',
     lightPositionX: -20,
     lightPositionZ: 40
   }
 };
-// const Template: ComponentStory<typeof AnimatedSun> = (args) => <AnimatedSun {...args} />
-
-// export const Default = Template.bind({})
-// Default.args = {
-
-// }
