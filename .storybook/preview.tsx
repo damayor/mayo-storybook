@@ -2,6 +2,7 @@ import type { Preview } from '@storybook/react-vite'
 import { themes } from 'storybook/internal/theming';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import '../src/index.css'; // replace with the name of your tailwind css file
+import { MINIMAL_VIEWPORTS } from "storybook/viewport";
 
 //este si lee desde /.storybook
 import './styles.css';
@@ -16,11 +17,31 @@ const withTheme:Decorator = (Story, context) => {
   }, [theme]);
 
   return (
-    <div data-theme={theme} className="p-1">
+    <div data-theme={theme}>
       <Story />
     </div>
   );
 };
+
+const customViewports = {
+  instagramPost: {
+    name: 'Instagram Post (4:5)',
+    styles: {
+      width: '600px',
+      height: '750px',
+    },
+    type: 'mobile', // purely for grouping, optional
+  },
+  instagramSquare: {
+    name: 'Instagram Square (1:1)',
+    styles: {
+      width: '600px',
+      height: '600px',
+    },
+    type: 'mobile',
+  },
+};
+
 
 
 const preview: Preview = {
@@ -60,6 +81,12 @@ const preview: Preview = {
 
     test: { disable: true },
     viewMode: 'docs',
+    viewport: {
+      options: {
+        ...MINIMAL_VIEWPORTS,
+        ...customViewports,
+      }
+    },
     previewTabs: {
       'storybook/docs/panel': { hidden: false },
       'storybook/test/panel': { hidden: true },      

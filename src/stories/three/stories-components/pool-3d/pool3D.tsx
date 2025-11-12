@@ -15,9 +15,9 @@ export function Pool3D() {
   const [showRoom, setShowRoom] = useState(false);
 
   const gridDivisions = 11;
-  const roomPositionZ = -2;
-  const { roomSizeX,roomSizeY,roomSizeZ} = {roomSizeX:22, roomSizeY:8, roomSizeZ:20}
-  const forceRate = 0.25;
+  const roomPositionZ = 0;
+  const { roomSizeX,roomSizeY,roomSizeZ} = {roomSizeX:6, roomSizeY:7, roomSizeZ:14}
+  const forceRate = 0.5;
   const damping = 0.99;
   const bounciness = -0.7;
   const blackoutTime = 2.5;
@@ -26,22 +26,22 @@ export function Pool3D() {
   //   // forceX, 
   //   // forceY, 
   //   // forceZ,
-  //   // roomSizeX,roomSizeY,roomSizeZ,
-  //   // roomPositionZ,
-  //   // gridDivisions,
-  //   // forceRate,
-  //   // blackoutTime,
+  //   roomSizeX,roomSizeY,roomSizeZ,
+  //   roomPositionZ,
+  //   gridDivisions,
+  //   forceRate,
+  //   blackoutTime,
   //   // damping,
   //   // bounciness
   // } = useControls({
-  //   forceRate: { value: 0.08, min: 0, max: 0.5, step: 0.01 },
+  //   forceRate: { value: 0.5, min: 0, max: 0.5, step: 0.01 },
   
-  //   roomSizeX: { value: 20, min: 5, max: 25, step: 1 },
-  //   roomSizeY: { value: 10, min: 5, max: 20, step: 1 },
-  //   roomSizeZ: { value: 22, min: 5, max: 30, step: 1 },
+  //   roomSizeX: { value: 6, min: 5, max: 25, step: 1 },
+  //   roomSizeY: { value: 7, min: 5, max: 20, step: 1 },
+  //   roomSizeZ: { value: 14, min: 5, max: 30, step: 1 },
   //   roomPositionZ: { value: 0, min: -5, max: 10, step: 1 },
-  //   gridDivisions: { value: 10, min: 5, max: 20, step: 1 },
-  //   blackoutTime: { value: 2, min: 0.5, max: 5, step: 0.1 },
+  //   gridDivisions: { value: 11, min: 5, max: 20, step: 1 },
+  //   blackoutTime: { value: 8, min: 0.5, max: 15, step: 0.1 },
   //   // damping: { value: 0.99, min: 0.9, max: 1, step: 0.001 },
   //   // bounciness: { value: -0.8, min: -2, max: 0, step: 0.1 },
   // });
@@ -52,7 +52,7 @@ export function Pool3D() {
     // Setup
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 8;
+    camera.position.z = 6;
 
     const renderer = new THREE.WebGLRenderer({ 
       canvas: canvasRef.current,
@@ -308,10 +308,11 @@ export function Pool3D() {
       renderer.dispose();
     };
   }, [ 
-    // forceX, forceY, forceZ,roomSizeX,roomSizeY,roomSizeZ,roomPositionZ,
-    // gridDivisions,
-    // blackoutTime,
-    // forceRate,
+    // forceX, forceY, forceZ,
+    roomSizeX,roomSizeY,roomSizeZ,roomPositionZ,
+    gridDivisions,
+    blackoutTime,
+    forceRate,
     // damping,
     // bounciness
   ]);

@@ -38,13 +38,21 @@ export const Card = ({
   return (
     <div 
       className="w-full h-auto md:h-[500px] sm:w-90 perspective-midrange"
-      onMouseEnter={() => setIsFlipped(true)}
-      onMouseLeave={() => setIsFlipped(false)}
+      onMouseEnter={() => {
+        if (window.innerWidth >= 768) {
+          setIsFlipped(true);
+        }
+      }}
+      onMouseLeave={() => {
+        if (window.innerWidth >= 768) {
+          setIsFlipped(false);
+        }
+      }}
     >
       <div 
         className={`relative w-full h-full transition-transform duration-700 transform-style-3d 
           md:transform-style-3d ${
-          isFlipped ? 'rotate-y-180' : ''
+          isFlipped ? 'md:rotate-y-180' : ''
         }`}
         style={{
           transformStyle: 'preserve-3d',
@@ -97,9 +105,11 @@ export const Card = ({
                 />
               ))}
             </div>
-            <div className="md:hidden text-center ">
-              <Button onClick={() =>  window.open(ctaLink, "_blank")} twStyle="p-2" color='info' label={"EXPLORE NOW"} />
-            </div>
+            {ctaLink &&
+              <div className="md:hidden text-center ">
+                <Button onClick={() =>  window.open(ctaLink, "_blank")} twStyle="p-2" color='info' label={"EXPLORE NOW"} />
+              </div>
+            }
           </div>
 
      
@@ -128,24 +138,11 @@ export const Card = ({
             ))}
           </div>
 
-          {/* Tools/Technologies */}
-          {/* My Comp Style */}
-          {/* <div className="mb-6">
-            <div className="flex flex-wrap gap-2 justify-center p-2">
-              {tags.map((tool, index) => (
-                <Badge
-                  color="primary"
-                  key={index}
-                  label= {tool}
-                />
-              ))}
+          {ctaLink &&
+            <div className="text-center mb-6">
+              <Button onClick={() =>  window.open(ctaLink, "_blank")} twStyle="p-2" color='info' label={"EXPLORE NOW"} />
             </div>
-          </div> */}
-
-
-          <div className="text-center mb-6">
-            <Button onClick={() =>  window.open(ctaLink, "_blank")} twStyle="p-2" color='info' label={"EXPLORE NOW"} />
-          </div>
+          }
         </div>
       </div>
     </div>

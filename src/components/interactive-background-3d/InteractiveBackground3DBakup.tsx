@@ -1,12 +1,16 @@
 import React, { useRef, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Html } from '@react-three/drei';
 import * as THREE from 'three';
 
+//ToDo Minigame 
 // ============= COMPONENTE DE ESFERA CON FÍSICA =============
 interface PhysicsSphereProps {
   position: [number, number, number];
   color: number;
   onWallCollision: () => void;
+  onSphereCollision: () => void;
+  onPlayerClick: () => void;
   spheres: React.MutableRefObject<Array<{
     mesh: THREE.Mesh | null;
     velocity: THREE.Vector3;
@@ -18,6 +22,8 @@ function PhysicsSphere({
   position, 
   color, 
   onWallCollision,
+  onSphereCollision,
+  onPlayerClick,
   spheres,
   index
 }: PhysicsSphereProps) {
@@ -96,6 +102,9 @@ function PhysicsSphere({
       const minDistance = radius * 2;
 
       if (distance < minDistance) {
+        // Notificar colisión entre esferas
+        onSphereCollision();
+
         const normal = new THREE.Vector3()
           .subVectors(otherWorldPosition, worldPosition)
           .normalize();
@@ -120,6 +129,7 @@ function PhysicsSphere({
 
   const handleClick = (e: any) => {
     e.stopPropagation();
+    onPlayerClick(); // Notificar que el jugador hizo click
     const force = new THREE.Vector3(0, 0.08, 0.08);
     velocityRef.current.add(force);
   };
@@ -258,7 +268,10 @@ function SceneController() {
   const [showRoom, setShowRoom] = useState(false);
   const [lightIntensity, setLightIntensity] = useState(1);
   const [roomOpacity, setRoomOpacity] = useState(0);
+  const [comboCount, setComboCount] = useState(0);
   const lastCollisionTimeRef = useRef(0);
+  const spheresHitRef = useRef<Set<number>>(new Set());
+  const comboActiveRef = useRef(false);
   const spheresRef = useRef<Array<{
     mesh: THREE.Mesh | null;
     velocity: THREE.Vector3;
@@ -277,10 +290,30 @@ function SceneController() {
     }
   };
 
+  const handleSphereCollision = (sphereIndex: number) => {
+    if (!comboActiveRef.current) return;
+
+    // Agregar esfera al set de golpeadas
+    spheresHitRef.current.add(sphereIndex);
+
+    // Si se golpearon las 3 esferas, incrementar combo
+    if (spheresHitRef.current.size === 3) {
+      setComboCount(prev => prev + 1);
+      spheresHitRef.current.clear();
+      comboActiveRef.current = false;
+    }
+  };
+
+  const handlePlayerClick = () => {
+    // Activar modo combo cuando el jugador hace click
+    comboActiveRef.current = true;
+    spheresHitRef.current.clear();
+  };
+
   useFrame((state, delta) => {
     // Rotar el grupo de esferas lentamente
     if (groupRef.current) {
-      groupRef.current.rotation.y += delta * 0.1; // Rotación suave
+      groupRef.current.rotation.y += delta * 0.1;
     }
 
     // Verificar si han pasado 2 segundos desde la última colisión
@@ -288,10 +321,11 @@ function SceneController() {
       const timeSinceLastCollision = (Date.now() - lastCollisionTimeRef.current) / 1000;
       
       if (timeSinceLastCollision >= 2) {
-        // Restaurar todo a la normalidad
         setLightIntensity(1);
         scene.background = null;
         setRoomOpacity(0);
+        comboActiveRef.current = false;
+        spheresHitRef.current.clear();
         setTimeout(() => setShowRoom(false), 100);
       }
     }
@@ -302,12 +336,13 @@ function SceneController() {
       <Lights intensity={lightIntensity} />
       <Room visible={showRoom} opacity={roomOpacity} />
       
-      {/* Grupo que rota con las 3 esferas */}
       <group ref={groupRef}>
         <PhysicsSphere 
           position={[-3, 0, 0]} 
           color={0x4f46e5} 
           onWallCollision={handleWallCollision}
+          onSphereCollision={() => handleSphereCollision(0)}
+          onPlayerClick={handlePlayerClick}
           spheres={spheresRef}
           index={0}
         />
@@ -315,6 +350,8 @@ function SceneController() {
           position={[3, 1, -2]} 
           color={0x06b6d4} 
           onWallCollision={handleWallCollision}
+          onSphereCollision={() => handleSphereCollision(1)}
+          onPlayerClick={handlePlayerClick}
           spheres={spheresRef}
           index={1}
         />
@@ -322,10 +359,24 @@ function SceneController() {
           position={[0, -2, -1]} 
           color={0x8b5cf6} 
           onWallCollision={handleWallCollision}
+          onSphereCollision={() => handleSphereCollision(2)}
+          onPlayerClick={handlePlayerClick}
           spheres={spheresRef}
           index={2}
         />
       </group>
+
+      {/* Contador visible solo cuando luces apagadas */}
+      {showRoom && lightIntensity === 0 && (
+        <Html position={[4, -4, 0]} center>
+          <div className="bg-black/90 backdrop-blur-sm border-2 border-white rounded-lg px-6 py-4 pointer-events-none">
+            <div className="text-white text-center">
+              <div className="text-5xl font-bold mb-1">{comboCount}</div>
+              <div className="text-xs font-semibold tracking-wider">COMBO HITS</div>
+            </div>
+          </div>
+        </Html>
+      )}
     </>
   );
 }

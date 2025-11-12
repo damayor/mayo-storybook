@@ -2,57 +2,44 @@ import { useGLTF } from '@react-three/drei'
 import { useThree } from '@react-three/fiber'
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import { CanvasTexture, Object3D, Vector3 } from 'three'
-import { DEFAULT_CAMERA_POSITION } from '../../non-stories-components/helpers/constants/scene-constants'
+import { DEFAULT_CAMERA_POSITION, SHOE_URL } from '../../non-stories-components/helpers/constants/scene-constants'
 import {
   FootwearViews,
   getProductPosition,
   getProductRotation,
   gizmoTypeConfig,
   springConfig,
-} from './product-rotating.config'
+} from '../product-rotating/product-rotating.config'
 
 import { type GizmoType } from '../../non-stories-components/helpers/types/commonTypes'
 import MayoCanvas from '../../non-stories-components/mayo-canvas/mayo-canvas'
 import { productPosition, size } from '../../non-stories-components/helpers/constants/product.config'
 import { a, useSpring } from '@react-spring/three'
 
-export interface ProductRotatingProps {
+export interface ProductRotatingPrdProps {
   cameraView: FootwearViews
-  handleEnableControls?: (view: FootwearViews) => void
   glbUrl: string
-  gizmoType?: GizmoType
-  enableOrbitControl?: boolean
 }
 
-export default function ProductRotating({
-  gizmoType = gizmoTypeConfig,
-  enableOrbitControl = false,
+export default function ProductRotatingProd({
   ...args
-}: ProductRotatingProps) {
-  const [orbit, setOrbit] = useState(true)
-  const handleEnableControls = (view: FootwearViews) => {
-    setOrbit(enableOrbitControl && view === FootwearViews.FRONT)
-  }
-
+}: ProductRotatingPrdProps) {
   return (
-    <MayoCanvas enableOrbitControls={orbit} environmentPreset='studio' gizmoType={gizmoType}>
+    <MayoCanvas enableOrbitControls={false} environmentPreset='studio' gizmoType={'viewCube'}>
       <Suspense fallback={<mesh/>}>
-        <ProductRotatingComponent
+        <ProductRotatingComponentProd
           {...args}
-          enableOrbitControl={enableOrbitControl}
-          handleEnableControls={handleEnableControls}
+       
         />
       </Suspense>
     </MayoCanvas>
   )
 }
 
-function ProductRotatingComponent({
+function ProductRotatingComponentProd({
   cameraView = FootwearViews.FRONT,
-  handleEnableControls = () => {},
-  glbUrl,
-  enableOrbitControl,
-}: ProductRotatingProps) {
+  glbUrl = SHOE_URL ,
+}: ProductRotatingPrdProps) {
   const ref = useRef<Object3D>(new Object3D())
   const model = useGLTF(glbUrl)
   const { scenes } = model
@@ -96,7 +83,6 @@ function ProductRotatingComponent({
   }))
 
   useEffect(() => {
-    handleEnableControls(cameraView)
     setSpring({
       position: getProductPosition(cameraView),
       rotationX: getProductRotation(cameraView).x,
@@ -105,13 +91,6 @@ function ProductRotatingComponent({
     })
     startCameraReset()
   }, [cameraView])
-
-  useEffect(() => {
-    handleEnableControls(cameraView)
-    if (!enableOrbitControl) {
-      startCameraReset()
-    }
-  }, [enableOrbitControl])
 
   const startCameraReset = () => {
     const currentCameraPos = camera.position.clone()

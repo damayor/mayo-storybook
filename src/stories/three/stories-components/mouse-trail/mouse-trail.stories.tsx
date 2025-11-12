@@ -5,7 +5,7 @@ import MayoCanvas from '../../non-stories-components/mayo-canvas/mayo-canvas'
 import MouseTrail, { type MouseTrailProps } from './mouse-trail'
 
 const meta = {
-  title: 'Three/Components/Mouse Trail',
+  title: 'Three/Components/MouseTrailLegacy',
   component: MouseTrail,
   decorators: [
     (Story) => <MayoCanvas enableOrbitControls={false} environmentPreset='studio' gizmoType='viewPort'>
@@ -26,7 +26,7 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-export const Default: Story = {
+export const MouseTrailLegacy: Story = {
   args: {
     lineWidth: 15, 
     followMouse: true,

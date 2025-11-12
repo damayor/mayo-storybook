@@ -163,16 +163,16 @@ function Sidebar({ isOpen, setIsOpen, onNavigate } : SidebarProps) {
           <div className="border-t border-slate-700 pt-6 space-y-4"> 
             {/* ToDo when you have all translated <LanguageSelector/> */}
             <div className="flex justify-center gap-4">
-              <a href={contactData.github} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+              <a target="_blank" href={contactData.github} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
                 <Github size={20} />
               </a>
-              <a href={contactData.linkedin} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+              <a target="_blank" href={contactData.linkedin} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
                 <Linkedin size={20} />
               </a>
-              <a href={contactData.instagram} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+              <a target="_blank" href={contactData.instagram} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
                 <Instagram size={20} />
               </a>
-              <a href={contactData.github} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+              <a target="_blank" href={contactData.github} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
                 <Mail size={20} />
               </a>
             </div>
@@ -190,7 +190,7 @@ function HomeSection() {
   
   return (
     <section className="min-h-screen flex items-center justify-center px-6">
-        <div className="max-w-4xl text-center z-10 pointer-events-none">
+        <div className="max-w-4xl text-center z-10">
           <div className="mb-6 animate-fade-in">
             <div className="w-27 h-27 mx-auto mb-6 rounded-full bg-gradient-to-br from-camelot-950 to-camelot-500 p-1">
               <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-5xl font-lato">
@@ -238,16 +238,16 @@ function AboutSection() {
     
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
-            <div className="text-center p-4 bg-slate-700/50 rounded-lg">
+            <div className="text-center p-4 border-2 border-slate-700 rounded-lg">
               <FileJson2 className="mx-auto mb-2 text-blue-400" size={32} />
               {/* <Code/> */}
               <p className="font-semibold text-gray-200">{t('about.mainSkills.frontend')}</p>
             </div>
-            <div className="text-center p-4 bg-slate-700/50 rounded-lg">
+            <div className="text-center p-4 border-2 border-slate-700 rounded-lg">
               <RectangleGoggles className="mx-auto mb-2 text-camelot-500" size={32} />
               <p className="font-semibold text-gray-200">{t('about.mainSkills.xr')}</p>
             </div>
-            <div className="text-center p-4 bg-slate-700/50 rounded-lg">
+            <div className="text-center p-4 border-2 border-slate-700 rounded-lg">
               <Terminal className="mx-auto mb-2 text-purple-500" size={32} />
               <p className="font-semibold text-gray-200">{t('about.mainSkills.reliability')}</p>
             </div>
@@ -344,16 +344,16 @@ function ContactSection() {
             </button>
           </form>
           <div className="flex justify-center gap-6 mt-8 pt-8 border-t border-slate-700">
-            <a href={contactData.github} className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+            <a target="_blank" href={contactData.github} className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
               <Github size={24} />
             </a>
-            <a href={contactData.linkedin} className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+            <a target="_blank" href={contactData.linkedin} className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
               <Linkedin size={24} />
             </a>
-            <a href={contactData.instagram} className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+            <a target="_blank" href={contactData.instagram} className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
               <Instagram size={24} />
             </a>
-            <a href={contactData.linkedin} className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+            <a target="_blank" href={contactData.linkedin} className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
               <Mail size={24} />
             </a>
           </div>

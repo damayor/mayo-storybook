@@ -5,7 +5,7 @@ import { ProductModels } from '../../non-stories-components/helpers/constants/sc
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'Three/Components/Rotating Product',
+  title: 'Three/Views/RotatingPDP',
   component: ProductRotating,
   argTypes: {
     glbUrl: {
@@ -31,7 +31,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Card3D: Story = {
+export const RotatingPDP: Story = {
   args: {
     cameraView: FootwearViews.FRONT,
     enableOrbitControl: true,

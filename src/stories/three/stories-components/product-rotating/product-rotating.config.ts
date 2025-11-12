@@ -33,22 +33,22 @@ export const topPosition = [0, 0.3, 0]
 export const bottomPosition = [0, 0.3, 0]
 
 export const lateralRotation = new Euler(-0.15, 0, 0)
-export const medialRotation = new Euler(Math.PI / 4, Math.PI, 0)
+export const medialRotation = new Euler(0, Math.PI, 0)
 export const toeRotation = new Euler(0.2, -Math.PI / 2, 0)
 export const heelRotation = new Euler(0.2, Math.PI / 2, 0)
 export const topRotation = new Euler(Math.PI / 4, 0, 0)
-export const bottomRotation = new Euler(-Math.PI / 4, Math.PI, 0)
+export const bottomRotation = new Euler(-Math.PI / 3, Math.PI, 0)
 
 export function getProductRotation(view: FootwearViews) {
   switch (view) {
     case FootwearViews.FRONT:
-      return lateralRotation
+      return toeRotation 
     case FootwearViews.BACK:
-      return medialRotation
-    case FootwearViews.RIGHT:
-      return toeRotation
-    case FootwearViews.LEFT:
       return heelRotation
+    case FootwearViews.RIGHT:
+      return lateralRotation
+    case FootwearViews.LEFT:
+      return medialRotation
     case FootwearViews.TOP:
       return topRotation
     case FootwearViews.BOTTOM:
