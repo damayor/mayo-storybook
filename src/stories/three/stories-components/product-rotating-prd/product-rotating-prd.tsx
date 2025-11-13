@@ -1,4 +1,4 @@
-import { useGLTF } from '@react-three/drei'
+import { Html, useGLTF } from '@react-three/drei'
 import { useThree } from '@react-three/fiber'
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import { CanvasTexture, Object3D, Vector3 } from 'three'
@@ -18,7 +18,7 @@ import { a, useSpring } from '@react-spring/three'
 
 export interface ProductRotatingPrdProps {
   cameraView: FootwearViews
-  glbUrl: string
+  glbUrl?: string
 }
 
 export default function ProductRotatingProd({
@@ -29,15 +29,19 @@ export default function ProductRotatingProd({
       <Suspense fallback={<mesh/>}>
         <ProductRotatingComponentProd
           {...args}
-       
         />
+        <Html position={[0, -4, 0]} center as='div'>
+          <p className="text-gray-300 text-xs text-center w-max">
+            All 3D assets displayed are property of <b>adidas</b> and are used here only for demonstration purposes.
+          </p>
+        </Html>
       </Suspense>
     </MayoCanvas>
   )
 }
 
 function ProductRotatingComponentProd({
-  cameraView = FootwearViews.FRONT,
+  cameraView = FootwearViews.RIGHT,
   glbUrl = SHOE_URL ,
 }: ProductRotatingPrdProps) {
   const ref = useRef<Object3D>(new Object3D())

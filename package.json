@@ -7,8 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "storybook": "storybook dev --ci -p 6006",
-    "storybook:prod": "STORYBOOK_ENV=production storybook dev --ci -p 6006",
+    "storybook:prd": "STORYBOOK_ENV=production storybook dev --ci -p 6006",
     "build-storybook": "storybook build",
+    "build-storybook:prd": "STORYBOOK_ENV=production storybook build",
     "tailwind:build": "tailwindcss -i ./src/index.css -o ./dist/tailwind.css --minify"
   },
   "dependencies": {

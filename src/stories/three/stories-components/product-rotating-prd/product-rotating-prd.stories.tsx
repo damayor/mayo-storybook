@@ -5,7 +5,7 @@ import { FootwearViews } from '../product-rotating/product-rotating.config';
 import ProductRotatingProd from './product-rotating-prd';
 
 const meta = {
-  title: 'Three/Views/RotatingPDPProd',
+  title: 'Three/Views/InteractivePDP',
   component: ProductRotatingProd,
   argTypes: {
     cameraView: {
@@ -23,9 +23,9 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const RotatingPDPProd: Story = {
+export const InteractivePDP: Story = {
   args: {
-    cameraView: FootwearViews.FRONT,
+    cameraView: FootwearViews.LEFT
   }
 };
 

@@ -5,6 +5,7 @@ import sbTheme from './sb-theme'
 
  
 addons.setConfig({
+  base: '/storybook/',
   sidebar: {
     // showRoots: false,
      collapsedRoots: [
