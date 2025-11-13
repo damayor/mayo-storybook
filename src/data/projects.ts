@@ -12,9 +12,11 @@ export const projectsData: Record<string, Project> =
     images: [
       "/assets/images/projects/frontend/3ddas_tbt.png"
     ],
-
+    mediaLinks: [
+      "https://mayinteractive.io/storybook/?path=/story/three-views-interactivepdp--interactive-pdp"
+    ],
     gifs: [
-      "/assets/images/projects/frontend/volvo-3d.gif"
+      "/assets/images/projects/frontend/volvo-3d.gif" //ToDo Ahora si grabese el Gif
     ],
     initDate: new Date(2022, 0, 1),
     endDate: new Date(2023, 10, 1),
