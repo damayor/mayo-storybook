@@ -18,6 +18,7 @@ interface MayoCanvasProps {
   gizmoType?: GizmoType
   lightPosition?: Vector3
   background?: string
+  overrideCameraPos?: Vector3
 }
 
 export default function MayoCanvas({
@@ -26,11 +27,12 @@ export default function MayoCanvas({
   gizmoType = 'none',
   lightPosition,
   background = '#ffffff',
+  overrideCameraPos = undefined
 }: MayoCanvasProps) {
   return (
     <div style={{ height: '500px', border: '1px solid black'}}>
       <Canvas
-        camera={{ position: DEFAULT_CAMERA_POSITION, fov: DEFAULT_CAMERA_FOV }}
+        camera={{ fov: DEFAULT_CAMERA_FOV }}
       >
         <color attach="background" args={[background]} /> 
         {children}

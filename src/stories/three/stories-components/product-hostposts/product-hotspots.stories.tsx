@@ -2,15 +2,15 @@
 import { ProductModels, SHOE_URL } from '../../non-stories-components/helpers/constants/scene-constants'
 import type { Meta, StoryObj } from '@storybook/react';
 import { FootwearViews } from '../product-rotating/product-rotating.config';
-import { ProductRotatingPrd } from './product-rotating-prd';
+import { ProductHotspots } from './product-hotspots';
 import { Suspense } from 'react';
 import MayoCanvas from '../../non-stories-components/mayo-canvas/mayo-canvas';
 import { Html } from '@react-three/drei';
 import { Vector3 } from 'three';
 
 const meta = {
-  title: 'Three/Views/InteractivePDP',
-  component: ProductRotatingPrd,
+  title: 'Three/Views/HotspotsPDP',
+  component: ProductHotspots,
   decorators: [
     (Story) => <MayoCanvas enableOrbitControls={false} environmentPreset='studio' gizmoType='viewCube' overrideCameraPos={new Vector3(0, 1, 1.5)}>
       <Suspense fallback={<mesh/>}>
@@ -34,12 +34,12 @@ const meta = {
     },
   }
 
-} satisfies Meta<typeof ProductRotatingPrd>;
+} satisfies Meta<typeof ProductHotspots>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const InteractivePDP: Story = {
+export const HotspotsPDP: Story = {
   args: {
     cameraView: FootwearViews.LEFT,
     glbUrl: SHOE_URL,

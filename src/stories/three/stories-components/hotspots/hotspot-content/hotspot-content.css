@@ -1,0 +1,225 @@
+html {
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 599px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+.hotspot-content__container {
+  pointer-events: none;
+}
+
+.hotspot-content {
+  --pointer-length: 1200;
+  position: absolute;
+  height: inherit;
+  width: inherit;
+  top: 0;
+  left: calc(var(--origin-x-offset) * -13.5);
+  transform: translate(50%, 50%);
+}
+
+.hotspot-content__box {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: white 2px solid;
+  background-color: #e1e1e1a6;
+  box-sizing: content-box;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  position: absolute;
+  margin: 0;
+  opacity: 0;
+  animation: fadeIn 0.5s 0.3s forwards;
+}
+
+.hotspot-content__box--top-left {
+  top: -45vh;
+  left: -29vw;
+}
+
+.hotspot-content__box--bottom-left {
+  top: 20vh;
+  left: -29vw;
+}
+
+.hotspot-content__box--top-right {
+  flex-direction: row-reverse;
+  top: -45vh;
+  left: calc(27vw - var(--content-text-width));
+  text-align: right;
+}
+
+.hotspot-content__box--bottom-right {
+  flex-direction: row-reverse;
+  top: 20vh;
+  left: calc(27vw - var(--content-text-width));
+  text-align: right;
+}
+
+.hotspot-content__text--custom {
+  width: 20rem;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.hotspot-content__vl {
+  border-left: 1px solid black;
+  height: 100%;
+  margin: 0 1rem;
+}
+
+.hotspot-content__text {
+  flex: 1;
+}
+
+.hotspot-content__header {
+  font-family: "AdihausDIN";
+  line-height: 1.5rem;
+  letter-spacing: 1.5px;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.hotspot-content__paragraph {
+  font-family: "AdihausDIN";
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+  margin: 0;
+}
+
+.content--shown {
+  animation-name: fadeIn;
+}
+
+.content--hidden {
+  animation-name: fadeOut;
+}
+
+.hotspot-content__image {
+  flex: 0;
+  object-fit: cover;
+  border: 1px solid black;
+  position: relative;
+  opacity: 0;
+  animation: fadeIn 0.5s 0.5s linear;
+  animation-fill-mode: forwards;
+}
+
+.hotspot-content__image--default {
+  background-color: black;
+  width: calc(var(--content-text-width) / 4);
+  height: calc(var(--content-text-width) / 4);
+}
+
+.hotspot-content__image--default:before {
+  content: "•";
+  color: white;
+  font-size: 2rem;
+  width: inherit;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hotspot-content_pointer {
+  pointer-events: none;
+  overflow: visible;
+  position: relative;
+}
+
+.hotspot-content_pointer > path {
+  fill: none;
+  stroke: black;
+  stroke-width: 1;
+  stroke-dasharray: var(--pointer-length);
+  stroke-dashoffset: var(--pointer-length);
+  animation: dash 1s linear;
+  animation-fill-mode: forwards;
+  stroke-linejoin: round;
+  filter: drop-shadow(var(--origin-x-offset) -1px 0 white);
+}
+
+.hotspot-content--story-container {
+  width: inherit;
+  height: inherit;
+}
+
+@media only screen and (max-width: 599px) {
+  .hotspot-content {
+    top: initial;
+    left: initial;
+    transform: none;
+  }
+  .hotspot-content--story-container {
+    transform: none;
+  }
+  .hotspot-content_pointer {
+    display: none;
+  }
+  .hotspot-content__box {
+    width: 100% !important;
+    height: 12rem !important;
+    box-sizing: border-box;
+    padding: 1.5rem 3rem;
+  }
+  .hotspot-content__text--custom {
+    width: auto;
+  }
+  .hotspot-content__box--top-left,
+  .hotspot-content__box--top-right {
+    top: 0;
+    left: 0;
+  }
+  .hotspot-content__box--bottom-left,
+  .hotspot-content__box--bottom-right {
+    top: initial;
+    left: 0;
+    bottom: 0;
+  }
+
+  .hotspot-content__header {
+    line-height: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+  .hotspot-content__paragraph {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: var(--pointer-length);
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

@@ -1,26 +1,30 @@
-import { useGLTF } from '@react-three/drei'
+import { Html, useGLTF } from '@react-three/drei'
 import { useThree } from '@react-three/fiber'
-import { useEffect, useMemo, useRef, useState } from 'react'
-import { CanvasTexture, Object3D } from 'three'
-import { DEFAULT_CAMERA_POSITION, SHOE_URL } from '../../non-stories-components/helpers/constants/scene-constants'
+import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
+import { CanvasTexture, Object3D, Vector3 } from 'three'
+import { DEFAULT_CAMERA_POSITION, hotspotsCopaData, SHOE_URL } from '../../non-stories-components/helpers/constants/scene-constants'
 import {
   FootwearViews,
   getProductPosition,
   getProductRotation,
+  gizmoTypeConfig,
   springConfig,
 } from '../product-rotating/product-rotating.config'
 
 import { productPosition, size } from '../../non-stories-components/helpers/constants/product.config'
 import { a, useSpring } from '@react-spring/three'
-export interface ProductRotatingPrdProps {
+import Hotspots from '../hotspots/hotspots'
+import { defaultHotspotsConfiguration } from '../hotspots/constants/default-product-config'
+
+export interface ProductHotspotsProps {
   cameraView: FootwearViews
   glbUrl?: string
 }
 
-export function ProductRotatingPrd({
+export function ProductHotspots({
   cameraView = FootwearViews.RIGHT,
   glbUrl = SHOE_URL ,
-}: ProductRotatingPrdProps) {
+}: ProductHotspotsProps) {
   const ref = useRef<Object3D>(new Object3D())
   const model = useGLTF(glbUrl)
   const { scenes } = model
@@ -91,7 +95,7 @@ export function ProductRotatingPrd({
   }
 
   const firstColor = '#eeffdd';
-  const secondColor = '#363';
+  const secondColor = '#030';
   const direction = "vertical";
 
   const { scene } = useThree();
@@ -119,6 +123,8 @@ export function ProductRotatingPrd({
 
   scene.background = texture;
 
+  const scale = 8
+
   return (
     <group>
       {/* @ts-ignore */}
@@ -127,10 +133,22 @@ export function ProductRotatingPrd({
         rotation-y={spring.rotationY}
         rotation-z={spring.rotationZ}
         position={spring.position}
-        scale={[size, size, size]}
+        scale={scale}
         ref={ref}
         object={scenes[0]}
       />
+      <Hotspots
+        scene={scenes[0]}
+        hotspotsData={hotspotsCopaData}
+        onZoom={() => {}}
+        // scale={scale}
+        productView={cameraView}
+        // isBeingAnimated={false}
+        hotspotsConfig={defaultHotspotsConfiguration}
+        // isViewChangedOnZoom={isViewChangedOnZoom}
+
+      />
+
     </group>
   )
 }
