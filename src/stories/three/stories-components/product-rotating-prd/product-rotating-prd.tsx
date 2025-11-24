@@ -1,46 +1,23 @@
-import { Html, useGLTF } from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
 import { useThree } from '@react-three/fiber'
-import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
-import { CanvasTexture, Object3D, Vector3 } from 'three'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { CanvasTexture, Object3D } from 'three'
 import { DEFAULT_CAMERA_POSITION, SHOE_URL } from '../../non-stories-components/helpers/constants/scene-constants'
 import {
   FootwearViews,
   getProductPosition,
   getProductRotation,
-  gizmoTypeConfig,
   springConfig,
 } from '../product-rotating/product-rotating.config'
 
-import { type GizmoType } from '../../non-stories-components/helpers/types/commonTypes'
-import MayoCanvas from '../../non-stories-components/mayo-canvas/mayo-canvas'
 import { productPosition, size } from '../../non-stories-components/helpers/constants/product.config'
 import { a, useSpring } from '@react-spring/three'
-
 export interface ProductRotatingPrdProps {
   cameraView: FootwearViews
   glbUrl?: string
 }
 
-export default function ProductRotatingProd({
-  ...args
-}: ProductRotatingPrdProps) {
-  return (
-    <MayoCanvas enableOrbitControls={false} environmentPreset='studio' gizmoType={'viewCube'}>
-      <Suspense fallback={<mesh/>}>
-        <ProductRotatingComponentProd
-          {...args}
-        />
-        <Html position={[0, -4, 0]} center as='div'>
-          <p className="text-gray-300 text-xs text-center w-max">
-            All 3D assets displayed are property of <b>adidas</b> and are used here only for demonstration purposes.
-          </p>
-        </Html>
-      </Suspense>
-    </MayoCanvas>
-  )
-}
-
-function ProductRotatingComponentProd({
+export function ProductRotatingPrd({
   cameraView = FootwearViews.RIGHT,
   glbUrl = SHOE_URL ,
 }: ProductRotatingPrdProps) {
@@ -114,7 +91,7 @@ function ProductRotatingComponentProd({
   }
 
   const firstColor = '#eeffdd';
-  const secondColor = '#030';
+  const secondColor = '#363';
   const direction = "vertical";
 
   const { scene } = useThree();
