@@ -8,6 +8,7 @@ const config: StorybookConfig = {
   ? [
       '../src/stories/three/stories-components/pool-3d/pool3D.stories.tsx',
       '../src/stories/three/stories-components/product-rotating-prd/product-rotating-prd.stories.tsx', //ToDo Regex on un prd.stories
+      '../src/stories/three/stories-components/floating-card/floating-card.stories.tsx',
     ]
   : ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   "addons": [
@@ -16,9 +17,7 @@ const config: StorybookConfig = {
     "@storybook/addon-onboarding",
     // "@storybook/addon-vitest"
     "@storybook/addon-a11y",
-    "@storybook/addon-themes",
-    "@storybook/addon-viewport",
-
+    "@storybook/addon-themes"
   ],
   "framework": {
     "name": "@storybook/react-vite",

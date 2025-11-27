@@ -18,6 +18,17 @@ export interface Project {
     content:            string;
 }
 
+export interface MiniProject {
+    projectRealTitle:   string;
+    projectPublicTitle: string;
+    resume: string;
+    image:             string;
+    gifs?:              string[];
+    tags:               string[];
+    technologies:       string[];
+
+}
+
 export interface Achievement {
   id: string;
   title: string;

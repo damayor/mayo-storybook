@@ -1,6 +1,6 @@
 import React from 'react';
 
-type IconSize = 'small' | 'medium' | 'large';
+type IconSize = 'x-small' |'small' | 'medium' | 'large';
 
 interface IconProps {
   technology: string;
@@ -24,7 +24,7 @@ export const techIconMap: Record<string, { name: string; variant: string }> = {
   // 'WebGL': { name: 'webpack', variant: 'plain' }, // No hay icono específico de WebGL
   'HTML': { name: 'html5', variant: 'plain' },
   'SCSS': { name: 'sass', variant: 'original' },
-  // 'Vuforia': { name: 'unity', variant: 'original' }, // No hay icono específico de Vuforia
+  'Vuforia': { name: 'vitess', variant: 'original' }, // No hay icono específico de Vuforia
   'VSCode': { name: 'vscode', variant: 'original' },
   'Android': { name: 'android', variant: 'plain' },
   'Mongo': { name: 'mongodb', variant: 'plain-wordmark' },
@@ -33,19 +33,22 @@ export const techIconMap: Record<string, { name: string; variant: string }> = {
   'Cpp': { name: 'cplusplus', variant: 'plain' },
   'Angular': { name: 'angular', variant: 'original' },
   'Figma': { name: 'figma', variant: 'original' },
-  'Jenkins': { name: 'jenkins', variant: 'original' },
+  'Jenk ins': { name: 'jenkins', variant: 'original' },
   'Redux': { name: 'redux', variant: 'original' },
   'Filezilla': { name: 'filezilla', variant: 'original' },
+  'Blender': { name: 'blender', variant: 'original' },
+
 
 
 
 };
 
 // Tamaños en píxeles
-const sizeMap: Record<IconSize, number> = {
-  small: 40,
-  medium: 64,
-  large: 96
+const sizeMap: Record<IconSize, string> = {
+  "x-small": 'w-6 h-6',
+  small: 'w-10 h-10',
+  medium: 'w-16 h-16',
+  large: 'w-24 h-24'
 };
 
 export function Icon({ technology, size = 'medium', className = '' }: IconProps) {
@@ -55,8 +58,7 @@ export function Icon({ technology, size = 'medium', className = '' }: IconProps)
     console.warn(`Technology "${technology}" not found in icon map`);
     return (
       <div 
-        className={`flex items-center justify-center bg-gray-200 rounded-lg ${className}`}
-        style={{ width: sizeMap[size], height: sizeMap[size] }}
+        className={`flex items-center justify-center bg-gray-200 rounded-lg ${className} ${sizeMap[size]}`}
       >
         <span className="text-gray-500 text-xs font-bold">?</span>
       </div>
@@ -73,16 +75,15 @@ export function Icon({ technology, size = 'medium', className = '' }: IconProps)
     <img
       src={iconUrl}
       alt={`${technology} icon`}
-      className={`object-contain ${className}`}
+      className={`object-contain ${className} ${pixelSize}`}
       title={name}
-      style={{ width: pixelSize, height: pixelSize }}
       onError={(e) => {
         // Fallback si la imagen no carga
         const target = e.target as HTMLImageElement;
         target.style.display = 'none';
         const parent = target.parentElement;
         if (parent) {
-          parent.innerHTML = `<div class="flex items-center justify-center bg-gray-200 rounded-lg" style="width: ${pixelSize}px; height: ${pixelSize}px;">
+          parent.innerHTML = `<div class="flex items-center justify-center bg-gray-200 rounded-lg ${pixelSize}">
             <span class="text-gray-500 text-xs font-bold">${technology.substring(0, 2).toUpperCase()}</span>
           </div>`;
         }
