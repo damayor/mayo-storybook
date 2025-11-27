@@ -76,11 +76,11 @@ export const skills: SkillCategory[] = [
 export const tools: ToolsCategory[] = [
     {
       category: 'Frontend',
-      items:  ['React', 'TypeScript', 'Tailwind CSS', 'SCSS', 'Three.js', 'Next.js', 'Storybook', 'Figma', 'CSS3'],
+      items:  ['React', 'TypeScript', 'Tailwind CSS', 'SCSS', 'Three.js', 'Vue.js', 'Storybook', 'Figma', 'CSS3'],
     },
     {
       category: 'Backend',
-      items: ['Node.js', 'Redux', 'Express', 'MongoDB', 'PostgreSQL', 'Postman', 'REST APIs']
+      items: ['Node.js', 'Next.js', 'Redux', 'Express', 'MongoDB', 'PostgreSQL', 'Postman', 'REST APIs']
     },
     {
       category: 'VR/AR & Game Dev',

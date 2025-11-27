@@ -1,0 +1,126 @@
+:root {
+  --clr-gray-100: #141414;
+  --clr-gray-500: #1F1F1F;
+  --clr-gray-800: #333;
+  --clr-white: #FFF;
+
+
+
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: 62.5%;
+  color: var(--clr-white);
+  background-color: var(--clr-gray-100);
+    margin: 0 auto;
+  text-align: center;
+}
+
+
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/static/Inter-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/static/Inter-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/static/Inter-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+}
+
+body {
+  font-size: 62.5%;
+
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+
+  font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+h3 {
+  font-size: 1.6rem;
+  font-family: "Latto", sans-serif;
+
+  color: var(--clr-secondary);
+  font-weight: 900;
+  line-height: 0.8;
+}
+
+h4 {
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.card {
+  background: var(--clr-gray-500);
+  border-radius: 2rem;
+  width: 36rem;
+  display: grid;   
+  padding: 3.2rem;
+  gap: 1.2rem;
+}
+
+.card__author {
+
+}
+
+.card__author-img {
+  border-radius: 50%;
+  width: 10rem;
+  margin: 0 auto;
+}
+
+.card__author-description
+{
+  margin-block: 1rem;
+}
+
+.social-button {
+  background: var(--clr-gray-800);
+  padding: 1em 0;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.social-button:hover /*.social-button:active, .social-button:focus  */    {
+  background:var(--clr-primary-dark);
+  color: var(--clr-white);
+  cursor: pointer;
+  outline: none;
+}
+
+.attribution {
+  font-size: 1.2rem;
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  background: var(--clr-gray-100);
+}
+
+.attribution a { color: var(--clr-secondary); }
+
+@media (max-width: 42em) {
+  :root {
+    font-size: 70%;
+  }
+
+  .card {
+    width: 90vw;
+    margin: 20vh 0;
+  }
+}

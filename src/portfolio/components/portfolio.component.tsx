@@ -8,13 +8,15 @@ import { useTranslation } from 'react-i18next';
 
 import { Heading } from 'HtmlComponents/headings';
 import { Card } from 'HtmlComponents/card';
-import { projectsData } from '../../data/projects';
+import { projectsData, miniProjects } from '../../data/projects';
 import { toolsAndExprience } from '../../data/experience';
 import SkillsTabPanel from '../../components/skills-panel/skills-panel-component';
 import { contactData } from 'Data/contact';
 import { type SectionType, SECTIONS, SECTIONS_ARRAY } from 'Interfaces/portfolio-sections';
 import { useScrollDetection } from '../../hooks/useScrollDetection';
 import InteractiveBackground3D from '../../components/interactive-background-3d/InteractiveBackground3D';
+import { MiniCard } from 'HtmlComponents/mini-card';
+import { projectsMini } from 'HtmlComponents/mini-card/mini-card.stories';
 
 // Componente de fondo 3D animado
 function AnimatedSphere({ position, color, speed } : any) { 
@@ -39,29 +41,6 @@ function AnimatedSphere({ position, color, speed } : any) {
         metalness={0.8}
       />
     </Sphere>
-  );
-}
-
-function Background3D() {
-  return (
-    <div className="fixed inset-0 -z-10">
-      <Canvas camera={{ position: [0, 0, 8], fov: 50 }}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[10, 10, 5]} intensity={1} />
-        <pointLight position={[-10, -10, -5]} intensity={0.5} color="#4f46e5" />
-        
-        <AnimatedSphere position={[-3, 0, 0]} color="#C09B00" speed={0.3} />
-        <AnimatedSphere position={[3, 1, -2]} color="#003893" speed={0.2} />
-        <AnimatedSphere position={[0, -2, -1]} color="#C8102E" speed={0.25} />
-        
-        <OrbitControls 
-          enableZoom={false} 
-          enablePan={false}
-          autoRotate
-          autoRotateSpeed={0.5}
-        />
-      </Canvas>
-    </div>
   );
 }
 
@@ -198,7 +177,7 @@ function HomeSection() {
               </div>
             </div>
           </div>
-          <Heading className='' level={1} children={t('home.title')} variant='primary'/>
+          <Heading level={1} children={t('home.title')} variant='primary'/>
           <hr className="h-px my-6 bg-camelot-900 border-0 dark:bg-gray-700"/>
 
           {/* <h1 className="text-4xl sm:text-5xl lg:text-6xl font-montserrat mb-8 mt-4 text-camelot-800">
@@ -266,7 +245,7 @@ function ProjectsSection() {
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20 animate-fadeIn">
       <div className="max-w-6xl w-full z-10">
         {/* <h2 className="text-5xl font-lato font-bold pb-2 mb-12 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent"> */}
-        <Heading level={2} className='text-5xl font-lato font-bold mb-8 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center'  variant='primary'>
+        <Heading level={2} className='text-5xl font-lato font-bold mb-12 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center'  variant='primary'>
 
          {t('projects.title')}
         
@@ -286,7 +265,23 @@ function ProjectsSection() {
             )
           )}
         </div>
+
+
+      <div className="max-w-7xl mx-auto py-16 sm:py-20"> 
+        {/* <h2 className="text-4xl font-bold text-white mb-2">Micro Projects</h2> */}
+        <Heading level={2} className='text-5xl font-lato font-bold mb-12 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center'  variant='primary'>
+          Other Projects
+        </Heading>
+        {/* <p className="text-camelot-300 mb-8">Small experiments and quick builds</p> */}
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {miniProjects.map((project, index) => (
+            <MiniCard key={index} 
+              {...project} />
+          ))}
         </div>
+      </div>
+      </div>
 
       <style>{`
         .animate-fadeIn {
@@ -294,6 +289,8 @@ function ProjectsSection() {
         }
       `}</style>
     </section>
+
+   
   );
 }
 
