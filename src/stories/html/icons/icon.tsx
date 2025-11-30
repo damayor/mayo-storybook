@@ -33,10 +33,14 @@ export const techIconMap: Record<string, { name: string; variant: string }> = {
   'Cpp': { name: 'cplusplus', variant: 'plain' },
   'Angular': { name: 'angular', variant: 'original' },
   'Figma': { name: 'figma', variant: 'original' },
-  'Jenk ins': { name: 'jenkins', variant: 'original' },
+  'Jenkins': { name: 'jenkins', variant: 'original' },
   'Redux': { name: 'redux', variant: 'original' },
   'Filezilla': { name: 'filezilla', variant: 'original' },
   'Blender': { name: 'blender', variant: 'original' },
+  'Linux': { name: 'linux', variant: 'original' },
+  'K8': { name: 'kubernetes', variant: 'original' },
+  'Grafana': { name: 'grafana', variant: 'original' },
+  'Docker': { name: 'docker', variant: 'original' },
 
 
 

@@ -388,7 +388,7 @@ export default function Portfolio() {
   };
 
   return (
-    <div className="min-h-screen w-screen text-white overflow-x-hidden">
+    <div data-theme={'dark'} className="min-h-screen w-screen text-white overflow-x-hidden">
       {/* <Background3D />       */}
 
       <InteractiveBackground3D />
