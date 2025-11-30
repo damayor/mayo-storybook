@@ -6,9 +6,6 @@
   font-weight: 500;
 
   color-scheme: light dark;
-  
-  /* color: rgba(255, 255, 255, 0.87);
-  background-color: #242424; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -58,53 +55,3 @@
 
 
 }
-
-/* * { //12oct
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-} */
-
-/* body {
-  width: 100%;
-  min-height: 100vh;
-  overflow-x: hidden;
-} */
-
-/* img {
-  max-width: 100%;
-  height: auto;
-} */
-
-/* h1 {
-  font-family: var(--font-family-lato);
-  font-weight: 700;
-  font-size: 36px;
-  letter-spacing: 7%;
-  text-decoration: none;
-  text-transform: uppercase;
-  color: var(--clr-white);
-}
-
-
-h2 {
-
-  font-family: var(--font-family-lato);
-  font-weight: 700;
-  font-size: 25px;
-  letter-spacing: 12%;
-  text-decoration: none;
-  text-transform: uppercase;
-
-  /* color: var(--clr-rgb-37-43-66); */
-
-
-/* h3 {
-  font-family: var(--font-family-lato);
-  font-weight: normal;
-  font-size: 20px;
-  letter-spacing: 10%;
-  text-decoration: none;
-  text-transform: none;
-  color: var(--text-white);
-} */

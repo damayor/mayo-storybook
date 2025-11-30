@@ -99,14 +99,15 @@ export const miniProjects : MiniProject[] = [
       technologies: ["Unity", "CSharp", "Blender"],
       image: "/assets/images/projects/xr/OH_Resident.JPG"
     },
-    {
-      projectRealTitle: "Virtual Reality in Unity",
-      projectPublicTitle: "Instructor to Game Devs (UNAL + SENA)",
-      resume: "Summer course for high-school students covering materials, humanoids, animation, and scripting.",
-      tags: ['Game Development', 'Tutorials'],
-      technologies: ['VSCode', 'Unity', 'CSharp'],
-      image: "/assets/images/projects/xr/anastasio.png"
+            {
+      projectRealTitle: "Cv Angular renderer",
+      projectPublicTitle: "PDF Curriculum Generator",
+      resume: "Server-based tool that renders user data into multiple CV designs and exports them as PDF.",
+      tags: ['Full-Stack', "File Generator"],
+      technologies: ['Angular', "NodeJS", 'Typescript', "Tailwind",],
+      image: "/assets/images/projects/reliability/cv-renderer.png"
     },
+    
     {
       projectRealTitle: "ARMobile",
       projectPublicTitle: "AR Paintings Experience",
@@ -114,7 +115,37 @@ export const miniProjects : MiniProject[] = [
       tags: ["Augmented Reality", "Android"],
       technologies: ["Unity", "CSharp", "Vuforia", "Android"],
       image: "/assets/images/projects/xr/LisboaAR.png"
-    }
+    },
+
+           {
+      projectRealTitle: "SRE in Checkout Service",
+      projectPublicTitle: "SRE in Backend Orchestrator",
+      resume: `Improved reliability of the Checkout via observability, alerts, and on-call support, with optimized CI/CD pipelines`,
+      tags: ["DevOps", "Incident management","Code Quality"],
+      technologies: ["Jenkins", "Linux", "K8", "Grafana", "Docker"],
+      image: "/assets/images/projects/reliability/RealisticSRE.webp"
+    },
+
+        {
+      projectRealTitle: "Virtual Reality in Unity",
+      projectPublicTitle: "Instructor to Game Devs (UNAL + SENA)",
+      resume: "Summer course for high-school students covering materials, humanoids, animation, and scripting.",
+      tags: ['Game Development', 'Tutorials'],
+      technologies: ['VSCode', 'Unity', 'CSharp'],
+      image: "/assets/images/projects/xr/anastasio.png"
+    },
+ 
+
+    {
+      projectRealTitle: "Swap Puzzle",
+      projectPublicTitle: "Swap Puzzle",
+      resume: "Casual game to mobile devices.",
+      tags: ["Game Development", "Mobile",],
+      technologies: ["Unreal", "Cpp", "Android"],
+      image: "/assets/images/projects/xr/swapPuzzle_random.jpg"
+    },
+
+
   ];
 
 export const backups: Record<string, Project> =
