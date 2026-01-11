@@ -26,11 +26,11 @@ export const MiniCard = ({
 
   return (
      <div 
-      className="group relative w-full h-80 md:h-96 rounded-2xl shadow-xl overflow-hidden border-2 border-gray-200 transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
+      className="group relative w-full h-80 md:h-96 rounded-2xl shadow-xl overflow-hidden border-2 border-gray-200 transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-110 active:shadow-2xl cursor-pointer"
     >
       {/* Imagen de fondo */}
       <div 
-        className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+        className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110 group-active:scale-110"
         style={{ 
           backgroundImage: `url(${image})`,
         }}
@@ -40,7 +40,7 @@ export const MiniCard = ({
       <div className="absolute inset-0 bg-gradient-to-b from-black/95 via-transparent to-black/60" />
       
       {/* Overlay hover */}
-      <div className="absolute inset-0 bg-camelot-600/0 group-hover:bg-camelot-600/15 transition-all duration-300" />
+      <div className="absolute inset-0 bg-camelot-600/0 group-hover:bg-camelot-600/15 group-active:bg-camelot-600/15  transition-all duration-300" />
       
       {/* Contenido - Grid de 2 columnas */}
       <div className="relative h-full p-5 z-10">
@@ -50,7 +50,7 @@ export const MiniCard = ({
             {/* Columna izquierda: Título y descripción */}
             <div className="flex flex-col">
               {/* Título */}
-              <h3 className="text-white font-bold text-xl mb-2 group-hover:text-camelot-300 transition-colors drop-shadow-lg">
+              <h3 className="text-white font-bold text-xl mb-2 group-hover:text-camelot-300 group-active:text-camelot-300 transition-colors drop-shadow-lg">
                 {projectPublicTitle}
               </h3>
               
