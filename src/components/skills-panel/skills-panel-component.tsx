@@ -129,7 +129,7 @@ export default function SkillsTabPanel({
   skills = [], 
   tools = [] 
 }: Partial<TabPanelProps> = {}) {
-  const [activeTab, setActiveTab] = useState<TabType>('skills');
+  const [activeTab, setActiveTab] = useState<TabType>('tools');
 
   const tabConfig = [
     { id: 'timeline', label: 'Timeline', icon: <Clock size={18} /> },

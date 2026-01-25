@@ -111,13 +111,7 @@ export const getAllTools = (): string[] => {
 
 export const toolsAndExprience : TabPanelProps = {
     achievements: [
-      //1BQE
-      // 4 Opcion Academica! en Computacion visual
-      //2Internship en TUKL
-      //3 Research Monitor - IDI Imagine Group
-      //5 ... teaching in adidas campus programs
-      // 5 Monitor de Introducction to programming en Unity
-      {
+     {
         id: '1',
         title: 'Quiero Estudiar Scholarship',
         place: 'Universidad de los Andes',
@@ -210,7 +204,6 @@ export const toolsAndExprience : TabPanelProps = {
         title: 'Systems and Computing Engineering (M.Sc.)',
         company: 'Universidad de los Andes',
         link: 'https://www.uniandes.edu.co/'
-        // description: 'Learned fundamentals of web development, worked on client projects using vanilla JS and jQuery'
       },
     ],
     skills,
