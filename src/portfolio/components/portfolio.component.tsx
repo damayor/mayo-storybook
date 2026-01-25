@@ -152,7 +152,7 @@ function Sidebar({ isOpen, setIsOpen, onNavigate } : SidebarProps) {
               <a target="_blank" href={contactData.instagram} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
                 <Instagram size={20} />
               </a>
-              <a target="_blank" href={contactData.github} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+              <a target="_blank" href={contactData.behance} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
                 <Mail size={20} />
               </a>
             </div>
@@ -316,7 +316,7 @@ function ContactSection() {
     }
 
     setIsLoading(true);
-    setStatusMessage({ type: 'success', text: `${formData.name}, we will stay in contact soon!` });
+    setStatusMessage({ type: 'success', text: `${formData.name}, I will stay in contact soon!` });
     setIsLoading(false);
 
     //ToDo sendContactEmail
@@ -406,7 +406,7 @@ function ContactSection() {
             <a target="_blank" href={contactData.instagram} className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
               <Instagram size={24} />
             </a>
-            <a target="_blank" href={contactData.linkedin} className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+            <a target="_blank" href={contactData.behance} className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
               <Mail size={24} />
             </a>
           </div>

@@ -9,7 +9,7 @@
   "home": {
     "title": "David Mayorga-Herrera",
     "brand": "May Interactive",
-    "role": "Immersive Development",
+    "role": "Immersive Engineering",
     "profession": "Systems and Computing Engineering",
     "university": "Uniandes",
     "subtitle": "Uniandes Class of 2017 • Systems and Computing Engineering",
@@ -19,8 +19,8 @@
   },
   "about": {
     "title": "About Me",
-    "intro": "I’m a <b>Systems and Computing Engineer</b> with a strong foundation in visualization, interaction, and creative technology. My academic path in <b>Visual Computing</b> —covering areas such as visual analytics, augmented reality (Vuforia), and 3D interaction (Unity, WebGL, Oculus)—shaped my focus on how people <i>see</i> and <i>feel</i> technology, transforming data, motion, and interaction into meaningful digital experiences. Throughout my career, I’ve combined technologies like <b>React, Unity, Three.js, Node.js</b>, and <b>C++</b> to craft interfaces where creativity meets precision.",
-    "experience": "Since joining adidas, this global enterprise has strengthened my focus on <b>quality, reliability</b>, and teamwork across cultures. Beyond development, I’m deeply drawn to sharing knowledge—I love teaching, mentoring, and helping others grow in their technical and creative journeys. Having worked and lived across different cultures—from my beloved <b>Bogotá, Colombia</b>, to my dream come true in <b>Berlin, Germany</b>—I’ve learned that curiosity and adaptability are my greatest tools. Whether I’m writing code or traveling the world, I’m driven by the same goal: <b>to connect people through technology.</b>",
+   "intro": "I am a <b>Software Engineer (M.Sc.)</b> with over 5 years of experience in designing, building, deploying, and monitoring large-scale web platforms or applications. I specialize in <b>Node.js, TypeScript, and C#</b> for backend development, and in UI/UX solutions using TailwindCSS, SCSS. I also have expertise in creating <b>interactive or 3D experiences</b> with Three.js, Unity, WebGL, and Unreal. My foundation is strong in C++, LLMs, and Linux bash, managing <b>Site Reliability Engineering</b> practices to ensure monitoring, and scalability using <b>CI/CD</b> tools like Jenkins, Kubernetes, and Docker.",
+    "experience": "Since joining adidas, this global enterprise has strengthened my focus on <b>quality, reliability</b>, and teamwork across cultures. Beyond development, I’m deeply drawn to <b>sharing knowledge</b>—I love teaching, mentoring, and helping others grow in their technical and creative journeys. With my recent relocation to Berlin and full work authorization, I am eager to join innovative engineering teams, with my abilites to foresee scenarios, solve complex problems, and bring about innovation and creative thinking to the table. Whether I’m writing code or traveling the world, I’m driven by the same goal: <b>to connect deeper people through technology.</b>",
     "mainSkills": {
       "frontend": "Frontend Engineering",
       "xr": "3D / XR Development",

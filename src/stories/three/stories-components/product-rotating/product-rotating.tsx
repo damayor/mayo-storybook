@@ -57,7 +57,6 @@ function ProductRotatingComponent({
   const model = useGLTF(glbUrl)
   const { scenes } = model
 
-  console.log('gltf', model)
 
   const { camera } = useThree()
   const INIT_CAMERA_POSITION = DEFAULT_CAMERA_POSITION.toArray().slice(0, 3) as [number, number, number]
