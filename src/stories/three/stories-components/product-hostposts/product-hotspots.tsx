@@ -1,5 +1,6 @@
 import { Html, useGLTF } from '@react-three/drei'
 import { useThree } from '@react-three/fiber'
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import { CanvasTexture, Object3D, Vector3 } from 'three'
 import { DEFAULT_CAMERA_POSITION, hotspotsCopaData, SHOE_URL } from '../../non-stories-components/helpers/constants/scene-constants'
