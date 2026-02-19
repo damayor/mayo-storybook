@@ -1,7 +1,7 @@
 import { useFrame, useThree } from '@react-three/fiber'
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 
-import { type GizmoType } from '../../non-stories-components/helpers/types/commonTypes'
+import { type GizmoType } from '../../helpers/types/commonTypes'
 import MayoCanvas from '../../non-stories-components/mayo-canvas/mayo-canvas'
 import { useControls } from 'leva'
 import * as THREE from 'three'

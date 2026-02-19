@@ -7,7 +7,7 @@ import { WasmMesh } from './WasmMesh'
 import { TextGeometry } from 'three/examples/jsm/Addons.js'
 
 const meta = {
-  title: 'Three/Views/C++ WASM',
+  title: 'Three/Experiences/C++ WASM',
   component: WasmMesh,
   decorators: [
     (Story) => 

@@ -4,7 +4,7 @@ import AnimatedSun from './animated-sun'
 import type MouseTrail from '../mouse-trail/mouse-trail';
 
 const meta = {
-  title: 'Three/Views/SunOverTerrain',
+  title: 'Three/Experiences/SunOverTerrain',
   component: AnimatedSun,
   argTypes: {
     gizmoType: {

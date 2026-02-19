@@ -1,4 +1,4 @@
-import type { HotspotDataType } from "../../../non-stories-components/helpers/types/commonTypes"
+import type { HotspotDataType } from "../../../helpers/types/commonTypes"
 
 export const remQuotient = 16
 export const xOffsetLimit = 35

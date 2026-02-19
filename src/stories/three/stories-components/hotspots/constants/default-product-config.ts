@@ -1,4 +1,4 @@
-import type { HotspotsConfigType } from "../../../non-stories-components/helpers/types/commonTypes"
+import type { HotspotsConfigType } from "../../../helpers/types/commonTypes"
 
 
 export const defaultHotspotsConfiguration: HotspotsConfigType = {

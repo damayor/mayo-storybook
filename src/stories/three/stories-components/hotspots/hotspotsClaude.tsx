@@ -19,12 +19,12 @@ import { DEFAULT_RADIAL_DISTANCE, DEFAULT_CAMERA_POSITION } from './constants/sc
 
 import { useSpring } from '@react-spring/three'
 
-import type { HotspotDataType, HotspotsConfigType, ProductViewModeType, HotspotPositionsDictionary } from '../../non-stories-components/helpers/types/commonTypes'
+import type { HotspotDataType, HotspotsConfigType, ProductViewModeType, HotspotPositionsDictionary } from '../../helpers/types/commonTypes'
 import { defaultHotspotsConfiguration } from './constants/default-product-config'
 import HotspotButton from './hotspot-button/hotspot-button'
 import { outsideOfProductOffset } from './hotspot-button/hotspot-button.config'
 import { renderControlsOffHelper } from '../../non-stories-components/controls/controls.component'
-import { getHotspotPositions } from '../../non-stories-components/helpers/functions/scene'
+import { getHotspotPositions } from '../../helpers/functions/scene'
 import { minZoom } from '../../non-stories-components/controls/controls.config'
 
 export interface HotspotProps {

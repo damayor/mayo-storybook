@@ -1,5 +1,5 @@
 import { Vector3 } from 'three'
-import hotspotsCopaJson from '../../../non-stories-components/mocks/hotspots.json'
+import hotspotsCopaJson from '../../non-stories-components/mocks/hotspots.json'
 
 export const DEFAULT_CAMERA_POSITION = new Vector3(0, 4, 6)
 export const DEFAULT_RADIAL_DISTANCE = DEFAULT_CAMERA_POSITION.length()

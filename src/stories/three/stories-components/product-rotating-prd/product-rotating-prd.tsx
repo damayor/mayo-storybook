@@ -2,7 +2,7 @@ import { useGLTF } from '@react-three/drei'
 import { useThree } from '@react-three/fiber'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { CanvasTexture, Object3D } from 'three'
-import { DEFAULT_CAMERA_POSITION, SHOE_URL } from '../../non-stories-components/helpers/constants/scene-constants'
+import { DEFAULT_CAMERA_POSITION, SHOE_URL } from '../../helpers/constants/scene-constants'
 import {
   FootwearViews,
   getProductPosition,
@@ -10,7 +10,7 @@ import {
   springConfig,
 } from '../product-rotating/product-rotating.config'
 
-import { productPosition, size } from '../../non-stories-components/helpers/constants/product.config'
+import { productPosition, SIZE } from '../../helpers/constants/product.config'
 import { a, useSpring } from '@react-spring/three'
 export interface ProductRotatingPrdProps {
   cameraView: FootwearViews
@@ -125,7 +125,7 @@ export function ProductRotatingPrd({
         rotation-y={spring.rotationY}
         rotation-z={spring.rotationZ}
         position={spring.position}
-        scale={[size, size, size]}
+        scale={[SIZE, SIZE, SIZE]}
         ref={ref}
         object={scenes[0]}
       />

@@ -1,8 +1,8 @@
 import {type StoryObj, type Meta } from '@storybook/react'
-import Pool3D from './pool3D';
+import Pool3D from './pool-3d';
 
 const meta = {
-  title: 'Three/Views/DeepPool',
+  title: 'Three/Experiences/DeepPool',
   component: Pool3D,
 } satisfies Meta<typeof Pool3D>;
 

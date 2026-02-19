@@ -1,7 +1,8 @@
 import { Vector3 } from 'three'
 
-export const size = 2.7
+export const SIZE = 2.7
 export const positionYOffset = 1
+export const positionYScale = 10
 export const positionYTimeScale = 1.3
 export const rotationXYScale = 8
 export const rotationXYTimeScale = 4

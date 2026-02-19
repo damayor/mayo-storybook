@@ -2,14 +2,21 @@ import type { StorybookConfig } from '@storybook/react-vite';
 
 const isProd = process.env.STORYBOOK_ENV === 'production';
 
+const prodStories = [
+  'pool-3d',
+  'product-rotating-prd',
+  'floating-card',
+  'material-selector', 
+  'terrain'
+]
+
+//Pre: folder and story have the same name
+const prodStoriesPaths = prodStories.map((title) => `../src/stories/three/stories-components/${title}/${title}.stories.tsx` )
+
 const config: StorybookConfig = {
   // "stories" : ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   "stories": isProd
-  ? [
-      '../src/stories/three/stories-components/pool-3d/pool3D.stories.tsx',
-      '../src/stories/three/stories-components/product-rotating-prd/product-rotating-prd.stories.tsx', //ToDo Regex on un prd.stories
-      '../src/stories/three/stories-components/floating-card/floating-card.stories.tsx',
-    ]
+  ? prodStoriesPaths
   : ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   "addons": [
     "@chromatic-com/storybook",

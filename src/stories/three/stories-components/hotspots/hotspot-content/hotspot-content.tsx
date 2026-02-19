@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 
 import { notFoundContentData, remQuotient, drawContentPointer, imgBorderAndPadding } from './hotspot-content.config'
 import './hotspot-content.css'
-import type { HotspotDataType, ModalAnchorType } from '../../../non-stories-components/helpers/types/commonTypes'
+import type { HotspotDataType, ModalAnchorType } from '../../../helpers/types/commonTypes'
 
 interface HotspotContentProps {
   hidden?: boolean

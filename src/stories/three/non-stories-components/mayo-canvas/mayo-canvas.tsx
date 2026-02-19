@@ -1,13 +1,13 @@
 
 import { Canvas } from '@react-three/fiber'
 import { Vector3 } from 'three'
-import { DEFAULT_CAMERA_FOV, DEFAULT_CAMERA_POSITION } from '../helpers/constants/scene-constants'
+import { DEFAULT_CAMERA_FOV, DEFAULT_CAMERA_POSITION } from '../../helpers/constants/scene-constants'
 
 
 import Controls from '../controls/controls.component'
 import Gizmos from '../gizmos/gizmos.component'
 import SceneEnvironment from '../scene-environment/scene-environment.component'
-import type { GizmoType } from '../helpers/types/commonTypes'
+import type { GizmoType } from '../../helpers/types/commonTypes'
 import { setCanvasBackground } from '../../stories-components/homogeneus-background/background.config'
 
 
@@ -18,7 +18,7 @@ interface MayoCanvasProps {
   gizmoType?: GizmoType
   lightPosition?: Vector3
   background?: string
-  overrideCameraPos?: Vector3
+  overrideCameraPos?: Vector3 | [number, number, number]
 }
 
 export default function MayoCanvas({

@@ -1,11 +1,11 @@
 import { FootwearViews } from './product-rotating.config'
 
 import ProductRotating from './product-rotating'
-import { ProductModels } from '../../non-stories-components/helpers/constants/scene-constants'
+import { ProductModels } from '../../helpers/constants/scene-constants'
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'Three/Views/RotatingPDP',
+  title: 'Three/Experiences/RotatingPDP',
   component: ProductRotating,
   argTypes: {
     glbUrl: {

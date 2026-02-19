@@ -2,7 +2,7 @@ import { useGLTF } from '@react-three/drei'
 import { useThree } from '@react-three/fiber'
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import { CanvasTexture, Object3D, Vector3 } from 'three'
-import { DEFAULT_CAMERA_POSITION } from '../../non-stories-components/helpers/constants/scene-constants'
+import { DEFAULT_CAMERA_POSITION } from '../../helpers/constants/scene-constants'
 import {
   FootwearViews,
   getProductPosition,
@@ -11,9 +11,9 @@ import {
   springConfig,
 } from './product-rotating.config'
 
-import { type GizmoType } from '../../non-stories-components/helpers/types/commonTypes'
+import { type GizmoType } from '../../helpers/types/commonTypes'
 import MayoCanvas from '../../non-stories-components/mayo-canvas/mayo-canvas'
-import { productPosition, size } from '../../non-stories-components/helpers/constants/product.config'
+import { productPosition, SIZE } from '../../helpers/constants/product.config'
 import { a, useSpring } from '@react-spring/three'
 
 export interface ProductRotatingProps {
@@ -166,7 +166,7 @@ function ProductRotatingComponent({
         rotation-y={spring.rotationY}
         rotation-z={spring.rotationZ}
         position={spring.position}
-        scale={[size, size, size]}
+        scale={[SIZE, SIZE, SIZE]}
         ref={ref}
         object={scenes[0]}
       />
