@@ -48,13 +48,13 @@ export interface TimelineEvent {
 }
 
 export type SkillCategory = {
-  category: string;
-  items: string[];
+  category: string
+  items: string[]
 };
 
 export type ToolsCategory = {
-  category: string;
-  items: string[];
+  category: string
+  items: string[]
 };
 
 export interface TabPanelProps {

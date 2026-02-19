@@ -32,7 +32,7 @@ export default function MayoCanvas({
   return (
     <div style={{ width: 'auto', height: '600px', border: '1px solid black'}}>
       <Canvas
-        camera={{ fov: DEFAULT_CAMERA_FOV }}
+        camera={{ position: overrideCameraPos?? DEFAULT_CAMERA_POSITION ,  fov: DEFAULT_CAMERA_FOV }}
       >
         <color attach="background" args={[background]} /> 
         {children}

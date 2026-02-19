@@ -16,8 +16,8 @@ const FloatingCard = () => {
       
       groupRef.current.position.y = Math.sin(t * 0.5) * 0.2;
       
-    //   const rotationRange = Math.PI / 8; // 45 grados en radianes
-    //   groupRef.current.rotation.y = Math.sin(t * 0.3) * rotationRange;
+      //   const rotationRange = Math.PI / 8; // 45 grados en radianes
+      //   groupRef.current.rotation.y = Math.sin(t * 0.3) * rotationRange;
       groupRef.current.rotation.x = -Math.PI / 50;
 
     }

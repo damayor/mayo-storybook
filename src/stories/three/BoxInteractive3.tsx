@@ -12,6 +12,11 @@ export default function Box(props: any) {
   const [hovered, hover] = useState(false)
   const [clicked, click] = useState(false)
 
+  const cubeRef = useRef<Object3D>(new Object3D())
+
+
+
+
   useFrame((state, delta) => (ref.current.rotation.x += delta))
   return (
     <mesh

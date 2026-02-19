@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Html } from '@react-three/drei';
 import * as THREE from 'three';
+import type { Vector3 } from 'three';
 
 //ToDo Minigame 
 // ============= COMPONENTE DE ESFERA CON FÍSICA =============
@@ -13,7 +14,7 @@ interface PhysicsSphereProps {
   onPlayerClick: () => void;
   spheres: React.MutableRefObject<Array<{
     mesh: THREE.Mesh | null;
-    velocity: THREE.Vector3;
+    velocity: Vector3;
   }>>;
   index: number;
 }
@@ -28,6 +29,13 @@ function PhysicsSphere({
   index
 }: PhysicsSphereProps) {
   const meshRef = useRef<THREE.Mesh>(null);
+
+<mesh visible userData={{ hello: 'world' }} position={[1, 2, 3]} rotation={[Math.PI / 2, 0, 0]}>
+  <sphereGeometry args={[1, 16, 16]} />
+  <meshStandardMaterial color="hotpink" transparent />
+</mesh>
+
+
   const velocityRef = useRef(new THREE.Vector3(
     (Math.random() - 0.5) * 0.02,
     (Math.random() - 0.5) * 0.02,
@@ -83,6 +91,7 @@ function PhysicsSphere({
       mesh.position.z = Math.sign(mesh.position.z) * (halfRoom - radius);
       collided = true;
     }
+
 
     if (collided) {
       onWallCollision();
