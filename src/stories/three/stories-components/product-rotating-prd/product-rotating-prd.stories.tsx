@@ -1,5 +1,5 @@
 
-import { ProductModels, SHOE_URL } from '../../non-stories-components/helpers/constants/scene-constants'
+import { ProductModels, SHOE_URL } from '../../helpers/constants/scene-constants'
 import type { Meta, StoryObj } from '@storybook/react';
 import { FootwearViews } from '../product-rotating/product-rotating.config';
 import { ProductRotatingPrd } from './product-rotating-prd';
@@ -9,7 +9,7 @@ import { Html } from '@react-three/drei';
 import { Vector3 } from 'three';
 
 const meta = {
-  title: 'Three/Views/InteractivePDP',
+  title: 'Three/Experiences/InteractivePDP',
   component: ProductRotatingPrd,
   decorators: [
     (Story) => <MayoCanvas enableOrbitControls={false} environmentPreset='studio' gizmoType='viewCube' overrideCameraPos={new Vector3(0, 1, 1.5)}>

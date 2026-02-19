@@ -59,9 +59,7 @@ const preview: Preview = {
       },
     },
   },
-  // initialGlobals: {
-  //   theme: 'dark',
-  // },
+
   parameters: {
     controls: {
       matchers: {

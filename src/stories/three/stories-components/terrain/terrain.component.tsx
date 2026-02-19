@@ -21,28 +21,32 @@ function stringToSeed(str: string): number {
   return h
 }
 
+const SEGMENTS = 150;
+// const side = 50
+
 export default function Terrain() {
   const meshRef = useRef<THREE.Mesh | null>(null)
 
   // Parameters from Leva
-  const { width, height, segments, scale, intensity, offsetX, offsetY } =
+  const {scale, intensity, offsetX, offsetY, side } =
     useControls("terrain", {
-      width: { value: 100, min: 10, max: 600, step: 1 },
-      height: { value: 100, min: 10, max: 600, step: 1 },
-      segments: { value: 200, min: 10, max: 600, step: 1 },
+      // width: { value: 100, min: 10, max: 600, step: 1 },
+      // segments: { value: 200, min: 10, max: 600, step: 1 },
       scale: { value: 0.05, min: 0.001, max: 0.5, step: 0.001 },
       intensity: { value: 5, min: 0, max: 50, step: 0.1 },
       offsetX: { value: 0, min: -10, max: 10, step: 0.001 },
       offsetY: { value: 0, min: -10, max: 10, step: 0.001 },
+      side: { value: 100, min: 10, max: 600, step: 1 },
+
   })
 
   const geometryRef = useRef(
-    new THREE.PlaneGeometry(width, height, segments, segments)
+    new THREE.PlaneGeometry(side, side, SEGMENTS, SEGMENTS)
   )
 
   useEffect(() => {
     const prev = geometryRef.current
-    const geo = new THREE.PlaneGeometry(width, height, segments, segments)
+    const geo = new THREE.PlaneGeometry(side, side, SEGMENTS, SEGMENTS)
     geometryRef.current = geo
     if (meshRef.current) meshRef.current.geometry = geo
     // dispose previous geometry to avoid leaks
@@ -51,7 +55,7 @@ export default function Terrain() {
     return () => {
       if (geometryRef.current === geo) geo.dispose()
     }
-  }, [width, height, segments])
+  }, [side, side, SEGMENTS])
 
   const noise2D = useMemo(() => {
     const rng = mulberry32(stringToSeed("my-seed"))
@@ -82,10 +86,10 @@ export default function Terrain() {
       ref={meshRef}
       geometry={geometryRef.current}
       rotation-x={-Math.PI / 2}
-      castShadow
-      receiveShadow
+      // castShadow
+      // receiveShadow
     >
-      <meshStandardMaterial color="seagreen" metalness={0.1} roughness={0.8} />
+      <meshStandardMaterial color="green" metalness={0.1} roughness={0.8} />
     </mesh>
   )
 }

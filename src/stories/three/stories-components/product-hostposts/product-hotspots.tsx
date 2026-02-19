@@ -3,7 +3,7 @@ import { useThree } from '@react-three/fiber'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import { CanvasTexture, Object3D, Vector3 } from 'three'
-import { DEFAULT_CAMERA_POSITION, hotspotsCopaData, SHOE_URL } from '../../non-stories-components/helpers/constants/scene-constants'
+import { DEFAULT_CAMERA_POSITION, hotspotsCopaData, SHOE_URL } from '../../helpers/constants/scene-constants'
 import {
   FootwearViews,
   getProductPosition,
@@ -12,7 +12,7 @@ import {
   springConfig,
 } from '../product-rotating/product-rotating.config'
 
-import { productPosition, size } from '../../non-stories-components/helpers/constants/product.config'
+import { productPosition } from '../../helpers/constants/product.config'
 import { a, useSpring } from '@react-spring/three'
 import Hotspots from '../hotspots/hotspots'
 import { defaultHotspotsConfiguration } from '../hotspots/constants/default-product-config'
