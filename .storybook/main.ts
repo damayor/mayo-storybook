@@ -2,6 +2,7 @@ import type { StorybookConfig } from '@storybook/react-vite';
 
 const isProd = process.env.STORYBOOK_ENV === 'production';
 
+//ToDo Map including also from HTML
 const prodStories = [
   'pool-3d',
   'product-rotating-prd',
@@ -16,7 +17,10 @@ const prodStoriesPaths = prodStories.map((title) => `../src/stories/three/storie
 const config: StorybookConfig = {
   // "stories" : ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   "stories": isProd
-  ? prodStoriesPaths
+  ? [
+    ...prodStoriesPaths,
+    '../src/stories/html/experiences/volvo-catalogue/volvo-catalogue.stories.tsx'
+  ]
   : ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   "addons": [
     "@chromatic-com/storybook",
