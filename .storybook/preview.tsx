@@ -69,7 +69,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ['Welcome', 'Html', 'Three', 'Pixi', '*' , 'Example'],
+        order: ['Welcome', 'Three', 'Html', 'Pixi', '*' , 'Example'],
       },
       // you can also use a custom sorter function
     },
@@ -79,6 +79,7 @@ const preview: Preview = {
 
     test: { disable: true },
     viewMode: 'docs',
+    // viewport: MINIMAL_VIEWPORTS,
     viewport: {
       options: {
         ...MINIMAL_VIEWPORTS,

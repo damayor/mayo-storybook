@@ -30,7 +30,7 @@ export default function MayoCanvas({
   overrideCameraPos = undefined
 }: MayoCanvasProps) {
   return (
-    <div style={{ width: 'auto', height: '600px', border: '1px solid black'}}>
+    <div style={{ width: '800px', height: '600px', border: '1px solid black'}}>
       <Canvas
         camera={{ position: overrideCameraPos?? DEFAULT_CAMERA_POSITION ,  fov: DEFAULT_CAMERA_FOV }}
       >
