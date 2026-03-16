@@ -8,10 +8,11 @@ const prodStories = [
   'product-rotating-prd',
   'floating-card',
   'material-selector', 
-  'terrain'
+  'terrain',
+  'wasm-cpp'
 ]
 
-//Pre: folder and story have the same name
+//Pre: folder and story have the same name, with kebab notation
 const prodStoriesPaths = prodStories.map((title) => `../src/stories/three/stories-components/${title}/${title}.stories.tsx` )
 
 const config: StorybookConfig = {

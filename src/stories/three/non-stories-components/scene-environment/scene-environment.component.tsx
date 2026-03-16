@@ -5,9 +5,10 @@ import { ambientLightIntensity, contactShadowsBlur, contactShadowsFar, contactSh
 
 interface SceneEnvironmentProps {
   lightPosition?: Vector3
+  renderShadows?: boolean
 }
 
-export default function SceneEnvironment({ lightPosition = spotLightPosition }: SceneEnvironmentProps) {
+export default function SceneEnvironment({ lightPosition = spotLightPosition, renderShadows = true }: SceneEnvironmentProps) {
 
   return (
     <>
@@ -19,17 +20,19 @@ export default function SceneEnvironment({ lightPosition = spotLightPosition }: 
         position={lightPosition}
         castShadow
       />
-      <Suspense fallback={<mesh />}>
-        <ContactShadows
-          rotation-x={contactShadowsRotation}
-          position={contactShadowsPosition}
-          opacity={contactShadowsOpacity}
-          width={contactShadowsWidth}
-          height={contactShadowsHeight}
-          blur={contactShadowsBlur}
-          far={contactShadowsFar}
-        />
-      </Suspense>
+      {renderShadows &&
+        <Suspense fallback={<mesh />}>
+          <ContactShadows
+            rotation-x={contactShadowsRotation}
+            position={contactShadowsPosition}
+            opacity={contactShadowsOpacity}
+            width={contactShadowsWidth}
+            height={contactShadowsHeight}
+            blur={contactShadowsBlur}
+            far={contactShadowsFar}
+          />
+        </Suspense>
+      }
     </>
   )
 }
