@@ -18,7 +18,8 @@ interface MayoCanvasProps {
   gizmoType?: GizmoType
   lightPosition?: Vector3
   background?: string
-  overrideCameraPos?: Vector3 | [number, number, number]
+  overrideCameraPos?: Vector3 | [number, number, number],
+  renderShadows?: boolean
 }
 
 export default function MayoCanvas({
@@ -27,7 +28,8 @@ export default function MayoCanvas({
   gizmoType = 'none',
   lightPosition,
   background = '#ffffff',
-  overrideCameraPos = undefined
+  overrideCameraPos = undefined,
+  renderShadows = true,
 }: MayoCanvasProps) {
   return (
     <div style={{ width: '800px', height: '600px', border: '1px solid black'}}>
@@ -36,7 +38,7 @@ export default function MayoCanvas({
       >
         <color attach="background" args={[background]} /> 
         {children}
-        <SceneEnvironment lightPosition={lightPosition} />
+        <SceneEnvironment lightPosition={lightPosition} renderShadows={renderShadows} />
         {enableOrbitControls && <Controls />}
         <Gizmos gizmoType={gizmoType} />
       </Canvas>
