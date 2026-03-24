@@ -30,8 +30,6 @@ export default function Terrain() {
   // Parameters from Leva
   const {scale, intensity, offsetX, offsetY, side } =
     useControls("terrain", {
-      // width: { value: 100, min: 10, max: 600, step: 1 },
-      // segments: { value: 200, min: 10, max: 600, step: 1 },
       scale: { value: 0.05, min: 0.001, max: 0.5, step: 0.001 },
       intensity: { value: 5, min: 0, max: 50, step: 0.1 },
       offsetX: { value: 0, min: -10, max: 10, step: 0.001 },
