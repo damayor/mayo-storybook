@@ -69,13 +69,15 @@ export default function Terrain() {
     const posAttr = geo.attributes.position as THREE.BufferAttribute
     const arr = posAttr.array as Float32Array
 
-    // arr layout: [x0, y0, z0, x1, y1, z1, ...]
+    
     for (let i = 0; i < posAttr.count; i++) {
       const ix = i * 3
       const x = arr[ix] // getX
       const y = arr[ix + 1] // getY
       arr[ix + 2] = noise2D(x * scale + offsetX, y * scale + offsetY) * intensity // compute z using seeded noise
     }
+    // arr layout: [x0, y0, z0, x1, y1, z1, ...]
+
 
     posAttr.needsUpdate = true
     geo.computeVertexNormals() // keep lighting correct
