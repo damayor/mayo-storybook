@@ -19,31 +19,6 @@ import InteractiveBackground3D from '../../components/interactive-background-3d/
 import { MiniCard } from 'HtmlComponents/mini-card';
 import { projectsMini } from 'HtmlComponents/mini-card/mini-card.stories';
 
-// Componente de fondo 3D animado
-function AnimatedSphere({ position, color, speed } : any) { 
-  const meshRef = useRef<THREE.Mesh | null>(null)
-  
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.getElapsedTime() * speed;
-      meshRef.current.rotation.y = state.clock.getElapsedTime() * speed * 0.5;
-      meshRef.current.position.y = position[1] + Math.sin(state.clock.getElapsedTime() * 0.5) * 0.3;
-    }
-  });
-
-  return (
-    <Sphere ref={meshRef} args={[1, 32, 32]} position={position} onClick={()=>('vamos para atras!')}>
-      <MeshDistortMaterial
-        color={color}
-        attach="material"
-        distort={0.4}
-        speed={2}
-        roughness={0.2}
-        metalness={0.8}
-      />
-    </Sphere>
-  );
-}
 
 function LanguageSelector() {
   const { i18n } = useTranslation();
@@ -76,7 +51,6 @@ function LanguageSelector() {
     </div>
   );
 }
-
 interface SidebarProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
@@ -199,7 +173,6 @@ function HomeSection() {
   );
 }
 
-
 // We can be Heroes Sections
 function AboutSection() {
 
@@ -300,6 +273,7 @@ function ContactSection() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isLoading, setIsLoading] = useState(false);
   const [statusMessage, setStatusMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -318,21 +292,44 @@ function ContactSection() {
     setIsLoading(true);
     setStatusMessage({ type: 'success', text: `${formData.name}, I will stay in contact soon!` });
     setIsLoading(false);
+    setIsSubmitting(true);
 
-    //ToDo sendContactEmail
-    // try {
-    //   const response = await sendContactEmail(formData);  
-    //   if (response.success) {
-    //     setStatusMessage({ type: 'success', text: response.message });
-    //     setFormData({ name: '', email: '', message: '' });
-    //   } else {
-    //     setStatusMessage({ type: 'error', text: response.error || response.message });
-    //   }
-    // } catch (error) {
-    //   setStatusMessage({ type: 'error', text: 'An unexpected error occurred' });
-    // } finally {
-    //   setIsLoading(false);
-    // }
+    try {
+      //Todo save as env vars
+      const TELEGRAM_TOKEN = '8752645898:AAEzQAN3sVNOE9oQ9xQAPsNgXcrAOtVYeww'
+      const CHAT_ID = '6471003088'
+
+      const text = `
+        *🔔 Nuevo mensaje para May Interactive*
+
+        *Nombre:* ${formData.name}
+        *Email:* ${formData.email}
+        *Mensaje:*
+        ${formData.message}
+
+        ${new Date().toLocaleString('es-ES')}
+          `.trim();
+
+        const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text,
+            parse_mode: 'Markdown',
+          }),
+        });
+
+        if (!res.ok) throw new Error('Telegram error');
+
+        setStatusMessage({ type: 'success', text: `${formData.name}, I will stay in contact soon!!!`});
+        setFormData({ name: '', email: '', message: '' }); // Limpiar form
+
+    } catch (err) {
+      setStatusMessage({ type: 'error', text: 'An unexpected error occurred' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -445,7 +442,6 @@ export default function Portfolio() {
 
   return (
     <div data-theme={'dark'} className="min-h-screen w-screen text-white overflow-x-hidden">
-      {/* <Background3D />       */}
 
       <InteractiveBackground3D />
 
