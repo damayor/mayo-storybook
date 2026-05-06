@@ -16,8 +16,18 @@ export const ViewSettings: React.FC<ViewSettingsProps> = ({
 }) => {
   return (
     <div className="flex flex-col items-center">
-      <h4 className="text-sm font-bold uppercase my-2">Vista</h4>
+      <h4 className="text-sm font-bold uppercase my-2">View Settings</h4>
       <div className="space-y-1">
+        <div className="flex items-center gap-2">
+          <input
+            type="radio"
+            name="primitives"
+            value="points"
+            checked={viewMode === 'points'}
+            onChange={(e) => onViewModeChange(e.target.value as ViewMode)}
+          />
+          Points
+        </div>
         <div className="flex items-center gap-2">
           <input
             type="radio"
@@ -26,7 +36,7 @@ export const ViewSettings: React.FC<ViewSettingsProps> = ({
             checked={viewMode === 'edges'}
             onChange={(e) => onViewModeChange(e.target.value as ViewMode)}
           />
-          Aristas
+          Wireframe
         </div>
         <div className="flex items-center gap-2">
           <input
@@ -36,12 +46,22 @@ export const ViewSettings: React.FC<ViewSettingsProps> = ({
             checked={viewMode === 'faces'}
             onChange={(e) => onViewModeChange(e.target.value as ViewMode)}
           />
-          Caras
+          Faces
+        </div>
+        <div className="flex items-center gap-2">
+          <input
+            type="radio"
+            name="primitives"
+            value="triangles"
+            checked={viewMode === 'triangles'}
+            onChange={(e) => onViewModeChange(e.target.value as ViewMode)}
+          />
+          Triangles
         </div>
       </div>
       <hr className="w-full my-2" />
       <div className="flex items-center gap-2">
-        <span className="text-sm">Frame de selección</span>
+        <span className="text-sm">Selection Frame</span>
         <input
           type="checkbox"
           id="pickImg"

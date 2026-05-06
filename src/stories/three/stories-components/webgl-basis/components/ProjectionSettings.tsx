@@ -12,7 +12,7 @@ export const ProjectionSettings: React.FC<ProjectionSettingsProps> = ({
 }) => {
   return (
     <div className="flex flex-col items-center">
-      <h4 className="text-sm font-bold uppercase my-2">Tipo de proyección</h4>
+      <h4 className="text-sm font-bold uppercase my-2">Projection Type</h4>
       <div className="space-y-1">
         <div className="flex items-center gap-2">
           <input
@@ -32,7 +32,7 @@ export const ProjectionSettings: React.FC<ProjectionSettingsProps> = ({
             checked={projectionType === 'orthogonal'}
             onChange={(e) => onChange(e.target.value as ProjectionType)}
           />
-          Ortogonal
+          Orthogonal
         </div>
       </div>
     </div>

@@ -358,6 +358,74 @@ export function getCubeVertices(
 }
 
 /**
+ * Generate cube faces (triangles)
+ */
+export function generateCubeFaces(
+  p1x: number, p1y: number, p1z: number,
+  p2x: number, p2y: number,
+  p3z: number
+): {
+  vertices: number[];
+  colors: number[];
+  indices: number[];
+} {
+  const v = [
+    p1x, p1y, p1z, // 0 - top-left-far
+    p2x, p1y, p1z, // 1 - top-right-far
+    p2x, p2y, p1z, // 2 - bottom-right-far
+    p1x, p2y, p1z, // 3 - bottom-left-far
+    p1x, p1y, p3z, // 4 - top-left-near
+    p2x, p1y, p3z, // 5 - top-right-near
+    p2x, p2y, p3z, // 6 - bottom-right-near
+    p1x, p2y, p3z  // 7 - bottom-left-near
+  ];
+
+  const vertices: number[] = [];
+  const colors: number[] = [];
+  const indices: number[] = [];
+
+  const faceColors = [
+    [1.0, 0.0, 0.0, 1.0], // Front (Blue) -> actually according to task: Back: Yellow (1, 1, 0)
+    [0.0, 1.0, 0.0, 1.0], // Bottom: Green (0, 1, 0)
+    [0.0, 0.0, 1.0, 1.0], // Front: Blue (0, 0, 1)
+    [1.0, 1.0, 0.0, 1.0], // Back: Yellow (1, 1, 0)
+    [1.0, 0.0, 1.0, 1.0], // Left: Magenta (1, 0, 1)
+    [0.0, 1.0, 1.0, 1.0]  // Right: Cyan (0, 1, 1)
+  ];
+
+  // Specific mapping from task:
+  // Top: Red (1, 0, 0)
+  // Bottom: Green (0, 1, 0)
+  // Front: Blue (0, 0, 1)
+  // Back: Yellow (1, 1, 0)
+  // Left: Magenta (1, 0, 1)
+  // Right: Cyan (0, 1, 1)
+
+  const faceDefinitions = [
+    { name: 'back', indices: [0, 1, 2, 3], color: [1.0, 1.0, 0.0, 1.0] },  // Back
+    { name: 'front', indices: [4, 5, 6, 7], color: [0.0, 0.0, 1.0, 1.0] }, // Front
+    { name: 'top', indices: [0, 1, 5, 4], color: [1.0, 0.0, 0.0, 1.0] },    // Top
+    { name: 'bottom', indices: [2, 3, 7, 6], color: [0.0, 1.0, 0.0, 1.0] }, // Bottom
+    { name: 'right', indices: [1, 2, 6, 5], color: [0.0, 1.0, 1.0, 1.0] },  // Right
+    { name: 'left', indices: [3, 0, 4, 7], color: [1.0, 0.0, 1.0, 1.0] }    // Left
+  ];
+
+  faceDefinitions.forEach((face, fIdx) => {
+    const startIdx = vertices.length / 3;
+    face.indices.forEach(vIdx => {
+      vertices.push(v[vIdx * 3], v[vIdx * 3 + 1], v[vIdx * 3 + 2]);
+      colors.push(...face.color);
+    });
+
+    // Two triangles per face
+    indices.push(startIdx, startIdx + 1, startIdx + 2);
+    indices.push(startIdx, startIdx + 2, startIdx + 3);
+  });
+
+  return { vertices, colors, indices };
+}
+
+/**
  * Generate cube colors
  */
 export function getCubeColors(): number[] {
