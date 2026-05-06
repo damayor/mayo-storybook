@@ -12,7 +12,7 @@ export const InteractionModeControl: React.FC<InteractionModeControlProps> = ({
 }) => {
   return (
     <div className="flex flex-col items-center">
-      <h4 className="text-sm font-bold uppercase my-2">Modo de interacción</h4>
+      <h4 className="text-sm font-bold uppercase my-2">Interaction Mode</h4>
       <div className="space-y-1">
         <div className="flex items-center gap-2">
           <input

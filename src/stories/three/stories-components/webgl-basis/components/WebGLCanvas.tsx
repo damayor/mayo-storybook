@@ -7,6 +7,7 @@ import {
   setupDrawing,
   drawShape,
   generateFloorGrid,
+  generateCubeFaces,
   getCubeVertices,
   getCubeColors,
   getCanvasMousePos,
@@ -99,9 +100,24 @@ export const WebGLCanvas: React.FC<WebGLCanvasProps> = ({
     const cubePointsBuffers = initLinesBuffers(gl, cubePointsData);
     const cubeEdgesBuffers = initLinesBuffers(gl, cubeEdgesData);
 
+    // Create cube faces
+    const faceData = generateCubeFaces(1.0, 3.0, -10.0, 3.0, -0.5, -5.0);
+    const cubeFacesData = {
+      vertices: faceData.vertices,
+      colors: faceData.colors,
+      pickColors: faceData.colors, // placeholder
+      indices: faceData.indices,
+      indexCount: faceData.indices.length,
+      primitiveType: gl.TRIANGLES,
+    };
+    const cubeFacesBuffers = initLinesBuffers(gl, cubeFacesData);
+
     // Render loop
     const renderFrame = () => {
       clearCanvas(gl);
+      gl.enable(gl.FRONT_FACE);
+      gl.cullFace(gl.BACK);
+
       setupDrawing(gl, shaderInfo, uiState.projection, uiState.modelview);
 
       // Draw floor
@@ -121,22 +137,37 @@ export const WebGLCanvas: React.FC<WebGLCanvasProps> = ({
       );
 
       // Draw cube edges
-      drawShape(
-        gl,
-        shaderInfo,
-        cubeEdgesBuffers,
-        cubeEdgesData,
-        uiState.viewMode === 'edges'
-      );
+      if (uiState.viewMode === 'edges') {
+        drawShape(
+          gl,
+          shaderInfo,
+          cubeEdgesBuffers,
+          cubeEdgesData,
+          true
+        );
+      }
+
+      // Draw cube faces
+      if (uiState.viewMode === 'faces') {
+        drawShape(
+          gl,
+          shaderInfo,
+          cubeFacesBuffers,
+          cubeFacesData,
+          false
+        );
+      }
 
       // Draw cube vertices
-      drawShape(
-        gl,
-        shaderInfo,
-        cubePointsBuffers,
-        cubePointsData,
-        false
-      );
+      if (uiState.viewMode === 'points') {
+        drawShape(
+          gl,
+          shaderInfo,
+          cubePointsBuffers,
+          cubePointsData,
+          false
+        );
+      }
 
       requestAnimationFrame(renderFrame);
     };
@@ -169,7 +200,7 @@ export const WebGLCanvas: React.FC<WebGLCanvasProps> = ({
       id="glcanvas"
       width={1050}
       height={750}
-      className="absolute inset-0 w-full h-full block border border-gray-300"
+      className="w-full h-full block"
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}

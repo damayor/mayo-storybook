@@ -7,7 +7,7 @@ export type PrimitiveType = 'POINTS' | 'LINES' | 'LINE_LOOP' | 'LINE_STRIP' | 'T
 
 export type InteractionMode = 'selectClic' | '2ndClic' | '3rdClic';
 
-export type ViewMode = 'edges' | 'faces';
+export type ViewMode = 'edges' | 'points' | 'faces' | 'triangles' | 'selection-frame';
 
 export type ProjectionType = 'perspective' | 'orthogonal';
 
