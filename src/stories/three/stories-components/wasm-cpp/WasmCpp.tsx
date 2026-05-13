@@ -1,54 +1,82 @@
 import { useFrame } from '@react-three/fiber'
 import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
-import initWasm from './wave_gen.js' 
+import cityParserModule from './obj_parser.js'; // Tu código generado por emcc
 
-const tempObject = new THREE.Object3D()
-const COUNT = 100 
-const tempColor = new THREE.Color() 
 
-export function WasmMesh () {
-  const [wasmModule, setWasmModule] = useState<any>(null)
-  const meshRef = useRef<THREE.InstancedMesh>(null)
+export function BerlinCityBackground() {
+  const [vertices, setVertices] = useState<Float32Array | null>(null);
 
   useEffect(() => {
-    // Inicializar el módulo WASM una sola vez
-    initWasm().then((instance) => {
-      setWasmModule(new instance.WaveGenerator())
-    });
-  }, [])
+    async function loadCityData() {
+      // 1. JS actúa como mensajero: descarga el archivo usando la ruta
+      const response = await fetch('/assets/meshes/mesh_berlin/Mesh_3894_58196_-002.obj');
+      const objText = await response.text();
 
- useFrame(({ clock }) => {
-    if (wasmModule && meshRef.current) {
-      const spiralData = wasmModule.updateSpiral(COUNT, clock.elapsedTime)
-      const yVec = spiralData.yPositions
-      const zVec = spiralData.zPositions
+      const firstTenLines = objText.split('\n').slice(0, 1000).join('\n');
+      console.log(firstTenLines); //bebeeee ahi todavia no lo ha editadoo
+
+      // 2. Inicializamos el módulo WASM
+      const instance = await cityParserModule();
+      const parser = new instance.CityParser();
+
+      // 3. Pasamos el CONTENIDO (string) a C++ para el parseo veloz
+      parser.parse_obj(objText);
+
+      // 4. Obtenemos la vista de memoria (Float32Array)
+      const view = parser.get_vertices_view();
+
+      console.log('parsedvertex',view); //bebeeee ahi todavia no lo ha editadoo
       
-      for (let i = 0; i < COUNT; i++) {
-        const y = yVec.get(i)
-        const z = zVec.get(i)
+      // Creamos una copia para que JS gestione la memoria del renderizado
+      setVertices(new Float32Array(view));
 
-        tempObject.position.set(i * 0.5 - (COUNT * 0.25), y, z )
-        tempObject.updateMatrix()
-        
-        meshRef.current.setMatrixAt(i, tempObject.matrix)
+      // 5. LIMPIEZA: Liberamos el vector de C++ de tus 16GB de RAM
+      parser.delete(); 
+      // console.log(vertices);
 
-        const hue = (Math.atan2(y, z) / (Math.PI * 2))
-        tempColor.setHSL(hue, 0.7, 0.5) // HSL: Matiz dinámico, Saturación 70%, Brillo 50%
-        
-        meshRef.current.setColorAt(i, tempColor)
-      }
-      
-      meshRef.current.instanceMatrix.needsUpdate = true
-      if (meshRef.current.instanceColor) meshRef.current.instanceColor.needsUpdate = true
     }
-  })
+
+    loadCityData();
+  }, []);
+
+  if (!vertices) return null;
+
 
   return (
-    <instancedMesh ref={meshRef} args={[null!, null!, COUNT]}>
-      <sphereGeometry args={[0.3, 16, 16]} /> 
-      <meshStandardMaterial/>
-    </instancedMesh>
-    
-  )
+    // <mesh scale={1}>
+    //   <bufferGeometry>
+    //     <bufferAttribute
+    //       attach="attributes-position"
+    //       count={vertices.length / 3}
+    //       args={[vertices, 3]}
+
+    //     />
+    //   </bufferGeometry>
+    //   {/* <boxGeometry args={[1, 1, 1]} /> */}
+
+    //   {/* Aquí aplicas tus shaders "tecno" o scanlines */}
+    //   <meshBasicMaterial color="#00ff00" wireframe />
+    // </mesh>
+
+    <points scale={1}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          count={vertices.length / 3} // Cada punto tiene 3 componentes (X, Y, Z)
+          // array={vertices}
+          // itemSize={3}
+          args={[vertices, 3]}
+        />
+      </bufferGeometry>
+      <pointsMaterial 
+        size={2}           // Ajusta el tamaño de cada punto según la escala de Berlín
+        color="#ff0000"       // Estilo "tecno" verde
+        sizeAttenuation={true} // Los puntos se ven más pequeños a la distancia
+        // transparent={true}
+        opacity={0.8}
+      />
+    </points>
+
+  );
 }
