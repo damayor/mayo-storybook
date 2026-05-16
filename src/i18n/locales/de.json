@@ -1,0 +1,62 @@
+{
+  "nav": {
+    "home": "Start",
+    "about": "Über mich",
+    "projects": "Projekte",
+    "skills": "Fähigkeiten",
+    "contact": "Kontakt"
+  },
+  "home": {
+    "title": "David Mayorga-Herrera",
+    "brand": "May Interactive",
+    "role": "Immersive Engineering",
+    "profession": "System- und Computertechnik",
+    "university": "Uniandes",
+    "subtitle": "Uniandes Bachelor 2017 • M.Ing. 2019",
+    "description": "<b>Hauptfach</b>: System- und Computertechnik<br/><b>Nebenfächer</b>: Interaktives und Visuelles Computing",
+    "viewProjects": "Projekte ansehen",
+    "contactMe": "Kontakt"
+  },
+  "about": {
+    "title": "Über mich",
+    "intro": "Mehr als sechs Jahre Erfahrung in der Entwicklung produktionsreifer Webplattformen und digitaler Produkte für globale Marken — verfügbar für Freelance-Projekte und offen für Festanstellungen.",
+    "experience": "Meine Arbeit umfasst globale Marken: 3D-Produktkonfiguratoren für Volvo und Jeep, Checkout-Infrastruktur bei adidas für Transaktionen in über 30 Ländern sowie Echtzeit-Architekturvisualisierungen für Amarilo und andere Immobilienführer über Umbra 3D Studio. Ich arbeite im gesamten Stack — von React, Three.js und Angular im Frontend bis zu Node.js, CI/CD-Pipelines und Kubernetes auf der Systemseite. Aktuell mit einem KI-gestützten Workflow (Claude, Gemini, NotebookLM) für schnelleres Liefern ohne Qualitätseinbußen.",
+    "tagline": "Ich schreibe Code in OOP; ich denke in drei Dimensionen; ich feiere mit Salsa.",
+    "mainSkills": {
+      "frontend": "Frontend Engineering",
+      "xr": "3D / XR Entwicklung",
+      "reliability": "Systemzuverlässigkeit"
+    }
+  },
+  "projects": {
+    "title": "Ausgewählte Projekte",
+    "otherProjects": "Weitere Projekte",
+    "viewMore": "Mehr anzeigen"
+  },
+  "skills": {
+    "title": "Technische Fähigkeiten",
+    "heading": "Erfahrung & Fähigkeiten",
+    "tabs": {
+      "milestones": "Meilensteine",
+      "skills": "Fähigkeiten",
+      "tools": "Tools"
+    }
+  },
+  "contact": {
+    "title": "Kontakt",
+    "description": "Haben Sie ein Projekt? Lassen Sie uns reden!",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Ihr Name",
+      "email": "E-Mail",
+      "emailPlaceholder": "ihre@email.com",
+      "message": "Nachricht",
+      "messagePlaceholder": "Erzählen Sie mir von Ihrem Projekt...",
+      "submit": "Nachricht senden",
+      "sending": "Wird gesendet...",
+      "successMessage": "{{name}}, ich melde mich bald bei Ihnen!",
+      "validationError": "Bitte füllen Sie alle Felder aus",
+      "networkError": "Ein unerwarteter Fehler ist aufgetreten"
+    }
+  }
+}
