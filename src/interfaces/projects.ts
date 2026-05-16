@@ -33,18 +33,20 @@ export interface Achievement {
   id: string;
   title: string;
   place?: string;
-  description: string;
+  description?: string;
   year: number;
 }
 
 export interface TimelineEvent {
   id: string;
-  year: string;
+  year: string | number;
   title: string;
   company?: string;
   description?: string;
   tags?: string[];
-  link?: string
+  link?: string;
+  place?: string;
+
 }
 
 export type SkillCategory = {
@@ -58,7 +60,7 @@ export type ToolsCategory = {
 };
 
 export interface TabPanelProps {
-  achievements: Achievement[];
+  achievements?: TimelineEvent[];
   timeline: TimelineEvent[];
   skills: SkillCategory[];
   tools: ToolsCategory[];
