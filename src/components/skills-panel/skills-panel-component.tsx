@@ -16,11 +16,7 @@ function AchievementsTab({ achievements }: { achievements: Achievement[] }) {
           className="group relative bg-white/50 backdrop-blur-sm border border-gray-300/50 hover:border-camelot-800/50 rounded-xl p-3 transition-all duration-300 hover:bg-white/70"
         >
           <div className="flex flex-wrap">
-            {/* <div className=" mt-1">
-              <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-br from-camelot-700 to-camelot-800">
-                <Gem size={20} className="text-white" />
-              </div>
-            </div> */}
+
             <div >
               <h3 className="text-lg text-gray-900 ">
                 <span className="font-bold">{achievement.title}</span> • {achievement.place} • <span className="text-sm font-semibold text-camelot-800">{achievement.year}</span>
@@ -132,10 +128,10 @@ export default function SkillsTabPanel({
   const [activeTab, setActiveTab] = useState<TabType>('tools');
 
   const tabConfig = [
-    { id: 'timeline', label: 'Timeline', icon: <Clock size={18} /> },
+    { id: 'timeline', label: 'Milestones', icon: <Gem size={18} /> },
     { id: 'skills', label: 'Skills', icon: <Star size={18} /> },
     { id: 'tools', label: 'Tools', icon: <Wrench size={18} /> },
-    { id: 'achievements', label: 'Achievements', icon: <Gem size={18} /> },
+    // { id: 'achievements', label: 'Achievements', icon: <Gem size={18} /> },
   ];
 
   return (
@@ -173,7 +169,7 @@ export default function SkillsTabPanel({
           {activeTab === 'timeline' && <TimelineTab timeline={timeline} />}
           {activeTab === 'skills' && <SkillsTab skills={skills} />}
           {activeTab === 'tools' && <ToolsTab tools={tools} />}
-          {activeTab === 'achievements' && <AchievementsTab achievements={achievements} />}
+          {/* {activeTab === 'achievements' && <AchievementsTab achievements={achievements} />} */}
         </div>
       </div>
 

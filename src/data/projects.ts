@@ -13,7 +13,7 @@ export const projectsData: Record<string, Project> =
       "/assets/images/projects/frontend/3ddas_tbt.png"
     ],
     mediaLinks: [
-      "https://mayinteractive.io/storybook/?path=/story/three-views-interactivepdp--interactive-pdp"
+      "https://mayinteractive.io/storybook/?path=/story/three-experiences-interactivepdp--interactive-pdp"
     ],
     gifs: [
       "/assets/images/projects/frontend/volvo-3d.gif" //ToDo Ahora si grabese el Gif

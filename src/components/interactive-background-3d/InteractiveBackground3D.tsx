@@ -144,14 +144,6 @@ function PhysicsSphere({
       onPointerOver={() => setIsHovered(true)}
       onPointerOut={() => setIsHovered(false)}
     >
-            {/* <meshStandardMaterial
-        color={color}
-        roughness={0.3}
-        metalness={0.8}
-        emissive={color}
-        emissiveIntensity={isHovered ? 1 : 0.2}
-        flatShading
-      /> */}
       <MeshDistortMaterial
           color={color}
           attach="material"
@@ -226,7 +218,8 @@ function Lights({ intensity }: { intensity: number }) {
 }
 
 const backgrounCollisionColor = new THREE.Color(0x000000);
-const backgroundDefaultColor = new THREE.Color('rgb(241,237,244)');
+// const backgroundDefaultColor = new THREE.Color('rgb(241,237,244)');
+const backgroundDefaultColor = new THREE.Color(0x111122);
 const defaultWallOpacity = 0.05;
 const collisionWallOpacity = 0.9;
 const lightIntensity = 1;
@@ -235,13 +228,6 @@ const delayUntilNextWall = 2.5;
 function SceneController() {
   const { scene } = useThree();
   const [showRoom, setShowRoom] = useState(false);
-  
-
-  // const {
-  //   opacity
-  // } = useControls({
-  //   opacity: { value: 0.2, min: 0, max: 1, step: 0.05 },
-  // });
 
   const [roomOpacity, setRoomOpacity] = useState(0);
   const timerRef = useRef(0);

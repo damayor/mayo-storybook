@@ -12,15 +12,15 @@
     "role": "Immersive Engineering",
     "profession": "Systems and Computing Engineering",
     "university": "Uniandes",
-    "subtitle": "Uniandes Class of 2017 • Systems and Computing Engineering",
-    "description": "<b>Major</b>: Software Engineering \n <b>Minors</b> Interactive and Visual Computing ",
+    "subtitle": "Uniandes Bachelor of 2017 • M.Eng of 2019",
+    "description": "<b>Major</b>: Systems and Computing Engineering<br/><b>Minors</b>: Interactive and Visual Computing",
     "viewProjects": "View Projects", 
     "contactMe": "Contact"
   },
   "about": {
     "title": "About Me",
-   "intro": "I am a <b>Software Engineer (M.Sc.)</b> with over 5 years of experience in designing, building, deploying, and monitoring large-scale web platforms or applications. I specialize in <b>Node.js, TypeScript, and C#</b> for backend development, and in UI/UX solutions using TailwindCSS, SCSS. I also have expertise in creating <b>interactive or 3D experiences</b> with Three.js, Unity, WebGL, and Unreal. My foundation is strong in C++, LLMs, and Linux bash, managing <b>Site Reliability Engineering</b> practices to ensure monitoring, and scalability using <b>CI/CD</b> tools like Jenkins, Kubernetes, and Docker.",
-    "experience": "Since joining adidas, this global enterprise has strengthened my focus on <b>quality, reliability</b>, and teamwork across cultures. Beyond development, I’m deeply drawn to <b>sharing knowledge</b>—I love teaching, mentoring, and helping others grow in their technical and creative journeys. With my recent relocation to Berlin and full work authorization, I am eager to join innovative engineering teams, with my abilites to foresee scenarios, solve complex problems, and bring about innovation and creative thinking to the table. Whether I’m writing code or traveling the world, I’m driven by the same goal: <b>to connect deeper people through technology.</b>",
+    "intro": "Six-plus years delivering production-grade web platforms and digital products for global brands — available for freelance projects and open to full-time engagements.",      
+    "experience": "My work spans global brands: 3D product configurators for Volvo and Jeep, checkout infrastructure at adidas supporting transactions across 30+ countries, and real-time architectural visualizations for Amarilo and other real estate leaders through Umbra 3D Studio. I work across the full stack — from React, Three.js and Angular on the frontend to Node.js, CI/CD pipelines and Kubernetes on the systems side. Nowdays working with an AI-augmented workflow (Claude, Gemini, NotebookLM) to ship faster without cutting corners on quality.",
     "mainSkills": {
       "frontend": "Frontend Engineering",
       "xr": "3D / XR Development",
