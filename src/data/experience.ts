@@ -1,30 +1,61 @@
-import type { SkillCategory, TabPanelProps, ToolsCategory } from "Interfaces/projects";
+import type { Lang, Milestone, SkillCategory, TabPanelProps, ToolsCategory } from "Interfaces/projects";
 
+// ─── Tools — language-agnostic ────────────────────────────────────────────────
 
-export const skills: SkillCategory[] = [
+export const tools: ToolsCategory[] = [
+  {
+    category: 'Frontend & Web 3D',
+    items: ['React', 'TypeScript', 'Three.js', 'R3F', 'Next.js', 'Angular', 'Tailwind CSS', 'SCSS', 'Storybook', 'Figma'],
+  },
+  {
+    category: 'Backend & Cloud',
+    items: ['Node.js', 'Nest.js', 'Express', 'FastAPI', 'Python', 'MongoDB', 'PostgreSQL', 'REST APIs', 'Microservices'],
+  },
+  {
+    category: 'Visual Computing & XR',
+    items: ['C++', 'Unreal Engine', 'Unity', 'C#', 'WebGL', 'Blender', '3ds Max', 'LiDAR', 'WebXR', 'OpenCV', 'Oculus SDK'],
+  },
+  {
+    category: "SRE & DevOps",
+    items: ['Linux Bash', 'Jenkins', 'Kubernetes', 'Docker', 'Grafana', 'Instana', 'Prometheus', 'Opsgenie', 'YAML', 'Groovy'],
+  },
+  {
+    category: 'AI-Augmented Workflow',
+    items: ['Claude', 'SDD', 'Gemini', 'NotebookLM', 'Google AI Studio', 'GitHub Copilot', 'Codex'],
+  },
+  {
+    category: 'Tooling & DX',
+    items: ['Git', 'Vite', 'Vitest', 'Jest', 'ESLint', 'Jira', 'Confluence'],
+  }
+];
+
+// ─── Skills — language-keyed ──────────────────────────────────────────────────
+
+const _skills: Record<Lang, SkillCategory[]> = {
+  en: [
     {
-      "category": "Systems & Distributed Architecture",
-      "items": [
-        "Object-Oriented Design (OOD) & Design Patterns", //toReview
+      category: "Systems & Distributed Architecture",
+      items: [
+        "Object-Oriented Design (OOD) & Design Patterns",
         "Microservices Architecture & Refactoring",
         "Scalability for Global-Scale Platforms",
-        "Distributed Systems & Event-Driven Design", //toReview
-        "Asynchronous Programming & System Orchestration", //toReview
+        "Distributed Systems & Event-Driven Design",
+        "Asynchronous Programming & System Orchestration",
       ]
     },
     {
-      "category": "Visual Computing & Immersive Systems",
-      "items": [
+      category: "Visual Computing & Immersive Systems",
+      items: [
         "3D Graphics Programming & Mathematics",
-        "Real-Time Rendering & Optimization Principles", //tocheck findExamples
+        "Real-Time Rendering & Optimization Principles",
         "Immersive Technology Design (AR/VR/XR)",
         "Computer Vision & Image Analysis Strategy",
         "HCI (Human-Computer Interaction) Architecture"
       ]
     },
     {
-      "category": "Infrastructure & System Reliability (SRE)",
-      "items": [
+      category: "Infrastructure & System Reliability (SRE)",
+      items: [
         "Monitoring & Observability Culture",
         "Automated CI/CD Pipeline Architectures",
         "Cloud Infrastructure & Containerization Strategy",
@@ -33,8 +64,8 @@ export const skills: SkillCategory[] = [
       ]
     },
     {
-      "category": "Frontend & Web 3D Engineering",
-      "items": [
+      category: "Frontend & Web 3D Engineering",
+      items: [
         "Component-Based Architecture Design",
         "Web Performance Optimization (WPO)",
         "Advanced State Management Strategies",
@@ -43,8 +74,8 @@ export const skills: SkillCategory[] = [
       ]
     },
     {
-      "category": "Strategic AI & Modern Workflow",
-      "items": [
+      category: "Strategic AI & Modern Workflow",
+      items: [
         "AI-Augmented Development (SDD)",
         "Strategic LLM Integration in Software Architectures",
         "Prompt Engineering for Technical Research",
@@ -52,8 +83,8 @@ export const skills: SkillCategory[] = [
       ]
     },
     {
-      "category": "Leadership & Technical Excellence",
-      "items": [
+      category: "Leadership & Technical Excellence",
+      items: [
         "Technical Mentoring",
         "Agile Development & Product Lifecycle Management",
         "Architecture Reviews",
@@ -61,141 +92,304 @@ export const skills: SkillCategory[] = [
         "Cross-functional Collaboration"
       ]
     }
-  ];
-
-export const tools: ToolsCategory[] = [
+  ],
+  es: [
     {
-      category: 'Frontend & Web 3D',
-      items: ['React', 'TypeScript', 'Three.js', 'R3F', 'Next.js', 'Angular', 'Tailwind CSS', 'SCSS', 'Storybook', 'Figma'],
+      category: "Sistemas y Arquitectura Distribuida",
+      items: [
+        "Diseño Orientado a Objetos (OOD) y Patrones de Diseño",
+        "Arquitectura de Microservicios y Refactoring",
+        "Escalabilidad para Plataformas a Escala Global",
+        "Sistemas Distribuidos y Diseño Orientado a Eventos",
+        "Programación Asíncrona y Orquestación de Sistemas",
+      ]
     },
     {
-      category: 'Backend & Cloud',
-      items: ['Node.js', 'Nest.js', 'Express', 'FastAPI', 'Python', 'MongoDB', 'PostgreSQL', 'REST APIs', 'Microservices'],
+      category: "Computación Visual y Sistemas Inmersivos",
+      items: [
+        "Programación de Gráficos 3D y Matemáticas",
+        "Renderizado en Tiempo Real y Principios de Optimización",
+        "Diseño de Tecnología Inmersiva (AR/VR/XR)",
+        "Visión por Computador y Estrategia de Análisis de Imágenes",
+        "Arquitectura de HCI (Interacción Humano-Computador)"
+      ]
     },
     {
-      category: 'Visual Computing & XR',
-      items: ['C++','Unreal Engine', 'Unity', 'C#', 'WebGL', 'Blender', '3ds Max', 'LiDAR', 'WebXR', 'OpenCV', 'Oculus SDK', ],
+      category: "Infraestructura y Confiabilidad de Sistemas (SRE)",
+      items: [
+        "Cultura de Monitoreo y Observabilidad",
+        "Arquitecturas de Pipelines CI/CD Automatizados",
+        "Infraestructura Cloud y Estrategia de Contenerización",
+        "Gestión de Incidentes Críticos y Operaciones On-call",
+        "Profiling de Rendimiento y Optimización de Memoria"
+      ]
     },
     {
-      category: "SRE & DevOps",
-      items: ['Linux Bash', 'Jenkins', 'Kubernetes', 'Docker', 'Grafana', 'Instana', 'Prometheus', 'Opsgenie', 'YAML', 'Groovy'],
+      category: "Ingeniería Frontend y Web 3D",
+      items: [
+        "Diseño de Arquitectura Basada en Componentes",
+        "Optimización de Rendimiento Web (WPO)",
+        "Estrategias Avanzadas de Gestión de Estado",
+        "Diseño de APIs y Patrones de Integración",
+        "Diseño de Interfaces Responsivas y Multisensoriales"
+      ]
     },
     {
-      category: 'AI-Augmented Workflow',
-      items: ['Claude', 'SDD', 'Gemini', 'NotebookLM', 'Google AI Studio', 'GitHub Copilot', 'Codex'],
+      category: "IA Estratégica y Flujo de Trabajo Moderno",
+      items: [
+        "Desarrollo Aumentado por IA (SDD)",
+        "Integración Estratégica de LLMs en Arquitecturas de Software",
+        "Ingeniería de Prompts para Investigación Técnica",
+        "Metodologías de Prototipado Acelerado"
+      ]
     },
     {
-      category: 'Tooling & DX',
-      items: ['Git', 'Vite', 'Vitest', 'Jest', 'ESLint', 'Jira', 'Confluence'],
+      category: "Liderazgo y Excelencia Técnica",
+      items: [
+        "Mentoría Técnica",
+        "Desarrollo Ágil y Gestión del Ciclo de Vida del Producto",
+        "Revisiones de Arquitectura",
+        "Documentación Técnica",
+        "Colaboración Interfuncional"
+      ]
     }
-];
-
-// 🧩 Utility method: flatten all skills into one array (no categories)
-export const getAllSkills = (): string[] => {
-  return skills.flatMap((skillGroup) => skillGroup.items);
+  ],
+  de: [
+    {
+      category: "Systeme & Verteilte Architektur",
+      items: [
+        "Objektorientiertes Design (OOD) & Entwurfsmuster",
+        "Microservices-Architektur & Refactoring",
+        "Skalierbarkeit für globale Plattformen",
+        "Verteilte Systeme & ereignisgesteuertes Design",
+        "Asynchrone Programmierung & Systemorchestrierung",
+      ]
+    },
+    {
+      category: "Visual Computing & Immersive Systeme",
+      items: [
+        "3D-Grafikprogrammierung & Mathematik",
+        "Echtzeit-Rendering & Optimierungsprinzipien",
+        "Immersives Technologiedesign (AR/VR/XR)",
+        "Computer Vision & Bildanalysestrategie",
+        "HCI-Architektur (Mensch-Computer-Interaktion)"
+      ]
+    },
+    {
+      category: "Infrastruktur & Systemzuverlässigkeit (SRE)",
+      items: [
+        "Monitoring & Observability-Kultur",
+        "Automatisierte CI/CD-Pipeline-Architekturen",
+        "Cloud-Infrastruktur & Containerisierungsstrategie",
+        "Kritisches Incident-Management & On-Call-Betrieb",
+        "Performance-Profiling & Speicheroptimierung"
+      ]
+    },
+    {
+      category: "Frontend & Web-3D-Engineering",
+      items: [
+        "Komponentenbasiertes Architekturdesign",
+        "Web-Performance-Optimierung (WPO)",
+        "Fortgeschrittene Zustandsverwaltungsstrategien",
+        "API-Design & Integrationsmuster",
+        "Responsives & multisensoriales Interfacedesign"
+      ]
+    },
+    {
+      category: "Strategische KI & Moderner Workflow",
+      items: [
+        "KI-gestützte Entwicklung (SDD)",
+        "Strategische LLM-Integration in Software-Architekturen",
+        "Prompt Engineering für technische Forschung",
+        "Beschleunigte Prototyping-Methoden"
+      ]
+    },
+    {
+      category: "Führung & Technische Exzellenz",
+      items: [
+        "Technisches Mentoring",
+        "Agile Entwicklung & Produktlebenszyklusmanagement",
+        "Architektur-Reviews",
+        "Technische Dokumentation",
+        "Funktionsübergreifende Zusammenarbeit"
+      ]
+    }
+  ]
 };
 
-export const getAllTools = (): string[] => {
-  return tools.flatMap((toolsGroup) => toolsGroup.items);
+export const getSkills = (lang: Lang): SkillCategory[] =>
+  _skills[lang] ?? _skills.en;
+
+// backwards compat
+export const skills = getSkills("en");
+
+export const getAllSkills = (): string[] => skills.flatMap((g) => g.items);
+export const getAllTools = (): string[] => tools.flatMap((g) => g.items);
+
+// ─── Milestones — language-keyed ─────────────────────────────────────────────
+
+const _milestones: Record<Lang, Milestone[]> = {
+  en: [
+    {
+      id: "1",
+      title: "Quiero Estudiar Scholarship",
+      place: "Universidad de los Andes",
+      description: "Awarded to top-tier national exam (ICFES) performers to study at Colombia's premier accredited university.",
+      year: 2012
+    },
+    {
+      id: "2",
+      title: "Interactive and Visual Computing",
+      place: "Universidad de los Andes",
+      description: "Academic minor focused on Computer Graphics fundamentals, including transform matrices, quaternions, and advanced interaction techniques for immersive environments.",
+      year: 2017
+    },
+    {
+      id: "3",
+      title: "Internship in Visualization & HCI",
+      place: "TU Kaiserslautern",
+      description: "Optimizing long-distance recognition in AR using OpenCV for Hololens within the AG HCI and Computer Graphics.",
+      year: 2018
+    },
+    {
+      id: "4",
+      title: "VR in Unity — National Instructor",
+      place: "Science Clubs by SENA & UNAL",
+      description: "Instructed high school students in Unity-based VR development, covering materials, humanoids, animation, and scripting.",
+      year: 2019
+    },
+    {
+      id: "5",
+      title: "adidas Campus Program Instructor",
+      place: "adidas TechHub Bogotá",
+      description: "Led technical mentorship and specialized training in React and TypeScript for high-potential engineering talent.",
+      year: 2022
+    },
+    {
+      id: "6",
+      title: "Global E-commerce Architecture Refactor",
+      place: "adidas",
+      description: "Engineered the strategic migration from Salesforce to a microservices architecture, orchestrating the refactor of the checkout service ensuring its stability and performance across 20+ global markets.",
+      year: 2024
+    },
+    {
+      id: "7",
+      title: "Strategic Relocation to Germany",
+      place: "Germany",
+      description: "Relocated to Berlin following official ZAB/Anabin recognition of my degree as equivalent to System- und Computertechnik (A4/H+) and with Opportunity Card.",
+      year: 2025
+    }
+  ],
+  es: [
+    {
+      id: "1",
+      title: "Beca Quiero Estudiar",
+      place: "Universidad de los Andes",
+      description: "Becado por rendimiento sobresaliente en el examen nacional (ICFES) para estudiar en la universidad con mayor acreditación de Colombia.",
+      year: 2012
+    },
+    {
+      id: "2",
+      title: "Computación Interactiva y Visual",
+      place: "Universidad de los Andes",
+      description: "Minor académico enfocado en fundamentos de Gráficos por Computador, incluyendo matrices de transformación, cuaterniones y técnicas avanzadas de interacción para entornos inmersivos.",
+      year: 2017
+    },
+    {
+      id: "3",
+      title: "Pasantía en Visualización e IHC",
+      place: "TU Kaiserslautern",
+      description: "Optimización del reconocimiento a larga distancia en AR usando OpenCV para Hololens dentro del grupo AG HCI y Gráficos por Computador.",
+      year: 2018
+    },
+    {
+      id: "4",
+      title: "Instructor Nacional de VR en Unity",
+      place: "Science Clubs by SENA & UNAL",
+      description: "Instruyó a estudiantes de bachillerato en desarrollo de VR con Unity, abarcando materiales, humanoides, animación y scripting.",
+      year: 2019
+    },
+    {
+      id: "5",
+      title: "Instructor del adidas Campus Program",
+      place: "adidas TechHub Bogotá",
+      description: "Lideró mentoría técnica y formación especializada en React y TypeScript para talento de ingeniería de alto potencial.",
+      year: 2022
+    },
+    {
+      id: "6",
+      title: "Refactor de Arquitectura de E-commerce Global",
+      place: "adidas",
+      description: "Lideró la migración estratégica de Salesforce hacia una arquitectura de microservicios, orquestando el refactor del servicio de checkout y garantizando su estabilidad en más de 20 mercados globales.",
+      year: 2024
+    },
+    {
+      id: "7",
+      title: "Reubicación Estratégica a Alemania",
+      place: "Alemania",
+      description: "Reubicado en Berlín tras el reconocimiento oficial de ZAB/Anabin del título equivalente a System- und Computertechnik (A4/H+) y Tarjeta de Búsqueda de Empleo.",
+      year: 2025
+    }
+  ],
+  de: [
+    {
+      id: "1",
+      title: "Quiero Estudiar Stipendium",
+      place: "Universidad de los Andes",
+      description: "Stipendium für Spitzenleistungen im nationalen Eignungstest (ICFES) zum Studium an Kolumbiens erstklassig akkreditierter Universität.",
+      year: 2012
+    },
+    {
+      id: "2",
+      title: "Interaktives und Visuelles Computing",
+      place: "Universidad de los Andes",
+      description: "Akademische Vertiefung mit Schwerpunkt auf Grundlagen der Computergrafik, einschließlich Transformationsmatrizen, Quaternionen und fortgeschrittener Interaktionstechniken für immersive Umgebungen.",
+      year: 2017
+    },
+    {
+      id: "3",
+      title: "Praktikum in Visualisierung & HCI",
+      place: "TU Kaiserslautern",
+      description: "Optimierung der Langstreckenerkennung in AR mit OpenCV für Hololens innerhalb der AG HCI und Computergrafik.",
+      year: 2018
+    },
+    {
+      id: "4",
+      title: "Nationaler VR-Kursleiter in Unity",
+      place: "Science Clubs by SENA & UNAL",
+      description: "Unterrichtete Schüler in der Unity-basierten VR-Entwicklung mit Schwerpunkt auf Materialien, Humanoiden, Animation und Scripting.",
+      year: 2019
+    },
+    {
+      id: "5",
+      title: "Kursleiter des adidas Campus Programs",
+      place: "adidas TechHub Bogotá",
+      description: "Technisches Mentoring und spezialisierte Schulung in React und TypeScript für hochpotenzielle Ingenieurtalente.",
+      year: 2022
+    },
+    {
+      id: "6",
+      title: "Globales E-Commerce-Architektur-Refactoring",
+      place: "adidas",
+      description: "Strategische Migration von Salesforce zu einer Microservices-Architektur und Orchestrierung des Refactorings des Checkout-Services zur Sicherstellung von Stabilität und Performance in über 20 globalen Märkten.",
+      year: 2024
+    },
+    {
+      id: "7",
+      title: "Strategischer Umzug nach Deutschland",
+      place: "Deutschland",
+      description: "Umzug nach Berlin nach offizieller ZAB/Anabin-Anerkennung des Abschlusses als äquivalent zu System- und Computertechnik (A4/H+) sowie Chancenkarte.",
+      year: 2025
+    }
+  ]
 };
 
-export const toolsAndExprience : TabPanelProps = { 
-    "timeline": [
-      {
-        "id": "1",
-        "title": "Quiero Estudiar Scholarship",
-        "place": "Universidad de los Andes",
-        "description": "Awarded to top-tier national exam (ICFES) performers to study at Colombia’s premier accredited university [1, 2].",
-        "year": 2012
-      },
-      {
-        "id": "2",
-        "title": "Interactive and Visual Computing",
-        "place": "Universidad de los Andes",
-        "description": "Academic minor focused on **Computer Graphics fundamentals**, including transform matrices, quaternions, and advanced interaction techniques for immersive environments.",
-        "year": 2017
-      },
-      {
-        "id": "3",
-        "title": "Internship in Visualization & HCI",
-        "place": "TU Kaiserslautern",
-        "description": "Optimizing long-distance recognition in <b>AR</b> using <b>OpenCV</b> for Hololens within the AG HCI and Computer Graphics [4, 5].",
-        "year": 2018
-      },
-      {
-        "id": "4",
-        "title": "VR in Unity National Instructor",
-        "place": "Science Clubs by SENA & UNAL",
-        "description": "Instructed high school students in Unity-based VR development, covering materials, humanoids, animation, and scripting [6-8].",
-        "year": 2019
-      },
-      {
-        "id": "5",
-        "title": "adidas Campus Program Instructor",
-        "place": "adidas TechHub Bogotá",
-        "description": "Led technical mentorship and specialized training in React and TypeScript for high-potential engineering talent [2, 9, 10].",
-        "year": 2022
-      },
-      {
-        "id": "6",
-        "title": "Global E-commerce Architecture Refactor",
-        "place": "adidas",
-        "description": "Engineered the strategic migration from Salesforce to a **microservices architecture**, orchestrating the refactor of the checkout service ensuring its stability and performance across 20+ global markets.",
-        "year": 2024
-      },
-      {
-        "id": "7",
-        "title": "Strategic Relocation to Germany",
-        "place": "Berlin, Germany",
-        "description": "Relocated to Berlin following official ZAB/Anabin recognition of my degree as equivalent to **System- und Computertechnik (A4/H+)** and Job Search Oportunity Card.",
-        "year": 2025
-      }
-    ],
-    // achievements: [
-    //   {
-    //     id: '1',
-    //     year: '2021 - 2025',
-    //     title: 'Software Engineer, Frontend & SRE',
-    //     company: 'adidas',
-    //     description: `Development pillar of interactive 3D customization modules for sportswear PDPs using Three.js and Unity. 
-    //       Also improved deployment reliability and speed through CI/CD automation with Jenkins, Kubernetes, and Grafana. 
-    //       Contributed to the React/TypeScript front-end architecture for global e-commerce platforms like Yeezy, optimizing performance and user experience, `,
-    //     tags: ['React', 'Typescript', 'Three.js', 'Unity', 'Jenkins', 'Kubernetes', 'Grafana', 'CI/CD', 'Node.js'],
-    //     link: 'https://www.adidas.de/'
-    //   },
-    //   {
-    //     id: '2',
-    //     year: '2020',
-    //     title: 'Game Developer',
-    //     company: 'MadBricks',
-    //     description: 'Developed and maintained hyper-casual games using Unity and Unreal (C++), enhancing gameplay, physics, and player retention through refined UI/UX and fast iteration.',
-    //     link: 'https://www.linkedin.com/company/mad-bricks/'
-    //   },
-    //   {
-    //     id: '3',
-    //     year: '2020',
-    //     title: 'Frontend Developer',
-    //     company: 'Umbra 3D Studio - Umbra Interactive',
-    //     description: 'Created immersive 3D web and VR applications for real estate (PropTech) and marketing campaigns using React, Three.js, and Unity, blending visual storytelling with interactive technology.',
-    //     tags: ['React', 'Unity', 'Unreal Engine', 'C++', '3D Visualization', 'Virtual Reality'],
-    //     link: 'https://umbra3d.studio/'
-    //   },
-    //   {
-    //     id: '4',
-    //     year: '2017 - 2019',
-    //     title: 'Research Asistant',
-    //     company: 'Universidad de los Andes',
-    //     description: 'Designed a VR & haptic training simulator for trauma surgery using Unity and Oculus SDK, improving surgical skill acquisition; contributed to research in human-computer interaction and 3D visualization.' ,
-    //     link: 'https://imagine.uniandes.edu.co/'
-    //   },
-    //   { 
-    //     id: '5',
-    //     year: '2019',
-    //     title: 'Systems and Computing Engineering (M.Sc.)',
-    //     company: 'Universidad de los Andes',
-    //     link: 'https://www.uniandes.edu.co/'
-    //   },
-    // ],
-    skills,
-    tools
-  };
+export const getMilestones = (lang: Lang): Milestone[] =>
+  _milestones[lang] ?? _milestones.en;
+
+// backwards compat
+export const toolsAndExprience: TabPanelProps = {
+  milestones: getMilestones("en"),
+  skills,
+  tools
+};

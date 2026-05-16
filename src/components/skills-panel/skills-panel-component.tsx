@@ -1,63 +1,36 @@
 import React, { useState } from 'react';
-import { ChevronDown, Award, Clock, Wrench, Star, Flag, Gem } from 'lucide-react';
-import type { TimelineEvent, SkillCategory, TabPanelProps, ToolsCategory, Achievement } from 'Interfaces/projects';
-import { Badge } from 'HtmlComponents/badge';
+import { Wrench, Star, Gem } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import type { Milestone, SkillCategory, TabPanelProps, ToolsCategory } from 'Interfaces/projects';
 import { Heading } from 'HtmlComponents/headings';
 
-type TabType = 'achievements' | 'timeline' | 'skills' | 'tools';
+type TabType = 'milestones' | 'skills' | 'tools';
 
 // Tabs Content Components
-function AchievementsTab({ achievements }: { achievements: Achievement[] }) {
-  return (
-    <div className="animate-fadeIn flex flex-wrap gap-4 justify-center">
-      {achievements.map((achievement) => (
-        <div
-          key={achievement.id}
-          className="group relative bg-white/50 backdrop-blur-sm border border-gray-300/50 hover:border-camelot-800/50 rounded-xl p-3 transition-all duration-300 hover:bg-white/70"
-        >
-          <div className="flex flex-wrap">
-
-            <div >
-              <h3 className="text-lg text-gray-900 ">
-                <span className="font-bold">{achievement.title}</span> • {achievement.place} • <span className="text-sm font-semibold text-camelot-800">{achievement.year}</span>
-              </h3>
-              {/* <p className="text-gray-700 text-sm leading-relaxed">
-                {achievement.place}
-              </p> */}
-            </div>
-          </div>
-          <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-camelot-800 to-transparent rounded-r-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-
-function TimelineTab({ timeline }: { timeline: TimelineEvent[] }) {
+function MilestonesTab({ milestones }: { milestones: Milestone[] }) {
   return (
     <div className="space-y-6 animate-fadeIn">
-      {timeline.map((event, index) => (
-        <div key={event.id} className="relative">
+      {milestones.map((milestone, index) => (
+        <div key={milestone.id} className="relative">
           {/* Línea conectora */}
-          {index !== timeline.length - 1 && (
+          {index !== milestones.length - 1 && (
             <div className="absolute left-4 h-full top-8 w-1 bg-gradient-to-b from-camelot-800 to-camelot-600 opacity-50"></div>
           )}
-          
+
           <div className="flex gap-4">
             {/* Punto de la línea */}
             <div className="flex flex-col items-center">
               <div className="w-8 h-8 rounded-full bg-gradient-to-br from-camelot-700 to-camelot-800 flex items-center justify-center border-4 border-white shadow-lg">
               </div>
             </div>
-            
+
             {/* Contenido */}
-            <a href={event.link ?? '#'} target="_blank" className="bg-white/50 backdrop-blur-sm border border-gray-300/50 hover:border-camelot-800/50 rounded-xl p-5 flex-1 transition-all duration-300 hover:bg-white/70">
+            <a href={milestone.link ?? '#'} target="_blank" className="bg-white/50 backdrop-blur-sm border border-gray-300/50 hover:border-camelot-800/50 rounded-xl p-5 flex-1 transition-all duration-300 hover:bg-white/70">
               <Heading level={4} >
-                {event.title} {event.company && `• ${event.company}`} <span className="text-sm font-semibold text-camelot-800">• {event.year}</span>
+                {milestone.title} {milestone.place && `• ${milestone.place}`} <span className="text-sm font-semibold text-camelot-800">• {milestone.year}</span>
               </Heading>
               <p className="text-gray-700 text-sm">
-                {event.description}
+                {milestone.description}
               </p>
             </a>
           </div>
@@ -119,26 +92,25 @@ function ToolsTab({ tools }: { tools: ToolsCategory[] }) {
 
 
 // Main Component
-export default function SkillsTabPanel({ 
-  achievements = [], 
-  timeline = [], 
-  skills = [], 
-  tools = [] 
+export default function SkillsTabPanel({
+  milestones = [],
+  skills = [],
+  tools = []
 }: Partial<TabPanelProps> = {}) {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<TabType>('tools');
 
   const tabConfig = [
-    { id: 'timeline', label: 'Milestones', icon: <Gem size={18} /> },
-    { id: 'skills', label: 'Skills', icon: <Star size={18} /> },
-    { id: 'tools', label: 'Tools', icon: <Wrench size={18} /> },
-    // { id: 'achievements', label: 'Achievements', icon: <Gem size={18} /> },
+    { id: 'milestones', label: t('skills.tabs.milestones'), icon: <Gem size={18} /> },
+    { id: 'skills', label: t('skills.tabs.skills'), icon: <Star size={18} /> },
+    { id: 'tools', label: t('skills.tabs.tools'), icon: <Wrench size={18} /> },
   ];
 
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
       <div className="max-w-4xl w-full z-10">
         <Heading level={2} className='text-5xl font-lato font-bold mb-8 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center'  variant='primary'>
-          Experience & Skills
+          {t('skills.heading')}
         </Heading>
         {/* Tab Navigation */}
         <div className="bg-white/60 backdrop-blur-sm border border-gray-200/50 rounded-2xl mb-8 p-1 overflow-x-auto shadow-lg">
@@ -166,10 +138,9 @@ export default function SkillsTabPanel({
 
         {/* Tab Content */}
         <div className="bg-white/40 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-8 shadow-lg">
-          {activeTab === 'timeline' && <TimelineTab timeline={timeline} />}
+          {activeTab === 'milestones' && <MilestonesTab milestones={milestones} />}
           {activeTab === 'skills' && <SkillsTab skills={skills} />}
           {activeTab === 'tools' && <ToolsTab tools={tools} />}
-          {/* {activeTab === 'achievements' && <AchievementsTab achievements={achievements} />} */}
         </div>
       </div>
 
