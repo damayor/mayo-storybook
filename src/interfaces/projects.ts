@@ -1,3 +1,5 @@
+export type Lang = 'en' | 'es' | 'de';
+
 export interface Projects {
     projects: Project[];
 }
@@ -29,15 +31,7 @@ export interface MiniProject {
 
 }
 
-export interface Achievement {
-  id: string;
-  title: string;
-  place?: string;
-  description?: string;
-  year: number;
-}
-
-export interface TimelineEvent {
+export interface Milestone {
   id: string;
   year: string | number;
   title: string;
@@ -46,7 +40,6 @@ export interface TimelineEvent {
   tags?: string[];
   link?: string;
   place?: string;
-
 }
 
 export type SkillCategory = {
@@ -60,8 +53,7 @@ export type ToolsCategory = {
 };
 
 export interface TabPanelProps {
-  achievements?: TimelineEvent[];
-  timeline: TimelineEvent[];
+  milestones: Milestone[];
   skills: SkillCategory[];
   tools: ToolsCategory[];
 }

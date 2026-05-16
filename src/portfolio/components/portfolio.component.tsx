@@ -9,8 +9,9 @@ import { sendContactEmail } from '../../services/email.service';
 
 import { Heading } from 'HtmlComponents/headings';
 import { Card } from 'HtmlComponents/card';
-import { projectsData, miniProjects } from '../../data/projects';
-import { toolsAndExprience } from '../../data/experience';
+import { getProjectsData, getMiniProjects } from '../../data/projects';
+import { getMilestones, getSkills, tools } from '../../data/experience';
+import type { Lang } from 'Interfaces/projects';
 import SkillsTabPanel from '../../components/skills-panel/skills-panel-component';
 import { contactData } from 'Data/contact';
 import { type SectionType, SECTIONS, SECTIONS_ARRAY } from 'Interfaces/portfolio-sections';
@@ -23,32 +24,43 @@ import { projectsMini } from 'HtmlComponents/mini-card/mini-card.stories';
 
 function LanguageSelector() {
   const { i18n } = useTranslation();
+  const [open, setOpen] = useState(false);
+
   const languages = [
     { code: 'en', name: 'English', flag: 'gb' },
     { code: 'de', name: 'Deutsch', flag: 'de' },
     { code: 'es', name: 'Español', flag: 'es' },
   ];
 
+  const current = languages.find(l => l.code === i18n.language) ?? languages[0];
+  const others = languages.filter(l => l.code !== i18n.language);
+
   return (
-    <div className="px-4 pb-4">
-      <div className="flex gap-2">
-        {languages.map((lang) => (
-          <button
-            key={lang.code}
-            onClick={() => i18n.changeLanguage(lang.code)}
-            className={`flex-1 px-2 py-1 text-xs rounded transition-all flex justify-center ${
-              i18n.language === lang.code
-                ? 'bg-blue-500 text-white'
-                : 'bg-slate-700 text-gray-300 hover:bg-slate-600'
-            }`}
-          >
-            <img
-              src={`https://flagcdn.com/${lang.flag}.svg`}
-              width="20"
-              alt={lang.name}/>
-          </button>
-        ))}
-      </div>
+    <div className="fixed top-3 right-3 md:top-6 md:right-6 z-30">
+      <button
+        onClick={() => setOpen(o => !o)}
+        className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-camelot-950 to-camelot-500 p-0.5 cursor-pointer"
+        aria-label={`Language: ${current.name}`}
+      >
+        <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center overflow-hidden">
+          <img src={`https://flagcdn.com/w40/${current.flag}.png`} width="26" alt={current.name} />
+        </div>
+      </button>
+
+      {open && (
+        <div className="absolute right-0 mt-2 flex flex-col gap-1">
+          {others.map(lang => (
+            <button
+              key={lang.code}
+              onClick={() => { i18n.changeLanguage(lang.code); setOpen(false); }}
+              className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-slate-900/80 backdrop-blur-sm border border-slate-700 hover:border-camelot-500 flex items-center justify-center transition-all duration-200 overflow-hidden cursor-pointer"
+              aria-label={lang.name}
+            >
+              <img src={`https://flagcdn.com/w40/${lang.flag}.png`} width="26" alt={lang.name} />
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -114,10 +126,7 @@ function Sidebar({ isOpen, setIsOpen, onNavigate } : SidebarProps) {
             ))}
           </nav>
 
-          <div className="border-t border-slate-700 pt-6 space-y-4"> 
-            {/* ToDo when you have all translated  */}
-            <LanguageSelector/> 
-           
+          <div className="border-t border-slate-700 pt-6 space-y-4">
             <div className="flex justify-center gap-4">
               <a target="_blank" href={contactData.github} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
                 <Github size={20} />
@@ -200,7 +209,7 @@ function AboutSection() {
 
           {/* Tagline */}
           <p className="text-lm font-bold text-gray-100 mb-10 text-center leading-relaxed italic">
-            I write code in OOP; I think in three dimensions; I celebrate in salsa.
+            {t('about.tagline')}
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
@@ -223,9 +232,10 @@ function AboutSection() {
   );
 }
 
-function ProjectsSection() {
+function ProjectsSection({ lang }: { lang: Lang }) {
   const { t } = useTranslation();
-  const projData = Object.values(projectsData);
+  const projData = Object.values(getProjectsData(lang));
+  const miniProjData = getMiniProjects(lang);
   const { ref: mainRef, inView: mainInView } = useInView({ threshold: 0.1 });
   const { ref: otherRef, inView: otherInView } = useInView({ threshold: 0.1 });
 
@@ -253,10 +263,10 @@ function ProjectsSection() {
 
         <div ref={otherRef} className={`max-w-7xl mx-auto py-16 sm:py-20 ${otherInView ? revealed : hidden}`}>
           <Heading level={2} className='text-5xl font-lato font-bold mb-12 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center' variant='primary'>
-            Other Projects
+            {t('projects.otherProjects')}
           </Heading>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {miniProjects.map((project, index) => (
+            {miniProjData.map((project, index) => (
               <MiniCard key={index} {...project} />
             ))}
           </div>
@@ -283,12 +293,12 @@ function ContactSection() {
     
     // Validate form
     if (!formData.name || !formData.email || !formData.message) {
-      setStatusMessage({ type: 'error', text: 'Please fill in all fields' });
+      setStatusMessage({ type: 'error', text: t('contact.form.validationError') });
       return;
     }
 
     setIsLoading(true);
-    setStatusMessage({ type: 'success', text: `${formData.name}, I will stay in contact soon!` });
+    setStatusMessage({ type: 'success', text: t('contact.form.successMessage', { name: formData.name }) });
     setIsLoading(false);
     setIsSubmitting(true);
 
@@ -320,11 +330,11 @@ function ContactSection() {
 
         if (!res.ok) throw new Error('Telegram error');
 
-        setStatusMessage({ type: 'success', text: `${formData.name}, I will stay in contact soon!!!`});
+        setStatusMessage({ type: 'success', text: t('contact.form.successMessage', { name: formData.name }) });
         setFormData({ name: '', email: '', message: '' }); // Limpiar form
 
     } catch (err) {
-      setStatusMessage({ type: 'error', text: 'An unexpected error occurred' });
+      setStatusMessage({ type: 'error', text: t('contact.form.networkError') });
     } finally {
       setIsSubmitting(false);
     }
@@ -424,6 +434,8 @@ function SkillsRevealWrapper({ children }: { children: React.ReactNode }) {
 
 // Componente Principal
 export default function Portfolio() {
+  const { i18n } = useTranslation();
+  const lang = (i18n.language as Lang) ?? 'en';
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<SectionType>(SECTIONS.home);
 
@@ -463,12 +475,14 @@ export default function Portfolio() {
 
       <button
         onClick={() => setSidebarOpen(true)}
-        className="fixed top-3 left-3 md:top-6 md:left-6 z-30 w-15 h-15 md:w-18 md:h-18 mx-auto rounded-full bg-gradient-to-br from-camelot-950 to-camelot-500 p-1 cursor-pointer" 
+        className="fixed top-3 left-3 md:top-6 md:left-6 z-30 w-15 h-15 md:w-18 md:h-18 mx-auto rounded-full bg-gradient-to-br from-camelot-950 to-camelot-500 p-1 cursor-pointer"
       >
         <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-5xl font-lato">
           <img className='rounded-full' src={mayintLogo} alt="May Interactive Logo" />
         </div>
       </button>
+
+      <LanguageSelector />
 
       {/* Contenido principal */}
       <main className="pointer-events-none">         
@@ -481,12 +495,12 @@ export default function Portfolio() {
         </div>
         
         <div ref={sectionRefs.projects} className="pointer-events-auto z-10">
-          <ProjectsSection />
+          <ProjectsSection lang={lang} />
         </div>
-        
+
         <div ref={sectionRefs.skills} className="pointer-events-auto z-10">
           <SkillsRevealWrapper>
-            <SkillsTabPanel {...toolsAndExprience} />
+            <SkillsTabPanel milestones={getMilestones(lang)} skills={getSkills(lang)} tools={tools} />
           </SkillsRevealWrapper>
         </div>
         
