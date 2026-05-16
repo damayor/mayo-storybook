@@ -26,19 +26,52 @@ The portfolio previously had two separate sections: `timeline` and `achievements
 
 ---
 
-## Task 2 — Add a CV Download Button
-
+## Task 2 — Replace Contact Form with Two-Button CTA Footer + Smart CV Downloader
+ 
 ### Context
-David manages multiple versions of his CV for different audiences and languages. The portfolio needs a download mechanism that lets visitors choose which version to download.
-
-### Requirements
-[] Add a download button (or dropdown) accessible from the main navigation or hero section — visible without scrolling.
-[] The button should offer at least the following options:
-  [] `CV — English (Frontend Engineer)` → `DavidMayorga_CV_EN.pdf`
-  [] `CV — Español (Ingeniero Senior)` → `DavidMayorga_CV_ES.pdf`
-[] PDF files should be hosted under the project's own domain (e.g. `/public/downloads/`), not on external services like Google Drive.
-[] On mobile, the dropdown should be touch-friendly and not overlap critical UI elements.
-[] File names must be human-readable and descriptive (no UUIDs or hashes).
+The portfolio currently has a contact form at the bottom that has received zero submissions in 6+ months. It will be replaced with a minimal, high-converting two-button footer section. Separately, a smart CV download button needs to serve the correct PDF based on the active language (set in Task 3). Both changes are scoped to the bottom CTA area and the CV download logic — do not modify other sections.
+ 
+---
+ 
+### Subtask 2.1 — Remove the contact form entirely
+- Delete the contact form component and all its related files (form handler, validation logic, email service calls, state management).
+- Remove any environment variables or API keys used exclusively by the form (e.g. EmailJS, Formspree, Nodemailer config) and note them in a comment for David to clean from `.env`.
+- Do **not** remove the footer wrapper or page section container — only the form content inside it.
+- After deletion, confirm no broken imports or dangling references remain.
+---
+ 
+### Subtask 2.2 — Build the two-button CTA footer section
+Replace the contact form content with a clean section containing exactly two buttons:
+ 
+**Button 1 — "Let's Work Together"**
+- Opens a Calendly booking page in a new tab.
+- URL placeholder: `https://calendly.com/david-mayorga` — David will replace with his actual Calendly link.
+- Label should be translatable (see Task 3): EN: `"Let's Work Together"` / DE: `"Zusammenarbeiten"` / ES: `"Trabajemos Juntos"`.
+- Style: primary, prominent — this is the main CTA.
+**Button 2 — "Download CV"**
+- Triggers the smart download logic defined in Subtask 2.3.
+- Label should be translatable: EN: `"Download CV"` / DE: `"Lebenslauf herunterladen"` / ES: `"Descargar Hoja de Vida"`.
+- Style: secondary, outlined.
+Layout: both buttons side by side on desktop, stacked on mobile. Add a short headline above them (also translatable): EN: `"Open to freelance projects and full-time roles"` / DE: `"Offen für Freelance-Projekte und Festanstellungen"` / ES: `"Disponible para proyectos freelance y roles de tiempo completo"`.
+ 
+---
+ 
+### Subtask 2.3 — Smart CV downloader (language-aware)
+- The "Download CV" button must serve a different PDF based on the currently active language:
+  - `EN` → `DavidMayorga_CV_EN.pdf`
+  - `DE` → `DavidMayorga_CV_DE.pdf`
+  - `ES` → `DavidMayorga_CV_ES.pdf`
+- All PDFs must be hosted locally under `/public/downloads/` — no external links.
+- If no language is set or the file for that language does not exist, fall back to `DavidMayorga_CV_EN.pdf`.
+- The download must trigger as a file download (not open in a new tab). Use the `download` attribute on an anchor tag or equivalent.
+- **Flag for David:** the actual PDF files must be manually placed in `/public/downloads/` with the exact filenames above before this feature works. Claude should add a `README` note inside that folder listing the expected files.
+---
+ 
+### Subtask 2.4 — Remove the current "Resume" button from the hero CTA row
+- The hero section currently has three buttons: `Work`, `Say Hello`, and `Resume`.
+- Remove the `Resume` button from the hero row — CV download is now handled exclusively by the footer CTA.
+- Keep `Work` and `Say Hello` as-is. Do not restyle or reorder them.
+- If `Say Hello` currently scrolls to the contact form, update its scroll target to point to the new two-button CTA footer section.
 
 ---
 
