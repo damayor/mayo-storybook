@@ -25,53 +25,36 @@ The portfolio previously had two separate sections: `timeline` and `achievements
 [x] After removal, confirm the component still renders correctly with no regressions.
 
 ---
-
-## Task 2 — Replace Contact Form with Two-Button CTA Footer + Smart CV Downloader
+ 
+## Task 2 — Replace Contact Form with Two-Button CTA Footer + Smart CV Viewer
  
 ### Context
-The portfolio currently has a contact form at the bottom that has received zero submissions in 6+ months. It will be replaced with a minimal, high-converting two-button footer section. Separately, a smart CV download button needs to serve the correct PDF based on the active language (set in Task 3). Both changes are scoped to the bottom CTA area and the CV download logic — do not modify other sections.
+The portfolio currently has a contact form at the bottom that has received zero submissions in 6+ months. It will be replaced with a minimal, high-converting two-button footer section. Separately, a smart CV button needs to open the correct PDF in a new tab based on the active language (set in Task 3). Both changes are scoped to the bottom CTA area and the CV link logic — do not modify other sections.
  
 ---
  
 ### Subtask 2.1 — Remove the contact form entirely
-- Delete the contact form component and all its related files (form handler, validation logic, email service calls, state management).
-- Remove any environment variables or API keys used exclusively by the form (e.g. EmailJS, Formspree, Nodemailer config) and note them in a comment for David to clean from `.env`.
-- Do **not** remove the footer wrapper or page section container — only the form content inside it.
-- After deletion, confirm no broken imports or dangling references remain.
+[x]  Deleted `src/services/email.service.ts` and all form state, handlers, and Telegram API call from `ContactSection`.
+[x]  Telegram token and chat ID were hardcoded inline (not in `.env`) — nothing to clean from env files.
+[x]  Section wrapper and social links preserved. Zero broken imports.
 ---
  
 ### Subtask 2.2 — Build the two-button CTA footer section
-Replace the contact form content with a clean section containing exactly two buttons:
- 
-**Button 1 — "Let's Work Together"**
-- Opens a Calendly booking page in a new tab.
-- URL placeholder: `https://calendly.com/david-mayorga` — David will replace with his actual Calendly link.
-- Label should be translatable (see Task 3): EN: `"Let's Work Together"` / DE: `"Zusammenarbeiten"` / ES: `"Trabajemos Juntos"`.
-- Style: primary, prominent — this is the main CTA.
-**Button 2 — "Download CV"**
-- Triggers the smart download logic defined in Subtask 2.3.
-- Label should be translatable: EN: `"Download CV"` / DE: `"Lebenslauf herunterladen"` / ES: `"Descargar Hoja de Vida"`.
-- Style: secondary, outlined.
-Layout: both buttons side by side on desktop, stacked on mobile. Add a short headline above them (also translatable): EN: `"Open to freelance projects and full-time roles"` / DE: `"Offen für Freelance-Projekte und Festanstellungen"` / ES: `"Disponible para proyectos freelance y roles de tiempo completo"`.
+[x] Headline: translatable via `contact.cta` key (EN/DE/ES).
+[x] Button 1 — "Let's Work Together" → `https://calendly.com/may-interactive`, opens in new tab, primary style.
+[x] Button 2 — CV Viewer → language-aware PDF link, opens in new tab, outlined secondary style.
+[x] Side by side on desktop, stacked on mobile.
  
 ---
  
-### Subtask 2.3 — Smart CV downloader (language-aware)
-- The "Download CV" button must serve a different PDF based on the currently active language:
-  - `EN` → `DavidMayorga_CV_EN.pdf`
-  - `DE` → `DavidMayorga_CV_DE.pdf`
-  - `ES` → `DavidMayorga_CV_ES.pdf`
-- All PDFs must be hosted locally under `/public/downloads/` — no external links.
-- If no language is set or the file for that language does not exist, fall back to `DavidMayorga_CV_EN.pdf`.
-- The download must trigger as a file download (not open in a new tab). Use the `download` attribute on an anchor tag or equivalent.
-- **Flag for David:** the actual PDF files must be manually placed in `/public/downloads/` with the exact filenames above before this feature works. Claude should add a `README` note inside that folder listing the expected files.
----
- 
-### Subtask 2.4 — Remove the current "Resume" button from the hero CTA row
-- The hero section currently has three buttons: `Work`, `Say Hello`, and `Resume`.
-- Remove the `Resume` button from the hero row — CV download is now handled exclusively by the footer CTA.
-- Keep `Work` and `Say Hello` as-is. Do not restyle or reorder them.
-- If `Say Hello` currently scrolls to the contact form, update its scroll target to point to the new two-button CTA footer section.
+### Subtask 2.3 — Smart CV viewer (language-aware, opens in new tab)
+[x]  Uses `<a target="_blank" rel="noopener noreferrer">` — opens in new tab, no download.
+[x]  `CV_BY_LANG` map in `portfolio.component.tsx` drives the correct file per language:
+  - `EN` → `/documents/CV.pdf`
+  - `DE` → `/documents/LL.pdf`
+  - `ES` → `/documents/HV.pdf`
+[x]  Files confirmed in `/public/documents/` as `CV.pdf`, `HV.pdf`, `LL.pdf`.
+[x]  Falls back to `EN` if language is unset.
 
 ---
 

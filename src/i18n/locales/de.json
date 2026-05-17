@@ -44,19 +44,8 @@
   },
   "contact": {
     "title": "Kontakt",
-    "description": "Haben Sie ein Projekt? Lassen Sie uns reden!",
-    "form": {
-      "name": "Name",
-      "namePlaceholder": "Ihr Name",
-      "email": "E-Mail",
-      "emailPlaceholder": "ihre@email.com",
-      "message": "Nachricht",
-      "messagePlaceholder": "Erzählen Sie mir von Ihrem Projekt...",
-      "submit": "Nachricht senden",
-      "sending": "Wird gesendet...",
-      "successMessage": "{{name}}, ich melde mich bald bei Ihnen!",
-      "validationError": "Bitte füllen Sie alle Felder aus",
-      "networkError": "Ein unerwarteter Fehler ist aufgetreten"
-    }
+    "cta": "Offen für Freelance-Projekte und Festanstellungen",
+    "calendly": "Zusammenarbeiten",
+    "cv": "Lebenslauf"
   }
 }

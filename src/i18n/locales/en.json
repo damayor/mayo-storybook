@@ -44,19 +44,8 @@
   },
   "contact": {
     "title": "Contact",
-    "description": "Have a project in mind? Let's talk!",
-    "form": {
-      "name": "Name",
-      "namePlaceholder": "Your name",
-      "email": "Email",
-      "emailPlaceholder": "your@email.com",
-      "message": "Message",
-      "messagePlaceholder": "Tell me about your project...",
-      "submit": "Send Message",
-      "sending": "Sending...",
-      "successMessage": "{{name}}, I'll be in touch soon!",
-      "validationError": "Please fill in all fields",
-      "networkError": "An unexpected error occurred"
-    }
+    "cta": "Open to freelance projects and full-time roles",
+    "calendly": "Let's Work Together!",
+    "cv": "Resume"
   }
 }
