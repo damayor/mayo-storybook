@@ -5,7 +5,6 @@ import * as THREE from 'three';
 import { Menu, X, Github, Linkedin, Mail, FileJson2, Terminal, RectangleGoggles, Instagram } from 'lucide-react';
 import mayintLogo from '/assets/mayint.svg'
 import { useTranslation } from 'react-i18next';
-import { sendContactEmail } from '../../services/email.service';
 
 import { Heading } from 'HtmlComponents/headings';
 import { Card } from 'HtmlComponents/card';
@@ -276,134 +275,45 @@ function ProjectsSection({ lang }: { lang: Lang }) {
   );
 }
 
-function ContactSection() {
+const CV_BY_LANG: Record<Lang, string> = {
+  en: '/documents/CV.pdf',
+  es: '/documents/HV.pdf',
+  de: '/documents/LL.pdf',
+};
+
+function ContactSection({ lang }: { lang: Lang }) {
   const { t } = useTranslation();
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [isLoading, setIsLoading] = useState(false);
-  const [statusMessage, setStatusMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    
-    // Validate form
-    if (!formData.name || !formData.email || !formData.message) {
-      setStatusMessage({ type: 'error', text: t('contact.form.validationError') });
-      return;
-    }
-
-    setIsLoading(true);
-    setStatusMessage({ type: 'success', text: t('contact.form.successMessage', { name: formData.name }) });
-    setIsLoading(false);
-    setIsSubmitting(true);
-
-    try {
-      //Todo save as env vars
-      const TELEGRAM_TOKEN = '8752645898:AAEzQAN3sVNOE9oQ9xQAPsNgXcrAOtVYeww'
-      const CHAT_ID = '6471003088'
-
-      const text = `
-        *🔔 Nuevo mensaje para May Interactive*
-
-        *Nombre:* ${formData.name}
-        *Email:* ${formData.email}
-        *Mensaje:*
-        ${formData.message}
-
-        ${new Date().toLocaleString('es-ES')}
-          `.trim();
-
-        const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chat_id: CHAT_ID,
-            text,
-            parse_mode: 'Markdown',
-          }),
-        });
-
-        if (!res.ok) throw new Error('Telegram error');
-
-        setStatusMessage({ type: 'success', text: t('contact.form.successMessage', { name: formData.name }) });
-        setFormData({ name: '', email: '', message: '' }); // Limpiar form
-
-    } catch (err) {
-      setStatusMessage({ type: 'error', text: t('contact.form.networkError') });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   const { ref, inView } = useInView({ threshold: 0.1 });
 
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
       <div ref={ref} className={`max-w-2xl w-full z-10 ${inView ? revealed : hidden}`}>
-        <Heading level={2} className='text-5xl font-lato font-bold mb-8 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center'  variant='primary'>
-          {t('contact.title')}
-        </Heading>        
-        <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700">
-          <p className="text-lg text-gray-300 mb-8 text-center">
-           {t('contact.description')}
+
+        <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-10 flex flex-col items-center gap-8">
+          <p className="text-xl text-gray-300 text-center leading-relaxed">
+            {t('contact.cta')}
           </p>
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            <div>
-              <label className="block text-gray-300 mb-2">{t('contact.form.name')}</label>
-              <input 
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-gray-100 focus:border-camelot-500 focus:outline-none transition-colors"
-                placeholder={t('contact.form.namePlaceholder')}
-              />
-            </div>
-            <div>
-              <label className="block text-gray-300 mb-2">{t('contact.form.email')}</label>
-              <input 
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-gray-100 focus:border-camelot-500 focus:outline-none transition-colors"
-                placeholder={t('contact.form.emailPlaceholder')}
-              />
-            </div>
-            <div>
-              <label className="block text-gray-300 mb-2">{t('contact.form.message')}</label>
-              <textarea 
-                name="message"
-                rows={5}
-                value={formData.message}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-gray-100 focus:border-camelot-500 focus:outline-none transition-colors resize-none"
-                placeholder={t('contact.form.messagePlaceholder')}
-              />
-            </div>
-            {statusMessage && (
-              <div className={`p-4 rounded-lg text-center font-medium ${
-                statusMessage.type === 'success' 
-                  ? 'bg-green-500/20 text-green-300' 
-                  : 'bg-red-500/20 text-red-300'
-              }`}>
-                {statusMessage.text}
-              </div>
-            )}
-            <button 
-              type="submit"
-              disabled={isLoading}
-              className="w-full px-8 py-3 bg-gradient-to-r from-purple-700 to-camelot-800 rounded-lg font-medium hover:scale-105 transition-transform shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:justify-center">
+            <a
+              href="https://calendly.com/may-interactive"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 sm:flex-none px-8 py-4 bg-gradient-to-r from-camelot-700 to-camelot-800 rounded-xl font-semibold text-center hover:scale-105 transition-transform shadow-lg"
             >
-              {isLoading ? t('contact.form.sending') || 'Sending...' : t('contact.form.submit')}
-            </button>
-          </form>
-          <div className="flex justify-center gap-6 mt-8 pt-8 border-t border-slate-700">
+              {t('contact.calendly')}
+            </a>
+            <a
+              href={CV_BY_LANG[lang]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 sm:flex-none px-8 py-4 rounded-xl font-semibold text-center border-2 border-camelot-700 text-camelot-400 hover:bg-camelot-700/20 hover:scale-105 transition-all"
+            >
+              {t('contact.cv')}
+            </a>
+          </div>
+
+          <div className="flex justify-center gap-6 pt-6 border-t border-slate-700 w-full">
             <a target="_blank" href={contactData.github} className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
               <Github size={24} />
             </a>
@@ -505,7 +415,7 @@ export default function Portfolio() {
         </div>
         
         <div ref={sectionRefs.contact} className="pointer-events-auto">
-          <ContactSection />
+          <ContactSection lang={lang} />
         </div>
       </main>
 

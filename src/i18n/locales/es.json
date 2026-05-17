@@ -44,19 +44,8 @@
   },
   "contact": {
     "title": "Contacto",
-    "description": "¿Tienes un proyecto en mente? ¡Hablemos!",
-    "form": {
-      "name": "Nombre",
-      "namePlaceholder": "Tu nombre",
-      "email": "Email",
-      "emailPlaceholder": "tu@email.com",
-      "message": "Mensaje",
-      "messagePlaceholder": "Cuéntame sobre tu proyecto...",
-      "submit": "Enviar Mensaje",
-      "sending": "Enviando...",
-      "successMessage": "{{name}}, ¡me pongo en contacto pronto!",
-      "validationError": "Por favor completa todos los campos",
-      "networkError": "Ocurrió un error inesperado"
-    }
+    "cta": "Disponible para proyectos freelance y roles de tiempo completo",
+    "calendly": "¡Trabajemos Juntos!",
+    "cv": "Curriculum"
   }
 }
