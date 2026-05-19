@@ -1,127 +1,184 @@
-# Portfolio Tasks
+# Storybook Tasks — WebXR Hello World
 
-> This file is intended to be read alongside `CLAUDE.md`. Each task below is self-contained with enough context to be executed independently or sequentially. Do not modify unrelated components unless explicitly noted.
+> This file is scoped exclusively to the Storybook setup (`mayo-storybook`). Do **not** touch the portfolio pages, components, or routing. All new files live under `src/stories/three/stories-components/xr/`.
 
 ---
 
-## Task 1 — Refactor the Timeline Section into Milestones
+## Task 1 — Install and configure `@react-three/xr`
 
 ### Context
-The portfolio previously had two separate sections: `timeline` and `achievements`. The data from `achievements` has already been renamed and is now rendering under the `timeline` component. The goal is to unify both into a single, clean `Milestones` concept throughout the codebase.
+The repo already has `three@0.180.0`, `@react-three/fiber@9.3.0`, and `@react-three/drei` installed. The only missing package is `@react-three/xr`. This task sets up the dependency and ensures Vite can handle the WebXR APIs without errors in a browser/mobile environment.
 
-### Subtasks
+### Checklist — mark each item `[x]` when done
 
-#### 1.1 — Merge timeline and achievements into a single `Milestones` data structure
-[x] There are currently two data sources (previously `timeline` and `achievements`). Since the achievements data has already been moved and is rendering under the timeline component, consolidate all entries into **one single property or array called `milestones`**.
-[x] Rename any remaining references to `timeline` or `achievements` (data keys, prop names, variable names, component display names) to `milestones` or `Milestones` as appropriate.
-[x] Ensure the unified `milestones` array is the single source of truth — no duplicate or parallel arrays should remain.
-
-#### 1.2 — Add the `place` attribute to each Milestone entry
-[x] Render `place` visibly in the Timeline/Milestones tab UI, alongside the existing date and title fields.
-
-#### 1.3 — Remove dead code scoped to the timeline/achievements component
-[x] Audit **only** the timeline/milestones component file(s) for unused imports, unreferenced variables, commented-out blocks, and orphaned helper functions.
-[x] Do **not** touch dead code in other components — the rest of the codebase is out of scope for this subtask.
-[x] After removal, confirm the component still renders correctly with no regressions.
-
----
- 
-## Task 2 — Replace Contact Form with Two-Button CTA Footer + Smart CV Viewer
- 
-### Context
-The portfolio currently has a contact form at the bottom that has received zero submissions in 6+ months. It will be replaced with a minimal, high-converting two-button footer section. Separately, a smart CV button needs to open the correct PDF in a new tab based on the active language (set in Task 3). Both changes are scoped to the bottom CTA area and the CV link logic — do not modify other sections.
- 
----
- 
-### Subtask 2.1 — Remove the contact form entirely
-[x]  Deleted `src/services/email.service.ts` and all form state, handlers, and Telegram API call from `ContactSection`.
-[x]  Telegram token and chat ID were hardcoded inline (not in `.env`) — nothing to clean from env files.
-[x]  Section wrapper and social links preserved. Zero broken imports.
----
- 
-### Subtask 2.2 — Build the two-button CTA footer section
-[x] Headline: translatable via `contact.cta` key (EN/DE/ES).
-[x] Button 1 — "Let's Work Together" → `https://calendly.com/may-interactive`, opens in new tab, primary style.
-[x] Button 2 — CV Viewer → language-aware PDF link, opens in new tab, outlined secondary style.
-[x] Side by side on desktop, stacked on mobile.
- 
----
- 
-### Subtask 2.3 — Smart CV viewer (language-aware, opens in new tab)
-[x]  Uses `<a target="_blank" rel="noopener noreferrer">` — opens in new tab, no download.
-[x]  `CV_BY_LANG` map in `portfolio.component.tsx` drives the correct file per language:
-  - `EN` → `/documents/CV.pdf`
-  - `DE` → `/documents/LL.pdf`
-  - `ES` → `/documents/HV.pdf`
-[x]  Files confirmed in `/public/documents/` as `CV.pdf`, `HV.pdf`, `LL.pdf`.
-[x]  Falls back to `EN` if language is unset.
+- [x] **1.1** Install `@react-three/xr@latest` and verify v6+
+- [x] **1.2** Install `@vitejs/plugin-basic-ssl` and configure Vite for HTTPS
+- [x] **1.3** Run Storybook smoke test — no XR import errors
+- [x] **1.3** Delete `xr.sanity.ts` after smoke test passes
 
 ---
 
-## Task 3 — Full Portfolio Translation (German & Spanish)
+### Subtask 1.1 — Install the package
+- Run: `pnpm add @react-three/xr@latest`
+- Verify the installed version is v6+ (the API changed significantly from v5 — do not use v5 patterns).
+- After install, confirm there are no peer dependency conflicts with the existing `three` and `@react-three/fiber` versions. If there are, flag them for David before proceeding.
+
+### Subtask 1.2 — Vite configuration for WebXR
+- WebXR requires the page to be served over **HTTPS**, even locally. Configure Vite to use HTTPS in dev mode.
+- Install `@vitejs/plugin-basic-ssl` as a dev dependency and add it to `vite.config.ts`:
+
+```ts
+import basicSsl from '@vitejs/plugin-basic-ssl'
+
+export default defineConfig({
+  plugins: [
+    react(),
+    basicSsl(), // Required for WebXR on mobile
+  ],
+})
+```
+
+- **Flag for David:** after this change, the dev server will run on `https://localhost:5173`. The browser will show a security warning — click "Proceed anyway" (it's a self-signed cert, safe for local dev). On mobile, you'll need to accept the cert warning too.
+
+### Subtask 1.3 — Verify Storybook can import XR without errors
+- Create a minimal smoke-test file `src/stories/three/stories-components/xr/xr.sanity.ts` that simply imports `createXRStore` from `@react-three/xr`:
+
+```ts
+import { createXRStore } from '@react-three/xr'
+export const store = createXRStore()
+```
+
+- Run `pnpm storybook` and confirm there are no import or bundling errors related to `@react-three/xr`.
+- Delete `src/stories/three/stories-components/xr/xr.sanity.ts` after confirming it works — it's only a build check.
+
+---
+
+## Task 2 — Build the WebXR Hello World story
 
 ### Context
-The portfolio currently renders in English only. To attract clients in the DACH region, Spain and Latin America, it needs to support German (DE) and Spanish (ES) alongside English (EN).
+The goal is a Storybook story that renders a simple interactive VR scene: a colored box in 3D space that toggles color when clicked. It must work on mobile via WebXR VR mode, and optionally be testable on desktop via the `@react-three/xr` built-in emulator.
 
-### Requirements
-[x] Complete the i18n system `react-i18next` which I have started months ago, and I am sure not all the tags have its own translator in ES, and actually in DE has not been already created.
-[x] I have created a structure for `react-i18next` based on the portfolio components. I you think you can improve some properties, go ahead, but tell me the changes.
-[x] All visible UI text must be translatable: navigation labels, section headings, body copy, button labels, form placeholders, and footer text. If you find some plain text on portfolio, parametrize it, adding it to en.json and translate them to DE and ES.
-[x] Check that the language toggle <LanguageSelector/> (EN / DE / ES) in the navigation bar, visible on all screen sizes.
-[x] Focus only on the portfolio. I mean only src/components folder. Do **not** touch any internal of src/stories, because all the text it's get as parameter or the comopnents are not being used in portfolio.
-[x] Translation files are in src/i18n/locales/ (i.e. src/i18n/locales/en.json ) and should be organized per language, e.g.:
-  ```
-  /locales/en.json
-  /locales/de.json
-  /locales/es.json
-  ```
-[x] Default language should be detected from the browser's `navigator.language` and fall back to `EN`.
-[x] The selected language should persist across page reloads (localStorage or cookie).
+### Checklist — mark each item `[x]` when done
 
-### Subtask 3.2 — i18n-aware Data Layer for `src/data/`
+- [x] **2.1** Create `XRHelloWorld.tsx` in `src/stories/three/stories-components/xr/`
+- [x] **2.2** Create `XRHelloWorld.stories.tsx` in `src/stories/three/stories-components/xr/`
+- [x] **2.3** Create `README.md` in `src/stories/three/stories-components/xr/`
+- [x] **2.3** Verify story appears under `Three / Experiences / XR` in Storybook sidebar
 
-#### Context
-UI strings are translated via `react-i18next`, but content in `src/data/*.ts` (project descriptions, milestone narratives, project titles) is hardcoded in English. This subtask makes the data layer language-aware while keeping data in `src/data/` and preserving TypeScript type safety. Skills and tools stay English-only (professional terms standard across DE/ES tech contexts).
+---
 
-#### Architecture: Language-keyed Records + Getter Functions
-Each data file exposes `getX(lang: Lang): T` getters. The portfolio root reads `i18n.language` and passes the right data down. Storybook stories keep importing the named EN exports unchanged.
+### Subtask 2.1 — Create the XR Hello World component
+Create `src/stories/three/stories-components/xr/XRHelloWorld.tsx`:
 
-#### What gets translated
-- `milestones`: `description` only (title/place are proper nouns)
-- `projectsData` (3 entries): `projectPublicTitle`, `subtitle`, `content`
-- `miniProjects` (6 entries): `projectPublicTitle`, `resume`
-- `skills`, `tools`: no translation
+```tsx
+import { Canvas } from '@react-three/fiber'
+import { XR, createXRStore } from '@react-three/xr'
+import { useState } from 'react'
 
-#### Subtasks
+const store = createXRStore({
+  emulate: 'metaQuest3',
+  layers: false,
+  anchors: false,
+  handTracking: false,
+  bodyTracking: false,
+  meshDetection: false,
+  planeDetection: false,
+  hitTest: false,
+  domOverlay: false,
+})
 
-[x] Add `export type Lang = 'en' | 'es' | 'de'` to `src/interfaces/projects.ts`
+export function XRHelloWorld() {
+  const [active, setActive] = useState(false)
 
-[x] **`src/data/experience.ts`**
-  [x] Wrap milestones in `Record<Lang, Milestone[]>` with EN/ES/DE versions — titles and descriptions translated
-  [x] Export `getMilestones(lang: Lang): Milestone[]`
-  [x] Wrap skills in `Record<Lang, SkillCategory[]>` with EN/ES/DE versions — categories and items translated
-  [x] Export `getSkills(lang: Lang): SkillCategory[]`
-  [x] Tools left as language-agnostic; `getAllSkills()`, `getAllTools()` preserved
-  [x] Update `toolsAndExprience` to use `getMilestones('en')` for backwards compat
+  return (
+    <div style={{ width: '100vw', height: '100vh', position: 'relative' }}>
+      <button
+        onClick={() => store.enterVR()}
+        style={{
+          position: 'absolute',
+          top: 16,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 10,
+          padding: '12px 24px',
+          fontSize: '16px',
+          cursor: 'pointer',
+        }}
+      >
+        Enter VR
+      </button>
+      <Canvas>
+        <XR store={store}>
+          <ambientLight intensity={0.8} />
+          <mesh
+            position={[0, 1, -1]}
+            onClick={() => setActive((v) => !v)}
+          >
+            <boxGeometry args={[0.3, 0.3, 0.3]} />
+            <meshStandardMaterial color={active ? 'hotpink' : 'royalblue'} />
+          </mesh>
+        </XR>
+      </Canvas>
+    </div>
+  )
+}
+```
 
-[x] **`src/data/projects.ts`**
-  [x] Wrap `projectsData` in `Record<Lang, Record<string, Project>>` (only `projectPublicTitle`, `subtitle`, `content` differ)
-  [x] Wrap `miniProjects` in `Record<Lang, MiniProject[]>` (only `projectPublicTitle`, `resume` differ)
-  [x] Export `getProjectsData(lang: Lang)` and `getMiniProjects(lang: Lang)`
-  [x] Keep named exports `projectsData` and `miniProjects` as EN aliases for Storybook backwards compat
+### Subtask 2.2 — Create the Storybook story
+Create `src/stories/three/stories-components/xr/XRHelloWorld.stories.tsx`:
 
-[x] **`src/portfolio/components/portfolio.component.tsx`**
-  [x] Read `i18n.language as Lang` at the `Portfolio` root
-  [x] Replace static `projectsData`/`miniProjects` imports with `getProjectsData(lang)`/`getMiniProjects(lang)` calls
-  [x] Replace spread with explicit `milestones={getMilestones(lang)}`, `skills={getSkills(lang)}`, `tools={tools}`
+```tsx
+import type { Meta, StoryObj } from '@storybook/react'
+import { XRHelloWorld } from './XRHelloWorld'
 
-[x] Verify: `pnpm tsc --noEmit` → zero TypeScript errors
+const meta: Meta<typeof XRHelloWorld> = {
+  title: 'Three/Experiences/XR',
+  component: XRHelloWorld,
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        story:
+          'A basic WebXR VR scene. Click "Enter VR" on a compatible mobile device (Android + Chrome) to launch. On desktop, disable the Immersive Web Emulator extension so the built-in @react-three/xr emulator activates.',
+      },
+    },
+  },
+}
+
+export default meta
+type Story = StoryObj<typeof XRHelloWorld>
+
+export const HelloWorld: Story = {}
+```
+
+### Subtask 2.3 — Mobile testing instructions (no code required)
+No code changes needed for this subtask — create `src/stories/three/stories-components/xr/README.md` with testing instructions for VR on Android, desktop emulator, and iOS limitations.
+
+---
+
+## Task 3 — Migrate to VR session and downgrade to v5.5.0
+
+### Context
+The v6 API (`createXRStore`, `store.enterVR()`) is fundamentally incompatible with the Immersive Web Emulator Chrome extension due to an `XRWebGLBinding` polyfill mismatch — the emulator's polyfill returns a session object that fails v6's type guard, crashing session startup. v5.5.0 uses a simpler session flow that the polyfill handles correctly, as confirmed by the official CodeSandbox demo. This task downgrades to v5.5.0 and rewrites the component using the v5 API.
+
+### Checklist — mark each item `[x]` when done
+
+- [x] **3.1** Downgrade `@react-three/xr` from v6.6.29 to v5.5.0
+- [x] **3.2** Rewrite `XRHelloWorld.tsx` using v5 API: `<VRButton>` + `<XR>` + `<Controllers>` + `<Interactive>`
+- [x] **3.3** Remove `createXRStore` — v5 manages session state internally via `<XR>` context
+- [x] **3.4** Use `<Interactive onSelect>` for controller trigger interactions (replaces v6 mesh `onClick` in XR mode)
+- [x] **3.5** Update story description in `XRHelloWorld.stories.tsx`
+- [x] **3.6** Rewrite `README.md` — remove AR/camera instructions, document VR + Immersive Web Emulator
+- [x] **3.7** Move all XR files into `src/stories/three/stories-components/xr/`
+- [x] **3.8** Update all AR references in `TASKS.md` to VR
 
 ---
 
 ## Notes for Claude
 
-[] Tasks are listed in recommended execution order but can be tackled independently.
-[] Task 1 is the highest priority and most scoped — start there if uncertain.
-[] When in doubt about scope, do less and ask. Avoid touching unrelated components.
-[] After completing each task, briefly summarize what was changed and flag anything that needs David's manual input (e.g. actual PDF files for Task 2, final copy for Task 3 translations).
+- Do not modify any existing stories or components outside `src/stories/three/stories-components/xr/`.
+- The import path in the story file is relative (`./XRHelloWorld`) since component and story live in the same folder.
+- The `@react-three/xr` built-in emulator (activated via `emulate: 'metaQuest3'`) is the correct desktop testing path — the Immersive Web Emulator Chrome extension conflicts with it and should be disabled.
+- iOS does not support WebXR VR — do not attempt any iOS workarounds, just document it.
+- If `@react-three/xr` v6 API differs from what's written here, prefer the official docs at https://docs.pmnd.rs/xr/getting-started/introduction over the code snippets above.
+- Run `pnpm storybook` after each subtask to confirm no regressions.
