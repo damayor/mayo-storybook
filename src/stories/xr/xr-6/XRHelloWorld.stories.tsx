@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { XRHelloWorld } from './XRHelloWorld'
 
 const meta: Meta<typeof XRHelloWorld> = {
-  title: 'Three/Experiences/XR',
+  title: 'XR/pmndrs-XR-v6',
   component: XRHelloWorld,
   parameters: {
     layout: 'fullscreen',
