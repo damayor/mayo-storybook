@@ -20,8 +20,8 @@
   "about": {
     "title": "About Me",
     "intro": "Six-plus years delivering production-grade web platforms and digital products for global brands — available for freelance projects and open to full-time engagements.",
-    "experience": "My work spans global brands: 3D product configurators for Volvo and Jeep, checkout infrastructure at adidas supporting transactions across 30+ countries, and real-time architectural visualizations for Amarilo and other real estate leaders through Umbra 3D Studio. I work across the full stack — from React, Three.js and Angular on the frontend to Node.js, CI/CD pipelines and Kubernetes on the systems side. Nowadays working with an AI-augmented workflow (Claude, Gemini, NotebookLM) to ship faster without cutting corners on quality.",
-    "tagline": "I write code in OOP; I think in three dimensions; I celebrate in salsa.",
+    "experience": "My work spans global brands: 3D product configurators for Volvo and Jeep, checkout infrastructure at adidas supporting transactions across 30+ countries, and real-time architectural visualizations for Amarilo and other real estate leaders through Umbra 3D Studio. I work across the full stack — from React, Three.js and Angular on the frontend to Node.js, CI/CD pipelines and Kubernetes on the systems side. Nowadays working with an AI-augmented workflow (Claude Code, Gemini, NotebookLM) to ship faster without cutting corners on quality.",
+    "tagline": "I write code in OOP; I think in Matrix 4x4; I celebrate in salsa.",
     "mainSkills": {
       "frontend": "Frontend Engineering",
       "xr": "3D / XR Development",
