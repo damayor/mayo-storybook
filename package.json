@@ -6,13 +6,15 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-"storybook": "storybook dev --ci -p 6006",
+    "storybook": "storybook dev --ci -p 6006",
     "storybook:prd": "STORYBOOK_ENV=production storybook dev --ci -p 6006",
     "build-storybook": "storybook build",
     "build-storybook:prd": "STORYBOOK_ENV=production storybook build",
     "tailwind:build": "tailwindcss -i ./src/index.css -o ./dist/tailwind.css --minify",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "deploy:portfolio": "bash deploy.sh",
+    "deploy:storybook": "bash deploy.sh"
   },
   "dependencies": {
     "@react-spring/three": "^10.0.2",

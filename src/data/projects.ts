@@ -84,6 +84,13 @@ const _sharedMiniProjects = [
     technologies: ["Unreal", "Cpp", "Android"],
     image: "/assets/images/projects/xr/swapPuzzle_random.jpg",
   },
+  {
+     projectRealTitle: "LiDAR Sensors with Three.Js",
+    tags: ["Singal Tracking"],
+    technologies: ["React", "Python", "Three.js"],
+    image: "/assets/images/projects/xr/swapPuzzle_random.jpg",
+    // Arquitectura de visores multi-sensor para el dataset nuScenes, integrando FastAPI (Python) y R3F para la visualización 3D de nubes de puntos LiDAR
+  }
 ];
 
 // ─── Language-keyed translatable content ─────────────────────────────────────

@@ -117,6 +117,14 @@ Each data file exposes `getX(lang: Lang): T` getters. The portfolio root reads `
 
 [x] Verify: `pnpm tsc --noEmit` → zero TypeScript errors
 
+
+More Projects
+  button
+  do more projects
+
+Footer con el Printing
+
+
 ---
 
 ## Notes for Claude
