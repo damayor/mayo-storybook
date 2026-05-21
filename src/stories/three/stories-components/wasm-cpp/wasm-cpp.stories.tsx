@@ -16,8 +16,6 @@ const meta = {
           <gridHelper 
             args={[20, 10, 0xbbb, 0xbbb]} 
             position={[0, 0, 0]}
-            // material-opacity={opacity}
-            // material-transparent
           />
           <Story />
         </Suspense>
