@@ -2,10 +2,22 @@ import { useFrame } from '@react-three/fiber'
 import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import cityParserModule from './obj_parser.js'; // Tu código generado por emcc
+import { useControls, folder } from 'leva';
 
 
 export function BerlinCityBackground() {
   const [vertices, setVertices] = useState<Float32Array | null>(null);
+  const { posX, posY, posZ, rotX, rotY, rotZ, scale } = useControls({
+    Transform: folder({
+      posX: { value: 0, min: -500, max: 500, step: 1, label: 'Pos X' },
+      posY: { value: 0, min: -500, max: 500, step: 1, label: 'Pos Y' },
+      posZ: { value: 0, min: -500, max: 500, step: 1, label: 'Pos Z' },
+      rotX: { value: 0, min: -Math.PI, max: Math.PI, step: 0.01, label: 'Rot X' },
+      rotY: { value: 0, min: -Math.PI, max: Math.PI, step: 0.01, label: 'Rot Y' },
+      rotZ: { value: 0, min: -Math.PI, max: Math.PI, step: 0.01, label: 'Rot Z' },
+      scale: { value: 1, min: 0.01, max: 10, step: 0.01, label: 'Scale' },
+    })
+  })
 
   useEffect(() => {
     async function loadCityData() {
@@ -44,22 +56,11 @@ export function BerlinCityBackground() {
 
 
   return (
-    // <mesh scale={1}>
-    //   <bufferGeometry>
-    //     <bufferAttribute
-    //       attach="attributes-position"
-    //       count={vertices.length / 3}
-    //       args={[vertices, 3]}
-
-    //     />
-    //   </bufferGeometry>
-    //   {/* <boxGeometry args={[1, 1, 1]} /> */}
-
-    //   {/* Aquí aplicas tus shaders "tecno" o scanlines */}
-    //   <meshBasicMaterial color="#00ff00" wireframe />
-    // </mesh>
-
-    <points scale={1}>
+    <points
+      position={[posX, posY, posZ]}
+      rotation={[rotX, rotY, rotZ]}
+      scale={scale}
+    >
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
