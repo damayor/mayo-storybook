@@ -47,5 +47,23 @@
     "cta": "Disponible para proyectos freelance y roles de tiempo completo",
     "calendly": "¡Trabajemos Juntos!",
     "cv": "Curriculum"
+  },
+  "impressum": {
+    "footerLink": "Aviso Legal",
+    "privacyLink": "Privacidad",
+    "title": "Aviso Legal (Impressum)",
+    "legalBasis": "Información según § 5 DDG (ley alemana)",
+    "ownerLabel": "Responsable del sitio web",
+    "name": "David Mayorga-Herrera",
+    "addressLine1": "Otto-Suhr-Allee 106C",
+    "addressLine2": "10585 Berlin",
+    "addressLine3": "Alemania",
+    "contactLabel": "Contacto",
+    "email": "david@mayinteractive.io",
+    "phone": "Tel.: +49 1525 2198970",
+    "professionLabel": "Título profesional",
+    "profession": "Ingeniero de Software Freelance",
+    "disclaimerTitle": "Aviso de responsabilidad",
+    "disclaimerText": "A pesar de un cuidadoso control del contenido, no asumimos ninguna responsabilidad por el contenido de los enlaces externos. Los operadores de las páginas enlazadas son los únicos responsables de su contenido."
   }
 }
