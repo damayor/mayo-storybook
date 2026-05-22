@@ -55,10 +55,10 @@ const _sharedMiniProjects = [
     image: "/assets/images/projects/xr/OH_Resident.JPG",
   },
   {
-    projectRealTitle: "Cv Angular renderer",
-    tags: ["Full-Stack", "File Generator"],
-    technologies: ["Angular", "NodeJS", "Typescript", "Tailwind"],
-    image: "/assets/images/projects/reliability/cv-renderer.png",
+    projectRealTitle: "SRE in Checkout Service",
+    tags: ["DevOps", "Incident management", "Code Quality"],
+    technologies: ["Jenkins", "Linux", "K8", "Grafana", "Docker"],
+    image: "/assets/images/projects/reliability/RealisticSRE.webp",
   },
   {
     projectRealTitle: "ARMobile",
@@ -67,10 +67,10 @@ const _sharedMiniProjects = [
     image: "/assets/images/projects/xr/LisboaAR.png",
   },
   {
-    projectRealTitle: "SRE in Checkout Service",
-    tags: ["DevOps", "Incident management", "Code Quality"],
-    technologies: ["Jenkins", "Linux", "K8", "Grafana", "Docker"],
-    image: "/assets/images/projects/reliability/RealisticSRE.webp",
+    projectRealTitle: "Cv Angular renderer",
+    tags: ["Full-Stack", "File Generator"],
+    technologies: ["Angular", "NodeJS", "Typescript", "Tailwind"],
+    image: "/assets/images/projects/reliability/cv-renderer.png",
   },
   {
     projectRealTitle: "Virtual Reality in Unity",
@@ -84,13 +84,13 @@ const _sharedMiniProjects = [
     technologies: ["Unreal", "Cpp", "Android"],
     image: "/assets/images/projects/xr/swapPuzzle_random.jpg",
   },
-  {
-     projectRealTitle: "LiDAR Sensors with Three.Js",
-    tags: ["Singal Tracking"],
-    technologies: ["React", "Python", "Three.js"],
-    image: "/assets/images/projects/xr/swapPuzzle_random.jpg",
-    // Arquitectura de visores multi-sensor para el dataset nuScenes, integrando FastAPI (Python) y R3F para la visualización 3D de nubes de puntos LiDAR
-  }
+  // { todo
+  //    projectRealTitle: "LiDAR Sensors with Three.Js",
+  //   tags: ["Singal Tracking"],
+  //   technologies: ["React", "Python", "Three.js"],
+  //   image: "/assets/images/projects/xr/swapPuzzle_random.jpg",
+  //   // Arquitectura de visores multi-sensor para el dataset nuScenes, integrando FastAPI (Python) y R3F para la visualización 3D de nubes de puntos LiDAR
+  // }
 ];
 
 // ─── Language-keyed translatable content ─────────────────────────────────────
@@ -158,25 +158,25 @@ const _projectsText: Record<Lang, Record<string, ProjectText>> = {
 const _miniProjectsText: Record<Lang, MiniProjectText[]> = {
   en: [
     { projectPublicTitle: "Immersive Medical Trainer", resume: "Full-scale serious game combining visual and haptic interaction for immersive training experiences." },
-    { projectPublicTitle: "PDF Curriculum Generator", resume: "Server-based tool that renders user data into multiple CV designs and exports them as PDF." },
-    { projectPublicTitle: "AR Paintings Experience", resume: "AR experience that recognizes world-city paintings and reveals cultural elements on your mobile device." },
     { projectPublicTitle: "SRE in Backend Orchestrator", resume: "Improved reliability of the Checkout via observability, alerts, and on-call support, with optimized CI/CD pipelines." },
+    { projectPublicTitle: "AR Paintings Experience", resume: "AR experience that recognizes world-city paintings and reveals cultural elements on your mobile device." },
+    { projectPublicTitle: "PDF Curriculum Generator", resume: "Server-based tool that renders user data into multiple CV designs and exports them as PDF." },
     { projectPublicTitle: "Instructor to Game Devs (UNAL + SENA)", resume: "Summer course for high-school students covering materials, humanoids, animation, and scripting." },
     { projectPublicTitle: "Swap Puzzle", resume: "Casual game for mobile devices." },
   ],
   es: [
     { projectPublicTitle: "Simulador Médico Inmersivo", resume: "Videojuego serio a escala real que combina interacción visual y háptica para experiencias de entrenamiento inmersivo." },
-    { projectPublicTitle: "Generador de CV en PDF", resume: "Herramienta basada en servidor que renderiza datos del usuario en múltiples diseños de CV y los exporta como PDF." },
-    { projectPublicTitle: "Experiencia AR con Pinturas", resume: "Experiencia de AR que reconoce pinturas de ciudades del mundo y revela elementos culturales en tu dispositivo móvil." },
     { projectPublicTitle: "SRE en Orquestador Backend", resume: "Mejoré la confiabilidad del Checkout mediante observabilidad, alertas y soporte on-call, con pipelines de CI/CD optimizados." },
+    { projectPublicTitle: "Experiencia AR con Pinturas", resume: "Experiencia de AR que reconoce pinturas de ciudades del mundo y revela elementos culturales en tu dispositivo móvil." },
+    { projectPublicTitle: "Generador de CV en PDF", resume: "Herramienta basada en servidor que renderiza datos del usuario en múltiples diseños de CV y los exporta como PDF." },
     { projectPublicTitle: "Instructor de Desarrollo de Videojuegos (UNAL + SENA)", resume: "Curso de verano para estudiantes de bachillerato sobre materiales, humanoides, animación y scripting." },
     { projectPublicTitle: "Swap Puzzle", resume: "Juego casual para dispositivos móviles." },
   ],
   de: [
     { projectPublicTitle: "Immersiver Medizintrainer", resume: "Serious Game in Originalgröße, das visuelle und haptische Interaktion für immersive Trainingserfahrungen kombiniert." },
-    { projectPublicTitle: "PDF-Lebenslauf-Generator", resume: "Serverbasiertes Tool, das Benutzerdaten in mehrere Lebenslauf-Designs rendert und als PDF exportiert." },
-    { projectPublicTitle: "AR-Gemälde-Erlebnis", resume: "AR-Erfahrung, die Gemälde von Weltstädten erkennt und kulturelle Elemente auf dem Mobilgerät enthüllt." },
     { projectPublicTitle: "SRE im Backend-Orchestrator", resume: "Verbesserte Checkout-Zuverlässigkeit durch Observability, Alerts und On-Call-Support mit optimierten CI/CD-Pipelines." },
+    { projectPublicTitle: "AR-Gemälde-Erlebnis", resume: "AR-Erfahrung, die Gemälde von Weltstädten erkennt und kulturelle Elemente auf dem Mobilgerät enthüllt." },
+    { projectPublicTitle: "PDF-Lebenslauf-Generator", resume: "Serverbasiertes Tool, das Benutzerdaten in mehrere Lebenslauf-Designs rendert und als PDF exportiert." },
     { projectPublicTitle: "Spieleentwicklungs-Kursleiter (UNAL + SENA)", resume: "Sommerkurs für Schüler mit Schwerpunkt auf Materialien, Humanoiden, Animation und Scripting." },
     { projectPublicTitle: "Swap Puzzle", resume: "Casual-Spiel für mobile Geräte." },
   ],

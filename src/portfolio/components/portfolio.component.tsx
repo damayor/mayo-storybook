@@ -2,7 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
-import { Menu, X, Github, Linkedin, Mail, FileJson2, Terminal, RectangleGoggles, Instagram } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Mail, FileJson2, Terminal, RectangleGoggles, Instagram, ChevronDown } from 'lucide-react';
+import { ImpressumModal } from './impressum-modal';
+import { Footer } from './footer';
 import mayintLogo from '/assets/mayint.svg'
 import { useTranslation } from 'react-i18next';
 
@@ -231,12 +233,18 @@ function AboutSection() {
   );
 }
 
+const BATCH_SIZE = 3;
+
 function ProjectsSection({ lang }: { lang: Lang }) {
   const { t } = useTranslation();
   const projData = Object.values(getProjectsData(lang));
   const miniProjData = getMiniProjects(lang);
   const { ref: mainRef, inView: mainInView } = useInView({ threshold: 0.1 });
-  const { ref: otherRef, inView: otherInView } = useInView({ threshold: 0.1 });
+  const [visibleCount, setVisibleCount] = useState(0);
+  const hasMore = visibleCount < miniProjData.length;
+
+  const showMore = () =>
+    setVisibleCount(c => Math.min(c + BATCH_SIZE, miniProjData.length));
 
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
@@ -260,15 +268,42 @@ function ProjectsSection({ lang }: { lang: Lang }) {
           </div>
         </div>
 
-        <div ref={otherRef} className={`max-w-7xl mx-auto py-16 sm:py-20 ${otherInView ? revealed : hidden}`}>
-          <Heading level={2} className='text-5xl font-lato font-bold mb-12 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center' variant='primary'>
-            {t('projects.otherProjects')}
-          </Heading>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {miniProjData.map((project, index) => (
-              <MiniCard key={index} {...project} />
-            ))}
-          </div>
+        <div className="max-w-7xl mx-auto py-16 sm:py-20">
+          {visibleCount === 0 ? (
+            <div className="flex justify-center pt-4">
+              <button
+                onClick={showMore}
+                className="flex flex-col items-center gap-2 text-gray-500 hover:text-camelot-400 transition-colors group"
+                aria-label={t('projects.otherProjects')}
+              >
+                <span className="text-xs uppercase tracking-widest">{t('projects.otherProjects')}</span>
+                <ChevronDown size={28} className="animate-bounce group-hover:text-camelot-400" />
+              </button>
+            </div>
+          ) : (
+            <>
+              <Heading level={2} className='text-5xl font-lato font-bold mb-12 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center' variant='primary'>
+                {t('projects.otherProjects')}
+              </Heading>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {miniProjData.slice(0, visibleCount).map((project, index) => (
+                  <MiniCard key={index} {...project} />
+                ))}
+              </div>
+              {hasMore && (
+                <div className="flex justify-center mt-10">
+                  <button
+                    onClick={showMore}
+                    className="flex flex-col items-center gap-2 text-gray-500 hover:text-camelot-400 transition-colors group"
+                    aria-label={t('projects.viewMore')}
+                  >
+                    <span className="text-xs uppercase tracking-widest">{t('projects.viewMore')}</span>
+                    <ChevronDown size={28} className="animate-bounce group-hover:text-camelot-400" />
+                  </button>
+                </div>
+              )}
+            </>
+          )}
         </div>
       </div>
     </section>
@@ -348,6 +383,7 @@ export default function Portfolio() {
   const lang = (i18n.language as Lang) ?? 'en';
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<SectionType>(SECTIONS.home);
+  const [impressumOpen, setImpressumOpen] = useState(false);
 
   const sectionRefs = {
     home: useRef<HTMLDivElement>(null),
@@ -417,7 +453,13 @@ export default function Portfolio() {
         <div ref={sectionRefs.contact} className="pointer-events-auto">
           <ContactSection lang={lang} />
         </div>
+
+        <div className="pointer-events-auto">
+          <Footer onImpressumOpen={() => setImpressumOpen(true)} />
+        </div>
       </main>
+
+      <ImpressumModal isOpen={impressumOpen} onClose={() => setImpressumOpen(false)} />
 
       {/* Indicador de sección */}
       <div className="fixed right-1 sm:right-6 top-1/2 -translate-y-1/2 z-30 space-y-1 sm:space-y-3 hidden sm:block">

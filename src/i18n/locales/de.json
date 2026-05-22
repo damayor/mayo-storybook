@@ -47,5 +47,23 @@
     "cta": "Offen für Freelance-Projekte und Festanstellungen",
     "calendly": "Zusammenarbeiten",
     "cv": "Lebenslauf"
+  },
+  "impressum": {
+    "footerLink": "Impressum",
+    "privacyLink": "Datenschutz",
+    "title": "Impressum",
+    "legalBasis": "Angaben gemäß § 5 DDG",
+    "ownerLabel": "Betreiber der Website",
+    "name": "David Mayorga-Herrera",
+    "addressLine1": "Otto-Suhr-Allee 106C",
+    "addressLine2": "10585 Berlin",
+    "addressLine3": "Deutschland",
+    "contactLabel": "Kontakt",
+    "email": "david@mayinteractive.io",
+    "phone": "Tel.: +49 1525 2198970",
+    "professionLabel": "Berufsbezeichnung",
+    "profession": "Freiberuflicher Software-Ingenieur",
+    "disclaimerTitle": "Haftungsausschluss",
+    "disclaimerText": "Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich."
   }
 }
