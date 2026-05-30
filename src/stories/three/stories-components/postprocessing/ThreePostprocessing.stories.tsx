@@ -7,15 +7,36 @@ const meta: Meta<typeof ThreePostprocessing> = {
   title: 'three/Postprocessing',
   component: ThreePostprocessing,
   argTypes: {
-    noiseOpacity:    { control: { type: 'range', min: 0,   max: 0.3, step: 0.01 } },
-    scanlineDensity: { control: { type: 'range', min: 0.5, max: 3,   step: 0.1  } },
-    vignetteOffset:  { control: { type: 'range', min: 0,   max: 0.8, step: 0.01 } },
+    // — Noise (film grain) —
+    noiseOpacity:      { control: { type: 'range', min: 0,      max: 0.5,   step: 0.01   }, description: 'Grain intensity' },
+
+    // — Scanline (CRT lines) —
+    scanlineDensity:   { control: { type: 'range', min: 0.5,    max: 5,     step: 0.1    }, description: 'Line spacing — higher = tighter lines' },
+    scanlineOpacity:   { control: { type: 'range', min: 0,      max: 1,     step: 0.01   }, description: 'Line visibility' },
+
+    // — Chromatic Aberration (RGB channel shift) —
+    chromaticOffsetX:  { control: { type: 'range', min: -0.01,      max: 0.015, step: 0.0001 }, description: 'Horizontal channel split width' },
+    chromaticOffsetY:  { control: { type: 'range', min: -0.01,      max: 0.015, step: 0.0001 }, description: 'Vertical channel split width' },
+
+    // — Vignette (edge darkening) —
+    vignetteOffset:    { control: { type: 'range', min: 0,      max: 1,     step: 0.01   }, description: 'How far the dark border extends inward' },
+    vignetteDarkness:  { control: { type: 'range', min: 0,      max: 1,     step: 0.01   }, description: 'Darkness of the vignette border' },
+
+    // — Glitch (signal corruption) —
+    glitchDelayMin:    { control: { type: 'range', min: 0,      max: 30,    step: 0.5    }, description: 'Min seconds between glitch bursts' },
+    glitchDelayMax:    { control: { type: 'range', min: 0,      max: 30,    step: 0.5    }, description: 'Max seconds between glitch bursts' },
+    glitchDurationMin: { control: { type: 'range', min: 0,      max: 1,     step: 0.01   }, description: 'Min duration of each glitch burst' },
+    glitchDurationMax: { control: { type: 'range', min: 0,      max: 1,     step: 0.01   }, description: 'Max duration of each glitch burst' },
+    glitchStrengthMin: { control: { type: 'range', min: 0,      max: 0.5,   step: 0.01   }, description: 'Min pixel displacement during glitch' },
+    glitchStrengthMax: { control: { type: 'range', min: 0,      max: 0.5,   step: 0.01   }, description: 'Max pixel displacement during glitch' },
+    glitchRatio:       { control: { type: 'range', min: 0,      max: 1,     step: 0.01   }, description: 'Fraction of time spent in weak-glitch mode vs strong' },
   },
+  // TodDo MayoCanvas
   decorators: [
     (Story) => (
       <div style={{ width: '800px', height: '600px' }}>
         <Canvas
-          camera={{ position: [-30, 0.5, 0], fov: 60 }}
+          camera={{ position: [-30, 0.5, 0], rotation: [-0.3, -0.94, -0.24], fov: 60 }}
           gl={{ antialias: false }}
         >
           <color attach="background" args={['#111111']} />
@@ -34,8 +55,19 @@ type Story = StoryObj<typeof ThreePostprocessing>
 
 export const Default: Story = {
   args: {
-    noiseOpacity: 0.09,
-    scanlineDensity: 1.4,
-    vignetteOffset: 0.28,
+    noiseOpacity:      0.5,
+    scanlineDensity:   0.5,
+    scanlineOpacity:   0.9,
+    chromaticOffsetX:  0.004,
+    chromaticOffsetY:  -0.003,
+    vignetteOffset:    0.58,
+    vignetteDarkness:  0.58,
+    glitchDelayMin:    2,
+    glitchDelayMax:    3,
+    glitchDurationMin: 0.6,
+    glitchDurationMax: 0.9,
+    glitchStrengthMin: 0.3,
+    glitchStrengthMax: 0.38,
+    glitchRatio:       1.0,
   },
 }
