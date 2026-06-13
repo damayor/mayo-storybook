@@ -1,22 +1,31 @@
 import { useEffect, useState } from 'react'
 import cityParserModule from './obj_parser.js'
 import { useControls, folder } from 'leva';
+import { useCameraDebug } from '../../three/non-stories-components/hooks/useCameraDebug.js';
 
+const posX  = -187
+const posY  = -62
+const posZ  = 193
+const rotX  = -Math.PI / 2
+const rotY  = 0
+const rotZ  = 0
+const scale = 1
 
 export function ObjRenderer() {
   const [vertices, setVertices] = useState<Float32Array | null>(null);
+  useCameraDebug()
 
-  const { posX, posY, posZ, rotX, rotY, rotZ, scale } = useControls({
-    Transform: folder({
-      posX: { value: -187, min: -500, max: 500, step: 1, label: 'Pos X' },
-      posY: { value: -62, min: -500, max: 500, step: 1, label: 'Pos Y' },
-      posZ: { value: 193, min: -500, max: 500, step: 1, label: 'Pos Z' },
-      rotX: { value: -Math.PI/2, min: -Math.PI, max: Math.PI, step: 0.01, label: 'Rot X' },
-      rotY: { value: 0, min: -Math.PI, max: Math.PI, step: 0.01, label: 'Rot Y' },
-      rotZ: { value: 0, min: -Math.PI, max: Math.PI, step: 0.01, label: 'Rot Z' },
-      scale: { value: 1, min: 0.01, max: 10, step: 0.01, label: 'Scale' },
-    })
-  })
+  // const { posX, posY, posZ, rotX, rotY, rotZ, scale } = useControls({
+  //   Transform: folder({
+  //     posX: { value: -187, min: -500, max: 500, step: 1, label: 'Pos X' },
+  //     posY: { value: -62, min: -500, max: 500, step: 1, label: 'Pos Y' },
+  //     posZ: { value: 193, min: -500, max: 500, step: 1, label: 'Pos Z' },
+  //     rotX: { value: -Math.PI/2, min: -Math.PI, max: Math.PI, step: 0.01, label: 'Rot X' },
+  //     rotY: { value: 0, min: -Math.PI, max: Math.PI, step: 0.01, label: 'Rot Y' },
+  //     rotZ: { value: 0, min: -Math.PI, max: Math.PI, step: 0.01, label: 'Rot Z' },
+  //     scale: { value: 1, min: 0.01, max: 10, step: 0.01, label: 'Scale' },
+  //   })
+  // })
 
   useEffect(() => {
     async function loadCityData() {
@@ -24,7 +33,7 @@ export function ObjRenderer() {
       const objText = await response.text();
 
       const firstTenLines = objText.split('\n').slice(0, 1000).join('\n');
-      console.log(firstTenLines);
+      // console.log(firstTenLines);
 
       const instance = await cityParserModule();
       const parser = new instance.CityParser();
@@ -33,7 +42,7 @@ export function ObjRenderer() {
 
       const view = parser.get_vertices_view();
 
-      console.log('parsedvertex', view);
+      // console.log('parsedvertex', view);
 
       setVertices(new Float32Array(view));
 
