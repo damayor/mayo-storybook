@@ -69,7 +69,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ['Welcome', 'Three', 'C++', 'Html', 'Pixi', '*' , 'Example'],
+        order: ['Welcome', 'WebGL', 'Three', 'C++', 'Html', 'Pixi', '*' , 'Example'],
       },
       // you can also use a custom sorter function
     },

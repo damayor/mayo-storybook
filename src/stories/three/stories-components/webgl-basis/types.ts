@@ -1,31 +1,23 @@
 /**
- * WebGL Basis - Type definitions
- * Modern TypeScript interfaces for the WebGL sketchup application
+ * WebGL Basis — type definitions
  */
 
-export type PrimitiveType = 'POINTS' | 'LINES' | 'LINE_LOOP' | 'LINE_STRIP' | 'TRIANGLES' | 'TRIANGLE_STRIP' | 'TRIANGLE_FAN';
+export type PrimitiveType =
+  | 'POINTS' | 'LINES' | 'LINE_LOOP' | 'LINE_STRIP'
+  | 'TRIANGLES' | 'TRIANGLE_STRIP' | 'TRIANGLE_FAN';
 
-export type InteractionMode = 'selectClic' | '2ndClic' | '3rdClic';
+/** Wireframe mode: drag vertex, deform face, scale face.
+ *  Faces / Triangles mode: extrude face. */
+export type InteractionMode = 'dragVertex' | 'deformFace' | 'scaleFace' | 'extrudeFace';
 
-export type ViewMode = 'edges' | 'points' | 'faces' | 'triangles' | 'selection-frame';
+/** wireframe = edges + selectable points; points = only vertices (pick demo);
+ *  faces = solid; triangles = 12 colored tris */
+export type ViewMode = 'wireframe' | 'points' | 'faces' | 'triangles';
 
 export type ProjectionType = 'perspective' | 'orthogonal';
 
 export type Vec3 = number[] | Float32Array;
 export type Mat4 = number[] | Float32Array;
-
-export interface Vector3 {
-  x: number;
-  y: number;
-  z: number;
-}
-
-export interface Color {
-  r: number;
-  g: number;
-  b: number;
-  a: number;
-}
 
 export interface ShapeData {
   vertices: number[];
@@ -71,10 +63,9 @@ export interface UIState {
   viewMode: ViewMode;
   projectionType: ProjectionType;
   zoom: number;
-}
-
-export interface PickerState {
-  pickedVertex: number;
-  pickPos: Vector3;
-  renderedToPick: boolean;
+  // Vertex interaction
+  selectedVertexIndex: number | null;
+  hoveredVertexIndex: number | null;
+  isDraggingVertex: boolean;
+  cubeVertices: number[];
 }

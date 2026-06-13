@@ -3,21 +3,14 @@ import React from 'react';
 export const InstructionsPanel: React.FC = () => {
   return (
     <div className="space-y-2">
-      <div className="text-lg font-bold">3D Cube Editor with WebGL</div>
-      <div className="text-sm text-gray-700">
-        <div className="mb-3">
-          <p className="font-semibold mb-2">How to use:</p>
-          <ul className="list-disc list-inside space-y-1">
-            <li>Adjust the <span className="font-semibold">Zoom</span> slider to frame the cube</li>
-            <li>Toggle <span className="font-semibold">Projection Type</span> (Perspective/Orthogonal)</li>
-            <li>Select <span className="font-semibold">View Settings</span> mode (Wireframe/Faces)</li>
-            <li>Left-click on a vertex to select it (future: drag to deform)</li>
-            <li>Right-click + drag to rotate the camera</li>
-          </ul>
-        </div>
-        <div className="text-xs text-gray-600 border-t pt-2">
-          <p className="italic">Built with native WebGL • No frameworks • Pure graphics API</p>
-        </div>
+      <div className="text-sm font-bold">3D Cube Editor — WebGL</div>
+      <div className="text-xs text-gray-700 space-y-1">
+        <div><span className="font-semibold">Hover</span> vertex → orange highlight</div>
+        <div><span className="font-semibold">Left-click</span> vertex → select (white)</div>
+        <div><span className="font-semibold">Drag</span> selected vertex → move in XY</div>
+        <div><span className="font-semibold">Right-drag</span> canvas → rotate camera</div>
+        <div><span className="font-semibold">Zoom</span> slider → frame the cube</div>
+        <div><span className="font-semibold">Esc</span> → deselect vertex</div>
       </div>
     </div>
   );
