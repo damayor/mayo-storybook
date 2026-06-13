@@ -1,193 +1,175 @@
 /**
- * useUI - Custom hook for managing UI state and camera
- * Handles camera updates, interactions, and projections
+ * useUI — UI state, camera, and vertex interaction hook
  */
 
 import { useState, useCallback, useEffect } from 'react';
 import type { UIState, InteractionMode, ViewMode, ProjectionType } from '../types';
+import { getCubeVertices } from '../webgl-utils';
+import { CUBE, CAMERA } from '../config';
 
-const FOV = (55 * Math.PI) / 180;
-const Z_NEAR = 0.1;
-const Z_FAR = 100.0;
+// ── Matrix helpers (minimal, no external dep) ─────────────────────────────────
 
-/**
- * Simple matrix operations (replacement for glMatrix in minimal form)  */
-const mat4 = {
-  create: (): number[] => [
-    1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1,
-  ],
-  identity: (m: number[]): number[] => {
-    m[0] = m[5] = m[10] = m[15] = 1;
-    m[1] = m[2] = m[3] = m[4] = m[6] = m[7] = m[8] = m[9] = m[11] = m[12] = m[13] = m[14] = 0;
-    return m;
-  },
-  translate: (m: number[], x: number, y: number, z: number): number[] => {
-    m[12] = m[0] * x + m[4] * y + m[8] * z + m[12];
-    m[13] = m[1] * x + m[5] * y + m[9] * z + m[13];
-    m[14] = m[2] * x + m[6] * y + m[10] * z + m[14];
-    m[15] = m[3] * x + m[7] * y + m[11] * z + m[15];
-    return m;
-  },
-  rotateX: (m: number[], rad: number): number[] => {
-    const s = Math.sin(rad);
-    const c = Math.cos(rad);
-    const a10 = m[4], a11 = m[5], a12 = m[6], a13 = m[7];
-    const a20 = m[8], a21 = m[9], a22 = m[10], a23 = m[11];
-    m[4] = a10 * c + a20 * s;
-    m[5] = a11 * c + a21 * s;
-    m[6] = a12 * c + a22 * s;
-    m[7] = a13 * c + a23 * s;
-    m[8] = a10 * -s + a20 * c;
-    m[9] = a11 * -s + a21 * c;
-    m[10] = a12 * -s + a22 * c;
-    m[11] = a13 * -s + a23 * c;
-    return m;
-  },
-};
+const identity = (): number[] => [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1];
 
-const vec3 = {
-  create: (x: number = 0, y: number = 0, z: number = 0): number[] => [x, y, z],
-  copy: (v: number[]): number[] => [...v],
-  subtract: (a: number[], b: number[]): number[] => [a[0] - b[0], a[1] - b[1], a[2] - b[2]],
-  normalize: (v: number[]): number[] => {
-    const len = Math.sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
-    return len > 0 ? [v[0] / len, v[1] / len, v[2] / len] : v;
-  },
-  cross: (a: number[], b: number[]): number[] => [
-    a[1] * b[2] - a[2] * b[1],
-    a[2] * b[0] - a[0] * b[2],
-    a[0] * b[1] - a[1] * b[0],
-  ],
-};
+function buildProjection(type: ProjectionType, zoom: number, w: number, h: number): number[] {
+  const m = identity();
+  if (type === 'perspective') {
+    const ymax = (CAMERA.Z_NEAR * Math.tan(CAMERA.FOV_RAD / 2)) / zoom;
+    const xmax = ymax * (w / h);
+    const l=-xmax, r=xmax, t=ymax, b=-ymax, n=CAMERA.Z_NEAR, f=CAMERA.Z_FAR;
+    m[0]=(2*n)/(r-l); m[5]=(2*n)/(t-b);
+    m[8]=(r+l)/(r-l); m[9]=(t+b)/(t-b);
+    m[10]=-(f+n)/(f-n); m[11]=-1;
+    m[14]=-(2*f*n)/(f-n); m[15]=0;
+  } else {
+    const hw=5/zoom, hh=5/zoom, n=CAMERA.Z_NEAR, f=CAMERA.Z_FAR;
+    m[0]=1/hw; m[5]=1/hh; m[10]=-2/(f-n);
+    m[14]=-(f+n)/(f-n);
+  }
+  return m;
+}
 
-export function useUI(canvasWidth: number = 1050, canvasHeight: number = 750) {
+function buildModelView(eye: number[], center: number[]): number[] {
+  const f = norm(sub(center, eye));
+  const s = norm(cross(f, [0,1,0]));
+  const u = cross(s, f);
+  const m = identity();
+  m[0]=s[0]; m[4]=s[1]; m[8]=s[2];
+  m[1]=u[0]; m[5]=u[1]; m[9]=u[2];
+  m[2]=-f[0]; m[6]=-f[1]; m[10]=-f[2];
+  m[12]=-(s[0]*eye[0]+s[1]*eye[1]+s[2]*eye[2]);
+  m[13]=-(u[0]*eye[0]+u[1]*eye[1]+u[2]*eye[2]);
+  m[14]= (f[0]*eye[0]+f[1]*eye[1]+f[2]*eye[2]);
+  return m;
+}
+
+function orbitEye(center: number[], ax: number, ay: number, r: number): number[] {
+  return [
+    center[0] + r * Math.sin(ax) * Math.sin(ay),
+    center[1] + r * Math.cos(ax),
+    center[2] + r * Math.sin(ax) * Math.cos(ay),
+  ];
+}
+
+const sub  = (a: number[], b: number[]) => [a[0]-b[0], a[1]-b[1], a[2]-b[2]];
+const norm = (v: number[]) => { const l=Math.hypot(...v); return l>0?v.map(x=>x/l):v; };
+const cross = (a: number[], b: number[]) => [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]];
+
+// ── Default mode per view ──────────────────────────────────────────────────────
+
+function defaultMode(view: ViewMode): InteractionMode {
+  return (view === 'wireframe' || view === 'points') ? 'dragVertex' : 'extrudeFace';
+}
+
+/** Derive spherical orbit angles and radius from an explicit eye position + center. */
+function eyeToOrbit(eye: number[], center: number[]): { ax: number; ay: number; r: number } {
+  const dx = eye[0] - center[0];
+  const dy = eye[1] - center[1];
+  const dz = eye[2] - center[2];
+  const r  = Math.hypot(dx, dy, dz);
+  const ax = r > 0 ? Math.acos(Math.max(-1, Math.min(1, dy / r))) : 0;
+  const ay = Math.atan2(dx, dz);
+  return { ax, ay, r };
+}
+
+// ── Hook ──────────────────────────────────────────────────────────────────────
+
+export function useUI(canvasWidth = 1050, canvasHeight = 750) {
+  const initVerts  = getCubeVertices(CUBE.P1X, CUBE.P1Y, CUBE.P1Z, CUBE.P2X, CUBE.P2Y, CUBE.P3Z);
+  const initCenter = [...CAMERA.CENTER] as number[];
+  const initEye    = [...CAMERA.INITIAL_EYE] as number[];
+  const { ax: initAX, ay: initAY } = eyeToOrbit(initEye, initCenter);
+
   const [state, setState] = useState<UIState>({
-    projection: mat4.create(),
-    modelview: mat4.create(),
-    eye: vec3.create(1, 2, 2),
-    center: vec3.create(3.0, 1.0, -10.0),
-    angleX: Math.PI / 3,
-    angleY: 0,
-    zoomZ: 1,
-    interactionMode: '2ndClic',
-    viewMode: 'edges',
-    projectionType: 'perspective',
-    zoom: 1.5,
+    projection:          buildProjection('perspective', CAMERA.INITIAL_ZOOM, canvasWidth, canvasHeight),
+    modelview:           buildModelView(initEye, initCenter),
+    eye:                 initEye,
+    center:              initCenter,
+    angleX:              initAX,
+    angleY:              initAY,
+    zoomZ:               1,
+    interactionMode:     'dragVertex',
+    viewMode:            'wireframe',
+    projectionType:      'perspective',
+    zoom:                CAMERA.INITIAL_ZOOM,
+    selectedVertexIndex: null,
+    hoveredVertexIndex:  null,
+    isDraggingVertex:    false,
+    cubeVertices:        initVerts,
   });
 
-  /**
-   * Update projection matrix based on type
-   */
-  const updateProjection = useCallback((uiState: UIState): void => {
-    const proj = mat4.create();
-    mat4.identity(proj);
-
-    if (uiState.projectionType === 'perspective') {
-      const aspectRatio = canvasWidth / canvasHeight;
-      const ymax = (Z_NEAR * Math.tan(FOV / 2)) / uiState.zoom;
-      const xmax = ymax * aspectRatio;
-
-      // Perspective projection matrix
-      const left = -xmax;
-      const right = xmax;
-      const top = ymax;
-      const bottom = -ymax;
-      const near = Z_NEAR;
-      const far = Z_FAR;
-
-      proj[0] = (2 * near) / (right - left);
-      proj[5] = (2 * near) / (top - bottom);
-      proj[8] = (right + left) / (right - left);
-      proj[9] = (top + bottom) / (top - bottom);
-      proj[10] = -(far + near) / (far - near);
-      proj[11] = -1;
-      proj[14] = -(2 * far * near) / (far - near);
-      proj[15] = 0;
-    } else {
-      // Orthogonal projection
-      const orthoWidth = 10 / uiState.zoom;
-      const orthoHeight = 10 / uiState.zoom;
-      const left = -orthoWidth / 2;
-      const right = orthoWidth / 2;
-      const bottom = -orthoHeight / 2;
-      const top = orthoHeight / 2;
-      const near = Z_NEAR;
-      const far = Z_FAR;
-
-      proj[0] = 2 / (right - left);
-      proj[5] = 2 / (top - bottom);
-      proj[10] = -2 / (far - near);
-      proj[12] = -(right + left) / (right - left);
-      proj[13] = -(top + bottom) / (top - bottom);
-      proj[14] = -(far + near) / (far - near);
-    }
-
-    setState((prev) => ({ ...prev, projection: proj }));
-  }, [canvasWidth, canvasHeight]);
-
-  /**
-   * Update model-view matrix based on camera position
-   */
-  const updateModelView = useCallback((uiState: UIState): void => {
-    const modelview = mat4.create();
-    mat4.identity(modelview);
-
-    // Simple lookAt implementation
-    const eyeArray = Array.isArray(uiState.eye) ? uiState.eye : Array.from(uiState.eye);
-    const centerArray = Array.isArray(uiState.center) ? uiState.center : Array.from(uiState.center);
-    const f = vec3.normalize(vec3.subtract(centerArray, eyeArray));
-    const s = vec3.normalize(vec3.cross(f, [0, 1, 0]));
-    const u = vec3.cross(s, f);
-
-    const mv = mat4.create();
-    mv[0] = s[0]; mv[4] = s[1]; mv[8] = s[2];
-    mv[1] = u[0]; mv[5] = u[1]; mv[9] = u[2];
-    mv[2] = -f[0]; mv[6] = -f[1]; mv[10] = -f[2];
-    mv[12] = -eyeArray[0] * s[0] - eyeArray[0] * u[0] - eyeArray[0] * -f[0];
-    mv[13] = -eyeArray[1] * s[1] - eyeArray[1] * u[1] - eyeArray[1] * -f[1];
-    mv[14] = -eyeArray[2] * s[2] - eyeArray[2] * u[2] - eyeArray[2] * -f[2];
-
-    setState((prev) => ({ ...prev, modelview: mv }));
+  // Keep canvas dimensions in sync when called from ResizeObserver
+  const updateCanvasDimensions = useCallback((w: number, h: number) => {
+    setState(prev => ({
+      ...prev,
+      projection: buildProjection(prev.projectionType, prev.zoom, w, h),
+    }));
   }, []);
 
-  /**
-   * Initialize projection and modelview
-   */
-  useEffect(() => {
-    updateProjection(state);
-    updateModelView(state);
-  }, [state.projectionType, state.zoom]);
-
-  /**
-   * Update modelview when camera changes
-   */
-  useEffect(() => {
-    updateModelView(state);
-  }, [state.angleX, state.angleY, state.zoomZ]);
-
   const setInteractionMode = useCallback((mode: InteractionMode) => {
-    setState((prev) => ({ ...prev, interactionMode: mode }));
+    setState(prev => ({ ...prev, interactionMode: mode }));
   }, []);
 
   const setViewMode = useCallback((mode: ViewMode) => {
-    setState((prev) => ({ ...prev, viewMode: mode }));
+    setState(prev => ({
+      ...prev,
+      viewMode: mode,
+      // Reset to a valid interaction mode for the new view
+      interactionMode: defaultMode(mode),
+    }));
   }, []);
 
   const setProjectionType = useCallback((type: ProjectionType) => {
-    setState((prev) => ({ ...prev, projectionType: type }));
-  }, []);
+    setState(prev => ({
+      ...prev,
+      projectionType: type,
+      projection: buildProjection(type, prev.zoom, canvasWidth, canvasHeight),
+    }));
+  }, [canvasWidth, canvasHeight]);
 
   const setZoom = useCallback((zoom: number) => {
-    setState((prev) => ({ ...prev, zoom }));
+    setState(prev => ({
+      ...prev,
+      zoom,
+      projection: buildProjection(prev.projectionType, zoom, canvasWidth, canvasHeight),
+    }));
+  }, [canvasWidth, canvasHeight]);
+
+  // Spherical orbit on right-drag
+  const rotateCamera = useCallback((deltaX: number, deltaY: number) => {
+    setState(prev => {
+      const ax = Math.max(0.05, Math.min(Math.PI - 0.05, (prev.angleX as number) + deltaY * 0.01));
+      const ay = (prev.angleY as number) + deltaX * 0.01;
+      const eye_arr = prev.eye as number[];
+      const ctr_arr = prev.center as number[];
+      const r = Math.hypot(eye_arr[0]-ctr_arr[0], eye_arr[1]-ctr_arr[1], eye_arr[2]-ctr_arr[2]);
+      const newEye = orbitEye(ctr_arr, ax, ay, r);
+      return { ...prev, angleX: ax, angleY: ay, eye: newEye, modelview: buildModelView(newEye, ctr_arr) };
+    });
   }, []);
 
-  const rotateCamera = useCallback((deltaX: number, deltaY: number) => {
-    setState((prev) => ({
-      ...prev,
-      angleX: prev.angleX + deltaY * 0.01,
-      angleY: prev.angleY + deltaX * 0.01,
-    }));
+  const setHoveredVertex     = useCallback((i: number | null) => setState(p => p.hoveredVertexIndex===i ? p : { ...p, hoveredVertexIndex: i }), []);
+  const setSelectedVertex    = useCallback((i: number | null) => setState(p => ({ ...p, selectedVertexIndex: i })), []);
+  const startDraggingVertex  = useCallback(() => setState(p => ({ ...p, isDraggingVertex: true  })), []);
+  const stopDraggingVertex   = useCallback(() => setState(p => ({ ...p, isDraggingVertex: false })), []);
+
+  const updateVertexPosition = useCallback((vi: number, x: number, y: number) => {
+    setState(prev => {
+      const v = [...prev.cubeVertices];
+      v[vi*3]   = x;
+      v[vi*3+1] = y;
+      return { ...prev, cubeVertices: v };
+    });
   }, []);
+
+  const resetCubeVertices = useCallback(() => {
+    setState(prev => ({ ...prev, cubeVertices: getCubeVertices(CUBE.P1X, CUBE.P1Y, CUBE.P1Z, CUBE.P2X, CUBE.P2Y, CUBE.P3Z) }));
+  }, []);
+
+  // Rebuild projection if canvas size changes externally
+  useEffect(() => {
+    setState(prev => ({ ...prev, projection: buildProjection(prev.projectionType, prev.zoom, canvasWidth, canvasHeight) }));
+  }, [canvasWidth, canvasHeight]);
 
   return {
     state,
@@ -196,7 +178,12 @@ export function useUI(canvasWidth: number = 1050, canvasHeight: number = 750) {
     setProjectionType,
     setZoom,
     rotateCamera,
-    updateProjection,
-    updateModelView,
+    setHoveredVertex,
+    setSelectedVertex,
+    startDraggingVertex,
+    stopDraggingVertex,
+    updateVertexPosition,
+    resetCubeVertices,
+    updateCanvasDimensions,
   };
 }
