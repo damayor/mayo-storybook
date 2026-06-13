@@ -3,7 +3,7 @@ export const contactData: Record<string, string> =
 {
   "github": "https://github.com/damayor",
   "instagram": "https://www.instagram.com/may.interactive/",
-  "linkedin": "https://www.linkedin.com/in/demayorgaherrera/",
+  "linkedin": "https://www.linkedin.com/in/davidmayorga-software/",
   "behance": "https://www.behance.net/may_interactive",
   "email": "dr.mayorga20@gmail.com"
 }
@@ -14,12 +14,12 @@ export const socialNetworkLinks = [
     link: "https://mayinteractive.io/"
   },
   {
-    label: "GitHub",
-    link: "https://github.com/damayor"
-  },
-  {
     label: "LinkedIn",
     link: "https://www.linkedin.com/in/demayorgaherrera/"
+  },
+  {
+    label: "GitHub",
+    link: "https://github.com/damayor"
   },
   {
     label: "Instagram",

@@ -14,7 +14,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "deploy:portfolio": "bash deploy.sh",
-    "deploy:storybook": "bash deploy.sh"
+    "deploy:storybook": "bash deploy.sh",
+    "theatre:save": "node src/stories/three/stories-components/experiences/camera-path/save-theatre-state.mjs"
   },
   "dependencies": {
     "@react-spring/three": "^10.0.2",
@@ -23,6 +24,9 @@
     "@react-three/postprocessing": "^3.0.4",
     "@react-three/xr": "^5.5.0",
     "@tailwindcss/vite": "^4.1.13",
+    "@theatre/core": "^0.7.2",
+    "@theatre/r3f": "^0.7.2",
+    "@theatre/studio": "^0.7.2",
     "@types/three": "^0.180.0",
     "i18next": "^25.6.0",
     "lucide-react": "^0.545.0",
