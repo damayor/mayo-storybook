@@ -20,6 +20,7 @@ const config: StorybookConfig = {
   "stories": isProd
   ? [
     ...prodStoriesPaths,
+    '../src/stories/three/stories-components/webgl-basis/webgl-basis.stories.tsx',
     '../src/stories/html/experiences/volvo-catalogue/volvo-catalogue.stories.tsx'
   ]
   : ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
