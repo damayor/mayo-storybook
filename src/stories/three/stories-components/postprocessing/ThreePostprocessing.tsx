@@ -5,6 +5,7 @@ import { Vector2 } from 'three'
 // import { useControls, folder } from 'leva'
 import cityParserModule from '../wasm-cpp/obj_parser.js'
 import { useCameraDebug } from '../../non-stories-components/hooks/useCameraDebug.js'
+import { ObjRenderer } from '../../../cpp/ObjRenderer/ObjRenderer.js'
 
 // --- Mesh transform defaults (extracted from useControls) ---
 const posX  = -187
@@ -53,7 +54,7 @@ export function ThreePostprocessing({
   glitchStrengthMax = 0.06,
   glitchRatio       = 0.85,
 }: ThreePostprocessingProps) {
-  const [vertices, setVertices] = useState<Float32Array | null>(null)
+  // const [vertices, setVertices] = useState<Float32Array | null>(null)
   useCameraDebug()
 
   // const { posX, posY, posZ, rotX, rotY, rotZ, scale } = useControls({
@@ -68,39 +69,28 @@ export function ThreePostprocessing({
   //   }),
   // })
 
-  useEffect(() => {
-    async function loadCityData() {
-      const response = await fetch('/assets/meshes/mesh_berlin/Mesh_3894_58196_-002.obj')
-      const objText = await response.text()
+  // useEffect(() => {
+  //   async function loadCityData() {
+  //     const response = await fetch('/assets/meshes/mesh_berlin/Mesh_3894_58196_-002.obj')
+  //     const objText = await response.text()
 
-      const instance = await cityParserModule()
-      const parser = new instance.CityParser()
+  //     const instance = await cityParserModule()
+  //     const parser = new instance.CityParser()
 
-      parser.parse_obj(objText)
+  //     parser.parse_obj(objText)
 
-      const view = parser.get_vertices_view()
-      setVertices(new Float32Array(view))
+  //     const view = parser.get_vertices_view()
+  //     setVertices(new Float32Array(view))
 
-      parser.delete()
-    }
+  //     parser.delete()
+  //   }
 
-    loadCityData()
-  }, [])
+  //   loadCityData()
+  // }, [])
 
   return (
     <>
-      {vertices && (
-        <points position={[posX, posY, posZ]} rotation={[rotX, rotY, rotZ]} scale={scale}>
-          <bufferGeometry>
-            <bufferAttribute
-              attach="attributes-position"
-              count={vertices.length / 3}
-              args={[vertices, 3]}
-            />
-          </bufferGeometry>
-          <pointsMaterial size={0.5} color="#ffffff" sizeAttenuation={true} opacity={0.8} />
-        </points>
-      )}
+      <ObjRenderer />
 
       <EffectComposer multisampling={0}>
         {/* Adds film grain / random pixel noise over the whole image */}
@@ -127,14 +117,14 @@ export function ThreePostprocessing({
           darkness={vignetteDarkness}
         />
         {/* Randomly corrupts horizontal blocks of pixels, like a broken video signal */}
-        <Glitch
+        {/* <Glitch
           delay={new Vector2(glitchDelayMin, glitchDelayMax)}
           duration={new Vector2(glitchDurationMin, glitchDurationMax)}
           strength={new Vector2(glitchStrengthMin, glitchStrengthMax)}
           mode={GlitchMode.SPORADIC}
           active
           ratio={glitchRatio}
-        />
+        /> */}
       </EffectComposer>
     </>
   )

@@ -1,0 +1,5258 @@
+{
+  "historic": {
+    "currentCommitHash": "2f53a102-0ee1-46e4-b891-5ae52624f1f4",
+    "commitsByHash": {
+      "4f381d3d-60b1-4a59-8f22-11bf1f34269b": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/panels",
+            "value": {
+              "outlinePanel": {
+                "selection": [
+                  {
+                    "type": "SheetObject",
+                    "projectId": "BerlinTour",
+                    "sheetId": "Scene",
+                    "objectKey": "Camera"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "op": "add",
+            "path": "/projects/stateByProjectId/BerlinTour",
+            "value": {
+              "stateBySheetId": {
+                "Scene": {
+                  "selectedInstanceId": "default",
+                  "sequenceEditor": {
+                    "selectedPropsByObject": {}
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/projects/stateByProjectId/BerlinTour"
+          },
+          {
+            "op": "remove",
+            "path": "/panels"
+          }
+        ],
+        "timestamp": 1780136555930,
+        "hash": "4f381d3d-60b1-4a59-8f22-11bf1f34269b"
+      },
+      "613776ba-371a-411b-9c9f-b335490ba426": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene",
+            "value": {
+              "staticOverrides": {
+                "byObject": {
+                  "Camera": {
+                    "position": {
+                      "x": -0.3900000000000002
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene"
+          }
+        ],
+        "timestamp": 1780136560468,
+        "hash": "613776ba-371a-411b-9c9f-b335490ba426"
+      },
+      "ed62863a-7b5f-477f-9d0a-f9195ca94459": {
+        "forwardDiff": [
+          {
+            "op": "replace",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/position/x",
+            "value": 6.439999999999973
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "replace",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/position/x",
+            "value": -0.3900000000000002
+          }
+        ],
+        "timestamp": 1780136568838,
+        "hash": "ed62863a-7b5f-477f-9d0a-f9195ca94459"
+      },
+      "8e95d2b8-0909-4d99-acb9-28c9aeece6c7": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/panels/outlinePanel/selection/0",
+            "value": {
+              "type": "Sheet",
+              "projectId": "BerlinTour",
+              "sheetId": "Scene"
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/panels/outlinePanel/selection/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/panels/outlinePanel/selection/0",
+            "value": {
+              "type": "SheetObject",
+              "projectId": "BerlinTour",
+              "sheetId": "Scene",
+              "objectKey": "Camera"
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/panels/outlinePanel/selection/1"
+          }
+        ],
+        "timestamp": 1780136571235,
+        "hash": "8e95d2b8-0909-4d99-acb9-28c9aeece6c7"
+      },
+      "fa54d696-bd6a-4a7e-9edb-989ec426bf0a": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/panels/outlinePanel/selection/0",
+            "value": {
+              "type": "SheetObject",
+              "projectId": "BerlinTour",
+              "sheetId": "Scene",
+              "objectKey": "Camera"
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/panels/outlinePanel/selection/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/panels/outlinePanel/selection/0",
+            "value": {
+              "type": "Sheet",
+              "projectId": "BerlinTour",
+              "sheetId": "Scene"
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/panels/outlinePanel/selection/1"
+          }
+        ],
+        "timestamp": 1780136571624,
+        "hash": "fa54d696-bd6a-4a7e-9edb-989ec426bf0a"
+      },
+      "52026e74-a9d6-42e0-a98a-a55a84c2d76d": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence",
+            "value": {
+              "subUnitsPerUnit": 30,
+              "length": 10,
+              "type": "PositionalSequence",
+              "tracksByObject": {
+                "Camera": {
+                  "trackData": {
+                    "jEpan2EuND": {
+                      "type": "BasicKeyframedTrack",
+                      "__debugName": "Camera:[\"position\",\"x\"]",
+                      "keyframes": []
+                    },
+                    "H5u62MepOG": {
+                      "type": "BasicKeyframedTrack",
+                      "__debugName": "Camera:[\"position\",\"y\"]",
+                      "keyframes": []
+                    },
+                    "7rJA8OBf-k": {
+                      "type": "BasicKeyframedTrack",
+                      "__debugName": "Camera:[\"position\",\"z\"]",
+                      "keyframes": []
+                    }
+                  },
+                  "trackIdByPropPath": {
+                    "[\"position\",\"x\"]": "jEpan2EuND",
+                    "[\"position\",\"y\"]": "H5u62MepOG",
+                    "[\"position\",\"z\"]": "7rJA8OBf-k"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence"
+          }
+        ],
+        "timestamp": 1780136883275,
+        "hash": "52026e74-a9d6-42e0-a98a-a55a84c2d76d"
+      },
+      "81b022fa-147b-4824-9dfb-20de219f0ecb": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0",
+            "value": {
+              "id": "C6VVAzuavb",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0",
+            "value": {
+              "id": "Vmdueg9TjJ",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0",
+            "value": {
+              "id": "7xFb9ckY3q",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 6.439999999999973
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0"
+          }
+        ],
+        "timestamp": 1780136927774,
+        "hash": "81b022fa-147b-4824-9dfb-20de219f0ecb"
+      },
+      "e0796a36-22de-4a69-b8c8-f87a6ce98f51": {
+        "forwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0",
+            "value": {
+              "id": "C6VVAzuavb",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0",
+            "value": {
+              "id": "Vmdueg9TjJ",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0",
+            "value": {
+              "id": "7xFb9ckY3q",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 6.439999999999973
+            }
+          }
+        ],
+        "timestamp": 1780136929258,
+        "hash": "e0796a36-22de-4a69-b8c8-f87a6ce98f51"
+      },
+      "e2d65f45-48ee-4360-9e15-dfa1e5fb01c6": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/panelPositions",
+            "value": {
+              "sequenceEditor": {
+                "edges": {
+                  "left": {
+                    "from": "screenLeft",
+                    "distance": 0.02102803738317757
+                  },
+                  "right": {
+                    "from": "screenRight",
+                    "distance": 0.04439252336448596
+                  },
+                  "top": {
+                    "from": "screenBottom",
+                    "distance": 0.2753623188405797
+                  },
+                  "bottom": {
+                    "from": "screenBottom",
+                    "distance": -0.11449275362318834
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/panelPositions"
+          }
+        ],
+        "timestamp": 1780136941305,
+        "hash": "e2d65f45-48ee-4360-9e15-dfa1e5fb01c6"
+      },
+      "356b1619-d95f-4e9b-b110-a9015977e9fd": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0",
+            "value": {
+              "id": "c8EtsLmOJu",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0",
+            "value": {
+              "id": "amUuxat5FN",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0",
+            "value": {
+              "id": "d3MnkB3Uoi",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 6.439999999999973
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0"
+          }
+        ],
+        "timestamp": 1780136991500,
+        "hash": "356b1619-d95f-4e9b-b110-a9015977e9fd"
+      },
+      "4594fb71-f41e-48b4-a1e8-568a45a06ea6": {
+        "forwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0",
+            "value": {
+              "id": "c8EtsLmOJu",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0",
+            "value": {
+              "id": "amUuxat5FN",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0",
+            "value": {
+              "id": "d3MnkB3Uoi",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 6.439999999999973
+            }
+          }
+        ],
+        "timestamp": 1780136992365,
+        "hash": "4594fb71-f41e-48b4-a1e8-568a45a06ea6"
+      },
+      "19f30c11-99d1-48ef-9fe0-6dd9b0f09302": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0",
+            "value": {
+              "id": "pT4K_9WVLZ",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0",
+            "value": {
+              "id": "183qmJ6rBS",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0",
+            "value": {
+              "id": "ZPp91FE0Ou",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 6.439999999999973
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/zoom",
+            "value": 1
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/fov",
+            "value": 60
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/far",
+            "value": 2000
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/near",
+            "value": 0.1
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/scale",
+            "value": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/rotation",
+            "value": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/zoom"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/fov"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/far"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/near"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/scale"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/rotation"
+          }
+        ],
+        "timestamp": 1780136993476,
+        "hash": "19f30c11-99d1-48ef-9fe0-6dd9b0f09302"
+      },
+      "53f026e2-280f-4302-8638-072a4760f49e": {
+        "forwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/zoom"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/fov"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/far"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/near"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/scale"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/rotation"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0",
+            "value": {
+              "id": "pT4K_9WVLZ",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0",
+            "value": {
+              "id": "183qmJ6rBS",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0",
+            "value": {
+              "id": "ZPp91FE0Ou",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 6.439999999999973
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/zoom",
+            "value": 1
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/fov",
+            "value": 60
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/far",
+            "value": 2000
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/near",
+            "value": 0.1
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/scale",
+            "value": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/staticOverrides/byObject/Camera/rotation",
+            "value": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          }
+        ],
+        "timestamp": 1780136994187,
+        "hash": "53f026e2-280f-4302-8638-072a4760f49e"
+      },
+      "1cd3ee7e-af0b-4a0a-93a1-0d6f29ae285a": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0",
+            "value": {
+              "id": "9jHIJQ3Ke6",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0"
+          }
+        ],
+        "timestamp": 1780137008963,
+        "hash": "1cd3ee7e-af0b-4a0a-93a1-0d6f29ae285a"
+      },
+      "c76f1721-4dd6-40c5-a42b-7682c98adf4b": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackIdByPropPath/[\"rotation\",\"z\"]",
+            "value": "FEwBNFTlEm"
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackIdByPropPath/[\"rotation\",\"y\"]",
+            "value": "wY0mjU3oQf"
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackIdByPropPath/[\"rotation\",\"x\"]",
+            "value": "WxkieIBuHB"
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/FEwBNFTlEm",
+            "value": {
+              "type": "BasicKeyframedTrack",
+              "__debugName": "Camera:[\"rotation\",\"z\"]",
+              "keyframes": []
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf",
+            "value": {
+              "type": "BasicKeyframedTrack",
+              "__debugName": "Camera:[\"rotation\",\"y\"]",
+              "keyframes": []
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB",
+            "value": {
+              "type": "BasicKeyframedTrack",
+              "__debugName": "Camera:[\"rotation\",\"x\"]",
+              "keyframes": []
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackIdByPropPath/[\"rotation\",\"z\"]"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackIdByPropPath/[\"rotation\",\"y\"]"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackIdByPropPath/[\"rotation\",\"x\"]"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/FEwBNFTlEm"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB"
+          }
+        ],
+        "timestamp": 1780137019749,
+        "hash": "c76f1721-4dd6-40c5-a42b-7682c98adf4b"
+      },
+      "cef6d045-ca9f-469d-89ce-31f5594e670f": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/FEwBNFTlEm/keyframes/0",
+            "value": {
+              "id": "17kxPZL7g4",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/0",
+            "value": {
+              "id": "KSxcFOavft",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "ynGfS1pfbl",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/FEwBNFTlEm/keyframes/0"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/0"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0"
+          }
+        ],
+        "timestamp": 1780137024165,
+        "hash": "cef6d045-ca9f-469d-89ce-31f5594e670f"
+      },
+      "f0ef97ff-0a03-460c-a430-3c4ea11fd416": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/0",
+            "value": {
+              "id": "KSxcFOavft",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -0.5100000000000003
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/0",
+            "value": {
+              "id": "KSxcFOavft",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137035939,
+        "hash": "f0ef97ff-0a03-460c-a430-3c4ea11fd416"
+      },
+      "b004756b-5cae-4d1e-8388-362cda1662c6": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "ynGfS1pfbl",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -0.020000000000000004
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "ynGfS1pfbl",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137037255,
+        "hash": "b004756b-5cae-4d1e-8388-362cda1662c6"
+      },
+      "ccbe52fb-3aa5-4e68-9258-09aa83567d09": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0",
+            "value": {
+              "id": "9jHIJQ3Ke6",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 2
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0",
+            "value": {
+              "id": "9jHIJQ3Ke6",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137073897,
+        "hash": "ccbe52fb-3aa5-4e68-9258-09aa83567d09"
+      },
+      "46da5602-a59d-4aa9-a68f-da9c6718723e": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0",
+            "value": {
+              "id": "4APxGLkWYd",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 3
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0"
+          }
+        ],
+        "timestamp": 1780137074873,
+        "hash": "46da5602-a59d-4aa9-a68f-da9c6718723e"
+      },
+      "7e837520-7fba-4a31-8fcd-b0d4f97de134": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0",
+            "value": {
+              "id": "9jHIJQ3Ke6",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0",
+            "value": {
+              "id": "9jHIJQ3Ke6",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 2
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137077016,
+        "hash": "7e837520-7fba-4a31-8fcd-b0d4f97de134"
+      },
+      "bd7aeeb3-8090-40d1-90ce-df086b4300dc": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0",
+            "value": {
+              "id": "4APxGLkWYd",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0",
+            "value": {
+              "id": "4APxGLkWYd",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 3
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137078351,
+        "hash": "bd7aeeb3-8090-40d1-90ce-df086b4300dc"
+      },
+      "6bb4b896-78ce-4067-837d-0af5ffcfbdd4": {
+        "forwardDiff": [
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/bottom/distance",
+            "value": 0.11159420289855071
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/distance",
+            "value": 0.4985507246376812
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/from",
+            "value": "screenTop"
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/right/distance",
+            "value": 0.04556074766355145
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/left/distance",
+            "value": 0.01985981308411215
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/bottom/distance",
+            "value": -0.11449275362318834
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/distance",
+            "value": 0.2753623188405797
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/from",
+            "value": "screenBottom"
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/right/distance",
+            "value": 0.04439252336448596
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/left/distance",
+            "value": 0.02102803738317757
+          }
+        ],
+        "timestamp": 1780137086762,
+        "hash": "6bb4b896-78ce-4067-837d-0af5ffcfbdd4"
+      },
+      "f555539e-5040-41cd-a790-558c164a6819": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "ynGfS1pfbl",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "ynGfS1pfbl",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -0.020000000000000004
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137094312,
+        "hash": "f555539e-5040-41cd-a790-558c164a6819"
+      },
+      "254ac6f1-fdd3-4dbe-afc8-f558bad860fe": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/0",
+            "value": {
+              "id": "KSxcFOavft",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/0",
+            "value": {
+              "id": "KSxcFOavft",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -0.5100000000000003
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137094702,
+        "hash": "254ac6f1-fdd3-4dbe-afc8-f558bad860fe"
+      },
+      "7eeab99b-ab41-4b85-88dc-0d3cdd316485": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "ynGfS1pfbl",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -1
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "ynGfS1pfbl",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137097822,
+        "hash": "7eeab99b-ab41-4b85-88dc-0d3cdd316485"
+      },
+      "ff8c0ea6-a350-464a-8fa9-a586f934fd31": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/0",
+            "value": {
+              "id": "KSxcFOavft",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -2
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/0",
+            "value": {
+              "id": "KSxcFOavft",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137101887,
+        "hash": "ff8c0ea6-a350-464a-8fa9-a586f934fd31"
+      },
+      "6af47ac5-a56e-4e36-8ddb-ec7abb0cbaf9": {
+        "forwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "ynGfS1pfbl",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -1
+            }
+          }
+        ],
+        "timestamp": 1780137108263,
+        "hash": "6af47ac5-a56e-4e36-8ddb-ec7abb0cbaf9"
+      },
+      "c2edadf5-5f1a-4daa-8516-312c555208f9": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "kb7VdRFJBA",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0"
+          }
+        ],
+        "timestamp": 1780137109019,
+        "hash": "c2edadf5-5f1a-4daa-8516-312c555208f9"
+      },
+      "bbf3f0e0-2d3c-4eda-86d4-7029d0f56318": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "kb7VdRFJBA",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0.5800000000000004
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "kb7VdRFJBA",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137117345,
+        "hash": "bbf3f0e0-2d3c-4eda-86d4-7029d0f56318"
+      },
+      "a2b8b0c8-73b9-487d-851b-4cf0c006ad65": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "kb7VdRFJBA",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "kb7VdRFJBA",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0.5800000000000004
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137211869,
+        "hash": "a2b8b0c8-73b9-487d-851b-4cf0c006ad65"
+      },
+      "a24bca7d-7cd8-4ccb-a588-9391994ac69b": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/0",
+            "value": {
+              "id": "KSxcFOavft",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/0",
+            "value": {
+              "id": "KSxcFOavft",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -2
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137212439,
+        "hash": "a24bca7d-7cd8-4ccb-a588-9391994ac69b"
+      },
+      "519c8dde-75c0-4a4e-a60d-8a32fb5cd713": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "kb7VdRFJBA",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -0.8
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "kb7VdRFJBA",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137216908,
+        "hash": "519c8dde-75c0-4a4e-a60d-8a32fb5cd713"
+      },
+      "0bb837c9-5040-480f-8440-c3d55132e917": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0",
+            "value": {
+              "id": "9jHIJQ3Ke6",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 2
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0",
+            "value": {
+              "id": "9jHIJQ3Ke6",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137220689,
+        "hash": "0bb837c9-5040-480f-8440-c3d55132e917"
+      },
+      "c0d3e6d7-7746-42ad-82e4-fa3a9e177742": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0",
+            "value": {
+              "id": "9jHIJQ3Ke6",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0",
+            "value": {
+              "id": "9jHIJQ3Ke6",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 2
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137222998,
+        "hash": "c0d3e6d7-7746-42ad-82e4-fa3a9e177742"
+      },
+      "d41c222e-d993-4df6-bf5b-febdb9ee3368": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "kb7VdRFJBA",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 90
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "kb7VdRFJBA",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -0.8
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137225699,
+        "hash": "d41c222e-d993-4df6-bf5b-febdb9ee3368"
+      },
+      "15b1846e-6514-43ea-ac76-7fd0e7c7f1ec": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/0",
+            "value": {
+              "id": "KSxcFOavft",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 180
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/0",
+            "value": {
+              "id": "KSxcFOavft",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137228443,
+        "hash": "15b1846e-6514-43ea-ac76-7fd0e7c7f1ec"
+      },
+      "f4525ea9-c49d-4fcd-abe7-25a4befddce2": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "kb7VdRFJBA",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 85.77999999999975
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "kb7VdRFJBA",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 90
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137238340,
+        "hash": "f4525ea9-c49d-4fcd-abe7-25a4befddce2"
+      },
+      "f91f59a1-c5a2-434c-a459-88abaa4dd21e": {
+        "forwardDiff": [
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/bottom/distance",
+            "value": 0.08405797101449275
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/distance",
+            "value": 0.4739130434782609
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/from",
+            "value": "screenBottom"
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/right/distance",
+            "value": 0.04205607476635509
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/left/distance",
+            "value": 0.02336448598130841
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/bottom/distance",
+            "value": 0.11159420289855071
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/distance",
+            "value": 0.4985507246376812
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/from",
+            "value": "screenTop"
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/right/distance",
+            "value": 0.04556074766355145
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/left/distance",
+            "value": 0.01985981308411215
+          }
+        ],
+        "timestamp": 1780137266146,
+        "hash": "f91f59a1-c5a2-434c-a459-88abaa4dd21e"
+      },
+      "7b6547c2-196d-4fd2-acd9-68dfb8c16792": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "kb7VdRFJBA",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 84.79999999999934
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "kb7VdRFJBA",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 85.77999999999975
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137270311,
+        "hash": "7b6547c2-196d-4fd2-acd9-68dfb8c16792"
+      },
+      "16719698-a889-4c13-bb51-2e6ce10646a5": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "kb7VdRFJBA",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 89.1600000000004
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "kb7VdRFJBA",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 84.79999999999934
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137272507,
+        "hash": "16719698-a889-4c13-bb51-2e6ce10646a5"
+      },
+      "1e33ce43-62ce-4536-a14c-55a7ff22a815": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "kb7VdRFJBA",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/0",
+            "value": {
+              "id": "kb7VdRFJBA",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 89.1600000000004
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137273985,
+        "hash": "1e33ce43-62ce-4536-a14c-55a7ff22a815"
+      },
+      "fce5e359-58c8-40f8-952b-2046bc604ce9": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/0",
+            "value": {
+              "id": "KSxcFOavft",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/0",
+            "value": {
+              "id": "KSxcFOavft",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 180
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137274149,
+        "hash": "fce5e359-58c8-40f8-952b-2046bc604ce9"
+      },
+      "dd3929b6-17bd-41c9-a8e7-bb285e735e8b": {
+        "forwardDiff": [
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/distance",
+            "value": 0.3739130434782608
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/distance",
+            "value": 0.4739130434782609
+          }
+        ],
+        "timestamp": 1780137277018,
+        "hash": "dd3929b6-17bd-41c9-a8e7-bb285e735e8b"
+      },
+      "fe0df6ac-d17f-475e-a431-fb05e10c4b2b": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/0",
+            "value": {
+              "id": "KSxcFOavft",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -1.0000000000000007
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/0",
+            "value": {
+              "id": "KSxcFOavft",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137286261,
+        "hash": "fe0df6ac-d17f-475e-a431-fb05e10c4b2b"
+      },
+      "bfd00fe3-5c03-456d-8b47-e61bbfad9e39": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/0",
+            "value": {
+              "id": "KSxcFOavft",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -1.0100000000000007
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/0",
+            "value": {
+              "id": "KSxcFOavft",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -1.0000000000000007
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137289461,
+        "hash": "bfd00fe3-5c03-456d-8b47-e61bbfad9e39"
+      },
+      "93638f9a-a4f9-4ce4-a6c9-f74c5bc6c20d": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0",
+            "value": {
+              "id": "iLUvi8Cxn1",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0"
+          }
+        ],
+        "timestamp": 1780137329547,
+        "hash": "93638f9a-a4f9-4ce4-a6c9-f74c5bc6c20d"
+      },
+      "d0474dd5-ba55-437c-9e1a-7db71855a8e8": {
+        "forwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0",
+            "value": {
+              "id": "iLUvi8Cxn1",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0",
+            "value": {
+              "id": "4APxGLkWYd",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0",
+            "value": {
+              "id": "9jHIJQ3Ke6",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          }
+        ],
+        "timestamp": 1780137332386,
+        "hash": "d0474dd5-ba55-437c-9e1a-7db71855a8e8"
+      },
+      "8c304efb-8fab-4f2d-b09b-f21775fd3348": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0",
+            "value": {
+              "id": "03i4nfEvTF",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0",
+            "value": {
+              "id": "spEuThkCi-",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0",
+            "value": {
+              "id": "aIS3du3zFy",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 6.439999999999973
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0"
+          }
+        ],
+        "timestamp": 1780137333912,
+        "hash": "8c304efb-8fab-4f2d-b09b-f21775fd3348"
+      },
+      "8d1cda24-66ed-44bb-9a2f-c1229405ce6e": {
+        "forwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0",
+            "value": {
+              "id": "03i4nfEvTF",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0",
+            "value": {
+              "id": "spEuThkCi-",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0",
+            "value": {
+              "id": "aIS3du3zFy",
+              "position": 0,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 6.439999999999973
+            }
+          }
+        ],
+        "timestamp": 1780137334635,
+        "hash": "8d1cda24-66ed-44bb-9a2f-c1229405ce6e"
+      },
+      "76a30c86-6d27-429c-8800-f437d90b71dd": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0",
+            "value": {
+              "id": "-_eITw3rbY",
+              "position": 1.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0.9000000000000006
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0"
+          }
+        ],
+        "timestamp": 1780137390503,
+        "hash": "76a30c86-6d27-429c-8800-f437d90b71dd"
+      },
+      "448631d9-39a3-4338-87e0-8ef7f290c497": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0",
+            "value": {
+              "id": "-_eITw3rbY",
+              "position": 1.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/0",
+            "value": {
+              "id": "-_eITw3rbY",
+              "position": 1.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0.9000000000000006
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137393019,
+        "hash": "448631d9-39a3-4338-87e0-8ef7f290c497"
+      },
+      "c2b824ad-d352-4b3f-855d-de567b257dc2": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0",
+            "value": {
+              "id": "sWdTSj91yn",
+              "position": 1.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 3
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0"
+          }
+        ],
+        "timestamp": 1780137398906,
+        "hash": "c2b824ad-d352-4b3f-855d-de567b257dc2"
+      },
+      "bd905d29-28b8-46aa-af19-b7fb2a4944c9": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0",
+            "value": {
+              "id": "ZAWmPWOafb",
+              "position": 1.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -45
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0"
+          }
+        ],
+        "timestamp": 1780137409245,
+        "hash": "bd905d29-28b8-46aa-af19-b7fb2a4944c9"
+      },
+      "acabbf64-0db1-4582-b123-a213bd6e0129": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0",
+            "value": {
+              "id": "sWdTSj91yn",
+              "position": 1.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/0",
+            "value": {
+              "id": "sWdTSj91yn",
+              "position": 1.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 3
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137416075,
+        "hash": "acabbf64-0db1-4582-b123-a213bd6e0129"
+      },
+      "e4eed3a2-3ec3-416e-a0a7-3544d86fe50b": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0",
+            "value": {
+              "id": "ZAWmPWOafb",
+              "position": 1.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -50
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/1"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/0",
+            "value": {
+              "id": "ZAWmPWOafb",
+              "position": 1.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -45
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137418332,
+        "hash": "e4eed3a2-3ec3-416e-a0a7-3544d86fe50b"
+      },
+      "133815bd-63a0-4641-8b26-1ea09e782bcf": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1",
+            "value": {
+              "id": "1VkrgHVHqd",
+              "position": 1.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -0.019999999999999997
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137423947,
+        "hash": "133815bd-63a0-4641-8b26-1ea09e782bcf"
+      },
+      "60a2f432-ffd4-4694-b8f4-3f5596bed83b": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1",
+            "value": {
+              "id": "1VkrgHVHqd",
+              "position": 1.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/2"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/1",
+            "value": {
+              "id": "1VkrgHVHqd",
+              "position": 1.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -0.019999999999999997
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/2"
+          }
+        ],
+        "timestamp": 1780137425352,
+        "hash": "60a2f432-ffd4-4694-b8f4-3f5596bed83b"
+      },
+      "26d76e9c-f4c1-49b8-84e6-0a91a76a7ff2": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/FEwBNFTlEm/keyframes/1",
+            "value": {
+              "id": "xJAZnvBBtV",
+              "position": 1.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -0.3000000000000001
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/FEwBNFTlEm/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137429037,
+        "hash": "26d76e9c-f4c1-49b8-84e6-0a91a76a7ff2"
+      },
+      "7280da14-b8ea-49ee-bbf4-21c638bd9eb8": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/1",
+            "value": {
+              "id": "7xjWeQghX7",
+              "position": 1.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -0.9600000000000006
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137430837,
+        "hash": "7280da14-b8ea-49ee-bbf4-21c638bd9eb8"
+      },
+      "676218a6-3626-4f92-bbd1-97d5b169a91b": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/FEwBNFTlEm/keyframes/1",
+            "value": {
+              "id": "xJAZnvBBtV",
+              "position": 1.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/FEwBNFTlEm/keyframes/2"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/FEwBNFTlEm/keyframes/1",
+            "value": {
+              "id": "xJAZnvBBtV",
+              "position": 1.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -0.3000000000000001
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/FEwBNFTlEm/keyframes/2"
+          }
+        ],
+        "timestamp": 1780137433531,
+        "hash": "676218a6-3626-4f92-bbd1-97d5b169a91b"
+      },
+      "b9738082-ba5c-4c44-a773-9d00169ccbb4": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/1",
+            "value": {
+              "id": "7xjWeQghX7",
+              "position": 1.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -1.320000000000001
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/2"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/1",
+            "value": {
+              "id": "7xjWeQghX7",
+              "position": 1.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -0.9600000000000006
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/2"
+          }
+        ],
+        "timestamp": 1780137437141,
+        "hash": "b9738082-ba5c-4c44-a773-9d00169ccbb4"
+      },
+      "3278ecc2-b3ac-4a64-8882-b0dbf85db622": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/1",
+            "value": {
+              "id": "SBa-9SEe5n",
+              "position": 4.033,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 47.29000000000002
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137451512,
+        "hash": "3278ecc2-b3ac-4a64-8882-b0dbf85db622"
+      },
+      "005c4c80-5125-4e10-875c-c55be17186f9": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/1",
+            "value": {
+              "id": "dUV1Om9sSe",
+              "position": 4.033,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -11.109999999999987
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137457419,
+        "hash": "005c4c80-5125-4e10-875c-c55be17186f9"
+      },
+      "8d25142d-e1d2-4069-b639-767f456cdb81": {
+        "forwardDiff": [
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/bottom/distance",
+            "value": -0.14492753623188404
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/distance",
+            "value": 0.14492753623188404
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/right/distance",
+            "value": 0.030373831775700966
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/left/distance",
+            "value": 0.035046728971962614
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/bottom/distance",
+            "value": 0.08405797101449275
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/distance",
+            "value": 0.3739130434782608
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/right/distance",
+            "value": 0.04205607476635509
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/left/distance",
+            "value": 0.02336448598130841
+          }
+        ],
+        "timestamp": 1780137472658,
+        "hash": "8d25142d-e1d2-4069-b639-767f456cdb81"
+      },
+      "1c806b81-ed7b-4a31-98d7-c6fecf66780a": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/2",
+            "value": {
+              "id": "a3k7sZMbOr",
+              "position": 5.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -0.32000000000000023
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/2"
+          }
+        ],
+        "timestamp": 1780137480619,
+        "hash": "1c806b81-ed7b-4a31-98d7-c6fecf66780a"
+      },
+      "3fa59375-6e73-4154-a8be-d4e5edec75d9": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/2",
+            "value": {
+              "id": "-5tJhFw_-X",
+              "position": 5.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 107.96000000000015
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/2"
+          }
+        ],
+        "timestamp": 1780137484952,
+        "hash": "3fa59375-6e73-4154-a8be-d4e5edec75d9"
+      },
+      "b82325d7-29a2-44ee-9715-96b2a6ae6056": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/1",
+            "value": {
+              "id": "kk3eSEAkJC",
+              "position": 5.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -99.17000000000017
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/1"
+          }
+        ],
+        "timestamp": 1780137490244,
+        "hash": "b82325d7-29a2-44ee-9715-96b2a6ae6056"
+      },
+      "b901da1c-292e-4710-9dbc-f06bdd481a47": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/2",
+            "value": {
+              "id": "7UXEpe9FDa",
+              "position": 5.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -1.7000000000000013
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/2"
+          }
+        ],
+        "timestamp": 1780137495910,
+        "hash": "b901da1c-292e-4710-9dbc-f06bdd481a47"
+      },
+      "6810ad24-4f65-4b68-a42a-b4431602024a": {
+        "forwardDiff": [
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/bottom/distance",
+            "value": 0.02608695652173909
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/distance",
+            "value": 0.3159420289855073
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/right/distance",
+            "value": 0.04611650485436891
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/left/distance",
+            "value": 0.019417475728155338
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/bottom/distance",
+            "value": -0.14492753623188404
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/distance",
+            "value": 0.14492753623188404
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/right/distance",
+            "value": 0.030373831775700966
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/left/distance",
+            "value": 0.035046728971962614
+          }
+        ],
+        "timestamp": 1781865192237,
+        "hash": "6810ad24-4f65-4b68-a42a-b4431602024a"
+      },
+      "9966c994-bf1d-4dee-a21d-5108a58dd5de": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/panels/sequenceEditor",
+            "value": {
+              "graphEditor": {
+                "height": 0.5,
+                "isOpen": true
+              }
+            }
+          },
+          {
+            "op": "add",
+            "path": "/projects/stateByProjectId/BerlinTour/stateBySheetId/Scene/sequenceEditor/selectedPropsByObject/Camera",
+            "value": {
+              "[\"position\",\"x\"]": "1"
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/panels/sequenceEditor"
+          },
+          {
+            "op": "remove",
+            "path": "/projects/stateByProjectId/BerlinTour/stateBySheetId/Scene/sequenceEditor/selectedPropsByObject/Camera"
+          }
+        ],
+        "timestamp": 1781865223185,
+        "hash": "9966c994-bf1d-4dee-a21d-5108a58dd5de"
+      },
+      "bc32e626-03e6-41b8-a7d4-0109e5d1099c": {
+        "forwardDiff": [
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/bottom/distance",
+            "value": 0.23043478260869565
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/distance",
+            "value": 0.4797101449275362
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/from",
+            "value": "screenTop"
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/right/distance",
+            "value": 0.05016181229773464
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/left/distance",
+            "value": 0.014563106796116505
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/bottom/distance",
+            "value": 0.02608695652173909
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/distance",
+            "value": 0.3159420289855073
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/from",
+            "value": "screenBottom"
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/right/distance",
+            "value": 0.04611650485436891
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/left/distance",
+            "value": 0.019417475728155338
+          }
+        ],
+        "timestamp": 1781865230942,
+        "hash": "bc32e626-03e6-41b8-a7d4-0109e5d1099c"
+      },
+      "7e4cc5d5-01dd-4437-ab73-3660329d8f00": {
+        "forwardDiff": [
+          {
+            "op": "replace",
+            "path": "/panels/sequenceEditor/graphEditor/isOpen",
+            "value": false
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "replace",
+            "path": "/panels/sequenceEditor/graphEditor/isOpen",
+            "value": true
+          }
+        ],
+        "timestamp": 1781865233619,
+        "hash": "7e4cc5d5-01dd-4437-ab73-3660329d8f00"
+      },
+      "8dc16838-02dc-4a14-bff8-27806922a7af": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/1",
+            "value": {
+              "id": "duNlUOahp9",
+              "position": 3,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 23.397551815562217
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/1"
+          }
+        ],
+        "timestamp": 1781865236200,
+        "hash": "8dc16838-02dc-4a14-bff8-27806922a7af"
+      },
+      "95dbdba0-a979-407e-9f37-91ee4ff8804d": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/1",
+            "value": {
+              "id": "duNlUOahp9",
+              "position": 3,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 24.507551815562216
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/2"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/1",
+            "value": {
+              "id": "duNlUOahp9",
+              "position": 3,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 23.397551815562217
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/2"
+          }
+        ],
+        "timestamp": 1781865251097,
+        "hash": "95dbdba0-a979-407e-9f37-91ee4ff8804d"
+      },
+      "b1ee03e8-4a79-44c8-aa04-9a4a08a49397": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/1",
+            "value": {
+              "id": "ALEuOLfE6Z",
+              "position": 3,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -83.36125430152586
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/1"
+          }
+        ],
+        "timestamp": 1781865267321,
+        "hash": "b1ee03e8-4a79-44c8-aa04-9a4a08a49397"
+      },
+      "41a6cfe2-1049-4eb4-9a17-2b74489351d0": {
+        "forwardDiff": [
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/bottom/distance",
+            "value": -0.14492753623188404
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/distance",
+            "value": 0.14492753623188404
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/from",
+            "value": "screenBottom"
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/right/distance",
+            "value": 0.0744336569579288
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/left/distance",
+            "value": -0.009708737864077669
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/bottom/distance",
+            "value": 0.23043478260869565
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/distance",
+            "value": 0.4797101449275362
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/from",
+            "value": "screenTop"
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/right/distance",
+            "value": 0.05016181229773464
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/left/distance",
+            "value": 0.014563106796116505
+          }
+        ],
+        "timestamp": 1781865269582,
+        "hash": "41a6cfe2-1049-4eb4-9a17-2b74489351d0"
+      },
+      "b3cf3346-0045-45c8-8152-67f5edbce712": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/1",
+            "value": {
+              "id": "ALEuOLfE6Z",
+              "position": 3,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -95.48125430152582
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/2"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/1",
+            "value": {
+              "id": "ALEuOLfE6Z",
+              "position": 3,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -83.36125430152586
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/2"
+          }
+        ],
+        "timestamp": 1781865272587,
+        "hash": "b3cf3346-0045-45c8-8152-67f5edbce712"
+      },
+      "1d797697-3896-4213-8449-8e48a0dfe1d7": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/2",
+            "value": {
+              "id": "BzC_BEILIm",
+              "position": 3,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -1.573288115407359
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/2"
+          }
+        ],
+        "timestamp": 1781865277048,
+        "hash": "1d797697-3896-4213-8449-8e48a0dfe1d7"
+      },
+      "6b86de25-cd51-4251-a317-e9084027a4e0": {
+        "forwardDiff": [
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/distance",
+            "value": 0.45942028985507244
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/from",
+            "value": "screenTop"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/distance",
+            "value": 0.14492753623188404
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/from",
+            "value": "screenBottom"
+          }
+        ],
+        "timestamp": 1781865318423,
+        "hash": "6b86de25-cd51-4251-a317-e9084027a4e0"
+      },
+      "a9961105-3a1e-457c-a699-5d9fb1b2a3d5": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/3",
+            "value": {
+              "id": "-5tJhFw_-X",
+              "position": 8,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 107.96000000000015
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/4"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/3",
+            "value": {
+              "id": "-5tJhFw_-X",
+              "position": 5.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 107.96000000000015
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/4"
+          }
+        ],
+        "timestamp": 1781865329500,
+        "hash": "a9961105-3a1e-457c-a699-5d9fb1b2a3d5"
+      },
+      "f755a4b1-2348-44f1-a2ca-8853348b62d8": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/2",
+            "value": {
+              "id": "kk3eSEAkJC",
+              "position": 8.033,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -99.17000000000017
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/3"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/2",
+            "value": {
+              "id": "kk3eSEAkJC",
+              "position": 5.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -99.17000000000017
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/3"
+          }
+        ],
+        "timestamp": 1781865332260,
+        "hash": "f755a4b1-2348-44f1-a2ca-8853348b62d8"
+      },
+      "684d6952-7823-4a2b-bf9b-b736bbfca4f0": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/2",
+            "value": {
+              "id": "a3k7sZMbOr",
+              "position": 8.033,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -0.32000000000000023
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/3"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/2",
+            "value": {
+              "id": "a3k7sZMbOr",
+              "position": 5.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -0.32000000000000023
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/3"
+          }
+        ],
+        "timestamp": 1781865335203,
+        "hash": "684d6952-7823-4a2b-bf9b-b736bbfca4f0"
+      },
+      "4aec2a72-7af8-4054-b727-2021f13baf66": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/3",
+            "value": {
+              "id": "7UXEpe9FDa",
+              "position": 8.033,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -1.7000000000000013
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/4"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/3",
+            "value": {
+              "id": "7UXEpe9FDa",
+              "position": 5.967,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -1.7000000000000013
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/4"
+          }
+        ],
+        "timestamp": 1781865338635,
+        "hash": "4aec2a72-7af8-4054-b727-2021f13baf66"
+      },
+      "1259aae8-f061-49dc-b7b9-7c58b7dafe43": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/2",
+            "value": {
+              "id": "SBa-9SEe5n",
+              "position": 6.033,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 47.29000000000002
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/3"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/2",
+            "value": {
+              "id": "SBa-9SEe5n",
+              "position": 4.033,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 47.29000000000002
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/3"
+          }
+        ],
+        "timestamp": 1781865344365,
+        "hash": "1259aae8-f061-49dc-b7b9-7c58b7dafe43"
+      },
+      "12212b06-9aae-4499-a3c3-90a04b9c185e": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/1",
+            "value": {
+              "id": "dUV1Om9sSe",
+              "position": 6.033,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -11.109999999999987
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/2"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/1",
+            "value": {
+              "id": "dUV1Om9sSe",
+              "position": 4.033,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -11.109999999999987
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/H5u62MepOG/keyframes/2"
+          }
+        ],
+        "timestamp": 1781865348151,
+        "hash": "12212b06-9aae-4499-a3c3-90a04b9c185e"
+      },
+      "411b72bc-9a84-45b0-8522-2a40772546c0": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/2",
+            "value": {
+              "id": "BzC_BEILIm",
+              "position": 6,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -1.573288115407359
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/3"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/2",
+            "value": {
+              "id": "BzC_BEILIm",
+              "position": 3,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -1.573288115407359
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/3"
+          }
+        ],
+        "timestamp": 1781865350973,
+        "hash": "411b72bc-9a84-45b0-8522-2a40772546c0"
+      },
+      "6c3c7134-7325-4238-9173-e57e8a40e679": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/1",
+            "value": {
+              "id": "duNlUOahp9",
+              "position": 4,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 24.507551815562216
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/2"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/1",
+            "value": {
+              "id": "duNlUOahp9",
+              "position": 3,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 24.507551815562216
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/jEpan2EuND/keyframes/2"
+          }
+        ],
+        "timestamp": 1781865353683,
+        "hash": "6c3c7134-7325-4238-9173-e57e8a40e679"
+      },
+      "6857b51c-a668-4234-a6c6-f30c2912f6e3": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/1",
+            "value": {
+              "id": "ALEuOLfE6Z",
+              "position": 4.033,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -95.48125430152582
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/2"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/1",
+            "value": {
+              "id": "ALEuOLfE6Z",
+              "position": 3,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -95.48125430152582
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/2"
+          }
+        ],
+        "timestamp": 1781865356258,
+        "hash": "6857b51c-a668-4234-a6c6-f30c2912f6e3"
+      },
+      "71c6af45-ee5f-4d1e-804e-fb3098806f7d": {
+        "forwardDiff": [
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/bottom/distance",
+            "value": -0.4318840579710146
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/distance",
+            "value": 0.2536231884057971
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/from",
+            "value": "screenBottom"
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/right/distance",
+            "value": 0.01941747572815533
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/left/distance",
+            "value": 0.045307443365695796
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/bottom/distance",
+            "value": -0.14492753623188404
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/distance",
+            "value": 0.45942028985507244
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/from",
+            "value": "screenTop"
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/right/distance",
+            "value": 0.0744336569579288
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/left/distance",
+            "value": -0.009708737864077669
+          }
+        ],
+        "timestamp": 1781865363317,
+        "hash": "71c6af45-ee5f-4d1e-804e-fb3098806f7d"
+      },
+      "a644ed85-23d7-44b3-a2ba-4383d89d8653": {
+        "forwardDiff": [
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/bottom/distance",
+            "value": -0.2536231884057971
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/distance",
+            "value": 0.4318840579710145
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/right/distance",
+            "value": 0.054207119741100374
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/left/distance",
+            "value": 0.010517799352750809
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/bottom/distance",
+            "value": -0.4318840579710146
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/top/distance",
+            "value": 0.2536231884057971
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/right/distance",
+            "value": 0.01941747572815533
+          },
+          {
+            "op": "replace",
+            "path": "/panelPositions/sequenceEditor/edges/left/distance",
+            "value": 0.045307443365695796
+          }
+        ],
+        "timestamp": 1781865380127,
+        "hash": "a644ed85-23d7-44b3-a2ba-4383d89d8653"
+      },
+      "89e1cc81-9b4a-4faf-a5ca-3deb6694ae57": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/1",
+            "value": {
+              "id": "ALEuOLfE6Z",
+              "position": 4,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -95.48125430152582
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/2"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/1",
+            "value": {
+              "id": "ALEuOLfE6Z",
+              "position": 4.033,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -95.48125430152582
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/2"
+          }
+        ],
+        "timestamp": 1781865395681,
+        "hash": "89e1cc81-9b4a-4faf-a5ca-3deb6694ae57"
+      },
+      "f144e769-3092-44f4-8a64-af66c066f13b": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/1",
+            "value": {
+              "id": "ALEuOLfE6Z",
+              "position": 4,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -104.33125430152575
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/2"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/1",
+            "value": {
+              "id": "ALEuOLfE6Z",
+              "position": 4,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -95.48125430152582
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/7rJA8OBf-k/keyframes/2"
+          }
+        ],
+        "timestamp": 1781865411951,
+        "hash": "f144e769-3092-44f4-8a64-af66c066f13b"
+      },
+      "7eaf392c-81b6-4ee8-aa3d-c747b5e34f80": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/2",
+            "value": {
+              "id": "pwuLoeQ6Nr",
+              "position": 4,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -0.015984624148788408
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/2"
+          }
+        ],
+        "timestamp": 1781865431430,
+        "hash": "7eaf392c-81b6-4ee8-aa3d-c747b5e34f80"
+      },
+      "a36bacdf-0403-4a0c-b8c6-31471d382f71": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/2",
+            "value": {
+              "id": "CfFE8TWXk2",
+              "position": 4,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -1.6287164346969882
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/2"
+          }
+        ],
+        "timestamp": 1781865436143,
+        "hash": "a36bacdf-0403-4a0c-b8c6-31471d382f71"
+      },
+      "07364891-9c91-450c-8a0d-26e151200890": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/2",
+            "value": {
+              "id": "CfFE8TWXk2",
+              "position": 4,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -1.6387164346969882
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/3"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/2",
+            "value": {
+              "id": "CfFE8TWXk2",
+              "position": 4,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -1.6287164346969882
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/3"
+          }
+        ],
+        "timestamp": 1781865452205,
+        "hash": "07364891-9c91-450c-8a0d-26e151200890"
+      },
+      "1ee9a512-550f-43ff-9ec8-7a562ad5be65": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/3",
+            "value": {
+              "id": "BzC_BEILIm",
+              "position": 6,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -1.7832971904609596
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/4"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/3",
+            "value": {
+              "id": "BzC_BEILIm",
+              "position": 6,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -1.573288115407359
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/wY0mjU3oQf/keyframes/4"
+          }
+        ],
+        "timestamp": 1781865478407,
+        "hash": "1ee9a512-550f-43ff-9ec8-7a562ad5be65"
+      },
+      "2f53a102-0ee1-46e4-b891-5ae52624f1f4": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/FEwBNFTlEm/keyframes/2",
+            "value": {
+              "id": "792ZL4ccN7",
+              "position": 6,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/3",
+            "value": {
+              "id": "93mcoE0pqv",
+              "position": 6,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -0.1655048899167749
+            }
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/FEwBNFTlEm/keyframes/2"
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/WxkieIBuHB/keyframes/3"
+          }
+        ],
+        "timestamp": 1781865486712,
+        "hash": "2f53a102-0ee1-46e4-b891-5ae52624f1f4"
+      },
+      "cd419fc0-435b-4785-89e0-7a7250bc924e": {
+        "forwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/FEwBNFTlEm/keyframes/2",
+            "value": {
+              "id": "792ZL4ccN7",
+              "position": 6,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": -0.0099999999999999
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/FEwBNFTlEm/keyframes/3"
+          }
+        ],
+        "backwardDiff": [
+          {
+            "op": "add",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/FEwBNFTlEm/keyframes/2",
+            "value": {
+              "id": "792ZL4ccN7",
+              "position": 6,
+              "connectedRight": true,
+              "handles": [
+                0.5,
+                1,
+                0.5,
+                0
+              ],
+              "type": "bezier",
+              "value": 0
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/coreByProject/BerlinTour/sheetsById/Scene/sequence/tracksByObject/Camera/trackData/FEwBNFTlEm/keyframes/3"
+          }
+        ],
+        "timestamp": 1781865510756,
+        "hash": "cd419fc0-435b-4785-89e0-7a7250bc924e"
+      }
+    },
+    "listOfCommitHashes": [
+      "4f381d3d-60b1-4a59-8f22-11bf1f34269b",
+      "613776ba-371a-411b-9c9f-b335490ba426",
+      "ed62863a-7b5f-477f-9d0a-f9195ca94459",
+      "8e95d2b8-0909-4d99-acb9-28c9aeece6c7",
+      "fa54d696-bd6a-4a7e-9edb-989ec426bf0a",
+      "52026e74-a9d6-42e0-a98a-a55a84c2d76d",
+      "81b022fa-147b-4824-9dfb-20de219f0ecb",
+      "e0796a36-22de-4a69-b8c8-f87a6ce98f51",
+      "e2d65f45-48ee-4360-9e15-dfa1e5fb01c6",
+      "356b1619-d95f-4e9b-b110-a9015977e9fd",
+      "4594fb71-f41e-48b4-a1e8-568a45a06ea6",
+      "19f30c11-99d1-48ef-9fe0-6dd9b0f09302",
+      "53f026e2-280f-4302-8638-072a4760f49e",
+      "1cd3ee7e-af0b-4a0a-93a1-0d6f29ae285a",
+      "c76f1721-4dd6-40c5-a42b-7682c98adf4b",
+      "cef6d045-ca9f-469d-89ce-31f5594e670f",
+      "f0ef97ff-0a03-460c-a430-3c4ea11fd416",
+      "b004756b-5cae-4d1e-8388-362cda1662c6",
+      "ccbe52fb-3aa5-4e68-9258-09aa83567d09",
+      "46da5602-a59d-4aa9-a68f-da9c6718723e",
+      "7e837520-7fba-4a31-8fcd-b0d4f97de134",
+      "bd7aeeb3-8090-40d1-90ce-df086b4300dc",
+      "6bb4b896-78ce-4067-837d-0af5ffcfbdd4",
+      "f555539e-5040-41cd-a790-558c164a6819",
+      "254ac6f1-fdd3-4dbe-afc8-f558bad860fe",
+      "7eeab99b-ab41-4b85-88dc-0d3cdd316485",
+      "ff8c0ea6-a350-464a-8fa9-a586f934fd31",
+      "6af47ac5-a56e-4e36-8ddb-ec7abb0cbaf9",
+      "c2edadf5-5f1a-4daa-8516-312c555208f9",
+      "bbf3f0e0-2d3c-4eda-86d4-7029d0f56318",
+      "a2b8b0c8-73b9-487d-851b-4cf0c006ad65",
+      "a24bca7d-7cd8-4ccb-a588-9391994ac69b",
+      "519c8dde-75c0-4a4e-a60d-8a32fb5cd713",
+      "0bb837c9-5040-480f-8440-c3d55132e917",
+      "c0d3e6d7-7746-42ad-82e4-fa3a9e177742",
+      "d41c222e-d993-4df6-bf5b-febdb9ee3368",
+      "15b1846e-6514-43ea-ac76-7fd0e7c7f1ec",
+      "f4525ea9-c49d-4fcd-abe7-25a4befddce2",
+      "f91f59a1-c5a2-434c-a459-88abaa4dd21e",
+      "7b6547c2-196d-4fd2-acd9-68dfb8c16792",
+      "16719698-a889-4c13-bb51-2e6ce10646a5",
+      "1e33ce43-62ce-4536-a14c-55a7ff22a815",
+      "fce5e359-58c8-40f8-952b-2046bc604ce9",
+      "dd3929b6-17bd-41c9-a8e7-bb285e735e8b",
+      "fe0df6ac-d17f-475e-a431-fb05e10c4b2b",
+      "bfd00fe3-5c03-456d-8b47-e61bbfad9e39",
+      "93638f9a-a4f9-4ce4-a6c9-f74c5bc6c20d",
+      "d0474dd5-ba55-437c-9e1a-7db71855a8e8",
+      "8c304efb-8fab-4f2d-b09b-f21775fd3348",
+      "8d1cda24-66ed-44bb-9a2f-c1229405ce6e",
+      "76a30c86-6d27-429c-8800-f437d90b71dd",
+      "448631d9-39a3-4338-87e0-8ef7f290c497",
+      "c2b824ad-d352-4b3f-855d-de567b257dc2",
+      "bd905d29-28b8-46aa-af19-b7fb2a4944c9",
+      "acabbf64-0db1-4582-b123-a213bd6e0129",
+      "e4eed3a2-3ec3-416e-a0a7-3544d86fe50b",
+      "133815bd-63a0-4641-8b26-1ea09e782bcf",
+      "60a2f432-ffd4-4694-b8f4-3f5596bed83b",
+      "26d76e9c-f4c1-49b8-84e6-0a91a76a7ff2",
+      "7280da14-b8ea-49ee-bbf4-21c638bd9eb8",
+      "676218a6-3626-4f92-bbd1-97d5b169a91b",
+      "b9738082-ba5c-4c44-a773-9d00169ccbb4",
+      "3278ecc2-b3ac-4a64-8882-b0dbf85db622",
+      "005c4c80-5125-4e10-875c-c55be17186f9",
+      "8d25142d-e1d2-4069-b639-767f456cdb81",
+      "1c806b81-ed7b-4a31-98d7-c6fecf66780a",
+      "3fa59375-6e73-4154-a8be-d4e5edec75d9",
+      "b82325d7-29a2-44ee-9715-96b2a6ae6056",
+      "b901da1c-292e-4710-9dbc-f06bdd481a47",
+      "6810ad24-4f65-4b68-a42a-b4431602024a",
+      "9966c994-bf1d-4dee-a21d-5108a58dd5de",
+      "bc32e626-03e6-41b8-a7d4-0109e5d1099c",
+      "7e4cc5d5-01dd-4437-ab73-3660329d8f00",
+      "8dc16838-02dc-4a14-bff8-27806922a7af",
+      "95dbdba0-a979-407e-9f37-91ee4ff8804d",
+      "b1ee03e8-4a79-44c8-aa04-9a4a08a49397",
+      "41a6cfe2-1049-4eb4-9a17-2b74489351d0",
+      "b3cf3346-0045-45c8-8152-67f5edbce712",
+      "1d797697-3896-4213-8449-8e48a0dfe1d7",
+      "6b86de25-cd51-4251-a317-e9084027a4e0",
+      "a9961105-3a1e-457c-a699-5d9fb1b2a3d5",
+      "f755a4b1-2348-44f1-a2ca-8853348b62d8",
+      "684d6952-7823-4a2b-bf9b-b736bbfca4f0",
+      "4aec2a72-7af8-4054-b727-2021f13baf66",
+      "1259aae8-f061-49dc-b7b9-7c58b7dafe43",
+      "12212b06-9aae-4499-a3c3-90a04b9c185e",
+      "411b72bc-9a84-45b0-8522-2a40772546c0",
+      "6c3c7134-7325-4238-9173-e57e8a40e679",
+      "6857b51c-a668-4234-a6c6-f30c2912f6e3",
+      "71c6af45-ee5f-4d1e-804e-fb3098806f7d",
+      "a644ed85-23d7-44b3-a2ba-4383d89d8653",
+      "89e1cc81-9b4a-4faf-a5ca-3deb6694ae57",
+      "f144e769-3092-44f4-8a64-af66c066f13b",
+      "7eaf392c-81b6-4ee8-aa3d-c747b5e34f80",
+      "a36bacdf-0403-4a0c-b8c6-31471d382f71",
+      "07364891-9c91-450c-8a0d-26e151200890",
+      "1ee9a512-550f-43ff-9ec8-7a562ad5be65",
+      "2f53a102-0ee1-46e4-b891-5ae52624f1f4",
+      "cd419fc0-435b-4785-89e0-7a7250bc924e"
+    ],
+    "innerState": {
+      "projects": {
+        "stateByProjectId": {
+          "BerlinTour": {
+            "stateBySheetId": {
+              "Scene": {
+                "selectedInstanceId": "default",
+                "sequenceEditor": {
+                  "selectedPropsByObject": {
+                    "Camera": {
+                      "[\"position\",\"x\"]": "1"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "autoKey": true,
+      "coreByProject": {
+        "BerlinTour": {
+          "sheetsById": {
+            "Scene": {
+              "staticOverrides": {
+                "byObject": {
+                  "Camera": {
+                    "position": {
+                      "x": 6.439999999999973
+                    }
+                  }
+                }
+              },
+              "sequence": {
+                "subUnitsPerUnit": 30,
+                "length": 10,
+                "type": "PositionalSequence",
+                "tracksByObject": {
+                  "Camera": {
+                    "trackData": {
+                      "jEpan2EuND": {
+                        "type": "BasicKeyframedTrack",
+                        "__debugName": "Camera:[\"position\",\"x\"]",
+                        "keyframes": [
+                          {
+                            "id": "sWdTSj91yn",
+                            "position": 1.967,
+                            "connectedRight": true,
+                            "handles": [
+                              0.5,
+                              1,
+                              0.5,
+                              0
+                            ],
+                            "type": "bezier",
+                            "value": 0
+                          },
+                          {
+                            "id": "duNlUOahp9",
+                            "position": 4,
+                            "connectedRight": true,
+                            "handles": [
+                              0.5,
+                              1,
+                              0.5,
+                              0
+                            ],
+                            "type": "bezier",
+                            "value": 24.507551815562216
+                          },
+                          {
+                            "id": "SBa-9SEe5n",
+                            "position": 6.033,
+                            "connectedRight": true,
+                            "handles": [
+                              0.5,
+                              1,
+                              0.5,
+                              0
+                            ],
+                            "type": "bezier",
+                            "value": 47.29000000000002
+                          },
+                          {
+                            "id": "-5tJhFw_-X",
+                            "position": 8,
+                            "connectedRight": true,
+                            "handles": [
+                              0.5,
+                              1,
+                              0.5,
+                              0
+                            ],
+                            "type": "bezier",
+                            "value": 107.96000000000015
+                          }
+                        ]
+                      },
+                      "H5u62MepOG": {
+                        "type": "BasicKeyframedTrack",
+                        "__debugName": "Camera:[\"position\",\"y\"]",
+                        "keyframes": [
+                          {
+                            "id": "-_eITw3rbY",
+                            "position": 1.967,
+                            "connectedRight": true,
+                            "handles": [
+                              0.5,
+                              1,
+                              0.5,
+                              0
+                            ],
+                            "type": "bezier",
+                            "value": 0
+                          },
+                          {
+                            "id": "dUV1Om9sSe",
+                            "position": 6.033,
+                            "connectedRight": true,
+                            "handles": [
+                              0.5,
+                              1,
+                              0.5,
+                              0
+                            ],
+                            "type": "bezier",
+                            "value": -11.109999999999987
+                          }
+                        ]
+                      },
+                      "7rJA8OBf-k": {
+                        "type": "BasicKeyframedTrack",
+                        "__debugName": "Camera:[\"position\",\"z\"]",
+                        "keyframes": [
+                          {
+                            "id": "ZAWmPWOafb",
+                            "position": 1.967,
+                            "connectedRight": true,
+                            "handles": [
+                              0.5,
+                              1,
+                              0.5,
+                              0
+                            ],
+                            "type": "bezier",
+                            "value": -50
+                          },
+                          {
+                            "id": "ALEuOLfE6Z",
+                            "position": 4,
+                            "connectedRight": true,
+                            "handles": [
+                              0.5,
+                              1,
+                              0.5,
+                              0
+                            ],
+                            "type": "bezier",
+                            "value": -104.33125430152575
+                          },
+                          {
+                            "id": "kk3eSEAkJC",
+                            "position": 8.033,
+                            "connectedRight": true,
+                            "handles": [
+                              0.5,
+                              1,
+                              0.5,
+                              0
+                            ],
+                            "type": "bezier",
+                            "value": -99.17000000000017
+                          }
+                        ]
+                      },
+                      "WxkieIBuHB": {
+                        "type": "BasicKeyframedTrack",
+                        "__debugName": "Camera:[\"rotation\",\"x\"]",
+                        "keyframes": [
+                          {
+                            "id": "kb7VdRFJBA",
+                            "position": 0,
+                            "connectedRight": true,
+                            "handles": [
+                              0.5,
+                              1,
+                              0.5,
+                              0
+                            ],
+                            "type": "bezier",
+                            "value": 0
+                          },
+                          {
+                            "id": "1VkrgHVHqd",
+                            "position": 1.967,
+                            "connectedRight": true,
+                            "handles": [
+                              0.5,
+                              1,
+                              0.5,
+                              0
+                            ],
+                            "type": "bezier",
+                            "value": 0
+                          },
+                          {
+                            "id": "pwuLoeQ6Nr",
+                            "position": 4,
+                            "connectedRight": true,
+                            "handles": [
+                              0.5,
+                              1,
+                              0.5,
+                              0
+                            ],
+                            "type": "bezier",
+                            "value": -0.015984624148788408
+                          },
+                          {
+                            "id": "93mcoE0pqv",
+                            "position": 6,
+                            "connectedRight": true,
+                            "handles": [
+                              0.5,
+                              1,
+                              0.5,
+                              0
+                            ],
+                            "type": "bezier",
+                            "value": -0.1655048899167749
+                          },
+                          {
+                            "id": "a3k7sZMbOr",
+                            "position": 8.033,
+                            "connectedRight": true,
+                            "handles": [
+                              0.5,
+                              1,
+                              0.5,
+                              0
+                            ],
+                            "type": "bezier",
+                            "value": -0.32000000000000023
+                          }
+                        ]
+                      },
+                      "wY0mjU3oQf": {
+                        "type": "BasicKeyframedTrack",
+                        "__debugName": "Camera:[\"rotation\",\"y\"]",
+                        "keyframes": [
+                          {
+                            "id": "KSxcFOavft",
+                            "position": 0,
+                            "connectedRight": true,
+                            "handles": [
+                              0.5,
+                              1,
+                              0.5,
+                              0
+                            ],
+                            "type": "bezier",
+                            "value": -1.0100000000000007
+                          },
+                          {
+                            "id": "7xjWeQghX7",
+                            "position": 1.967,
+                            "connectedRight": true,
+                            "handles": [
+                              0.5,
+                              1,
+                              0.5,
+                              0
+                            ],
+                            "type": "bezier",
+                            "value": -1.320000000000001
+                          },
+                          {
+                            "id": "CfFE8TWXk2",
+                            "position": 4,
+                            "connectedRight": true,
+                            "handles": [
+                              0.5,
+                              1,
+                              0.5,
+                              0
+                            ],
+                            "type": "bezier",
+                            "value": -1.6387164346969882
+                          },
+                          {
+                            "id": "BzC_BEILIm",
+                            "position": 6,
+                            "connectedRight": true,
+                            "handles": [
+                              0.5,
+                              1,
+                              0.5,
+                              0
+                            ],
+                            "type": "bezier",
+                            "value": -1.7832971904609596
+                          },
+                          {
+                            "id": "7UXEpe9FDa",
+                            "position": 8.033,
+                            "connectedRight": true,
+                            "handles": [
+                              0.5,
+                              1,
+                              0.5,
+                              0
+                            ],
+                            "type": "bezier",
+                            "value": -1.7000000000000013
+                          }
+                        ]
+                      },
+                      "FEwBNFTlEm": {
+                        "type": "BasicKeyframedTrack",
+                        "__debugName": "Camera:[\"rotation\",\"z\"]",
+                        "keyframes": [
+                          {
+                            "id": "17kxPZL7g4",
+                            "position": 0,
+                            "connectedRight": true,
+                            "handles": [
+                              0.5,
+                              1,
+                              0.5,
+                              0
+                            ],
+                            "type": "bezier",
+                            "value": 0
+                          },
+                          {
+                            "id": "xJAZnvBBtV",
+                            "position": 1.967,
+                            "connectedRight": true,
+                            "handles": [
+                              0.5,
+                              1,
+                              0.5,
+                              0
+                            ],
+                            "type": "bezier",
+                            "value": 0
+                          },
+                          {
+                            "id": "792ZL4ccN7",
+                            "position": 6,
+                            "connectedRight": true,
+                            "handles": [
+                              0.5,
+                              1,
+                              0.5,
+                              0
+                            ],
+                            "type": "bezier",
+                            "value": 0
+                          }
+                        ]
+                      }
+                    },
+                    "trackIdByPropPath": {
+                      "[\"position\",\"x\"]": "jEpan2EuND",
+                      "[\"position\",\"y\"]": "H5u62MepOG",
+                      "[\"position\",\"z\"]": "7rJA8OBf-k",
+                      "[\"rotation\",\"x\"]": "WxkieIBuHB",
+                      "[\"rotation\",\"y\"]": "wY0mjU3oQf",
+                      "[\"rotation\",\"z\"]": "FEwBNFTlEm"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "definitionVersion": "0.4.0",
+          "revisionHistory": []
+        }
+      },
+      "panelInstanceDesceriptors": {},
+      "panels": {
+        "outlinePanel": {
+          "selection": [
+            {
+              "type": "SheetObject",
+              "projectId": "BerlinTour",
+              "sheetId": "Scene",
+              "objectKey": "Camera"
+            }
+          ]
+        },
+        "sequenceEditor": {
+          "graphEditor": {
+            "height": 0.5,
+            "isOpen": false
+          }
+        }
+      },
+      "panelPositions": {
+        "sequenceEditor": {
+          "edges": {
+            "left": {
+              "from": "screenLeft",
+              "distance": 0.010517799352750809
+            },
+            "right": {
+              "from": "screenRight",
+              "distance": 0.054207119741100374
+            },
+            "top": {
+              "from": "screenBottom",
+              "distance": 0.4318840579710145
+            },
+            "bottom": {
+              "from": "screenBottom",
+              "distance": -0.2536231884057971
+            }
+          }
+        }
+      }
+    }
+  },
+  "ahistoric": {
+    "visibilityState": "everythingIsVisible",
+    "theTrigger": {
+      "position": {
+        "closestCorner": "bottomLeft",
+        "distanceFromHorizontalEdge": 0.02,
+        "distanceFromVerticalEdge": 0.02
+      }
+    },
+    "coreByProject": {
+      "BerlinTour": {
+        "ahistoricStuff": ""
+      }
+    },
+    "projects": {
+      "stateByProjectId": {
+        "BerlinTour": {
+          "stateBySheetId": {
+            "Scene": {
+              "sequence": {
+                "clippedSpaceRange": {
+                  "start": 0,
+                  "end": 10
+                },
+                "collapsableItems": {
+                  "byId": {
+                    "{\"o\":\"Camera\",\"p\":[\"rotation\"]}": {
+                      "isCollapsed": false
+                    },
+                    "{\"o\":\"Camera\",\"p\":[\"position\"]}": {
+                      "isCollapsed": false
+                    }
+                  },
+                  "allIds": {
+                    "{\"o\":\"Camera\",\"p\":[\"rotation\"]}": true,
+                    "{\"o\":\"Camera\",\"p\":[\"position\"]}": true
+                  }
+                }
+              }
+            }
+          },
+          "collapsedItemsInOutline": {}
+        }
+      }
+    },
+    "updateChecker": {
+      "lastChecked": 1781863840422,
+      "result": {
+        "hasUpdates": false
+      }
+    },
+    "pinNotifications": false,
+    "pinOutline": true,
+    "pinDetails": true
+  }
+}
