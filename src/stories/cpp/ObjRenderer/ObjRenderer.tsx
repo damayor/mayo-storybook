@@ -67,12 +67,7 @@ export function ObjRenderer() {
           args={[vertices, 3]}
         />
       </bufferGeometry>
-      <pointsMaterial
-        size={2}
-        color="#ff00ff"
-        sizeAttenuation={true}
-        opacity={0.8}
-      />
+      <pointsMaterial size={0.5} color="#ffffff" sizeAttenuation={true} opacity={0.8} />
     </points>
   );
 }

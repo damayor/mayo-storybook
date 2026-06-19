@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Vector3 } from 'three'
 import { getProject } from '@theatre/core'
 import { SheetProvider } from '@theatre/r3f'
 import studio from '@theatre/studio'
+import { ScrollControls } from '@react-three/drei'
 import MayoCanvas from '../../../non-stories-components/mayo-canvas/mayo-canvas'
 import { CameraPath } from './CameraPath'
 
@@ -11,7 +11,7 @@ studio.initialize()
 
 // Theatre.js 0.7.x auto-saves state to localStorage — __experimental_getStore() is gone.
 // Run getTheatreState() in the IFRAME console (localhost:6006/iframe.html?...) not the main frame.
-;(window as any).getTheatreState = () => {
+const getTheatreState = () => {
   const key = Object.keys(localStorage).find(k => k.toLowerCase().includes('theatre'))
   if (!key) {
     console.warn('No Theatre.js data in localStorage yet — add at least one keyframe first.')
@@ -29,6 +29,11 @@ studio.initialize()
   return full
 }
 
+// Expose on both the iframe window and the parent Storybook window so
+// getTheatreState() works from the console regardless of which frame is targeted.
+;(window as any).getTheatreState = getTheatreState
+try { (window.parent as any).getTheatreState = getTheatreState } catch (_) {}
+
 const sheet = getProject('BerlinTour').sheet('Scene')
 
 const meta: Meta<typeof CameraPath> = {
@@ -37,14 +42,15 @@ const meta: Meta<typeof CameraPath> = {
   decorators: [
     (Story) => (
       <MayoCanvas
-        overrideCameraPos={new Vector3(-30, 0.5, 0)}
         enableOrbitControls={false}
         background="#111111"
         renderShadows={false}
       >
+        <ScrollControls pages={6} damping={0.15}>
         <SheetProvider sheet={sheet}>
           <Story />
         </SheetProvider>
+        </ScrollControls>
       </MayoCanvas>
     ),
   ],
@@ -53,4 +59,6 @@ const meta: Meta<typeof CameraPath> = {
 export default meta
 type Story = StoryObj<typeof CameraPath>
 
-export const Default: Story = {}
+export const Default: Story = {
+   args: { useNativeScroll: false },
+}

@@ -11,7 +11,7 @@ import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const STORY_URL = 'http://localhost:6006/iframe.html?id=three-experiences-camerapath--default&viewMode=story'
+const STORY_URL = 'http://localhost:6006/iframe.html?globals=&args=&id=three-experiences-camerapath--default&viewMode=story'
 const OUT_FILE = join(__dirname, 'theatreState.json')
 
 const browser = await chromium.launch({ headless: true })
