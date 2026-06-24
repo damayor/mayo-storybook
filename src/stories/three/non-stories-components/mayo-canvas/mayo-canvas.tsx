@@ -20,6 +20,7 @@ interface MayoCanvasProps {
   background?: string
   overrideCameraPos?: Vector3 | [number, number, number],
   renderShadows?: boolean
+  fullscreen?: boolean
 }
 
 export default function MayoCanvas({
@@ -30,11 +31,17 @@ export default function MayoCanvas({
   background = '#ffffff',
   overrideCameraPos = undefined,
   renderShadows = true,
+  fullscreen = false,
 }: MayoCanvasProps) {
+  const containerStyle = fullscreen
+    ? { width: '100%', height: '100%' }
+    : { width: '800px', height: '600px', border: '1px solid black' }
+
   return (
-    <div style={{ width: '800px', height: '600px', border: '1px solid black'}}>
+    <div style={containerStyle}>
       <Canvas
         camera={{ position: overrideCameraPos?? DEFAULT_CAMERA_POSITION ,  fov: DEFAULT_CAMERA_FOV }}
+        gl={{ antialias: false }}
       >
         <color attach="background" args={[background]} /> 
         {children}

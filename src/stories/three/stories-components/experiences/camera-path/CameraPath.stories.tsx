@@ -9,24 +9,23 @@ import { CameraPath } from './CameraPath'
 studio.initialize()
 ;(window as any).studio = studio
 
-// Theatre.js 0.7.x auto-saves state to localStorage — __experimental_getStore() is gone.
-// Run getTheatreState() in the IFRAME console (localhost:6006/iframe.html?...) not the main frame.
+// Exports the per-project on-disk state in the format getProject(id, { state }) expects.
+// studio.__experimental.createContentOfSaveFileTyped returns { definitionVersion, sheetsById, revisionHistory }
+// — the exact shape Theatre.js validates. The old approach saved the full Studio event log, which breaks.
 const getTheatreState = () => {
-  const key = Object.keys(localStorage).find(k => k.toLowerCase().includes('theatre'))
-  if (!key) {
-    console.warn('No Theatre.js data in localStorage yet — add at least one keyframe first.')
-    console.log('Available localStorage keys:', Object.keys(localStorage))
+  const state = studio.__experimental.__experimental_createContentOfSaveFileTyped('BerlinTour')
+  if (!state) {
+    console.warn('No state found for project "BerlinTour" — add at least one keyframe first.')
     return null
   }
-  const full = JSON.parse(localStorage.getItem(key) ?? '{}')
-  const json = JSON.stringify(full, null, 2)
+  const json = JSON.stringify(state, null, 2)
   console.log('%c Theatre.js state — paste into theatreState.json:', 'color: cyan; font-weight: bold')
   console.log(json)
   navigator.clipboard?.writeText(json).then(
     () => console.log('%c ✅ Copied to clipboard!', 'color: lime'),
     () => console.log('%c ⚠ Copy manually from the log above', 'color: orange'),
   )
-  return full
+  return state
 }
 
 // Expose on both the iframe window and the parent Storybook window so
@@ -60,5 +59,5 @@ export default meta
 type Story = StoryObj<typeof CameraPath>
 
 export const Default: Story = {
-   args: { useNativeScroll: false },
+  args: { scrollMode: 'wheel' },
 }

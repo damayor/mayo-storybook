@@ -38,28 +38,24 @@ directly, to avoid fighting Theatre.js for camera control.
 
 ---
 
-## Task 0 – Portfolio integration (URGENT – next task)
+## Task 0 – Portfolio integration ✅ DONE
 
 **Goal:** Replace `InteractiveBackground3D` in `portfolio.component.tsx` with the
 `CameraPath` experience as a fullscreen fixed background.
 
-- [ ] Create `src/components/camera-path-background/CameraPathBackground.tsx`:
-  - Fullscreen `fixed inset-0` wrapper (mirrors `InteractiveBackground3D` layout)
-  - Own `<Canvas>` (not MayoCanvas — needs full viewport)
-  - `SheetProvider` + `ScrollControls pages={6} damping={0.15}` inside Canvas
-  - `CameraPath useNativeScroll` inside SheetProvider
-  - Load `theatreState.json` for production; Studio only in dev
+- [x] Created `src/components/camera-path-background/CameraPathBackground.tsx`:
+  - Fullscreen `fixed inset-0` wrapper, `pointer-events: none` so portfolio scroll works
+  - Own `<Canvas>` (not MayoCanvas — full viewport)
+  - `SheetProvider` + `PerspectiveCamera theatreKey="Camera"` inside Canvas
+  - `ScrollSyncPage` component: listens to `window.scroll`, maps `scrollY/maxScroll` → Theatre.js position — no `ScrollControls` needed, no scroll conflict
+  - Loads `theatreState.json` via `getProject('BerlinTour', { state: theatreState })`
   - `<fog>` to soften point cloud edges
 
-- [ ] In `portfolio.component.tsx`:
-  - Remove `import InteractiveBackground3D`
-  - Add `import CameraPathBackground`
-  - Replace `<InteractiveBackground3D />` (line ~413) with `<CameraPathBackground />`
+- [x] In `portfolio.component.tsx`:
+  - Replaced `import InteractiveBackground3D` with `import CameraPathBackground`
+  - Replaced `<InteractiveBackground3D />` (line 413) with `<CameraPathBackground />`
 
-- [ ] Verify portfolio scroll does not fight with `ScrollControls` —
-  the portfolio page has its own native scroll. Consider using `useNativeScroll={false}`
-  (wheel listener mode) if they conflict, or isolate with `pointer-events: none` on
-  the background and a separate scroll driver.
+- [x] Portfolio scroll conflict resolved: background uses `window.scroll` listener + `pointer-events: none`, not `ScrollControls`, so portfolio content scrolls normally and drives the camera path simultaneously.
 
 ---
 
@@ -294,6 +290,48 @@ try { (window.parent as any).getTheatreState = getTheatreState } catch (_) {}
 from a headless `localStorage` (always empty). It can be fixed by making the
 script read `theatreState.json` from the clipboard or a temp file written by
 the browser step above, but the manual export above is sufficient for now.
+
+---
+
+## Bug 2 – MouseWarpEffect never working
+
+**Symptoms:** `MouseWarpEffectPass` renders inside the EffectComposer but produces no visible distortion. The screen-space UV warp never appears, even with `VITE_USE_MOUSE_WARP=true`.
+
+**What was tried:**
+- `<primitive object={effect}>` inside EffectComposer — doesn't register the Effect properly
+- `wrapEffect(MouseWarpEffect)` + `onInstance` callback for ref capture
+- Canvas-relative NDC via `gl.domElement.getBoundingClientRect()`
+- Y-axis convention fix (removed `-uMouse.y` negation in shader)
+- Confirmed only ONE EffectComposer in canvas (two-composer bug is separate)
+
+**Files to investigate:**
+- `src/stories/three/non-stories-components/effects/MouseWarpEffect.ts` — custom Effect class, fragment shader, uniform setup
+- `src/stories/three/non-stories-components/effects/MouseWarpPass.tsx` — `wrapEffect` binding, `useMouseWarpUniforms` hook, NDC calculation
+
+**Suspected causes (not yet confirmed):**
+- The `onInstance` constructor callback pattern with `wrapEffect` may not correctly capture the Effect instance ref — `useMemo` uses `JSON.stringify(a)` which drops function references, so `onInstance` may get serialized to `{}` causing stale args
+- The uniform names (`uMouse`, `uMouseVel`) may not match what the fragment shader expects after `super()` call in the Effect constructor
+- The `postprocessing` Effect class may require `inputBuffer` to be declared differently
+
+**To fix:** Debug uniform flow end-to-end — confirm the Effect instance ref is set, confirm uniforms are being written each frame via `useFrame`, add a visual diagnostic (set `uStrength` to a very large value like 0.5 in the shader to make warp obvious).
+
+---
+
+## Task 5 – Portfolio UI/UX improvement for point-cloud background
+
+**Goal:** Redesign portfolio UI/UX to complement and enhance the Berlin point-cloud / line background that is always visible behind the content. The visual language of the interface should feel cohesive with the sparse, geometric, city-data aesthetic of the OBJ point cloud.
+
+**Design direction:**
+- UI elements (cards, panels, text containers) should feel transparent, minimal, or glassy — avoid heavy opaque blocks that hide the background
+- Typography and layout should work WITH the point cloud lines/dots, not against them — consider dark overlays with subtle blur (`backdrop-filter`) rather than solid fills
+- Colors should complement the dark background (`#111111`) and the point cloud color palette
+- Explore: thin border UI (1px lines), translucent panels, reduced visual weight on the foreground so the background remains expressive
+- Possible: animate foreground elements in sync with scroll (parallax on content sections)
+
+**Constraints:**
+- Background renders as `fixed inset-0 pointer-events-none` — all pointer events go to the portfolio DOM
+- Portfolio uses DaisyUI + Tailwind v4, `data-theme="dark"` — glass/translucent variants via Tailwind `backdrop-blur-*` classes
+- Foreground z-index is above the canvas (`z-index: 0` on background, portfolio content at default stacking)
 
 ---
 

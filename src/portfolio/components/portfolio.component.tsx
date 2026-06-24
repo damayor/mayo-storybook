@@ -18,8 +18,10 @@ import { contactData } from 'Data/contact';
 import { type SectionType, SECTIONS, SECTIONS_ARRAY } from 'Interfaces/portfolio-sections';
 import { useScrollDetection } from '../../hooks/useScrollDetection';
 import { useInView } from 'react-intersection-observer';
+import CameraPathBackground from '../../components/camera-path-background/CameraPathBackground';
 import InteractiveBackground3D from '../../components/interactive-background-3d/InteractiveBackground3D';
 import { MiniCard } from 'HtmlComponents/mini-card';
+import { flags } from '../../config/flags';
 import { projectsMini } from 'HtmlComponents/mini-card/mini-card.stories';
 
 
@@ -410,7 +412,7 @@ export default function Portfolio() {
   return (
     <div data-theme={'dark'} className="min-h-screen w-screen text-white overflow-x-hidden">
 
-      <InteractiveBackground3D />
+      {flags.USE_CAMERA_PATH_BG ? <CameraPathBackground /> : <InteractiveBackground3D />}
 
       <Sidebar 
         isOpen={sidebarOpen} 
