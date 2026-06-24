@@ -29,8 +29,8 @@ export const socialNetworkLinks = [
     label: "Behance",
     link: "https://www.behance.net/may_interactive"
   },
-    {   
-    label: "X",
-    link: "https://x.com/damayor11"
-  },
+  //   {   
+  //   label: "X",
+  //   link: "https://x.com/damayor11"
+  // },
 ];

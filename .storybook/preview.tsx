@@ -71,7 +71,6 @@ const preview: Preview = {
       storySort: {
         order: ['Welcome', 'WebGL', 'Three', 'C++', 'Html', 'Pixi', '*' , 'Example'],
       },
-      // you can also use a custom sorter function
     },
     docs: {
       theme: themes.normal,
