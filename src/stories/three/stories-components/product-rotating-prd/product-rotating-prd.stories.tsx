@@ -46,6 +46,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const InteractivePDP: Story = {
+  parameters: { showPanel: true },
   args: {
     cameraView: FootwearViews.LEFT,
     glbUrl: SHOE_URL,

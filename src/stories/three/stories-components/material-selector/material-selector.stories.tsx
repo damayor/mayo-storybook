@@ -21,6 +21,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const DynamicMaterial: Story = {
+  parameters: { showPanel: true },
   args: {
     customColor :'#0000ff'
   }
