@@ -31,3 +31,26 @@ declare module '*/obj_parser.js' {
   
   export default cityParserModule;
 }
+
+declare module '*/ply_parser.js' {
+  export interface PlyParser {
+    parse_mesh_a(content: string): void;
+    parse_mesh_b(content: string): void;
+
+    get_vertices_a(): Float32Array;
+    get_vertices_b(): Float32Array;
+
+    count_a(): number;
+    count_b(): number;
+
+    delete(): void;
+  }
+
+  export interface PlyParserModule {
+    PlyParser: new () => PlyParser;
+  }
+
+  const plyParserModule: () => Promise<PlyParserModule>;
+
+  export default plyParserModule;
+}
