@@ -26,7 +26,7 @@ export function CameraPathBackground() {
         renderShadows={false}
         enableOrbitControls={false}
       >
-        <fog attach="fog" args={['#111122', 80, 300]} />
+        <fog attach="fog" args={['#111122', 200, 900]} />
         <SheetProvider sheet={sheet}>
           <CameraPath scrollMode="page" />
         </SheetProvider>
