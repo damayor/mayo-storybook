@@ -8,6 +8,8 @@ import { MouseWarpEffect } from './MouseWarpEffect'
 // Do NOT wrap this in its own EffectComposer — there can only be one per canvas.
 export const MouseWarpEffectComponent = wrapEffect(MouseWarpEffect)
 
+//ToDo schrinks the camera, not expand it...
+
 // Hook that tracks mouse NDC + velocity and writes them into a MouseWarpEffect's uniforms.
 // effectRef must point to the effect instance captured via the onInstance constructor callback.
 export function useMouseWarpUniforms(effectRef: React.RefObject<MouseWarpEffect | null>) {

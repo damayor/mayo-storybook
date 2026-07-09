@@ -5,8 +5,12 @@ import studio from '@theatre/studio'
 import { ScrollControls } from '@react-three/drei'
 import MayoCanvas from '../../../non-stories-components/mayo-canvas/mayo-canvas'
 import { CameraPath } from './CameraPath'
+import theatreState from './theatreState.json'
 
-studio.initialize()
+// usePersistentStorage: false — always load theatreState.json fresh instead of
+// whatever Studio last persisted to the browser's local storage. Edit the file
+// (or record in Studio + run getTheatreState()) and reload to see changes.
+studio.initialize({ usePersistentStorage: false })
 ;(window as any).studio = studio
 
 // Exports the per-project on-disk state in the format getProject(id, { state }) expects.
@@ -33,11 +37,18 @@ const getTheatreState = () => {
 ;(window as any).getTheatreState = getTheatreState
 try { (window.parent as any).getTheatreState = getTheatreState } catch (_) {}
 
-const sheet = getProject('BerlinTour').sheet('Scene')
+const sheet = getProject('BerlinTour', { state: theatreState }).sheet('Scene')
 
 const meta: Meta<typeof CameraPath> = {
   title: 'three/Experiences/CameraPath',
   component: CameraPath,
+  argTypes: {
+    scrollMode: {
+      control: 'select',
+      options: ['native', 'page', 'none'],
+      description: '"none" disables the scroll listener so the sequence can be scrubbed directly in the Theatre Studio panel.',
+    },
+  },
   decorators: [
     (Story) => (
       <MayoCanvas
@@ -59,5 +70,8 @@ export default meta
 type Story = StoryObj<typeof CameraPath>
 
 export const Default: Story = {
-  args: { scrollMode: 'wheel' },
+  // 'none' while tuning keyframes/far in the Theatre Studio panel — a scroll
+  // listener fights the timeline scrubber every frame. Switch to 'native' to
+  // test scroll-driven playback.
+  args: { scrollMode: 'none' },
 }

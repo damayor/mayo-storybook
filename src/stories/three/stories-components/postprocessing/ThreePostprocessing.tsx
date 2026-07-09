@@ -3,6 +3,9 @@ import { BlendFunction, GlitchMode } from 'postprocessing'
 import { Vector2 } from 'three'
 import { useCameraDebug } from '../../non-stories-components/hooks/useCameraDebug.js'
 import { ObjRenderer } from '../../../cpp/ObjRenderer/ObjRenderer.js'
+import { Ply3DRenderer } from '../../../cpp/PlyRenderer/PlyRenderer.stories.js'
+import { PlyRenderer } from '../../../cpp/PlyRenderer/PlyRenderer.js'
+import { MouseWarpEffectPass } from '../../non-stories-components/effects/MouseWarpPass.js'
 
 // --- Mesh transform defaults (extracted from useControls) ---
 // const posX  = -187
@@ -67,6 +70,7 @@ export function ThreePostprocessingEffects({
         active
         ratio={glitchRatio}
       />
+      {/* <MouseWarpEffectPass /> */}
     </>
   )
 }
@@ -77,7 +81,7 @@ export function ThreePostprocessing(props: ThreePostprocessingProps) {
   useCameraDebug()
   return (
     <>
-      <ObjRenderer />
+      <PlyRenderer />
       <EffectComposer multisampling={0}>
         <ThreePostprocessingEffects {...props} />
       </EffectComposer>
