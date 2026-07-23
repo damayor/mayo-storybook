@@ -1,135 +1,210 @@
-# Portfolio Tasks
+# Portfolio Background — Polish & Bug Tasks
 
-> This file is intended to be read alongside `CLAUDE.md`. Each task below is self-contained with enough context to be executed independently or sequentially. Do not modify unrelated components unless explicitly noted.
+> Scored on a 1–5 scale for **priority** (5 = most important) and **difficulty**
+> (5 = hardest). Use `priority - difficulty` as a rough "quick win" signal —
+> higher is better bang for the buck.
 
----
+## Overview
 
-## Task 1 — Refactor the Timeline Section into Milestones
-
-### Context
-The portfolio previously had two separate sections: `timeline` and `achievements`. The data from `achievements` has already been renamed and is now rendering under the `timeline` component. The goal is to unify both into a single, clean `Milestones` concept throughout the codebase.
-
-### Subtasks
-
-#### 1.1 — Merge timeline and achievements into a single `Milestones` data structure
-[x] There are currently two data sources (previously `timeline` and `achievements`). Since the achievements data has already been moved and is rendering under the timeline component, consolidate all entries into **one single property or array called `milestones`**.
-[x] Rename any remaining references to `timeline` or `achievements` (data keys, prop names, variable names, component display names) to `milestones` or `Milestones` as appropriate.
-[x] Ensure the unified `milestones` array is the single source of truth — no duplicate or parallel arrays should remain.
-
-#### 1.2 — Add the `place` attribute to each Milestone entry
-[x] Render `place` visibly in the Timeline/Milestones tab UI, alongside the existing date and title fields.
-
-#### 1.3 — Remove dead code scoped to the timeline/achievements component
-[x] Audit **only** the timeline/milestones component file(s) for unused imports, unreferenced variables, commented-out blocks, and orphaned helper functions.
-[x] Do **not** touch dead code in other components — the rest of the codebase is out of scope for this subtask.
-[x] After removal, confirm the component still renders correctly with no regressions.
-
----
- 
-## Task 2 — Replace Contact Form with Two-Button CTA Footer + Smart CV Viewer
- 
-### Context
-The portfolio currently has a contact form at the bottom that has received zero submissions in 6+ months. It will be replaced with a minimal, high-converting two-button footer section. Separately, a smart CV button needs to open the correct PDF in a new tab based on the active language (set in Task 3). Both changes are scoped to the bottom CTA area and the CV link logic — do not modify other sections.
- 
----
- 
-### Subtask 2.1 — Remove the contact form entirely
-[x]  Deleted `src/services/email.service.ts` and all form state, handlers, and Telegram API call from `ContactSection`.
-[x]  Telegram token and chat ID were hardcoded inline (not in `.env`) — nothing to clean from env files.
-[x]  Section wrapper and social links preserved. Zero broken imports.
----
- 
-### Subtask 2.2 — Build the two-button CTA footer section
-[x] Headline: translatable via `contact.cta` key (EN/DE/ES).
-[x] Button 1 — "Let's Work Together" → `https://calendly.com/may-interactive`, opens in new tab, primary style.
-[x] Button 2 — CV Viewer → language-aware PDF link, opens in new tab, outlined secondary style.
-[x] Side by side on desktop, stacked on mobile.
- 
----
- 
-### Subtask 2.3 — Smart CV viewer (language-aware, opens in new tab)
-[x]  Uses `<a target="_blank" rel="noopener noreferrer">` — opens in new tab, no download.
-[x]  `CV_BY_LANG` map in `portfolio.component.tsx` drives the correct file per language:
-  - `EN` → `/documents/CV.pdf`
-  - `DE` → `/documents/LL.pdf`
-  - `ES` → `/documents/HV.pdf`
-[x]  Files confirmed in `/public/documents/` as `CV.pdf`, `HV.pdf`, `LL.pdf`.
-[x]  Falls back to `EN` if language is unset.
+| # | Task | Priority | Difficulty | Quick-win score | Status |
+|---|------|:---:|:---:|:---:|---|
+| 1 | Readability of foreground content over PLY background | 5 | 3 | +2 | ✅ Done |
+| 2 | Soften CameraPath scroll start/end easing | 4 | 3 | +1 | ✅ Done |
+| 3 | Softer MouseParallax movement on CameraPath | 4 | 2 | +2 | ✅ Done |
+| 4 | `ThreePostprocessingEffects` inconsistent/broken in CameraPath | 3 | 5 | -2 | Not started |
+| 5a | CameraPath framing should match real viewport (no dark edges) | 4 | 3 | +1 | 🔜 Up next |
+| 5b | Parametrize camera distance to PLY model on large screens | 3 | 4 | -1 | 🔜 Up next (after 5a) |
 
 ---
 
-## Task 3 — Full Portfolio Translation (German & Spanish)
+## Task 1 — Foreground readability over the PLY point cloud
 
-### Context
-The portfolio currently renders in English only. To attract clients in the DACH region, Spain and Latin America, it needs to support German (DE) and Spanish (ES) alongside English (EN).
+**Priority 5 · Difficulty 3**
 
-### Requirements
-[x] Complete the i18n system `react-i18next` which I have started months ago, and I am sure not all the tags have its own translator in ES, and actually in DE has not been already created.
-[x] I have created a structure for `react-i18next` based on the portfolio components. I you think you can improve some properties, go ahead, but tell me the changes.
-[x] All visible UI text must be translatable: navigation labels, section headings, body copy, button labels, form placeholders, and footer text. If you find some plain text on portfolio, parametrize it, adding it to en.json and translate them to DE and ES.
-[x] Check that the language toggle <LanguageSelector/> (EN / DE / ES) in the navigation bar, visible on all screen sizes.
-[x] Focus only on the portfolio. I mean only src/components folder. Do **not** touch any internal of src/stories, because all the text it's get as parameter or the comopnents are not being used in portfolio.
-[x] Translation files are in src/i18n/locales/ (i.e. src/i18n/locales/en.json ) and should be organized per language, e.g.:
-  ```
-  /locales/en.json
-  /locales/de.json
-  /locales/es.json
-  ```
-[x] Default language should be detected from the browser's `navigator.language` and fall back to `EN`.
-[x] The selected language should persist across page reloads (localStorage or cookie).
+The portfolio text/content is hard to read because the Berlin PLY point
+cloud renders directly behind it with no separation. See `image.png`
+(hero section: "DAVID MAYORGA-HERRERA" title sits directly on dense point
+cloud lines).
 
-### Subtask 3.2 — i18n-aware Data Layer for `src/data/`
+- [x] Add a background treatment behind text/content blocks — avoid hard-edged
+      opaque panels; prefer a soft, borderless gradient/blur so it still reads
+      as part of the point-cloud scene.
+- [x] Consider `backdrop-filter: blur(...)` panels with a radial/linear
+      gradient fade instead of a solid rectangle — no visible defined border.
+- [ ] Check contrast in both `light` and `dark` DaisyUI themes. (only verified
+      in dark theme so far — portfolio always renders `data-theme="dark"`, so
+      low priority)
 
-#### Context
-UI strings are translated via `react-i18next`, but content in `src/data/*.ts` (project descriptions, milestone narratives, project titles) is hardcoded in English. This subtask makes the data layer language-aware while keeping data in `src/data/` and preserving TypeScript type safety. Skills and tools stay English-only (professional terms standard across DE/ES tech contexts).
+**Implementation:** `src/components/soft-panel/soft-panel-component.tsx` —
+shared `SoftPanel` component: `backdrop-filter: blur(28px)` + a radial-gradient
+`mask-image` (`ellipse 70% 70%`, black→40%, transparent→90%) so the blur/fill
+fades out before it forms a hard rectangular edge. Applied behind every
+heading/content block in `portfolio.component.tsx` (Home, About, Contact,
+both Projects headings) and the Skills section heading in
+`skills-panel-component.tsx`.
 
-#### Architecture: Language-keyed Records + Getter Functions
-Each data file exposes `getX(lang: Lang): T` getters. The portfolio root reads `i18n.language` and passes the right data down. Storybook stories keep importing the named EN exports unchanged.
+**Follow-up fixes (iterated against screenshots):**
+- Mask tuning went through three passes before landing back on the original
+  soft values (`ellipse 70% 70%`, black→40%, transparent→90%) — a tighter
+  mask (`ellipse 95% 95%`, black→60%, transparent→100%) fixed edge-fading but
+  looked like a hard "squared" card, which defeated the point of a borderless
+  panel. Kept the soft mask and fixed edge-fading structurally instead (below).
+- **About section, horizontal:** dense paragraph text reached close enough to
+  the panel edge that the mask fade ate into line-start/line-end letters.
+  Fixed by widening the *panel* (`max-w-7xl`) while keeping the *text column*
+  narrower (`max-w-3xl mx-auto`) inside it — the fade now lives in the margin
+  between panel edge and text, not on the text itself. (First pass used
+  `max-w-6xl` / `max-w-2xl`, which fixed the fading but made the text column
+  uncomfortably narrow/tall; widened both together to `7xl`/`3xl` to keep the
+  same margin ratio with a roomier column.)
+- **About section, vertical:** same fade issue existed top/bottom, just less
+  visible. Widened the vertical buffer too: `py-10 sm:py-16` → `py-16 sm:py-24`.
+- **Heading pills** (Projects ×2, Skills — single-line headings that can't be
+  narrowed like a paragraph column): the pill's own box was barely bigger than
+  its text (`px-10 py-4`), so almost the whole pill sat inside the mask's fade
+  zone. Fixed by making the pill deliberately larger than its content:
+  `px-10 py-4` → `px-16 py-8 sm:px-24 sm:py-12`.
+- Home and Contact panels weren't reported as unreadable, so left as-is —
+  same technique (wider panel / narrower or padded content) applies there too
+  if they turn out to need it.
 
-#### What gets translated
-- `milestones`: `description` only (title/place are proper nouns)
-- `projectsData` (3 entries): `projectPublicTitle`, `subtitle`, `content`
-- `miniProjects` (6 entries): `projectPublicTitle`, `resume`
-- `skills`, `tools`: no translation
+**Bonus fix (found while in this file):** both `Mail` icon links (Sidebar +
+Contact section) were wired to `contactData.behance` instead of an email
+action — copy-paste leftover. Now `mailto:david@mayinteractive.io`.
 
-#### Subtasks
+---
 
-[x] Add `export type Lang = 'en' | 'es' | 'de'` to `src/interfaces/projects.ts`
+## Task 2 — Elastic scroll start/end on CameraPath
 
-[x] **`src/data/experience.ts`**
-  [x] Wrap milestones in `Record<Lang, Milestone[]>` with EN/ES/DE versions — titles and descriptions translated
-  [x] Export `getMilestones(lang: Lang): Milestone[]`
-  [x] Wrap skills in `Record<Lang, SkillCategory[]>` with EN/ES/DE versions — categories and items translated
-  [x] Export `getSkills(lang: Lang): SkillCategory[]`
-  [x] Tools left as language-agnostic; `getAllSkills()`, `getAllTools()` preserved
-  [x] Update `toolsAndExprience` to use `getMilestones('en')` for backwards compat
+**Priority 4 · Difficulty 3**
 
-[x] **`src/data/projects.ts`**
-  [x] Wrap `projectsData` in `Record<Lang, Record<string, Project>>` (only `projectPublicTitle`, `subtitle`, `content` differ)
-  [x] Wrap `miniProjects` in `Record<Lang, MiniProject[]>` (only `projectPublicTitle`, `resume` differ)
-  [x] Export `getProjectsData(lang: Lang)` and `getMiniProjects(lang: Lang)`
-  [x] Keep named exports `projectsData` and `miniProjects` as EN aliases for Storybook backwards compat
+Camera movement is abrupt at the very start and very end of the scroll
+sequence. It should ease in/out more like the existing `useMouseParallax`
+lerp-based damping rather than a hard linear mapping.
 
-[x] **`src/portfolio/components/portfolio.component.tsx`**
-  [x] Read `i18n.language as Lang` at the `Portfolio` root
-  [x] Replace static `projectsData`/`miniProjects` imports with `getProjectsData(lang)`/`getMiniProjects(lang)` calls
-  [x] Replace spread with explicit `milestones={getMilestones(lang)}`, `skills={getSkills(lang)}`, `tools={tools}`
+- [x] Review scroll → `sheet.sequence.position` mapping in `CameraPath.tsx`
+      (`ScrollSyncNative` / `page` mode — `wheel` mode no longer exists in the
+      current code, CLAUDE.md is stale on that point).
+- [x] Add easing (lerp toward target progress instead of setting position
+      directly) so the first/last few percent of scroll feel elastic instead
+      of snapping.
+- [x] Verify both `scrollMode` variants (`native`, `page`) still stay in sync
+      with Theatre.js keyframes after the change.
 
-[x] Verify: `pnpm tsc --noEmit` → zero TypeScript errors
+**Implementation:** added `SCROLL_LERP = 0.1` in `CameraPath.tsx`. Both
+`ScrollSyncNative` and `ScrollSyncPage` now ease a `positionRef` toward
+`scroll.offset * SEQUENCE_DURATION` / `progressRef.current * SEQUENCE_DURATION`
+each frame instead of assigning `sheet.sequence.position` directly — same
+lerp-toward-target technique as `useMouseParallax`.
 
+**Likely files:**
+`src/stories/three/stories-components/experiences/camera-path/CameraPath.tsx`
 
-More Projects
-  button
-  do more projects
+---
 
-Footer con el Printing
+## Task 3 — Softer MouseParallax on CameraPath
 
+**Priority 4 · Difficulty 2**
+
+The mouse parallax applied to the CameraPath mesh group feels stronger /
+less smooth than intended. Tune `lerp` and `strength` options.
+
+- [x] Reduce `strength` and/or lower `lerp` in the `useMouseParallax` call
+      inside `CameraPath.tsx` for a subtler tilt.
+- [x] Compare side-by-side with the `three/Postprocessing/MouseParallax`
+      story to confirm the feel is consistent (or intentionally softer) across
+      both usages.
+
+**Root cause found:** `useMouseParallax.ts` had `STRENGTH_DEFAULT = 0.12`,
+but its own doc comment (and the `MouseParallax` story's Leva control
+description: "~0.012 = subtle, ~0.15 = dramatic") say the intended default is
+`0.012` — a 10× bug. `CameraPath.tsx` calls the hook with no explicit
+`strength`, so it was silently inheriting "dramatic" instead of "subtle."
+Fixed the constant to `0.012`. The `MouseParallax` story is unaffected since
+it always passes explicit `lerp`/`strength` from its own controls.
+
+**Likely files:**
+`src/stories/three/non-stories-components/hooks/useMouseParallax.ts`,
+`src/stories/three/stories-components/experiences/camera-path/CameraPath.tsx`
+
+---
+
+## Task 4 — `ThreePostprocessingEffects` unreliable inside CameraPath
+
+**Priority 3 · Difficulty 5**
+
+`ThreePostprocessingEffects` works reliably in the standalone story
+(`/story/three-postprocessing--default`) but is flaky when composed inside
+`CameraPath`'s `EffectComposer` — sometimes effects don't render at all, and
+behavior is inconsistent across reloads.
+
+- [ ] Confirm there is truly only **one** `<EffectComposer>` in the tree at
+      runtime (per the single-EffectComposer rule in `CLAUDE.md`) — check for
+      remounts/StrictMode double-invocation causing a transient second
+      instance.
+- [ ] Check effect/pass ordering and whether `ThreePostprocessingEffects` and
+      `MouseWarpEffectPass` are both children of the same composer with
+      stable keys (React key churn can cause effects to silently drop).
+- [ ] Check if this correlates with `USE_MOUSE_WARP` flag state — cross-check
+      against the known `MouseWarpEffect` bug already logged in
+      `TASKS-theatre.md` ("Bug 2 — MouseWarpEffect never working").
+      Related: [MouseWarpEffect.ts](src/stories/three/non-stories-components/effects/MouseWarpEffect.ts),
+      [MouseWarpPass.tsx](src/stories/three/non-stories-components/effects/MouseWarpPass.tsx).
+- [ ] Add a visual diagnostic (e.g. force an obvious effect value) to
+      determine if it's a mount-order race vs. a uniform/ref issue.
+
+**Likely files:**
+`src/stories/three/stories-components/postprocessing/ThreePostprocessing.tsx`,
+`src/stories/three/stories-components/experiences/camera-path/CameraPath.tsx`,
+`src/stories/three/non-stories-components/effects/MouseWarpPass.tsx`
+
+---
+
+## Task 5 — No dark/empty edges around the PLY mesh
+
+**Priority 5a: 4 · Difficulty 3** / **5b: 3 · Difficulty 4**
+
+Background should always read as an unbounded, borderless mesh — never show
+dark empty space at the edges, especially on wide/large screens where the
+camera FOV reveals more than the point cloud covers. See `image.png` /
+`image.png` (small viewport vs. wide viewport comparisons).
+
+**Status update:** `theatreState.json` keyframes were re-recorded/enhanced by
+hand (outside this task list) as groundwork. Open question carried over from
+that session: whether the camera should sit measurably closer to the PLY
+model specifically on larger screens — this is exactly what 5b covers below.
+5a should land first since 5b's distance correction depends on knowing the
+real viewport aspect ratio from 5a.
+
+### 5a — Frame the scene to actual viewport dimensions
+
+- [ ] Refactor `CameraPath` (via `CameraPathBackground.tsx`) so FOV/camera
+      framing is computed from the real browser viewport aspect ratio used by
+      the portfolio background, not a fixed assumption.
+- [ ] Test at common breakpoints (mobile portrait, tablet, ultra-wide
+      desktop) to confirm no dark corners appear.
+
+### 5b — Parametrize camera-to-model distance for large screens
+
+- [ ] Add a function that adjusts camera distance/zoom relative to
+      viewport width/aspect ratio — pull the camera closer to the PLY model on
+      larger/wider screens so the point cloud still fills the frame.
+- [ ] Decide whether this adjusts the Theatre.js sequence values at runtime
+      or applies a post-Theatre.js corrective offset (avoid fighting
+      Theatre.js keyframes directly).
+
+**Likely files:**
+`src/components/camera-path-background/CameraPathBackground.tsx`,
+`src/stories/three/stories-components/experiences/camera-path/CameraPath.tsx`
 
 ---
 
 ## Notes for Claude
 
-[] Tasks are listed in recommended execution order but can be tackled independently.
-[] Task 1 is the highest priority and most scoped — start there if uncertain.
-[] When in doubt about scope, do less and ask. Avoid touching unrelated components.
-[] After completing each task, briefly summarize what was changed and flag anything that needs David's manual input (e.g. actual PDF files for Task 2, final copy for Task 3 translations).
+- Respect the single-`EffectComposer`-per-canvas rule from `CLAUDE.md` at all
+  times — Task 4 in particular must not introduce a second one while
+  debugging.
+- Do not add vertex shader distortion to `ObjRenderer` — that remains a
+  focused WASM demo per existing project convention.
+- Test changes in both the CameraPath Storybook story and the actual
+  portfolio (`pnpm dev`) since `scrollMode` differs between the two contexts.

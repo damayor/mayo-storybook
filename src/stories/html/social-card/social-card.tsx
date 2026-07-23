@@ -13,7 +13,7 @@ export const SocialCard = ({
       
       <h1 className='card__author-name'>David Mayorga</h1>
       <h3 className="card__author-location">Berlin, Germany</h3>
-      <h4 className="card__author-description">Software Engineer • Immersive Development</h4>
+      <h4 className="card__author-description">Software Engineer • Graphics & Interactive</h4>
       
       {
         socialNetworkLinks.map( (element, index) => 

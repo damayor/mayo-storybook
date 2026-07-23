@@ -3,6 +3,7 @@ import { Wrench, Star, Gem } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import type { Milestone, SkillCategory, TabPanelProps, ToolsCategory } from 'Interfaces/projects';
 import { Heading } from 'HtmlComponents/headings';
+import { SoftPanel } from '../soft-panel/soft-panel-component';
 
 type TabType = 'milestones' | 'skills' | 'tools';
 
@@ -109,9 +110,13 @@ export default function SkillsTabPanel({
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
       <div className="max-w-4xl w-full z-10">
-        <Heading level={2} className='text-5xl font-lato font-bold mb-8 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center'  variant='primary'>
-          {t('skills.heading')}
-        </Heading>
+        <div className="flex justify-center mb-8">
+          <SoftPanel className="inline-block px-16 py-8 sm:px-24 sm:py-12">
+            <Heading level={2} className='text-5xl font-lato font-bold bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center'  variant='primary'>
+              {t('skills.heading')}
+            </Heading>
+          </SoftPanel>
+        </div>
         {/* Tab Navigation */}
         <div className="bg-white/60 backdrop-blur-sm border border-gray-200/50 rounded-2xl mb-8 p-1 overflow-x-auto shadow-lg">
           <div className="flex gap-1">
