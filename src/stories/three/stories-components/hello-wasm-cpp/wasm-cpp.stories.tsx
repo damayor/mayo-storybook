@@ -2,13 +2,13 @@ import { type StoryObj, type Meta } from '@storybook/react'
 import { Suspense } from 'react'
 import { Vector3 } from 'three'
 import MayoCanvas from '../../non-stories-components/mayo-canvas/mayo-canvas'
-import { WasmMesh } from './WasmCpp'
+import { HelloWasmMesh } from './HelloWasmMesh'
 import { ContactShadows } from '@react-three/drei'
 import { contactShadowsBlur, contactShadowsFar, contactShadowsOpacity, contactShadowsRotation } from '../../non-stories-components/scene-environment/scene-environment.config'
 
 const meta = {
-  title: 'C++/Experiences/WebAssembly',
-  component: WasmMesh,
+  title: 'C++/Experiences/HelloWebAssembly',
+  component: HelloWasmMesh,
   decorators: [
     (Story) => 
       <MayoCanvas overrideCameraPos={new Vector3(-30, 0.5, 0)} enableOrbitControls={true} environmentPreset='studio' gizmoType={'viewPort'} renderShadows={false}>
@@ -34,4 +34,4 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 //ToDo enable Controls and all the right panel at default
-export const WebAssembly: Story = {};
+export const HelloWebAssembly: Story = {};

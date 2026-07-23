@@ -7,7 +7,7 @@ const tempObject = new THREE.Object3D()
 const COUNT = 100 
 const tempColor = new THREE.Color() 
 
-export function WasmMesh () {
+export function HelloWasmMesh () {
   const [wasmModule, setWasmModule] = useState<any>(null)
   const meshRef = useRef<THREE.InstancedMesh>(null)
 

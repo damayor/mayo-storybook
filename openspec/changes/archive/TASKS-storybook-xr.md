@@ -172,6 +172,10 @@ The v6 API (`createXRStore`, `store.enterVR()`) is fundamentally incompatible wi
 - [x] **3.7** Move all XR files into `src/stories/three/stories-components/xr/`
 - [x] **3.8** Update all AR references in `TASKS.md` to VR
 
+
+## Task 4
+[] Add an intro page to my storybook, el mejor ejemplo es https://designlanguage.adidas.com/?path=/docs/welcome--documentation
+[] Plase hide the controls panel on all the stories that do not have any parameter in the story
 ---
 
 ## Notes for Claude

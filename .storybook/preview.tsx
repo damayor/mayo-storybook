@@ -40,6 +40,14 @@ const customViewports = {
     },
     type: 'mobile',
   },
+  laptop: {
+    name: 'Laptop estándar',
+    styles: {
+      width: '1440px',
+      height: '900px',
+    },
+    type: 'desktop',
+  }
 };
 
 

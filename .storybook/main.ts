@@ -23,7 +23,7 @@ const config: StorybookConfig = {
     '../src/stories/three/stories-components/webgl-basis/webgl-basis.stories.tsx',
     '../src/stories/html/experiences/volvo-catalogue/volvo-catalogue.stories.tsx'
   ]
-  : ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  : ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   "addons": [
     "@chromatic-com/storybook",
     "@storybook/addon-docs",
