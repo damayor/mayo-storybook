@@ -53,7 +53,7 @@ export function PlyRenderer() {
               args={[verticesA, 3]}
             />
           </bufferGeometry>
-          <pointsMaterial size={0.5} color="#ff00ff" sizeAttenuation transparent opacity={0.8} />
+          <pointsMaterial size={0.5} color="#bd457a" sizeAttenuation transparent opacity={0.8} />
         </points>
         )}
     </points>

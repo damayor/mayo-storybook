@@ -23,6 +23,7 @@ import InteractiveBackground3D from '../../components/interactive-background-3d/
 import { MiniCard } from 'HtmlComponents/mini-card';
 import { flags } from '../../config/flags';
 import { projectsMini } from 'HtmlComponents/mini-card/mini-card.stories';
+import { SoftPanel } from '../../components/soft-panel/soft-panel-component';
 
 
 function LanguageSelector() {
@@ -140,7 +141,7 @@ function Sidebar({ isOpen, setIsOpen, onNavigate } : SidebarProps) {
               <a target="_blank" href={contactData.instagram} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
                 <Instagram size={20} />
               </a>
-              <a target="_blank" href={contactData.behance} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+              <a href="mailto:david@mayinteractive.io" className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
                 <Mail size={20} />
               </a>
             </div>
@@ -164,19 +165,21 @@ function HomeSection() {
   return (
     <section className="min-h-screen flex items-center justify-center px-6">
         <div ref={ref} className={`max-w-4xl text-center z-10 ${inView ? revealed : hidden}`}>
-          <div className="mb-6">
-            <div className="w-27 h-27 mx-auto mb-6 rounded-full bg-gradient-to-br from-camelot-950 to-camelot-500 p-1">
-              <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-5xl font-lato">
-                <img className='rounded-full' src={mayintLogo} alt="May Interactive Logo" />
+          <SoftPanel className="px-8 py-12 sm:px-24 sm:py-16">
+            <div className="mb-6">
+              <div className="w-27 h-27 mx-auto mb-6 rounded-full bg-gradient-to-br from-camelot-950 to-camelot-500 p-1">
+                <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-5xl font-lato">
+                  <img className='rounded-full' src={mayintLogo} alt="May Interactive Logo" />
+                </div>
               </div>
             </div>
-          </div>
-          <Heading level={1} children={t('home.title')} variant='primary'/>
-          <hr className="h-px my-6 bg-camelot-900 border-0 dark:bg-gray-700"/>
-          <p className="text-2xl text-camelot-800 mb-8 uppercase tracking-widest">
-            {t('home.brand')} • {t('home.role') }
-          </p>
-          <hr className="h-px my-6 bg-camelot-900 border-0 dark:bg-gray-700"/>
+            <Heading level={1} children={t('home.title')} variant='primary'/>
+            <hr className="h-px my-6 bg-camelot-900 border-0 dark:bg-gray-700"/>
+            <p className="text-2xl text-camelot-800 mb-8 uppercase tracking-widest">
+              {t('home.brand')} • {t('home.role') }
+            </p>
+            <hr className="h-px my-6 bg-camelot-900 border-0 dark:bg-gray-700"/>
+          </SoftPanel>
         </div>
 
     </section>
@@ -192,45 +195,49 @@ function AboutSection() {
 
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
-      <div className="max-w-4xl z-10 px-8 py-10 sm:px-12 sm:py-14">
+      {/* Panel is intentionally wider than the text column: the mask fade lives
+          in that extra margin instead of eating into line-start/line-end letters. */}
+      <SoftPanel className="w-full max-w-7xl z-10 px-8 py-16 sm:px-16 sm:py-24">
+        <div className="max-w-3xl mx-auto">
 
-        {/* Class / Major / Minor header — reference: aboutMe_Reference.png */}
-        <div ref={classRef} className={`text-center mb-70 ${classInView ? revealed : hidden}`}>
-          <p className="text-xs tracking-[0.35em] uppercase text-gray-400 mb-5">
-            {t('home.subtitle')}
-          </p>
-          <p
-            className="text-sm tracking-[0.2em] uppercase text-gray-200 leading-8 [&_b]:font-bold [&_b]:tracking-[0.25em]"
-            dangerouslySetInnerHTML={{ __html: t('home.description') }}
-          />
-        </div>
+          {/* Class / Major / Minor header — reference: aboutMe_Reference.png */}
+          <div ref={classRef} className={`text-center mb-70 ${classInView ? revealed : hidden}`}>
+            <p className="text-xs tracking-[0.35em] uppercase text-gray-400 mb-5">
+              {t('home.subtitle')}
+            </p>
+            <p
+              className="text-sm tracking-[0.2em] uppercase text-gray-200 leading-8 [&_b]:font-bold [&_b]:tracking-[0.25em]"
+              dangerouslySetInnerHTML={{ __html: t('home.description') }}
+            />
+          </div>
 
-        {/* Bio */}
-        <div ref={bioRef} className={`${bioInView ? revealed : hidden}`}>
-          <p className="text-lg text-gray-200 mb-6 leading-relaxed" dangerouslySetInnerHTML={{__html: t('about.intro')}} />
-          <p className="text-lg text-gray-200 mb-6 leading-relaxed" dangerouslySetInnerHTML={{__html: t('about.experience')}} />
+          {/* Bio */}
+          <div ref={bioRef} className={`${bioInView ? revealed : hidden}`}>
+            <p className="text-lg text-gray-200 mb-6 leading-relaxed" dangerouslySetInnerHTML={{__html: t('about.intro')}} />
+            <p className="text-lg text-gray-200 mb-6 leading-relaxed" dangerouslySetInnerHTML={{__html: t('about.experience')}} />
 
-          {/* Tagline */}
-          <p className="text-lm font-bold text-gray-100 mb-10 text-center leading-relaxed italic">
-            {t('about.tagline')}
-          </p>
+            {/* Tagline */}
+            <p className="text-lm font-bold text-gray-100 mb-10 text-center leading-relaxed italic">
+              {t('about.tagline')}
+            </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
-            <div className="text-center p-4 border-2 border-slate-700 rounded-lg">
-              <FileJson2 className="mx-auto mb-2 text-blue-400" size={32} />
-              <p className="font-semibold text-gray-200">{t('about.mainSkills.frontend')}</p>
-            </div>
-            <div className="text-center p-4 border-2 border-slate-700 rounded-lg">
-              <RectangleGoggles className="mx-auto mb-2 text-camelot-500" size={32} />
-              <p className="font-semibold text-gray-200">{t('about.mainSkills.xr')}</p>
-            </div>
-            <div className="text-center p-4 border-2 border-slate-700 rounded-lg">
-              <Terminal className="mx-auto mb-2 text-purple-500" size={32} />
-              <p className="font-semibold text-gray-200">{t('about.mainSkills.reliability')}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
+              <div className="text-center p-4 border-2 border-slate-700 rounded-lg">
+                <FileJson2 className="mx-auto mb-2 text-blue-400" size={32} />
+                <p className="font-semibold text-gray-200">{t('about.mainSkills.frontend')}</p>
+              </div>
+              <div className="text-center p-4 border-2 border-slate-700 rounded-lg">
+                <RectangleGoggles className="mx-auto mb-2 text-camelot-500" size={32} />
+                <p className="font-semibold text-gray-200">{t('about.mainSkills.xr')}</p>
+              </div>
+              <div className="text-center p-4 border-2 border-slate-700 rounded-lg">
+                <Terminal className="mx-auto mb-2 text-purple-500" size={32} />
+                <p className="font-semibold text-gray-200">{t('about.mainSkills.reliability')}</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </SoftPanel>
     </section>
   );
 }
@@ -252,9 +259,13 @@ function ProjectsSection({ lang }: { lang: Lang }) {
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
       <div className="max-w-6xl w-full z-10">
         <div ref={mainRef} className={mainInView ? revealed : hidden}>
-          <Heading level={2} className='text-5xl font-lato font-bold mb-12 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center' variant='primary'>
-            {t('projects.title')}
-          </Heading>
+          <div className="flex justify-center mb-12">
+            <SoftPanel className="inline-block px-16 py-8 sm:px-24 sm:py-12">
+              <Heading level={2} className='text-5xl font-lato font-bold bg-gradient-to-r from-camelot-500 to-camelot-800 bg-clip-text text-transparent text-center' variant='primary'>
+                {t('projects.title')}
+              </Heading>
+            </SoftPanel>
+          </div>
           <div className="grid grids-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projData.map((project) => (
               <Card
@@ -273,20 +284,26 @@ function ProjectsSection({ lang }: { lang: Lang }) {
         <div className="max-w-7xl mx-auto py-16 sm:py-20">
           {visibleCount === 0 ? (
             <div className="flex justify-center pt-4">
-              <button
-                onClick={showMore}
-                className="flex flex-col items-center gap-2 text-gray-500 hover:text-camelot-400 transition-colors group"
-                aria-label={t('projects.otherProjects')}
-              >
-                <span className="text-xs uppercase tracking-widest">{t('projects.otherProjects')}</span>
-                <ChevronDown size={28} className="animate-bounce group-hover:text-camelot-400" />
-              </button>
+              <SoftPanel className="inline-block px-8 py-8 sm:px-24 sm:py-12">
+                <button
+                  onClick={showMore}
+                  className="flex flex-col items-center gap-2 text-gray-500 hover:text-camelot-400 transition-colors group"
+                  aria-label={t('projects.otherProjects')}
+                >
+                  <span className="text-xs uppercase tracking-widest">{t('projects.otherProjects')}</span>
+                  <ChevronDown size={28} className="animate-bounce group-hover:text-camelot-400" />
+                </button>
+              </SoftPanel>
             </div>
           ) : (
             <>
-              <Heading level={2} className='text-5xl font-lato font-bold mb-12 bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center' variant='primary'>
-                {t('projects.otherProjects')}
-              </Heading>
+              <div className="flex justify-center mb-12">
+                <SoftPanel className="inline-block px-16 py-8 sm:px-24 sm:py-12">
+                  <Heading level={2} className='text-5xl font-lato font-bold bg-gradient-to-r from-camelot-500 to-camelot-800 bg-clip-text text-transparent text-center' variant='primary'>
+                    {t('projects.otherProjects')}
+                  </Heading>
+                </SoftPanel>
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {miniProjData.slice(0, visibleCount).map((project, index) => (
                   <MiniCard key={index} {...project} />
@@ -326,7 +343,7 @@ function ContactSection({ lang }: { lang: Lang }) {
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
       <div ref={ref} className={`max-w-2xl w-full z-10 ${inView ? revealed : hidden}`}>
 
-        <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-10 flex flex-col items-center gap-8">
+        <SoftPanel className="p-10 flex flex-col items-center gap-8">
           <p className="text-xl text-gray-300 text-center leading-relaxed">
             {t('contact.cta')}
           </p>
@@ -360,11 +377,11 @@ function ContactSection({ lang }: { lang: Lang }) {
             <a target="_blank" href={contactData.instagram} className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
               <Instagram size={24} />
             </a>
-            <a target="_blank" href={contactData.behance} className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+            <a href="mailto:david@mayinteractive.io" className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
               <Mail size={24} />
             </a>
           </div>
-        </div>
+        </SoftPanel>
       </div>
     </section>
   );
