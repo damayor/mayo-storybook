@@ -1,16 +1,16 @@
-import type { Preview } from '@storybook/react-vite'
+import type { Preview } from '@storybook/react-vite';
 import { themes } from 'storybook/internal/theming';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import '../src/index.css'; // replace with the name of your tailwind css file
-import { MINIMAL_VIEWPORTS } from "storybook/viewport";
+import { MINIMAL_VIEWPORTS } from 'storybook/viewport';
 
 //este si lee desde /.storybook
 import './styles.css';
 import { Decorator } from '@storybook/react';
 import { useEffect } from 'react';
 
-const withTheme:Decorator = (Story, context) => {
-  const theme = context.globals.theme || 'dark'; 
+const withTheme: Decorator = (Story, context) => {
+  const theme = context.globals.theme || 'dark';
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -47,10 +47,8 @@ const customViewports = {
       height: '900px',
     },
     type: 'desktop',
-  }
+  },
 };
-
-
 
 const preview: Preview = {
   globalTypes: {
@@ -71,13 +69,13 @@ const preview: Preview = {
   parameters: {
     controls: {
       matchers: {
-       color: /(background|color)$/i,
-       date: /Date$/i,
+        color: /(background|color)$/i,
+        date: /Date$/i,
       },
     },
     options: {
       storySort: {
-        order: ['Welcome', 'WebGL', 'Three', 'C++', 'Html', 'Pixi', '*' , 'Example'],
+        order: ['Welcome', 'WebGL', 'Three', 'C++', 'Html', 'Pixi', '*', 'Example'],
       },
     },
     docs: {
@@ -91,20 +89,20 @@ const preview: Preview = {
       options: {
         ...MINIMAL_VIEWPORTS,
         ...customViewports,
-      }
+      },
     },
     previewTabs: {
       'storybook/docs/panel': { hidden: false },
-      'storybook/test/panel': { hidden: true },      
+      'storybook/test/panel': { hidden: true },
       canvas: { hidden: true },
     },
     backgrounds: {
-      default: "onlight",
+      default: 'onlight',
       options: {
         onlight: { name: 'onlight', value: '#fff' },
         ondark: { name: 'ondark', value: 'oklch(25.33% 0.016 252.42)' },
       },
-    }
+    },
   },
   decorators: [
     // withThemeByClassName({
@@ -114,8 +112,8 @@ const preview: Preview = {
     //   },
     //   defaultTheme: 'dark',
     // }),
-    withTheme
-  ]
+    withTheme,
+  ],
 };
 
 export default preview;

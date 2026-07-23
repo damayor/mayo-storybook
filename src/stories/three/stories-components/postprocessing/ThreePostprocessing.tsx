@@ -1,11 +1,18 @@
-import { EffectComposer, Noise, Scanline, ChromaticAberration, Vignette, Glitch } from '@react-three/postprocessing'
-import { BlendFunction, GlitchMode } from 'postprocessing'
-import { Vector2 } from 'three'
-import { useCameraDebug } from '../../non-stories-components/hooks/useCameraDebug.js'
-import { ObjRenderer } from '../../../cpp/ObjRenderer/ObjRenderer.js'
-import { Ply3DRenderer } from '../../../cpp/PlyRenderer/PlyRenderer.stories.js'
-import { PlyRenderer } from '../../../cpp/PlyRenderer/PlyRenderer.js'
-import { MouseWarpEffectPass } from '../../non-stories-components/effects/MouseWarpPass.js'
+import {
+  EffectComposer,
+  Noise,
+  Scanline,
+  ChromaticAberration,
+  Vignette,
+  Glitch,
+} from '@react-three/postprocessing';
+import { BlendFunction, GlitchMode } from 'postprocessing';
+import { Vector2 } from 'three';
+import { useCameraDebug } from '../../non-stories-components/hooks/useCameraDebug.js';
+import { ObjRenderer } from '../../../cpp/ObjRenderer/ObjRenderer.js';
+import { Ply3DRenderer } from '../../../cpp/PlyRenderer/PlyRenderer.stories.js';
+import { PlyRenderer } from '../../../cpp/PlyRenderer/PlyRenderer.js';
+import { MouseWarpEffectPass } from '../../non-stories-components/effects/MouseWarpPass.js';
 
 // --- Mesh transform defaults (extracted from useControls) ---
 // const posX  = -187
@@ -18,24 +25,24 @@ import { MouseWarpEffectPass } from '../../non-stories-components/effects/MouseW
 
 interface ThreePostprocessingProps {
   // Noise
-  noiseOpacity?: number
+  noiseOpacity?: number;
   // Scanline
-  scanlineDensity?: number
-  scanlineOpacity?: number
+  scanlineDensity?: number;
+  scanlineOpacity?: number;
   // Chromatic Aberration
-  chromaticOffsetX?: number
-  chromaticOffsetY?: number
+  chromaticOffsetX?: number;
+  chromaticOffsetY?: number;
   // Vignette
-  vignetteOffset?: number
-  vignetteDarkness?: number
+  vignetteOffset?: number;
+  vignetteDarkness?: number;
   // Glitch
-  glitchDelayMin?: number
-  glitchDelayMax?: number
-  glitchDurationMin?: number
-  glitchDurationMax?: number
-  glitchStrengthMin?: number
-  glitchStrengthMax?: number
-  glitchRatio?: number
+  glitchDelayMin?: number;
+  glitchDelayMax?: number;
+  glitchDurationMin?: number;
+  glitchDurationMax?: number;
+  glitchStrengthMin?: number;
+  glitchStrengthMax?: number;
+  glitchRatio?: number;
 }
 
 // Bare effects only — no EffectComposer, no ObjRenderer.
@@ -59,8 +66,16 @@ export function ThreePostprocessingEffects({
   return (
     <>
       <Noise opacity={noiseOpacity} blendFunction={BlendFunction.SOFT_LIGHT} />
-      <Scanline blendFunction={BlendFunction.OVERLAY} density={scanlineDensity} opacity={scanlineOpacity} />
-      <ChromaticAberration offset={new Vector2(chromaticOffsetX, chromaticOffsetY)} radialModulation={false} modulationOffset={0} />
+      <Scanline
+        blendFunction={BlendFunction.OVERLAY}
+        density={scanlineDensity}
+        opacity={scanlineOpacity}
+      />
+      <ChromaticAberration
+        offset={new Vector2(chromaticOffsetX, chromaticOffsetY)}
+        radialModulation={false}
+        modulationOffset={0}
+      />
       <Vignette eskil={false} offset={vignetteOffset} darkness={vignetteDarkness} />
       <Glitch
         delay={new Vector2(glitchDelayMin, glitchDelayMax)}
@@ -72,13 +87,13 @@ export function ThreePostprocessingEffects({
       />
       {/* <MouseWarpEffectPass /> */}
     </>
-  )
+  );
 }
 
 // Full standalone component — EffectComposer + ObjRenderer included.
 // Use this in stories or any isolated canvas.
 export function ThreePostprocessing(props: ThreePostprocessingProps) {
-  useCameraDebug()
+  useCameraDebug();
   return (
     <>
       <PlyRenderer />
@@ -86,5 +101,5 @@ export function ThreePostprocessing(props: ThreePostprocessingProps) {
         <ThreePostprocessingEffects {...props} />
       </EffectComposer>
     </>
-  )
+  );
 }

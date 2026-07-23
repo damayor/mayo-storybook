@@ -1,73 +1,85 @@
-import { useGLTF } from '@react-three/drei'
-import { useMemo, useRef } from 'react'
-import { Object3D, Color } from 'three'
-import * as THREE from 'three'
-import type { GLTF } from 'three/examples/jsm/Addons.js'
-import { positionYOffset, positionYScale, positionYTimeScale, rotationXYScale, rotationXYTimeScale, rotationZScale, rotationZTimeOffset, rotationZTimeScale, SIZE } from '../../helpers/constants/product.config'
-import { useFrame } from '@react-three/fiber'
+import { useGLTF } from '@react-three/drei';
+import { useMemo, useRef } from 'react';
+import { Object3D, Color } from 'three';
+import * as THREE from 'three';
+import type { GLTF } from 'three/examples/jsm/Addons.js';
+import {
+  positionYOffset,
+  positionYScale,
+  positionYTimeScale,
+  rotationXYScale,
+  rotationXYTimeScale,
+  rotationZScale,
+  rotationZTimeOffset,
+  rotationZTimeScale,
+  SIZE,
+} from '../../helpers/constants/product.config';
+import { useFrame } from '@react-three/fiber';
 
-const GLB_PATH = 'assets/meshes/Headphone.glb'
+const GLB_PATH = 'assets/meshes/Headphone.glb';
 
 export interface MaterialSelectorProps {
-  customColor: string
+  customColor: string;
 }
 
 interface Object3DWithGeometry extends Object3D {
-  geometry: THREE.BufferGeometry
+  geometry: THREE.BufferGeometry;
 }
 
 export type GTLFResult = GLTF & {
   nodes: {
-    [name: string]: Object3DWithGeometry
-  }
+    [name: string]: Object3DWithGeometry;
+  };
   materials: {
-    [name: string]: THREE.MeshStandardMaterial
-  }
-}
+    [name: string]: THREE.MeshStandardMaterial;
+  };
+};
 
 const MaterialSelector = ({ customColor }: MaterialSelectorProps) => {
-    const ref = useRef<Object3D| null>(null)
-    const {nodes, materials } = useGLTF(GLB_PATH) as unknown as GTLFResult
+  const ref = useRef<Object3D | null>(null);
+  const { nodes, materials } = useGLTF(GLB_PATH) as unknown as GTLFResult;
 
-    useFrame(({ clock }) => {
-      const t = clock.getElapsedTime() * 2
-      if (ref.current) {
-        ref.current.rotation.z = (rotationZTimeOffset + Math.sin(t / rotationZTimeScale)) / rotationZScale
-        ref.current.rotation.x = Math.cos(t / rotationXYTimeScale) / rotationXYScale
-        ref.current.rotation.y = t / 3
-        ref.current.position.y = (positionYOffset + Math.sin(t / positionYTimeScale)) / positionYScale
-      }
-    })
+  useFrame(({ clock }) => {
+    const t = clock.getElapsedTime() * 2;
+    if (ref.current) {
+      ref.current.rotation.z =
+        (rotationZTimeOffset + Math.sin(t / rotationZTimeScale)) / rotationZScale;
+      ref.current.rotation.x = Math.cos(t / rotationXYTimeScale) / rotationXYScale;
+      ref.current.rotation.y = t / 3;
+      ref.current.position.y =
+        (positionYOffset + Math.sin(t / positionYTimeScale)) / positionYScale;
+    }
+  });
 
   const threeColor = useMemo(() => {
-      return new Color(customColor)
-  }, [customColor])
+    return new Color(customColor);
+  }, [customColor]);
 
   const customaterial14 = useMemo(() => {
     return {
       ...materials['Material.014'],
       color: threeColor,
       emissive: threeColor,
-    }
-  }, [materials, threeColor])
-  
+    };
+  }, [materials, threeColor]);
+
   const customaterial11 = useMemo(() => {
     return {
       ...materials['Material.011'],
       color: threeColor,
-    }
-  }, [materials, threeColor])
+    };
+  }, [materials, threeColor]);
 
   const material10Rougher = {
     ...materials['Material.010'],
     roughness: 0.45,
-  }
+  };
 
   const material16Rougher = {
     ...materials['Material.016'],
     metalness: 0.1,
     roughness: 0.45,
-  }
+  };
 
   return (
     <group key={GLB_PATH} ref={ref} scale={[SIZE, SIZE, SIZE]}>
@@ -95,7 +107,7 @@ const MaterialSelector = ({ customColor }: MaterialSelectorProps) => {
         <mesh geometry={nodes.Cube003_8.geometry} material={materials['Material.008']} />
       </group>
     </group>
-  )
-}
+  );
+};
 
-export default MaterialSelector
+export default MaterialSelector;

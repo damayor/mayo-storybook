@@ -1,9 +1,8 @@
-import type { DmColor, DmTheme } from "Interfaces/story-variants";
+import type { DmColor, DmTheme } from 'Interfaces/story-variants';
 
 export interface BadgeProps {
-
-  color?: DmColor
-  theme?: DmTheme
+  color?: DmColor;
+  theme?: DmTheme;
   label?: string;
 }
 
@@ -13,21 +12,23 @@ export const Badge = ({
   theme = 'onlight',
   ...props
 }: BadgeProps) => {
-
-  const getBadgeColor = ()  => {
-    if(theme == 'ondark' && color == 'neutral') //Fixealo para que salga transparente, no fondo negro
+  const getBadgeColor = () => {
+    if (
+      theme == 'ondark' &&
+      color == 'neutral'
+    ) //Fixealo para que salga transparente, no fondo negro
     {
-      return 'badge-neutral badge-outline text-white'
+      return 'badge-neutral badge-outline text-white';
+    } else {
+      return `badge-${color}`;
     }
-    else
-    {
-      return `badge-${color}`
-    }
-  }
-
+  };
 
   return (
-      <div className={`w-32 h-10 font-montserrat badge rounded-sm border-1 border-gray-700 ${getBadgeColor()}  hover:border-gray-50 `}>{label}</div>
-
+    <div
+      className={`w-32 h-10 font-montserrat badge rounded-sm border-1 border-gray-700 ${getBadgeColor()}  hover:border-gray-50 `}
+    >
+      {label}
+    </div>
   );
 };

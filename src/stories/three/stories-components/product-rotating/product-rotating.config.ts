@@ -1,7 +1,7 @@
-import { Euler } from 'three'
-import { type GizmoType } from '../../helpers/types/commonTypes'
+import { Euler } from 'three';
+import { type GizmoType } from '../../helpers/types/commonTypes';
 
-export const gizmoTypeConfig: GizmoType = 'viewCube'
+export const gizmoTypeConfig: GizmoType = 'viewCube';
 export enum FootwearViews {
   FRONT = 'FRONT',
   BACK = 'BACK',
@@ -24,52 +24,51 @@ export enum FootwearViews {
 // } as const;
 // type TFootwearViews = EnumLike<typeof FootwearViews>;
 
+export const lateralPosition = [0, 0.1, 0];
+export const medialPosition = [0, 0, 0];
+export const toePosition = [0, 0.2, 0];
+export const heelPosition = [0, 0.2, 0];
+export const topPosition = [0, 0.3, 0];
+export const bottomPosition = [0, 0.3, 0];
 
-export const lateralPosition = [0, 0.1, 0]
-export const medialPosition = [0, 0, 0]
-export const toePosition = [0, 0.2, 0]
-export const heelPosition = [0, 0.2, 0]
-export const topPosition = [0, 0.3, 0]
-export const bottomPosition = [0, 0.3, 0]
-
-export const lateralRotation = new Euler(-0.15, 0, 0)
-export const medialRotation = new Euler(0, Math.PI, 0)
-export const toeRotation = new Euler(0.2, -Math.PI / 2, 0)
-export const heelRotation = new Euler(0.2, Math.PI / 2, 0)
-export const topRotation = new Euler(Math.PI / 4, 0, 0)
-export const bottomRotation = new Euler(-Math.PI / 3, Math.PI, 0)
+export const lateralRotation = new Euler(-0.15, 0, 0);
+export const medialRotation = new Euler(0, Math.PI, 0);
+export const toeRotation = new Euler(0.2, -Math.PI / 2, 0);
+export const heelRotation = new Euler(0.2, Math.PI / 2, 0);
+export const topRotation = new Euler(Math.PI / 4, 0, 0);
+export const bottomRotation = new Euler(-Math.PI / 3, Math.PI, 0);
 
 export function getProductRotation(view: FootwearViews) {
   switch (view) {
     case FootwearViews.FRONT:
-      return toeRotation 
+      return toeRotation;
     case FootwearViews.BACK:
-      return heelRotation
+      return heelRotation;
     case FootwearViews.RIGHT:
-      return lateralRotation
+      return lateralRotation;
     case FootwearViews.LEFT:
-      return medialRotation
+      return medialRotation;
     case FootwearViews.TOP:
-      return topRotation
+      return topRotation;
     case FootwearViews.BOTTOM:
-      return bottomRotation
+      return bottomRotation;
   }
 }
 
 export function getProductPosition(view: FootwearViews) {
   switch (view) {
     case FootwearViews.FRONT:
-      return lateralPosition
+      return lateralPosition;
     case FootwearViews.BACK:
-      return medialPosition
+      return medialPosition;
     case FootwearViews.RIGHT:
-      return toePosition
+      return toePosition;
     case FootwearViews.LEFT:
-      return heelPosition
+      return heelPosition;
     case FootwearViews.TOP:
-      return topPosition
+      return topPosition;
     case FootwearViews.BOTTOM:
-      return bottomPosition
+      return bottomPosition;
   }
 }
 
@@ -78,4 +77,4 @@ export const springConfig = {
   tension: 82,
   friction: 37,
   precision: 0.001,
-}
+};

@@ -11,9 +11,7 @@ export const LogMessage = React.forwardRef<{ log: (msg: string) => void }>((prop
 
   useImperativeHandle(ref, () => ({ log }), [log]);
 
-  return (
-    <>{message ? message : '✓ Ready'}</>
-  );
+  return <>{message ? message : '✓ Ready'}</>;
 });
 
 LogMessage.displayName = 'LogMessage';

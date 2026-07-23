@@ -1,7 +1,7 @@
-import { FootwearViews } from './product-rotating.config'
+import { FootwearViews } from './product-rotating.config';
 
-import ProductRotating from './product-rotating'
-import { ProductModels } from '../../helpers/constants/scene-constants'
+import ProductRotating from './product-rotating';
+import { ProductModels } from '../../helpers/constants/scene-constants';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
@@ -37,6 +37,5 @@ export const RotatingPDP: Story = {
     enableOrbitControl: true,
     glbUrl: 'PS4',
     gizmoType: 'viewCube',
-  }
+  },
 };
-

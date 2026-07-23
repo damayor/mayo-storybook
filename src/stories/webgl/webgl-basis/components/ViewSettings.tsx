@@ -6,10 +6,7 @@ interface ViewSettingsProps {
   onViewModeChange: (mode: ViewMode) => void;
 }
 
-export const ViewSettings: React.FC<ViewSettingsProps> = ({
-  viewMode,
-  onViewModeChange,
-}) => {
+export const ViewSettings: React.FC<ViewSettingsProps> = ({ viewMode, onViewModeChange }) => {
   const radio = (v: ViewMode, label: string, sub?: string) => (
     <label key={v} className="flex items-center gap-2 cursor-pointer select-none">
       <input
@@ -31,8 +28,8 @@ export const ViewSettings: React.FC<ViewSettingsProps> = ({
       <h4 className="text-sm font-bold uppercase my-2">View Mode</h4>
       <div className="space-y-1">
         {radio('wireframe', 'Wireframe', '+ Points')}
-        {radio('points',    'Points',    '(selectable)')}
-        {radio('faces',     'Faces')}
+        {radio('points', 'Points', '(selectable)')}
+        {radio('faces', 'Faces')}
         {radio('triangles', 'Triangles')}
       </div>
     </div>

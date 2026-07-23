@@ -25,7 +25,7 @@ const WebglBasis: React.FC = () => {
     updateCanvasDimensions,
   } = useUI();
 
-  const [logMessage, setLogMessage]         = useState('Ready');
+  const [logMessage, setLogMessage] = useState('Ready');
   const [showInstructions, setShowInstructions] = useState(false);
   const instructionsRef = useRef<HTMLDivElement>(null);
 
@@ -43,12 +43,8 @@ const WebglBasis: React.FC = () => {
     >
       {/* ── Toolbar ──────────────────────────────────────────────────────── */}
       <div className="flex-none flex flex-wrap items-start gap-5 px-4 py-2 bg-white border-b border-gray-200 shadow-sm z-20">
-
         {/* 1. View Mode — first */}
-        <ViewSettings
-          viewMode={state.viewMode}
-          onViewModeChange={setViewMode}
-        />
+        <ViewSettings viewMode={state.viewMode} onViewModeChange={setViewMode} />
 
         <div className="w-px self-stretch bg-gray-200" />
 
@@ -62,10 +58,7 @@ const WebglBasis: React.FC = () => {
         <div className="w-px self-stretch bg-gray-200" />
 
         {/* 3. Projection */}
-        <ProjectionSettings
-          projectionType={state.projectionType}
-          onChange={setProjectionType}
-        />
+        <ProjectionSettings projectionType={state.projectionType} onChange={setProjectionType} />
 
         <div className="w-px self-stretch bg-gray-200" />
 
@@ -79,7 +72,7 @@ const WebglBasis: React.FC = () => {
           <h4 className="text-sm font-bold uppercase my-2 invisible select-none">h</h4>
           <button
             className="text-xs px-3 py-1 rounded border border-gray-300 hover:bg-gray-100 transition-colors"
-            onClick={() => setShowInstructions(v => !v)}
+            onClick={() => setShowInstructions((v) => !v)}
           >
             {showInstructions ? 'Hide Help' : '? Help'}
           </button>

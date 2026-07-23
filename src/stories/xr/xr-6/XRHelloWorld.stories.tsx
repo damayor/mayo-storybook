@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { XRHelloWorld } from './XRHelloWorld'
+import type { Meta, StoryObj } from '@storybook/react';
+import { XRHelloWorld } from './XRHelloWorld';
 
 const meta: Meta<typeof XRHelloWorld> = {
   title: 'XR/pmndrs-XR-v6',
@@ -13,9 +13,9 @@ const meta: Meta<typeof XRHelloWorld> = {
       },
     },
   },
-}
+};
 
-export default meta
-type Story = StoryObj<typeof XRHelloWorld>
+export default meta;
+type Story = StoryObj<typeof XRHelloWorld>;
 
-export const HelloWorld: Story = {}
+export const HelloWorld: Story = {};

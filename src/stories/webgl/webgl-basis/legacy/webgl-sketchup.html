@@ -1,0 +1,56 @@
+<script
+  type="text/javascript"
+  src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"
+></script>
+<div id="UIPanel">
+  <div class="color div-tool" id="overlayMode">
+    <h4>Modo de interacción</h4>
+    <div>
+      <div><input type="radio" name="order_clic" value="selectClic" /> Deform face</div>
+      <div><input type="radio" name="order_clic" value="2ndClic" checked /> Scale face</div>
+      <div><input type="radio" name="order_clic" value="3rdClic" /> Extrude Z-axis</div>
+    </div>
+  </div>
+  <div class="color div-tool" id="overlayPrimitivesView">
+    <h4>Vista</h4>
+    <div>
+      <div><input type="radio" name="primitives" value="edges" checked /> Aristas <br /></div>
+      <div><input type="radio" name="primitives" value="faces" /> Caras <br /></div>
+    </div>
+    <hr />
+    <div class="color" id="overlayPickImg">
+      Frame de selección <input type="checkbox" id="pickImg" />
+    </div>
+  </div>
+
+  <div class="color div-tool" id="overlayCamera">
+    <h4>Tipo de proyeccion</h4>
+    <div>
+      <div>
+        <input type="radio" name="camera_perspective" value="perspective" checked /> Perspective
+      </div>
+      <div><input type="radio" name="camera_perspective" value="orthogonal" /> Ortogonal</div>
+    </div>
+  </div>
+
+  <div class="color div-tool" id="overlayZoom">
+    <h4>Zoom</h4>
+
+    <div>
+      -
+      <input type="range" min="0" max="10" step="0.1" value="1.5" class="slider" id="zoom" /> +
+    </div>
+  </div>
+</div>
+<div id="LogMessage">
+  <!--"Mensaje aca"-->
+</div>
+
+<div id="InstruccionesPanel" class="color">
+  <span style="font-size: x-large"><b>Cube editor with just WebGL </b></span>
+  <!--Modo de uso: <br>-->
+  <div>Select any vertex with left clic. Move camera with the right one.</div>
+</div>
+
+<canvas id="glcanvas" width="1050" height="750"></canvas>
+<!-- <canvas id="test_canvas" width="851" height="750"></canvas> -->

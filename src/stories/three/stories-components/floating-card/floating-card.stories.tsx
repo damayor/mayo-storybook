@@ -6,9 +6,7 @@ const meta: Meta<typeof FloatingCard> = {
   component: FloatingCard,
   parameters: {
     layout: 'fullscreen',
-  }
-   
-
+  },
 };
 
 export default meta;

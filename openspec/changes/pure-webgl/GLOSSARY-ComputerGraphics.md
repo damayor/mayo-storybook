@@ -279,11 +279,13 @@ element. The following terms, constants, and defaults are specific to the WebGL 
 
 **WebGLRenderingContext**
 The main interface to WebGL, obtained with:
+
 ```js
-canvas.getContext('webgl')
+canvas.getContext('webgl');
 // fallback:
-canvas.getContext('experimental-webgl')
+canvas.getContext('experimental-webgl');
 ```
+
 All GL calls are methods on this object (`gl.drawElements`, `gl.uniform1i`, …).
 
 **Canvas Resolution vs CSS Size**
@@ -341,37 +343,38 @@ Allocates a new GPU buffer object. Returns `WebGLBuffer | null`.
 **`gl.bindBuffer(target, buffer)`**
 Sets the active buffer for a target. Must be called before any buffer data operations.
 
-| Target | Purpose |
-|--------|---------|
-| `gl.ARRAY_BUFFER` | Vertex attribute data (positions, colors, normals) |
-| `gl.ELEMENT_ARRAY_BUFFER` | Index data (triangle indices) |
+| Target                    | Purpose                                            |
+| ------------------------- | -------------------------------------------------- |
+| `gl.ARRAY_BUFFER`         | Vertex attribute data (positions, colors, normals) |
+| `gl.ELEMENT_ARRAY_BUFFER` | Index data (triangle indices)                      |
 
 **`gl.bufferData(target, data, usage)`**
 Uploads typed array data to the currently bound buffer.
 
-| `usage` hint | Meaning |
-|---|---|
-| `gl.STATIC_DRAW` | Data set once, drawn many times |
+| `usage` hint      | Meaning                                   |
+| ----------------- | ----------------------------------------- |
+| `gl.STATIC_DRAW`  | Data set once, drawn many times           |
 | `gl.DYNAMIC_DRAW` | Data updated frequently, drawn many times |
-| `gl.STREAM_DRAW` | Data set once, drawn a few times |
+| `gl.STREAM_DRAW`  | Data set once, drawn a few times          |
 
 This editor uses `gl.DYNAMIC_DRAW` for all geometry buffers since vertices are updated every frame during dragging.
 
 **`gl.bufferSubData(target, offset, data)`**
 Updates a region of an existing buffer without reallocating it. Used for per-frame vertex/color updates. Much cheaper than `bufferData`.
+
 - `offset` is in **bytes** from the start of the buffer. Usually `0`.
 
 **`gl.vertexAttribPointer(index, size, type, normalised, stride, offset)`**
 Describes how to read attribute data from the currently bound `ARRAY_BUFFER`.
 
-| Parameter | Typical value in this editor |
-|---|---|
-| `index` | from `gl.getAttribLocation` |
-| `size` | `3` for position (xyz), `4` for color (rgba) |
-| `type` | `gl.FLOAT` |
-| `normalised` | `false` |
-| `stride` | `0` (tightly packed) |
-| `offset` | `0` |
+| Parameter    | Typical value in this editor                 |
+| ------------ | -------------------------------------------- |
+| `index`      | from `gl.getAttribLocation`                  |
+| `size`       | `3` for position (xyz), `4` for color (rgba) |
+| `type`       | `gl.FLOAT`                                   |
+| `normalised` | `false`                                      |
+| `stride`     | `0` (tightly packed)                         |
+| `offset`     | `0`                                          |
 
 **`gl.enableVertexAttribArray(index)`**
 Activates an attribute location so it reads from the buffer. Must be called for each attribute used in the shader.
@@ -397,12 +400,12 @@ Uploads a `vec4` (4 floats). Used for `uDiffuseColor`.
 **`gl.drawElements(mode, count, type, offset)`**
 Draws primitives using indices from the bound `ELEMENT_ARRAY_BUFFER`.
 
-| Parameter | Typical value |
-|---|---|
-| `mode` | `gl.TRIANGLES`, `gl.LINES`, `gl.POINTS` |
-| `count` | number of indices |
-| `type` | `gl.UNSIGNED_SHORT` (max 65535 unique vertices) |
-| `offset` | `0` |
+| Parameter | Typical value                                   |
+| --------- | ----------------------------------------------- |
+| `mode`    | `gl.TRIANGLES`, `gl.LINES`, `gl.POINTS`         |
+| `count`   | number of indices                               |
+| `type`    | `gl.UNSIGNED_SHORT` (max 65535 unique vertices) |
+| `offset`  | `0`                                             |
 
 **`gl.drawArrays(mode, first, count)`**
 Draws primitives directly from vertex arrays, without an index buffer.
@@ -424,12 +427,12 @@ Each index is an independent point sprite. Size controlled by `gl_PointSize` in 
 **`gl.enable(capability)` / `gl.disable(capability)`**
 Enables or disables a GL capability.
 
-| Capability | Purpose | Default |
-|---|---|---|
-| `gl.DEPTH_TEST` | Hidden-surface removal via depth buffer | **Disabled** |
-| `gl.CULL_FACE` | Skip back-facing triangles | **Disabled** |
-| `gl.BLEND` | Alpha blending | **Disabled** |
-| `gl.SCISSOR_TEST` | Restrict rendering to a rectangle | **Disabled** |
+| Capability        | Purpose                                 | Default      |
+| ----------------- | --------------------------------------- | ------------ |
+| `gl.DEPTH_TEST`   | Hidden-surface removal via depth buffer | **Disabled** |
+| `gl.CULL_FACE`    | Skip back-facing triangles              | **Disabled** |
+| `gl.BLEND`        | Alpha blending                          | **Disabled** |
+| `gl.SCISSOR_TEST` | Restrict rendering to a rectangle       | **Disabled** |
 
 **`gl.depthFunc(func)`**
 Sets the depth comparison function.  
@@ -443,20 +446,20 @@ Default: **`1.0`** (the far plane).
 Specifies which triangles are culled when `CULL_FACE` is enabled.  
 Default: **`gl.BACK`**.
 
-| `mode` | Culled |
-|---|---|
-| `gl.BACK` | Back-facing triangles (default) |
-| `gl.FRONT` | Front-facing triangles |
-| `gl.FRONT_AND_BACK` | All triangles (nothing drawn) |
+| `mode`              | Culled                          |
+| ------------------- | ------------------------------- |
+| `gl.BACK`           | Back-facing triangles (default) |
+| `gl.FRONT`          | Front-facing triangles          |
+| `gl.FRONT_AND_BACK` | All triangles (nothing drawn)   |
 
 **`gl.frontFace(mode)`**
 Defines which winding order is "front".  
 Default: **`gl.CCW`** (counter-clockwise).
 
-| `mode` | Front face |
-|---|---|
-| `gl.CCW` | Counter-clockwise (default, OpenGL convention) |
-| `gl.CW` | Clockwise — used in this editor because of the modelview construction |
+| `mode`   | Front face                                                            |
+| -------- | --------------------------------------------------------------------- |
+| `gl.CCW` | Counter-clockwise (default, OpenGL convention)                        |
+| `gl.CW`  | Clockwise — used in this editor because of the modelview construction |
 
 ---
 
@@ -470,10 +473,10 @@ This editor uses `(1.0, 1.0, 1.0, 1.0)` (white).
 **`gl.clear(mask)`**
 Clears the specified buffers.
 
-| Mask flag | Clears |
-|---|---|
-| `gl.COLOR_BUFFER_BIT` | Color buffer |
-| `gl.DEPTH_BUFFER_BIT` | Depth buffer |
+| Mask flag               | Clears         |
+| ----------------------- | -------------- |
+| `gl.COLOR_BUFFER_BIT`   | Color buffer   |
+| `gl.DEPTH_BUFFER_BIT`   | Depth buffer   |
 | `gl.STENCIL_BUFFER_BIT` | Stencil buffer |
 
 Both are combined with `|`: `gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT`.
@@ -503,13 +506,14 @@ The typed array used for index buffers with `gl.UNSIGNED_SHORT`. Supports up to 
 
 Used in GLSL to control floating-point precision on the GPU.
 
-| Qualifier | Bits | Where common |
-|---|---|---|
-| `lowp` | ~8-bit | Colors, UVs |
-| `mediump` | ~16-bit | Positions in fragment shader |
-| `highp` | 32-bit | Positions in vertex shader, matrices |
+| Qualifier | Bits    | Where common                         |
+| --------- | ------- | ------------------------------------ |
+| `lowp`    | ~8-bit  | Colors, UVs                          |
+| `mediump` | ~16-bit | Positions in fragment shader         |
+| `highp`   | 32-bit  | Positions in vertex shader, matrices |
 
 Fragment shaders have no default precision for `float` in WebGL — it must be declared:
+
 ```glsl
 precision mediump float;
 ```
@@ -518,15 +522,15 @@ precision mediump float;
 
 ### Coordinate Conventions
 
-| Convention | WebGL default |
-|---|---|
-| Clip-space X | `−1` (left) → `+1` (right) |
-| Clip-space Y | `−1` (bottom) → `+1` (top) |
-| Clip-space Z | `−1` (near) → `+1` (far) |
-| Handedness | Right-handed (before projection) |
-| Winding front-face | Counter-clockwise (`gl.CCW`) |
-| Viewport origin | Bottom-left of canvas |
-| Texture origin | Bottom-left |
+| Convention         | WebGL default                    |
+| ------------------ | -------------------------------- |
+| Clip-space X       | `−1` (left) → `+1` (right)       |
+| Clip-space Y       | `−1` (bottom) → `+1` (top)       |
+| Clip-space Z       | `−1` (near) → `+1` (far)         |
+| Handedness         | Right-handed (before projection) |
+| Winding front-face | Counter-clockwise (`gl.CCW`)     |
+| Viewport origin    | Bottom-left of canvas            |
+| Texture origin     | Bottom-left                      |
 
 Note: HTML canvas and mouse events use a **top-left** origin with Y increasing
 downward — the opposite of GL. The conversion is `gl_y = canvas.height - mouse_y`.
@@ -538,6 +542,7 @@ downward — the opposite of GL. The conversion is `gl_y = canvas.height - mouse
 A built-in fragment shader variable available only when rendering `GL_POINTS`.
 Contains the 2D position within the point sprite, ranging `(0,0)` to `(1,1)`.
 Used in this editor to discard fragments outside a circle:
+
 ```glsl
 vec2 c = gl_PointCoord - vec2(0.5);
 if (dot(c, c) > 0.25) discard;

@@ -1,7 +1,7 @@
 import { create } from 'storybook/theming';
 
-import './styles/sb-config.css'
-import './styles/sb-sidebar.css'
+import './styles/sb-config.css';
+import './styles/sb-sidebar.css';
 
 export default create({
   base: 'dark',
@@ -34,5 +34,4 @@ export default create({
   brandUrl: '/',
   brandImage: '/mayint_header.png',
   brandTarget: '_self',
-
-})
+});

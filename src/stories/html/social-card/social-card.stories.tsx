@@ -1,8 +1,6 @@
-
 import type { Meta, StoryObj } from '@storybook/react';
 import { SocialCard } from './social-card';
 import { projectsData } from '../../../data/projects';
-
 
 const meta = {
   title: 'Html/Components/SocialCard',
@@ -14,9 +12,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const project = projectsData["xr"]
+const project = projectsData['xr'];
 
-export const Primary: Story = {
-
-};
-
+export const Primary: Story = {};

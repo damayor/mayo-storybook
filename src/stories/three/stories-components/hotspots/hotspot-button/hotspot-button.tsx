@@ -1,23 +1,29 @@
-import { Html } from '@react-three/drei'
-import { useState, type JSX } from 'react'
-import { Vector3 } from 'three'
-import { hotspotsZIndexRange } from './hotspot-button.config'
-import './hotspot-button.css'
+import { Html } from '@react-three/drei';
+import { useState, type JSX } from 'react';
+import { Vector3 } from 'three';
+import { hotspotsZIndexRange } from './hotspot-button.config';
+import './hotspot-button.css';
 
 export interface HotspotButtonProps {
-  position?: Vector3
-  index?: number
-  isChecked?: boolean
-  onToggle: (value: boolean) => void
-  customButton?: JSX.Element
+  position?: Vector3;
+  index?: number;
+  isChecked?: boolean;
+  onToggle: (value: boolean) => void;
+  customButton?: JSX.Element;
 }
 
-export default function HotspotButton({ position, index = 0, onToggle, isChecked, customButton }: HotspotButtonProps) {
-  const [hidden, setHidden] = useState(false)
+export default function HotspotButton({
+  position,
+  index = 0,
+  onToggle,
+  isChecked,
+  customButton,
+}: HotspotButtonProps) {
+  const [hidden, setHidden] = useState(false);
   const handleOcclusion = (toggle: boolean) => {
-    setHidden(toggle)
-    return null
-  }
+    setHidden(toggle);
+    return null;
+  };
 
   return (
     <group>
@@ -34,26 +40,30 @@ export default function HotspotButton({ position, index = 0, onToggle, isChecked
         zIndexRange={hotspotsZIndexRange}
       >
         {customButton !== undefined ? (
-          <div className='hotspot-button--custom' id={`hotspot-button-custom-${index}`} onClick={() => onToggle(true)}>
+          <div
+            className="hotspot-button--custom"
+            id={`hotspot-button-custom-${index}`}
+            onClick={() => onToggle(true)}
+          >
             {customButton}
           </div>
         ) : (
-          <div className='hotspot-button'>
+          <div className="hotspot-button">
             <input
-              type='checkbox'
-              className='hotspot-button__checkbox'
+              type="checkbox"
+              className="hotspot-button__checkbox"
               id={`hotspot-button-${index}`}
               onChange={(e) => onToggle(e.target.checked)}
               checked={isChecked}
             />
-            <label htmlFor={`hotspot-button-${index}`} className='hotspot-button__btn'>
-              <div className='hotspot-button__circle'>
-                <div className='hotspot-button__icon'></div>
+            <label htmlFor={`hotspot-button-${index}`} className="hotspot-button__btn">
+              <div className="hotspot-button__circle">
+                <div className="hotspot-button__icon"></div>
               </div>
             </label>
           </div>
         )}
       </Html>
     </group>
-  )
+  );
 }

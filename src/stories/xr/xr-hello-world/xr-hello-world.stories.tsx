@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import AppXR from './AppXR'
+import type { Meta, StoryObj } from '@storybook/react';
+import AppXR from './AppXR';
 
 const meta: Meta<typeof AppXR> = {
   title: 'XR/Experiences/Hello Drei-VR',
@@ -17,9 +17,9 @@ const meta: Meta<typeof AppXR> = {
       },
     },
   },
-}
+};
 
-export default meta
-type Story = StoryObj<typeof AppXR>
+export default meta;
+type Story = StoryObj<typeof AppXR>;
 
-export const Default: Story = {}
+export const Default: Story = {};

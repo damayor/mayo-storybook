@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from '@storybook/react';
 import { Badge } from './badge';
 
@@ -14,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    color: 'primary'
+    color: 'primary',
   },
 };
 
@@ -27,37 +26,34 @@ export const Secondary: Story = {
 
 export const Black: Story = {
   args: {
-    color: 'neutral'
+    color: 'neutral',
   },
 };
 
 export const Outline: Story = {
   args: {
-    color: 'outline'
+    color: 'outline',
   },
   globals: {
     backgrounds: { value: 'onlight' },
     theme: 'light',
-    
   },
 };
-
 
 export const TransparentOnDark: Story = {
   args: {
     color: 'neutral',
-    theme: 'ondark'
+    theme: 'ondark',
   },
   globals: {
     backgrounds: { value: 'ondark' },
     theme: 'dark',
   },
-  
 };
 
 export const WhiteOnDark: Story = {
   args: {
-    color: 'info'
+    color: 'info',
   },
   globals: {
     backgrounds: { value: 'ondark' },

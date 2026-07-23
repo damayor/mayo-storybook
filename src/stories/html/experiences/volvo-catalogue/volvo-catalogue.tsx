@@ -1,4 +1,3 @@
-
 const VolvoCatalogue = () => (
   <div style={{ width: '1200px', height: '650px', background: '#000' }}>
     <iframe
@@ -11,6 +10,6 @@ const VolvoCatalogue = () => (
       allow="fullscreen; xr-spatial-tracking"
     />
   </div>
-)
+);
 
-export default VolvoCatalogue
+export default VolvoCatalogue;

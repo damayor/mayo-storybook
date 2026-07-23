@@ -1,6 +1,6 @@
-import { type Meta, type StoryObj } from '@storybook/react'
-import React from 'react'
-import AnimatedSun from './animated-sun'
+import { type Meta, type StoryObj } from '@storybook/react';
+import React from 'react';
+import AnimatedSun from './animated-sun';
 import type MouseTrail from '../mouse-trail/mouse-trail';
 
 const meta = {
@@ -20,8 +20,7 @@ const meta = {
       control: { type: 'range', min: -30, max: 40, step: 1 },
     },
   },
-} satisfies Meta<typeof AnimatedSun>
-
+} satisfies Meta<typeof AnimatedSun>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -29,6 +28,6 @@ export const SunOverTerrain: Story = {
   args: {
     gizmoType: 'none',
     lightPositionX: -20,
-    lightPositionZ: 40
-  }
+    lightPositionZ: 40,
+  },
 };

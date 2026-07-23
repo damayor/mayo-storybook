@@ -1,38 +1,35 @@
-import { useEffect, useRef } from 'react'
-import { useFrame, useThree } from '@react-three/fiber'
-import { Vector2 } from 'three'
-import type { ShaderMaterial } from 'three'
+import { useEffect, useRef } from 'react';
+import { useFrame, useThree } from '@react-three/fiber';
+import { Vector2 } from 'three';
+import type { ShaderMaterial } from 'three';
 
 // Drives the uniforms of a ShaderMaterial with mouse NDC position + velocity.
 // Attach the returned materialRef to the <shaderMaterial> of your points mesh.
 export function useMouseDistort(materialRef: React.RefObject<ShaderMaterial | null>) {
-  const { size } = useThree()
-  const mouseNDC = useRef(new Vector2(0, 0))
-  const prevNDC  = useRef(new Vector2(0, 0))
-  const velNDC   = useRef(new Vector2(0, 0))
+  const { size } = useThree();
+  const mouseNDC = useRef(new Vector2(0, 0));
+  const prevNDC = useRef(new Vector2(0, 0));
+  const velNDC = useRef(new Vector2(0, 0));
 
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
-      prevNDC.current.copy(mouseNDC.current)
-      mouseNDC.current.set(
-        (e.clientX / size.width)  *  2 - 1,
-        (e.clientY / size.height) * -2 + 1,
-      )
-      velNDC.current.subVectors(mouseNDC.current, prevNDC.current)
+      prevNDC.current.copy(mouseNDC.current);
+      mouseNDC.current.set((e.clientX / size.width) * 2 - 1, (e.clientY / size.height) * -2 + 1);
+      velNDC.current.subVectors(mouseNDC.current, prevNDC.current);
       // Normalize velocity so it's just direction; shader biases only by direction
-      if (velNDC.current.length() > 0.001) velNDC.current.normalize()
-      else velNDC.current.set(0, 0)
-    }
-    window.addEventListener('mousemove', onMove)
-    return () => window.removeEventListener('mousemove', onMove)
-  }, [size])
+      if (velNDC.current.length() > 0.001) velNDC.current.normalize();
+      else velNDC.current.set(0, 0);
+    };
+    window.addEventListener('mousemove', onMove);
+    return () => window.removeEventListener('mousemove', onMove);
+  }, [size]);
 
   useFrame(() => {
-    const mat = materialRef.current
-    if (!mat) return
-    mat.uniforms.uMouse.value.copy(mouseNDC.current)
-    mat.uniforms.uMouseVel.value.copy(velNDC.current)
-  })
+    const mat = materialRef.current;
+    if (!mat) return;
+    mat.uniforms.uMouse.value.copy(mouseNDC.current);
+    mat.uniforms.uMouseVel.value.copy(velNDC.current);
+  });
 }
 
 // Vertex shader: displaces points away from the mouse with a wake bias behind it.
@@ -71,7 +68,7 @@ export const distortVertexShader = /* glsl */ `
     gl_Position  = projectionMatrix * mvPos;
     gl_PointSize = uSize * (300.0 / -mvPos.z);
   }
-`
+`;
 
 export const distortFragmentShader = /* glsl */ `
   uniform vec3 uColor;
@@ -81,4 +78,4 @@ export const distortFragmentShader = /* glsl */ `
     if (length(coord) > 0.5) discard;
     gl_FragColor = vec4(uColor, 0.8);
   }
-`
+`;

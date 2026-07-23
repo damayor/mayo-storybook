@@ -1,4 +1,4 @@
-import {type StoryObj, type Meta } from '@storybook/react'
+import { type StoryObj, type Meta } from '@storybook/react';
 import Pool3D from './pool-3d';
 
 const meta = {
@@ -9,6 +9,4 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const DeepPool: Story = {
-
-};
+export const DeepPool: Story = {};

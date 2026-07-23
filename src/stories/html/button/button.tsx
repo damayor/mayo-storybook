@@ -2,13 +2,12 @@ import React from 'react';
 import type { DmColor, DmTheme } from '../../../interfaces/story-variants';
 
 export interface ButtonProps {
-
-  color?: DmColor
+  color?: DmColor;
   size?: 'small' | 'medium' | 'large';
-  theme?: DmTheme
+  theme?: DmTheme;
   label?: string;
   onClick?: () => void;
-  twStyle?: string
+  twStyle?: string;
 }
 
 export const Button = ({
@@ -20,29 +19,28 @@ export const Button = ({
   onClick,
   ...props
 }: ButtonProps) => {
-  const getButtonClass = ()  => {
-    if (color !== "outline") {
-      return `btn-${color} hover:bg-${color}/80`
-    }
-    else
-    {
-      if(theme == 'ondark') //Fixealo para que salga transparente, no fondo negro
+  const getButtonClass = () => {
+    if (color !== 'outline') {
+      return `btn-${color} hover:bg-${color}/80`;
+    } else {
+      if (theme == 'ondark') //Fixealo para que salga transparente, no fondo negro
       {
-        return 'btn-neutral btn-outline'
-      }
-      else
-      {
-        return 'btn-outline'
+        return 'btn-neutral btn-outline';
+      } else {
+        return 'btn-outline';
       }
     }
-  }
-
+  };
 
   return (
     <div>
-      <button onClick={onClick} className={`w-32 h-10 rounded-sm btn ${getButtonClass()} ${twStyle} `} {...props}>{label}</button>
+      <button
+        onClick={onClick}
+        className={`w-32 h-10 rounded-sm btn ${getButtonClass()} ${twStyle} `}
+        {...props}
+      >
+        {label}
+      </button>
     </div>
-
   );
 };
-

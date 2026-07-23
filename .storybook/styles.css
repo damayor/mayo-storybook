@@ -17,9 +17,9 @@
   --font-family-roboto: 'Roboto', sans-serif;
   --font-family-montserrat: 'Montserrat', sans-serif;
 
-  --text: #252b42; 
-  --second-text: #f5f5f5;;
-  
+  --text: #252b42;
+  --second-text: #f5f5f5;
+
   --Light-text: rgba(255, 255, 255, 1);
   --Dark-background: rgba(37, 43, 66, 1);
   --Light-background: rgba(255, 255, 255, 1);
@@ -27,19 +27,18 @@
   --gray-1: rgba(99, 99, 99, 1);
   --gray-2-darker: rgba(65, 65, 65, 1);
 
-
   /* el fondo del icono */
-  --clr-gray-light: #BEBEBE; 
-  --clr-black-100: #1E1E1E;
-  --clr-text-vscode: #252B42;
+  --clr-gray-light: #bebebe;
+  --clr-black-100: #1e1e1e;
+  --clr-text-vscode: #252b42;
 
   --clr-primary-light: #d68dab;
   --clr-primary: #8f3056;
   --clr-primary-dark: #48011d;
 
-  --clr-secondary-light: #A1ADE9;
+  --clr-secondary-light: #a1ade9;
   --clr-secondary-dark: #1e295f;
-  --clr-secondary: #455AC6;
+  --clr-secondary: #455ac6;
 
   --clr-tertiary-light: rgba(235, 244, 161, 1);
   --clr-tertiary: #97a337;
@@ -49,9 +48,4 @@
   --clr-white: rgba(255, 255, 255, 1);
   --clr-rgb-37-43-66: rgba(37, 43, 66, 1);
   --clr-black: rgba(0, 0, 0, 1);
-
-
-
-
-
 }

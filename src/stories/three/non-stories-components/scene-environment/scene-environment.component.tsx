@@ -1,15 +1,30 @@
-import { ContactShadows } from "@react-three/drei";
-import { Suspense } from "react";
-import { Vector3 } from "three";
-import { ambientLightIntensity, contactShadowsBlur, contactShadowsFar, contactShadowsHeight, contactShadowsOpacity, contactShadowsPosition, contactShadowsRotation, contactShadowsWidth, spotlightAngle, spotLightIntensity, spotLightPenumbra, spotLightPosition } from "./scene-environment.config";
+import { ContactShadows } from '@react-three/drei';
+import { Suspense } from 'react';
+import { Vector3 } from 'three';
+import {
+  ambientLightIntensity,
+  contactShadowsBlur,
+  contactShadowsFar,
+  contactShadowsHeight,
+  contactShadowsOpacity,
+  contactShadowsPosition,
+  contactShadowsRotation,
+  contactShadowsWidth,
+  spotlightAngle,
+  spotLightIntensity,
+  spotLightPenumbra,
+  spotLightPosition,
+} from './scene-environment.config';
 
 interface SceneEnvironmentProps {
-  lightPosition?: Vector3
-  renderShadows?: boolean
+  lightPosition?: Vector3;
+  renderShadows?: boolean;
 }
 
-export default function SceneEnvironment({ lightPosition = spotLightPosition, renderShadows = true }: SceneEnvironmentProps) {
-
+export default function SceneEnvironment({
+  lightPosition = spotLightPosition,
+  renderShadows = true,
+}: SceneEnvironmentProps) {
   return (
     <>
       <ambientLight intensity={ambientLightIntensity} />
@@ -20,7 +35,7 @@ export default function SceneEnvironment({ lightPosition = spotLightPosition, re
         position={lightPosition}
         castShadow
       />
-      {renderShadows &&
+      {renderShadows && (
         <Suspense fallback={<mesh />}>
           <ContactShadows
             rotation-x={contactShadowsRotation}
@@ -32,7 +47,7 @@ export default function SceneEnvironment({ lightPosition = spotLightPosition, re
             far={contactShadowsFar}
           />
         </Suspense>
-      }
+      )}
     </>
-  )
+  );
 }

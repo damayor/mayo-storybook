@@ -6,14 +6,14 @@
 
 ## Overview
 
-| # | Task | Priority | Difficulty | Quick-win score | Status |
-|---|------|:---:|:---:|:---:|---|
-| 1 | Readability of foreground content over PLY background | 5 | 3 | +2 | ✅ Done |
-| 2 | Soften CameraPath scroll start/end easing | 4 | 3 | +1 | ✅ Done |
-| 3 | Softer MouseParallax movement on CameraPath | 4 | 2 | +2 | ✅ Done |
-| 4 | `ThreePostprocessingEffects` inconsistent/broken in CameraPath | 3 | 5 | -2 | Not started |
-| 5a | CameraPath framing should match real viewport (no dark edges) | 4 | 3 | +1 | 🔜 Up next |
-| 5b | Parametrize camera distance to PLY model on large screens | 3 | 4 | -1 | 🔜 Up next (after 5a) |
+| #   | Task                                                           | Priority | Difficulty | Quick-win score | Status                |
+| --- | -------------------------------------------------------------- | :------: | :--------: | :-------------: | --------------------- |
+| 1   | Readability of foreground content over PLY background          |    5     |     3      |       +2        | ✅ Done               |
+| 2   | Soften CameraPath scroll start/end easing                      |    4     |     3      |       +1        | ✅ Done               |
+| 3   | Softer MouseParallax movement on CameraPath                    |    4     |     2      |       +2        | ✅ Done               |
+| 4   | `ThreePostprocessingEffects` inconsistent/broken in CameraPath |    3     |     5      |       -2        | Not started           |
+| 5a  | CameraPath framing should match real viewport (no dark edges)  |    4     |     3      |       +1        | 🔜 Up next            |
+| 5b  | Parametrize camera distance to PLY model on large screens      |    3     |     4      |       -1        | 🔜 Up next (after 5a) |
 
 ---
 
@@ -44,6 +44,7 @@ both Projects headings) and the Skills section heading in
 `skills-panel-component.tsx`.
 
 **Follow-up fixes (iterated against screenshots):**
+
 - Mask tuning went through three passes before landing back on the original
   soft values (`ellipse 70% 70%`, black→40%, transparent→90%) — a tighter
   mask (`ellipse 95% 95%`, black→60%, transparent→100%) fixed edge-fading but
@@ -51,7 +52,7 @@ both Projects headings) and the Skills section heading in
   panel. Kept the soft mask and fixed edge-fading structurally instead (below).
 - **About section, horizontal:** dense paragraph text reached close enough to
   the panel edge that the mask fade ate into line-start/line-end letters.
-  Fixed by widening the *panel* (`max-w-7xl`) while keeping the *text column*
+  Fixed by widening the _panel_ (`max-w-7xl`) while keeping the _text column_
   narrower (`max-w-3xl mx-auto`) inside it — the fade now lives in the margin
   between panel edge and text, not on the text itself. (First pass used
   `max-w-6xl` / `max-w-2xl`, which fixed the fading but made the text column

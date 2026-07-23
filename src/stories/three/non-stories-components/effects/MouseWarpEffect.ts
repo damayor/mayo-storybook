@@ -1,5 +1,5 @@
-import { Effect } from 'postprocessing'
-import { Uniform, Vector2 } from 'three'
+import { Effect } from 'postprocessing';
+import { Uniform, Vector2 } from 'three';
 
 // Screen-space UV warp driven by mouse NDC + velocity.
 // Everything rendered below is displaced — no geometry touched.
@@ -32,23 +32,23 @@ const fragmentShader = /* glsl */ `
     vec2 distortedUV = uv + pushDir * influence * uStrength;
     outputColor = texture2D(inputBuffer, distortedUV);
   }
-`
+`;
 
 export interface MouseWarpEffectOptions {
-  onInstance?: (e: MouseWarpEffect) => void
+  onInstance?: (e: MouseWarpEffect) => void;
 }
 
 export class MouseWarpEffect extends Effect {
   constructor(options: MouseWarpEffectOptions = {}) {
     super('MouseWarpEffect', fragmentShader, {
       uniforms: new Map<string, Uniform<unknown>>([
-        ['uMouse',    new Uniform(new Vector2(0, 0))],
+        ['uMouse', new Uniform(new Vector2(0, 0))],
         ['uMouseVel', new Uniform(new Vector2(0, 0))],
-        ['uRadius',   new Uniform(0.22)],
+        ['uRadius', new Uniform(0.22)],
         ['uStrength', new Uniform(0.025)],
       ]),
-    })
+    });
     // Give the caller a ref to this instance so uniforms can be updated each frame
-    options.onInstance?.(this)
+    options.onInstance?.(this);
   }
 }

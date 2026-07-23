@@ -1,11 +1,18 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei';
-import * as THREE from 'three';
-import { Menu, X, Github, Linkedin, Mail, FileJson2, Terminal, RectangleGoggles, Instagram, ChevronDown } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import {
+  X,
+  Github,
+  Linkedin,
+  Mail,
+  FileJson2,
+  Terminal,
+  RectangleGoggles,
+  Instagram,
+  ChevronDown,
+} from 'lucide-react';
 import { ImpressumModal } from './impressum-modal';
 import { Footer } from './footer';
-import mayintLogo from '/assets/mayint.svg'
+import mayintLogo from '/assets/mayint.svg';
 import { useTranslation } from 'react-i18next';
 
 import { Heading } from 'HtmlComponents/headings';
@@ -22,9 +29,7 @@ import CameraPathBackground from '../../components/camera-path-background/Camera
 import InteractiveBackground3D from '../../components/interactive-background-3d/InteractiveBackground3D';
 import { MiniCard } from 'HtmlComponents/mini-card';
 import { flags } from '../../config/flags';
-import { projectsMini } from 'HtmlComponents/mini-card/mini-card.stories';
 import { SoftPanel } from '../../components/soft-panel/soft-panel-component';
-
 
 function LanguageSelector() {
   const { i18n } = useTranslation();
@@ -36,13 +41,13 @@ function LanguageSelector() {
     { code: 'es', name: 'Español', flag: 'es' },
   ];
 
-  const current = languages.find(l => l.code === i18n.language) ?? languages[0];
-  const others = languages.filter(l => l.code !== i18n.language);
+  const current = languages.find((l) => l.code === i18n.language) ?? languages[0];
+  const others = languages.filter((l) => l.code !== i18n.language);
 
   return (
     <div className="fixed top-3 right-3 md:top-6 md:right-6 z-30">
       <button
-        onClick={() => setOpen(o => !o)}
+        onClick={() => setOpen((o) => !o)}
         className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-camelot-950 to-camelot-500 p-0.5 cursor-pointer"
         aria-label={`Language: ${current.name}`}
       >
@@ -53,10 +58,13 @@ function LanguageSelector() {
 
       {open && (
         <div className="absolute right-0 mt-2 flex flex-col gap-1">
-          {others.map(lang => (
+          {others.map((lang) => (
             <button
               key={lang.code}
-              onClick={() => { i18n.changeLanguage(lang.code); setOpen(false); }}
+              onClick={() => {
+                i18n.changeLanguage(lang.code);
+                setOpen(false);
+              }}
               className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-slate-900/80 backdrop-blur-sm border border-slate-700 hover:border-camelot-500 flex items-center justify-center transition-all duration-200 overflow-hidden cursor-pointer"
               aria-label={lang.name}
             >
@@ -75,18 +83,18 @@ interface SidebarProps {
 }
 
 // Componente Sidebar
-function Sidebar({ isOpen, setIsOpen, onNavigate } : SidebarProps) {
-  const { t } = useTranslation();  
+function Sidebar({ isOpen, setIsOpen, onNavigate }: SidebarProps) {
+  const { t } = useTranslation();
 
-  const sections= [
+  const sections = [
     { id: 'home' as const, label: t('nav.home') },
-    { id: 'about' as const, label: t('nav.about'),},
+    { id: 'about' as const, label: t('nav.about') },
     { id: 'projects' as const, label: t('nav.projects') },
-    { id: 'skills' as const, label: t('nav.skills')},
-    { id: 'contact' as const, label: t('nav.contact') }
+    { id: 'skills' as const, label: t('nav.skills') },
+    { id: 'contact' as const, label: t('nav.contact') },
   ];
-  
-  const handleNavClick = (sectionId : SectionType) => {
+
+  const handleNavClick = (sectionId: SectionType) => {
     onNavigate(sectionId);
     setIsOpen(false);
   };
@@ -95,14 +103,14 @@ function Sidebar({ isOpen, setIsOpen, onNavigate } : SidebarProps) {
     <>
       {/* Overlay */}
       {isOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/50 z-40 backdrop-blur-sm transition-opacity"
           onClick={() => setIsOpen(false)}
         />
       )}
-      
+
       {/* Sidebar */}
-      <div 
+      <div
         className={`fixed top-0 left-0 h-full w-72 sm:w-96 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 
         shadow-2xl z-50 transform transition-transform duration-300 ease-out ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
@@ -110,7 +118,7 @@ function Sidebar({ isOpen, setIsOpen, onNavigate } : SidebarProps) {
       >
         <div className="flex flex-col h-full p-6">
           <div className="flex items-center justify-between mb-8">
-            <button 
+            <button
               onClick={() => setIsOpen(false)}
               className="p-2 hover:bg-slate-700 rounded-lg transition-colors"
             >
@@ -132,16 +140,31 @@ function Sidebar({ isOpen, setIsOpen, onNavigate } : SidebarProps) {
 
           <div className="border-t border-slate-700 pt-6 space-y-4">
             <div className="flex justify-center gap-4">
-              <a target="_blank" href={contactData.github} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+              <a
+                target="_blank"
+                href={contactData.github}
+                className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors"
+              >
                 <Github size={20} />
               </a>
-              <a target="_blank" href={contactData.linkedin} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+              <a
+                target="_blank"
+                href={contactData.linkedin}
+                className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors"
+              >
                 <Linkedin size={20} />
               </a>
-              <a target="_blank" href={contactData.instagram} className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+              <a
+                target="_blank"
+                href={contactData.instagram}
+                className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors"
+              >
                 <Instagram size={20} />
               </a>
-              <a href="mailto:david@mayinteractive.io" className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+              <a
+                href="mailto:david@mayinteractive.io"
+                className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors"
+              >
                 <Mail size={20} />
               </a>
             </div>
@@ -158,37 +181,34 @@ const hidden = `${REVEAL_BASE} opacity-0 translate-y-8`;
 
 // Secciones del Portfolio
 function HomeSection() {
-
   const { t } = useTranslation();
   const { ref, inView } = useInView({ threshold: 0.1 });
 
   return (
     <section className="min-h-screen flex items-center justify-center px-6">
-        <div ref={ref} className={`max-w-4xl text-center z-10 ${inView ? revealed : hidden}`}>
-          <SoftPanel className="px-8 py-12 sm:px-24 sm:py-16">
-            <div className="mb-6">
-              <div className="w-27 h-27 mx-auto mb-6 rounded-full bg-gradient-to-br from-camelot-950 to-camelot-500 p-1">
-                <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-5xl font-lato">
-                  <img className='rounded-full' src={mayintLogo} alt="May Interactive Logo" />
-                </div>
+      <div ref={ref} className={`max-w-4xl text-center z-10 ${inView ? revealed : hidden}`}>
+        <SoftPanel className="px-8 py-12 sm:px-24 sm:py-16">
+          <div className="mb-6">
+            <div className="w-27 h-27 mx-auto mb-6 rounded-full bg-gradient-to-br from-camelot-950 to-camelot-500 p-1">
+              <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-5xl font-lato">
+                <img className="rounded-full" src={mayintLogo} alt="May Interactive Logo" />
               </div>
             </div>
-            <Heading level={1} children={t('home.title')} variant='primary'/>
-            <hr className="h-px my-6 bg-camelot-900 border-0 dark:bg-gray-700"/>
-            <p className="text-2xl text-camelot-800 mb-8 uppercase tracking-widest">
-              {t('home.brand')} • {t('home.role') }
-            </p>
-            <hr className="h-px my-6 bg-camelot-900 border-0 dark:bg-gray-700"/>
-          </SoftPanel>
-        </div>
-
+          </div>
+          <Heading level={1} children={t('home.title')} variant="primary" />
+          <hr className="h-px my-6 bg-camelot-900 border-0 dark:bg-gray-700" />
+          <p className="text-2xl text-camelot-800 mb-8 uppercase tracking-widest">
+            {t('home.brand')} • {t('home.role')}
+          </p>
+          <hr className="h-px my-6 bg-camelot-900 border-0 dark:bg-gray-700" />
+        </SoftPanel>
+      </div>
     </section>
   );
 }
 
 // We can be Heroes Sections
 function AboutSection() {
-
   const { t } = useTranslation();
   const { ref: classRef, inView: classInView } = useInView({ threshold: 0.15 });
   const { ref: bioRef, inView: bioInView } = useInView({ threshold: 0.1 });
@@ -199,7 +219,6 @@ function AboutSection() {
           in that extra margin instead of eating into line-start/line-end letters. */}
       <SoftPanel className="w-full max-w-7xl z-10 px-8 py-16 sm:px-16 sm:py-24">
         <div className="max-w-3xl mx-auto">
-
           {/* Class / Major / Minor header — reference: aboutMe_Reference.png */}
           <div ref={classRef} className={`text-center mb-70 ${classInView ? revealed : hidden}`}>
             <p className="text-xs tracking-[0.35em] uppercase text-gray-400 mb-5">
@@ -213,8 +232,14 @@ function AboutSection() {
 
           {/* Bio */}
           <div ref={bioRef} className={`${bioInView ? revealed : hidden}`}>
-            <p className="text-lg text-gray-200 mb-6 leading-relaxed" dangerouslySetInnerHTML={{__html: t('about.intro')}} />
-            <p className="text-lg text-gray-200 mb-6 leading-relaxed" dangerouslySetInnerHTML={{__html: t('about.experience')}} />
+            <p
+              className="text-lg text-gray-200 mb-6 leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: t('about.intro') }}
+            />
+            <p
+              className="text-lg text-gray-200 mb-6 leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: t('about.experience') }}
+            />
 
             {/* Tagline */}
             <p className="text-lm font-bold text-gray-100 mb-10 text-center leading-relaxed italic">
@@ -252,8 +277,7 @@ function ProjectsSection({ lang }: { lang: Lang }) {
   const [visibleCount, setVisibleCount] = useState(0);
   const hasMore = visibleCount < miniProjData.length;
 
-  const showMore = () =>
-    setVisibleCount(c => Math.min(c + BATCH_SIZE, miniProjData.length));
+  const showMore = () => setVisibleCount((c) => Math.min(c + BATCH_SIZE, miniProjData.length));
 
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
@@ -261,7 +285,11 @@ function ProjectsSection({ lang }: { lang: Lang }) {
         <div ref={mainRef} className={mainInView ? revealed : hidden}>
           <div className="flex justify-center mb-12">
             <SoftPanel className="inline-block px-16 py-8 sm:px-24 sm:py-12">
-              <Heading level={2} className='text-5xl font-lato font-bold bg-gradient-to-r from-camelot-500 to-camelot-800 bg-clip-text text-transparent text-center' variant='primary'>
+              <Heading
+                level={2}
+                className="text-5xl font-lato font-bold bg-gradient-to-r from-camelot-500 to-camelot-800 bg-clip-text text-transparent text-center"
+                variant="primary"
+              >
                 {t('projects.title')}
               </Heading>
             </SoftPanel>
@@ -290,7 +318,9 @@ function ProjectsSection({ lang }: { lang: Lang }) {
                   className="flex flex-col items-center gap-2 text-gray-500 hover:text-camelot-400 transition-colors group"
                   aria-label={t('projects.otherProjects')}
                 >
-                  <span className="text-xs uppercase tracking-widest">{t('projects.otherProjects')}</span>
+                  <span className="text-xs uppercase tracking-widest">
+                    {t('projects.otherProjects')}
+                  </span>
                   <ChevronDown size={28} className="animate-bounce group-hover:text-camelot-400" />
                 </button>
               </SoftPanel>
@@ -299,7 +329,11 @@ function ProjectsSection({ lang }: { lang: Lang }) {
             <>
               <div className="flex justify-center mb-12">
                 <SoftPanel className="inline-block px-16 py-8 sm:px-24 sm:py-12">
-                  <Heading level={2} className='text-5xl font-lato font-bold bg-gradient-to-r from-camelot-500 to-camelot-800 bg-clip-text text-transparent text-center' variant='primary'>
+                  <Heading
+                    level={2}
+                    className="text-5xl font-lato font-bold bg-gradient-to-r from-camelot-500 to-camelot-800 bg-clip-text text-transparent text-center"
+                    variant="primary"
+                  >
                     {t('projects.otherProjects')}
                   </Heading>
                 </SoftPanel>
@@ -316,8 +350,13 @@ function ProjectsSection({ lang }: { lang: Lang }) {
                     className="flex flex-col items-center gap-2 text-gray-500 hover:text-camelot-400 transition-colors group"
                     aria-label={t('projects.viewMore')}
                   >
-                    <span className="text-xs uppercase tracking-widest">{t('projects.viewMore')}</span>
-                    <ChevronDown size={28} className="animate-bounce group-hover:text-camelot-400" />
+                    <span className="text-xs uppercase tracking-widest">
+                      {t('projects.viewMore')}
+                    </span>
+                    <ChevronDown
+                      size={28}
+                      className="animate-bounce group-hover:text-camelot-400"
+                    />
                   </button>
                 </div>
               )}
@@ -342,11 +381,8 @@ function ContactSection({ lang }: { lang: Lang }) {
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
       <div ref={ref} className={`max-w-2xl w-full z-10 ${inView ? revealed : hidden}`}>
-
         <SoftPanel className="p-10 flex flex-col items-center gap-8">
-          <p className="text-xl text-gray-300 text-center leading-relaxed">
-            {t('contact.cta')}
-          </p>
+          <p className="text-xl text-gray-300 text-center leading-relaxed">{t('contact.cta')}</p>
 
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:justify-center">
             <a
@@ -368,16 +404,31 @@ function ContactSection({ lang }: { lang: Lang }) {
           </div>
 
           <div className="flex justify-center gap-6 pt-6 border-t border-slate-700 w-full">
-            <a target="_blank" href={contactData.github} className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+            <a
+              target="_blank"
+              href={contactData.github}
+              className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors"
+            >
               <Github size={24} />
             </a>
-            <a target="_blank" href={contactData.linkedin} className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+            <a
+              target="_blank"
+              href={contactData.linkedin}
+              className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors"
+            >
               <Linkedin size={24} />
             </a>
-            <a target="_blank" href={contactData.instagram} className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+            <a
+              target="_blank"
+              href={contactData.instagram}
+              className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors"
+            >
               <Instagram size={24} />
             </a>
-            <a href="mailto:david@mayinteractive.io" className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors">
+            <a
+              href="mailto:david@mayinteractive.io"
+              className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors"
+            >
               <Mail size={24} />
             </a>
           </div>
@@ -412,15 +463,15 @@ export default function Portfolio() {
     contact: useRef<HTMLDivElement>(null),
   };
 
-  useScrollDetection({ 
-    sectionRefs, 
-    setActiveSection 
+  useScrollDetection({
+    sectionRefs,
+    setActiveSection,
   });
 
   const scrollToSection = (sectionKey: keyof typeof sectionRefs) => {
-    sectionRefs[sectionKey].current?.scrollIntoView({ 
+    sectionRefs[sectionKey].current?.scrollIntoView({
       behavior: 'smooth',
-      block: 'start'
+      block: 'start',
     });
     setSidebarOpen(false);
     setActiveSection(sectionKey);
@@ -428,47 +479,45 @@ export default function Portfolio() {
 
   return (
     <div data-theme={'dark'} className="min-h-screen w-screen text-white overflow-x-hidden">
-
       {flags.USE_CAMERA_PATH_BG ? <CameraPathBackground /> : <InteractiveBackground3D />}
 
-      <Sidebar 
-        isOpen={sidebarOpen} 
-        setIsOpen={setSidebarOpen}
-        onNavigate={scrollToSection}
-      />
-
+      <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} onNavigate={scrollToSection} />
 
       <button
         onClick={() => setSidebarOpen(true)}
         className="fixed top-3 left-3 md:top-6 md:left-6 z-30 w-15 h-15 md:w-18 md:h-18 mx-auto rounded-full bg-gradient-to-br from-camelot-950 to-camelot-500 p-1 cursor-pointer"
       >
         <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-5xl font-lato">
-          <img className='rounded-full' src={mayintLogo} alt="May Interactive Logo" />
+          <img className="rounded-full" src={mayintLogo} alt="May Interactive Logo" />
         </div>
       </button>
 
       <LanguageSelector />
 
       {/* Contenido principal */}
-      <main className="pointer-events-none">         
+      <main className="pointer-events-none">
         <div ref={sectionRefs.home} className="pointer-events-auto z-10">
           <HomeSection />
         </div>
-        
+
         <div ref={sectionRefs.about} className="pointer-events-auto z-10">
           <AboutSection />
         </div>
-        
+
         <div ref={sectionRefs.projects} className="pointer-events-auto z-10">
           <ProjectsSection lang={lang} />
         </div>
 
         <div ref={sectionRefs.skills} className="pointer-events-auto z-10">
           <SkillsRevealWrapper>
-            <SkillsTabPanel milestones={getMilestones(lang)} skills={getSkills(lang)} tools={tools} />
+            <SkillsTabPanel
+              milestones={getMilestones(lang)}
+              skills={getSkills(lang)}
+              tools={tools}
+            />
           </SkillsRevealWrapper>
         </div>
-        
+
         <div ref={sectionRefs.contact} className="pointer-events-auto">
           <ContactSection lang={lang} />
         </div>
@@ -482,20 +531,20 @@ export default function Portfolio() {
 
       {/* Indicador de sección */}
       <div className="fixed right-1 sm:right-6 top-1/2 -translate-y-1/2 z-30 space-y-1 sm:space-y-3 hidden sm:block">
-      {SECTIONS_ARRAY.map((section) => (
-        <button
-          key={section}
-          onClick={() => scrollToSection(section)}
-          className={`block w-3 h-3 rounded-full transition-all duration-300 ${
-            activeSection === section 
-              ? 'bg-camelot-700 scale-150' 
-              : 'bg-slate-600 hover:bg-slate-500'
-          }`}
-          title={section}
-          aria-label={`Go to ${section} section`}
-        />
-      ))}
-      </div> 
+        {SECTIONS_ARRAY.map((section) => (
+          <button
+            key={section}
+            onClick={() => scrollToSection(section)}
+            className={`block w-3 h-3 rounded-full transition-all duration-300 ${
+              activeSection === section
+                ? 'bg-camelot-700 scale-150'
+                : 'bg-slate-600 hover:bg-slate-500'
+            }`}
+            title={section}
+            aria-label={`Go to ${section} section`}
+          />
+        ))}
+      </div>
     </div>
   );
 }

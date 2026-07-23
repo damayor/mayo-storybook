@@ -1,7 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import type FiberCanvas from "../../FiberCanvas";
-import Background from "./background";
-
+import type { Meta, StoryObj } from '@storybook/react';
+import type FiberCanvas from '../../FiberCanvas';
+import Background from './background';
 
 const meta = {
   title: 'Three/Components/SolidBackground',
@@ -12,11 +11,10 @@ const meta = {
   },
 } satisfies Meta<typeof Background>;
 
-
 export default meta;
 type Story = StoryObj<typeof meta>;
 export const SolidBackground: Story = {
-    args: {
-        backgroundColor: '#f0fff0'
-    }
+  args: {
+    backgroundColor: '#f0fff0',
+  },
 };

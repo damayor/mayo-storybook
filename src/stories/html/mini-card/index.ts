@@ -1,1 +1,1 @@
-export * from './mini-card'
+export * from './mini-card';

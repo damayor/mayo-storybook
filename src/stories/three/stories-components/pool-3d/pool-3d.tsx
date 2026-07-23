@@ -16,15 +16,15 @@ export function Pool3D() {
 
   const gridDivisions = 11;
   const roomPositionZ = 0;
-  const { roomSizeX,roomSizeY,roomSizeZ} = {roomSizeX:6, roomSizeY:7, roomSizeZ:14}
+  const { roomSizeX, roomSizeY, roomSizeZ } = { roomSizeX: 6, roomSizeY: 7, roomSizeZ: 14 };
   const forceRate = 0.5;
   const damping = 0.99;
   const bounciness = -0.7;
   const blackoutTime = 2.5;
 
-  // const { 
-  //   // forceX, 
-  //   // forceY, 
+  // const {
+  //   // forceX,
+  //   // forceY,
   //   // forceZ,
   //   roomSizeX,roomSizeY,roomSizeZ,
   //   roomPositionZ,
@@ -35,7 +35,7 @@ export function Pool3D() {
   //   // bounciness
   // } = useControls({
   //   forceRate: { value: 0.5, min: 0, max: 0.5, step: 0.01 },
-  
+
   //   roomSizeX: { value: 6, min: 5, max: 25, step: 1 },
   //   roomSizeY: { value: 7, min: 5, max: 20, step: 1 },
   //   roomSizeZ: { value: 14, min: 5, max: 30, step: 1 },
@@ -51,13 +51,18 @@ export function Pool3D() {
 
     // Setup
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(
+      50,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    );
     camera.position.z = 6;
 
-    const renderer = new THREE.WebGLRenderer({ 
+    const renderer = new THREE.WebGLRenderer({
       canvas: canvasRef.current,
       alpha: true,
-      antialias: true 
+      antialias: true,
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -79,13 +84,20 @@ export function Pool3D() {
     let lightTimer = 0;
 
     // Crear room (cubo invisible)
-    const roomGeometry = new THREE.BoxGeometry(roomSizeX,roomSizeY,roomSizeZ, gridDivisions,gridDivisions,gridDivisions);
+    const roomGeometry = new THREE.BoxGeometry(
+      roomSizeX,
+      roomSizeY,
+      roomSizeZ,
+      gridDivisions,
+      gridDivisions,
+      gridDivisions
+    );
     const roomMaterial = new THREE.MeshBasicMaterial({
       color: 0xfefefe,
       wireframe: true,
       transparent: true,
       opacity: 0.5,
-      side: THREE.FrontSide
+      side: THREE.FrontSide,
     });
     const room = new THREE.Mesh(roomGeometry, roomMaterial);
     room.position.set(0, 0, roomPositionZ);
@@ -94,21 +106,21 @@ export function Pool3D() {
     // Crear esferas con física
     const spheres: Sphere[] = [];
     const sphereData = [
-      { position: new THREE.Vector3(-3, 0, 0), color: 0xC09B00 },
+      { position: new THREE.Vector3(-3, 0, 0), color: 0xc09b00 },
       { position: new THREE.Vector3(3, 1, -2), color: 0x003893 },
-      { position: new THREE.Vector3(0, -2, -1), color: 0xC8102E }
+      { position: new THREE.Vector3(0, -2, -1), color: 0xc8102e },
     ];
 
     sphereData.forEach((data) => {
-      const geometry = new THREE.IcosahedronGeometry (1, 2);
+      const geometry = new THREE.IcosahedronGeometry(1, 2);
       const material = new THREE.MeshStandardMaterial({
         color: data.color,
         roughness: 0.4,
         metalness: 0.6,
         emissive: data.color,
         emissiveIntensity: 0.1,
-        flatShading: true
-      }); 
+        flatShading: true,
+      });
       const mesh = new THREE.Mesh(geometry, material);
       mesh.position.copy(data.position);
       scene.add(mesh);
@@ -120,7 +132,7 @@ export function Pool3D() {
           (Math.random() - 0.5) * 0.02,
           (Math.random() - 0.5) * 0.02
         ),
-        radius: 1
+        radius: 1,
       });
     });
 
@@ -134,22 +146,22 @@ export function Pool3D() {
       mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
       raycaster.setFromCamera(mouse, camera);
-      const intersects = raycaster.intersectObjects(spheres.map(s => s.mesh));
+      const intersects = raycaster.intersectObjects(spheres.map((s) => s.mesh));
 
       if (intersects.length > 0) {
         // Encontramos una esfera!
-        const clickedSphere = spheres.find(s => s.mesh === intersects[0].object);
+        const clickedSphere = spheres.find((s) => s.mesh === intersects[0].object);
         if (clickedSphere) {
           //Vector aleatorio!
-          const forceX = (Math.random()- 0.5) * 0.2
-          const forceY = (Math.random()- 0.5) * 0.2
-          const forceZ = (Math.random()- 1) * 0.2
+          const forceX = (Math.random() - 0.5) * 0.2;
+          const forceY = (Math.random() - 0.5) * 0.2;
+          const forceZ = (Math.random() - 1) * 0.2;
 
           const force = new THREE.Vector3(
-            (Math.random()- 0.5) * forceRate,
-            (Math.random()- 0.5) * forceRate,
-            (Math.random()- 1) * forceRate
-          )
+            (Math.random() - 0.5) * forceRate,
+            (Math.random() - 0.5) * forceRate,
+            (Math.random() - 1) * forceRate
+          );
           clickedSphere.velocity.add(force);
         }
       }
@@ -159,15 +171,15 @@ export function Pool3D() {
     const showWalls = () => {
       setShowRoom(true);
       roomMaterial.opacity = 0.3;
-      
+
       // Apagar luces
       lightsOn = false;
       ambientLight.intensity = 0.1;
       directionalLight.intensity = 0.2;
       pointLight.intensity = 0.1;
-      
-      scene.background = new THREE.Color(0x000000)
-      lightTimer = blackoutTime; 
+
+      scene.background = new THREE.Color(0x000000);
+      lightTimer = blackoutTime;
     };
 
     // Colisiones entre esferas
@@ -182,8 +194,7 @@ export function Pool3D() {
           .normalize();
 
         // Intercambiar velocidades (física simplificada)
-        const relativeVelocity = new THREE.Vector3()
-          .subVectors(s1.velocity, s2.velocity);
+        const relativeVelocity = new THREE.Vector3().subVectors(s1.velocity, s2.velocity);
         const speed = relativeVelocity.dot(normal);
 
         if (speed < 0) return; // Ya se están separando
@@ -252,7 +263,7 @@ export function Pool3D() {
           directionalLight.intensity = 1;
           pointLight.intensity = 0.5;
           roomMaterial.opacity = 0.3;
-          scene.background = new THREE.Color('transparent')
+          scene.background = new THREE.Color('transparent');
           setShowRoom(false);
         }
       }
@@ -297,19 +308,22 @@ export function Pool3D() {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('click', handleClick);
       cancelAnimationFrame(animationId);
-      
-      spheres.forEach(sphere => {
+
+      spheres.forEach((sphere) => {
         sphere.mesh.geometry.dispose();
         (sphere.mesh.material as THREE.Material).dispose();
       });
-      
+
       roomGeometry.dispose();
       roomMaterial.dispose();
       renderer.dispose();
     };
-  }, [ 
+  }, [
     // forceX, forceY, forceZ,
-    roomSizeX,roomSizeY,roomSizeZ,roomPositionZ,
+    roomSizeX,
+    roomSizeY,
+    roomSizeZ,
+    roomPositionZ,
     gridDivisions,
     blackoutTime,
     forceRate,
@@ -319,12 +333,12 @@ export function Pool3D() {
 
   return (
     <>
-       <canvas 
-        ref={canvasRef} 
+      <canvas
+        ref={canvasRef}
         className="fixed inset-0 -z-10"
-        style={{ 
+        style={{
           background: 'transparent',
-          cursor: 'pointer'
+          cursor: 'pointer',
         }}
       />
 

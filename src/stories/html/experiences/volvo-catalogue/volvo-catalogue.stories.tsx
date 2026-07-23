@@ -1,7 +1,5 @@
-
 import type { Meta, StoryObj } from '@storybook/react';
 import VolvoCatalogue from './volvo-catalogue';
-
 
 const meta = {
   title: 'Html/Experiences/Volvo2020',
@@ -11,9 +9,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Volvo2020: Story = {
-
-};
+export const Volvo2020: Story = {};
 
 Volvo2020.parameters = {
   layout: 'fullscreen',

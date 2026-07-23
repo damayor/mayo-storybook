@@ -1,36 +1,33 @@
 :root {
   --clr-gray-100: #141414;
-  --clr-gray-500: #1F1F1F;
+  --clr-gray-500: #1f1f1f;
   --clr-gray-800: #333;
-  --clr-white: #FFF;
-
-
+  --clr-white: #fff;
 
   line-height: 1.5;
   font-weight: 400;
   font-size: 62.5%;
   color: var(--clr-white);
   background-color: var(--clr-gray-100);
-    margin: 0 auto;
+  margin: 0 auto;
   text-align: center;
 }
 
-
 @font-face {
-  font-family: "Inter";
-  src: url("/assets/fonts/static/Inter-Regular.ttf") format("truetype");
+  font-family: 'Inter';
+  src: url('/assets/fonts/static/Inter-Regular.ttf') format('truetype');
   font-weight: 400;
 }
 
 @font-face {
-  font-family: "Inter";
-  src: url("/assets/fonts/static/Inter-Bold.ttf") format("truetype");
+  font-family: 'Inter';
+  src: url('/assets/fonts/static/Inter-Bold.ttf') format('truetype');
   font-weight: 700;
 }
 
 @font-face {
-  font-family: "Inter";
-  src: url("/assets/fonts/static/Inter-SemiBold.ttf") format("truetype");
+  font-family: 'Inter';
+  src: url('/assets/fonts/static/Inter-SemiBold.ttf') format('truetype');
   font-weight: 600;
 }
 
@@ -43,7 +40,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
 
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 h1 {
@@ -53,7 +50,7 @@ h1 {
 
 h3 {
   font-size: 1.6rem;
-  font-family: "Latto", sans-serif;
+  font-family: 'Latto', sans-serif;
 
   color: var(--clr-secondary);
   font-weight: 900;
@@ -69,13 +66,12 @@ h4 {
   background: var(--clr-gray-500);
   border-radius: 2rem;
   width: 36rem;
-  display: grid;   
+  display: grid;
   padding: 3.2rem;
   gap: 1.2rem;
 }
 
 .card__author {
-
 }
 
 .card__author-img {
@@ -84,8 +80,7 @@ h4 {
   margin: 0 auto;
 }
 
-.card__author-description
-{
+.card__author-description {
   margin-block: 1rem;
 }
 
@@ -97,8 +92,8 @@ h4 {
   font-weight: 600;
 }
 
-.social-button:hover /*.social-button:active, .social-button:focus  */    {
-  background:var(--clr-primary-dark);
+.social-button:hover /*.social-button:active, .social-button:focus  */ {
+  background: var(--clr-primary-dark);
   color: var(--clr-white);
   cursor: pointer;
   outline: none;
@@ -112,7 +107,9 @@ h4 {
   background: var(--clr-gray-100);
 }
 
-.attribution a { color: var(--clr-secondary); }
+.attribution a {
+  color: var(--clr-secondary);
+}
 
 @media (max-width: 42em) {
   :root {

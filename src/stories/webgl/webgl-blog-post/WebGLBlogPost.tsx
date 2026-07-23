@@ -2,7 +2,6 @@ import React from 'react';
 
 const POST_URL = 'https://drmayor.blogspot.com/2018/05/10-raytracing.html';
 
-
 //ToDo is it rendering ?
 //create WebGl Folder dude
 const WebGLBlogPost: React.FC = () => (

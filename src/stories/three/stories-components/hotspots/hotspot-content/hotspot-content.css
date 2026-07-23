@@ -78,7 +78,7 @@ html {
 }
 
 .hotspot-content__header {
-  font-family: "AdihausDIN";
+  font-family: 'AdihausDIN';
   line-height: 1.5rem;
   letter-spacing: 1.5px;
   margin-bottom: 0;
@@ -90,7 +90,7 @@ html {
 }
 
 .hotspot-content__paragraph {
-  font-family: "AdihausDIN";
+  font-family: 'AdihausDIN';
   font-size: 0.8rem;
   line-height: 1.2rem;
   margin: 0;
@@ -121,7 +121,7 @@ html {
 }
 
 .hotspot-content__image--default:before {
-  content: "•";
+  content: '•';
   color: white;
   font-size: 2rem;
   width: inherit;

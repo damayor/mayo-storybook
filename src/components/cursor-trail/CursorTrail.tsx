@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect } from 'react';
 
 // Componente para el efecto de trail del cursor
 function CursorTrail() {
@@ -31,7 +31,7 @@ function CursorTrail() {
         y: e.clientY,
         vx: 0,
         vy: 0,
-        life: 1
+        life: 1,
       });
 
       if (trail.length > maxTrailLength) {
@@ -46,7 +46,7 @@ function CursorTrail() {
 
       // Dibujar trail
       trail.forEach((point, index) => {
-        const size = (point.life * 15) * (index / trail.length);
+        const size = point.life * 15 * (index / trail.length);
         const gradient = ctx.createRadialGradient(point.x, point.y, 0, point.x, point.y, size);
         gradient.addColorStop(0, `rgba(139, 92, 246, ${point.life * 0.8})`);
         gradient.addColorStop(0.5, `rgba(79, 70, 229, ${point.life * 0.4})`);
