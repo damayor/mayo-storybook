@@ -19,7 +19,7 @@
   },
   "about": {
     "title": "Über mich",
-    "intro": "Mehr als sechs Jahre Erfahrung in der Entwicklung produktionsreifer Webplattformen und digitaler Produkte für globale Marken — verfügbar für Freelance-Projekte und offen für Festanstellungen.",
+    "intro": "Seit 2020 Erfahrung in der Entwicklung produktionsreifer Webplattformen und digitaler Produkte für globale Marken — verfügbar für Freelance-Projekte und offen für Festanstellungen.",
     "experience": "Meine Arbeit umfasst globale Marken: 3D-Produktkonfiguratoren für Volvo und Jeep, Checkout-Infrastruktur bei adidas für Transaktionen in über 30 Ländern sowie Echtzeit-Architekturvisualisierungen für Amarilo und andere Immobilienführer über Umbra 3D Studio. Ich arbeite im gesamten Stack — von React, Three.js und Angular im Frontend bis zu Node.js, CI/CD-Pipelines und Kubernetes auf der Systemseite. Aktuell mit einem KI-gestützten Workflow (Claude Code, Gemini, NotebookLM) für schnelleres Liefern ohne Qualitätseinbußen.",
     "tagline": "Ich schreibe Code in OOP; ich denke in Matrix 4x4; ich feiere mit Salsa-Musik.",
     "mainSkills": {

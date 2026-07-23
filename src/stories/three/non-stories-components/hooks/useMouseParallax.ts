@@ -3,7 +3,7 @@ import { useFrame } from '@react-three/fiber'
 import type { Group } from 'three'
 
 const LERP_DEFAULT = 0.04
-const STRENGTH_DEFAULT = 0.12
+const STRENGTH_DEFAULT = 0.012
 
 interface MouseParallaxOptions {
   lerp?: number     // smoothing 0=frozen → 1=instant. default 0.04

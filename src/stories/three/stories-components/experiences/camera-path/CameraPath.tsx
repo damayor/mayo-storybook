@@ -16,13 +16,21 @@ import { PlyRenderer } from '../../../../cpp/PlyRenderer/PlyRenderer'
 const SEQUENCE_DURATION = 24
 const PAGES = 6
 
+// Lerp factor for easing the sequence position toward the scroll target —
+// same smoothing technique as useMouseParallax. Softens the hard snap at the
+// very start/end of the scroll range instead of binding position 1:1 to raw
+// scroll input every frame.
+const SCROLL_LERP = 0.1
+
 // Requires <ScrollControls> ancestor. Drei normalises trackpad inertia natively.
 function ScrollSyncNative() {
   const sheet = useCurrentSheet()
   const scroll = useScroll()
+  const positionRef = useRef(0)
   useFrame(() => {
     if (!sheet) return
-    sheet.sequence.position = scroll.offset * SEQUENCE_DURATION
+    positionRef.current += (scroll.offset * SEQUENCE_DURATION - positionRef.current) * SCROLL_LERP
+    sheet.sequence.position = positionRef.current
   })
   return null
 }
@@ -32,6 +40,7 @@ function ScrollSyncNative() {
 function ScrollSyncPage() {
   const sheet = useCurrentSheet()
   const progressRef = useRef(0)
+  const positionRef = useRef(0)
 
   useEffect(() => {
     const onScroll = () => {
@@ -45,7 +54,8 @@ function ScrollSyncPage() {
 
   useFrame(() => {
     if (!sheet) return
-    sheet.sequence.position = progressRef.current * SEQUENCE_DURATION
+    positionRef.current += (progressRef.current * SEQUENCE_DURATION - positionRef.current) * SCROLL_LERP
+    sheet.sequence.position = positionRef.current
   })
 
   return null
@@ -76,7 +86,8 @@ export function CameraPath({ scrollMode = 'page' }: CameraPathProps) {
         </Suspense>
       </group>
       <EffectComposer multisampling={0}>
-        <ThreePostprocessingEffects />
+        {/* <ThreePostprocessingEffects /> disabled for long time*/}
+        <MouseWarpEffectPass />
       </EffectComposer>
     </>
   )

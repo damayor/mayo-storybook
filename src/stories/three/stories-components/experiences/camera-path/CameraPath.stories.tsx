@@ -55,6 +55,7 @@ const meta: Meta<typeof CameraPath> = {
         enableOrbitControls={false}
         background="#111111"
         renderShadows={false}
+        fullscreen
       >
         <ScrollControls pages={6} damping={0.15}>
         <SheetProvider sheet={sheet}>
