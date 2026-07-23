@@ -4,11 +4,10 @@ import FiberCanvas from './FiberCanvas';
 
 const meta = {
   title: 'Three/Components/Hello Fiber Canvas',
-  component: FiberCanvas
+  component: FiberCanvas,
 } satisfies Meta<typeof FiberCanvas>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Canvas3D: Story = {
-};
+export const Canvas3D: Story = {};

@@ -38,6 +38,7 @@ There is no standalone test command; Storybook's Vitest addon (`@storybook/addon
 ## Architecture
 
 This repo serves two purposes simultaneously:
+
 1. **Portfolio website** — a personal portfolio SPA at `src/portfolio/components/portfolio.component.tsx`, served via Vite
 2. **Component library / creative lab** — Storybook showcasing 3D, HTML, and Pixi.js experiments
 
@@ -58,6 +59,7 @@ Each story component lives alongside a `.stories.tsx` file and often a `.config.
 ### MayoCanvas — shared 3D wrapper
 
 All Three.js stories render inside `src/stories/three/non-stories-components/mayo-canvas/mayo-canvas.tsx`. It wraps R3F `<Canvas>` with:
+
 - `SceneEnvironment` (lights, shadows)
 - `Controls` (OrbitControls, optional)
 - `Gizmos` (optional axis helper)
@@ -69,10 +71,10 @@ When creating a new Three.js story, compose the scene inside `<MayoCanvas>`. For
 
 All feature flags live in `src/config/flags.ts` and are driven by Vite env vars (`VITE_*`). Flags default to `false` when the env var is not set.
 
-| Flag | Env var | Effect |
-|---|---|---|
+| Flag                 | Env var                   | Effect                                                                    |
+| -------------------- | ------------------------- | ------------------------------------------------------------------------- |
 | `USE_CAMERA_PATH_BG` | `VITE_USE_CAMERA_PATH_BG` | Use Berlin fly-through background in portfolio instead of physics spheres |
-| `USE_MOUSE_WARP` | `VITE_USE_MOUSE_WARP` | Enable screen-space mouse warp post-processing in the CameraPath scene |
+| `USE_MOUSE_WARP`     | `VITE_USE_MOUSE_WARP`     | Enable screen-space mouse warp post-processing in the CameraPath scene    |
 
 Env files: `.env.staging` is activated with `pnpm build --mode staging`. Never commit secret values — use `.env.example` as the template.
 
@@ -81,6 +83,7 @@ Env files: `.env.staging` is activated with `pnpm build --mode staging`. Never c
 The main portfolio background is a cinematic Berlin point-cloud fly-through driven by Theatre.js + scroll.
 
 Key files:
+
 - `src/stories/three/stories-components/experiences/camera-path/CameraPath.tsx` — scene component (camera, mesh group, scroll sync, effects)
 - `src/stories/three/stories-components/experiences/camera-path/CameraPath.stories.tsx` — Storybook story (Theatre.js studio init, `getTheatreState()` helper)
 - `src/stories/three/stories-components/experiences/camera-path/theatreState.json` — saved Theatre.js keyframes (project `BerlinTour`, sheet `Scene`, camera key `Camera`)
@@ -89,11 +92,13 @@ Key files:
 **Theatre.js state export:** After recording keyframes in the Storybook story, run `getTheatreState()` in the browser console. This calls `studio.__experimental.__experimental_createContentOfSaveFileTyped('BerlinTour')` which produces `{ definitionVersion, sheetsById, revisionHistory }` — the exact shape `getProject(id, { state })` requires. Paste the output into `theatreState.json`.
 
 **Scroll modes (`scrollMode` prop on `CameraPath`):**
+
 - `'wheel'` — wheel event on canvas element; works in Storybook embedded (default)
 - `'native'` — `useScroll()` from Drei; requires `<ScrollControls>` ancestor
 - `'page'` — `window.scroll` listener; used for portfolio (canvas has `pointer-events:none`)
 
 **Single EffectComposer rule:** There can only be ONE `<EffectComposer>` per R3F Canvas. `CameraPath` owns it and composes all effects inside:
+
 - `<ThreePostprocessingEffects />` — film grain, scanlines, chromatic aberration, vignette, glitch
 - `<MouseWarpEffectPass />` — screen-space UV warp driven by mouse position (enabled by `USE_MOUSE_WARP` flag)
 
@@ -115,6 +120,7 @@ Never add a second `<EffectComposer>` inside the same canvas — it will silentl
 ### WASM OBJ parser
 
 Berlin point cloud is loaded via a C++ WASM OBJ parser:
+
 - Parser: `src/stories/cpp/ObjRenderer/obj_parser.js` + `.wasm`
 - React component: `src/stories/cpp/ObjRenderer/ObjRenderer.tsx` — loads `/assets/meshes/mesh_berlin/Mesh_3894_58196_-002.obj`, parses it, renders as `<points>` with `<pointsMaterial>`
 - Do not add vertex shader distortion to `ObjRenderer` — it is a focused WASM rendering demo. Post-processing effects go in the EffectComposer instead.
@@ -123,10 +129,10 @@ Berlin point cloud is loaded via a C++ WASM OBJ parser:
 
 Defined in `tsconfig.app.json` and resolved via `vite-tsconfig-paths`:
 
-| Alias | Resolves to |
-|---|---|
-| `Data/*` | `src/data/*` |
-| `Interfaces/*` | `src/interfaces/*` |
+| Alias              | Resolves to          |
+| ------------------ | -------------------- |
+| `Data/*`           | `src/data/*`         |
+| `Interfaces/*`     | `src/interfaces/*`   |
 | `HtmlComponents/*` | `src/stories/html/*` |
 
 JSON imports are enabled via `"resolveJsonModule": true` in `tsconfig.app.json`.

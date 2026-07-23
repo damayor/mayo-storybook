@@ -21,18 +21,20 @@ function MilestonesTab({ milestones }: { milestones: Milestone[] }) {
           <div className="flex gap-4">
             {/* Punto de la línea */}
             <div className="flex flex-col items-center">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-camelot-700 to-camelot-800 flex items-center justify-center border-4 border-white shadow-lg">
-              </div>
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-camelot-700 to-camelot-800 flex items-center justify-center border-4 border-white shadow-lg"></div>
             </div>
 
             {/* Contenido */}
-            <a href={milestone.link ?? '#'} target="_blank" className="bg-white/50 backdrop-blur-sm border border-gray-300/50 hover:border-camelot-800/50 rounded-xl p-5 flex-1 transition-all duration-300 hover:bg-white/70">
-              <Heading level={4} >
-                {milestone.title} {milestone.place && `• ${milestone.place}`} <span className="text-sm font-semibold text-camelot-800">• {milestone.year}</span>
+            <a
+              href={milestone.link ?? '#'}
+              target="_blank"
+              className="bg-white/50 backdrop-blur-sm border border-gray-300/50 hover:border-camelot-800/50 rounded-xl p-5 flex-1 transition-all duration-300 hover:bg-white/70"
+            >
+              <Heading level={4}>
+                {milestone.title} {milestone.place && `• ${milestone.place}`}{' '}
+                <span className="text-sm font-semibold text-camelot-800">• {milestone.year}</span>
               </Heading>
-              <p className="text-gray-700 text-sm">
-                {milestone.description}
-              </p>
+              <p className="text-gray-700 text-sm">{milestone.description}</p>
             </a>
           </div>
         </div>
@@ -46,7 +48,7 @@ function SkillsTab({ skills }: { skills: SkillCategory[] }) {
     <div className="space-y-6 animate-fadeIn">
       {skills.map((category) => (
         <div key={category.category}>
-          <Heading level={3} className='mb-5 mt-8 flex gap-2 items-center'>          
+          <Heading level={3} className="mb-5 mt-8 flex gap-2 items-center">
             <span className="w-2 h-2 rounded-full bg-gradient-to-r from-camelot-700 to-camelot-800 hidden sm:block"></span>
             {category.category}
           </Heading>
@@ -66,15 +68,16 @@ function SkillsTab({ skills }: { skills: SkillCategory[] }) {
   );
 }
 
-
 function ToolsTab({ tools }: { tools: ToolsCategory[] }) {
   //Imprimamelo como skills tambien, si al caso separado por items
 
   return (
     <div className="space-y-6 animate-fadeIn">
-      {tools.map(({category, items}) => (
+      {tools.map(({ category, items }) => (
         <div key={category}>
-          <Heading level={3} className='mb-5 mt-8 text-center'>{category}</Heading>
+          <Heading level={3} className="mb-5 mt-8 text-center">
+            {category}
+          </Heading>
           <div className="flex flex-wrap gap-3 justify-center">
             {items.map((tool) => (
               <div
@@ -82,7 +85,7 @@ function ToolsTab({ tools }: { tools: ToolsCategory[] }) {
                 className="px-4 py-2 bg-camelot-800/20 hover:bg-camelot-800/40 border border-camelot-800/30 hover:border-camelot-800/50 rounded-full text-sm font-medium text-gray-900 transition-all duration-300 cursor-default hover:scale-105"
               >
                 {tool}
-              </div>              
+              </div>
             ))}
           </div>
         </div>
@@ -91,12 +94,11 @@ function ToolsTab({ tools }: { tools: ToolsCategory[] }) {
   );
 }
 
-
 // Main Component
 export default function SkillsTabPanel({
   milestones = [],
   skills = [],
-  tools = []
+  tools = [],
 }: Partial<TabPanelProps> = {}) {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<TabType>('tools');
@@ -112,7 +114,11 @@ export default function SkillsTabPanel({
       <div className="max-w-4xl w-full z-10">
         <div className="flex justify-center mb-8">
           <SoftPanel className="inline-block px-16 py-8 sm:px-24 sm:py-12">
-            <Heading level={2} className='text-5xl font-lato font-bold bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center'  variant='primary'>
+            <Heading
+              level={2}
+              className="text-5xl font-lato font-bold bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center"
+              variant="primary"
+            >
               {t('skills.heading')}
             </Heading>
           </SoftPanel>
@@ -125,9 +131,7 @@ export default function SkillsTabPanel({
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as TabType)}
                 className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-semibold transition-all duration-300 relative group ${
-                  activeTab === tab.id
-                    ? 'text-white'
-                    : 'text-gray-600 hover:text-gray-800'
+                  activeTab === tab.id ? 'text-white' : 'text-gray-600 hover:text-gray-800'
                 }`}
               >
                 {/* Background animado solo cuando está activo */}

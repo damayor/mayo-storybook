@@ -1,5 +1,11 @@
-import { Html, OrbitControls } from '@react-three/drei'
-import { enablePan, enableZoom, orbitMaxPolarAngle, orbitMinPolarAngle, orbitTarget } from './controls.config'
+import { Html, OrbitControls } from '@react-three/drei';
+import {
+  enablePan,
+  enableZoom,
+  orbitMaxPolarAngle,
+  orbitMinPolarAngle,
+  orbitTarget,
+} from './controls.config';
 
 export default function Controls() {
   return (
@@ -11,7 +17,9 @@ export default function Controls() {
       maxPolarAngle={orbitMaxPolarAngle}
       target={orbitTarget}
     />
-  )
+  );
 }
 
-export const renderControlsOffHelper = () => <Html className='util-controls--disabled' fullscreen />
+export const renderControlsOffHelper = () => (
+  <Html className="util-controls--disabled" fullscreen />
+);

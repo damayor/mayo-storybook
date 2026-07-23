@@ -57,7 +57,7 @@
 
 .hotspot-button__icon::before,
 .hotspot-button__icon::after {
-  content: "";
+  content: '';
   position: absolute;
   width: 14px;
   height: 2px;

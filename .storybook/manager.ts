@@ -1,6 +1,6 @@
 import { addons } from 'storybook/manager-api';
 import { create, themes } from 'storybook/theming';
-import sbTheme from './sb-theme'
+import sbTheme from './sb-theme';
 
 addons.register('panel-visibility', (api) => {
   api.on('storyChanged', () => {
@@ -14,14 +14,9 @@ addons.setConfig({
   base: '/storybook/',
   sidebar: {
     // showRoots: false,
-     collapsedRoots: [
-      'three',
-      'pixi',
-      'example'
-    ]
-  
+    collapsedRoots: ['three', 'pixi', 'example'],
   },
-  theme: sbTheme
+  theme: sbTheme,
 
   // theme: create({
   //   base: 'dark',
@@ -36,9 +31,8 @@ addons.setConfig({
   //   fontCode: 'monospace',
 
   //   textColor: 'white',
-  //   textInverseColor: '#BEBEFF', 
+  //   textInverseColor: '#BEBEFF',
   //   textMutedColor: '#BEBEBE',
-
 
   //   // Topbar
   //   barBg: 'black',   // toolbar background
@@ -46,12 +40,10 @@ addons.setConfig({
   //   barSelectedColor: '#FFF',
   //   barHoverColor: '#BBB', //hover en btns
 
-
   //   inputBg: 'black',
   //   inputBorder: 'silver',
   //   inputTextColor: 'white',
   //   inputBorderRadius: 4,
 
   // })
-  
 });

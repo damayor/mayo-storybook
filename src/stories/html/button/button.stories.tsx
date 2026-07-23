@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from './button';
 
@@ -14,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    color: 'primary'
+    color: 'primary',
   },
 };
 
@@ -27,7 +26,7 @@ export const Secondary: Story = {
 
 export const Black: Story = {
   args: {
-    color: 'neutral'
+    color: 'neutral',
   },
   globals: {
     backgrounds: { value: 'onlight' },
@@ -36,18 +35,17 @@ export const Black: Story = {
 
 export const White: Story = {
   args: {
-    color: 'info'
+    color: 'info',
   },
   globals: {
     backgrounds: { value: 'onlight' },
     theme: 'light',
-    
   },
 };
 
 export const WhiteOnDark: Story = {
   args: {
-    color: 'info'
+    color: 'info',
   },
   globals: {
     backgrounds: { value: 'ondark' },
@@ -58,7 +56,7 @@ export const WhiteOnDark: Story = {
 //Is the same white
 export const TransparentOnLight: Story = {
   args: {
-    color: 'outline'
+    color: 'outline',
   },
   globals: {
     backgrounds: { value: 'onlight' },
@@ -68,12 +66,10 @@ export const TransparentOnLight: Story = {
 
 export const TransparentOnDark: Story = {
   args: {
-    color: 'neutral'
+    color: 'neutral',
   },
   globals: {
     backgrounds: { value: 'ondark' },
     theme: 'dark',
   },
-  
 };
-

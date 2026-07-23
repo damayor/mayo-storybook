@@ -9,5 +9,5 @@
 
 export const flags = {
   USE_CAMERA_PATH_BG: import.meta.env.VITE_USE_CAMERA_PATH_BG === 'true',
-  USE_MOUSE_WARP:     import.meta.env.VITE_USE_MOUSE_WARP     === 'true',
-} as const
+  USE_MOUSE_WARP: import.meta.env.VITE_USE_MOUSE_WARP === 'true',
+} as const;

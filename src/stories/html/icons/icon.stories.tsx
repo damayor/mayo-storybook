@@ -1,11 +1,10 @@
-
 import type { Meta, StoryObj } from '@storybook/react';
 import { Icon, techIconMap } from './icon';
 
 const meta = {
   title: 'Html/Components/Icon',
   component: Icon,
-  tags: ['autodocs','production'],
+  tags: ['autodocs', 'production'],
   argTypes: {
     technology: {
       options: Object.keys(techIconMap),
@@ -21,8 +20,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-     technology: 'NodeJS',
-     size:'medium'
-  }
+    technology: 'NodeJS',
+    size: 'medium',
+  },
 };
-

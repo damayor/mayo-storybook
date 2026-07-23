@@ -7,6 +7,7 @@
 ## Task 1 — Install and configure `@react-three/xr`
 
 ### Context
+
 The repo already has `three@0.180.0`, `@react-three/fiber@9.3.0`, and `@react-three/drei` installed. The only missing package is `@react-three/xr`. This task sets up the dependency and ensures Vite can handle the WebXR APIs without errors in a browser/mobile environment.
 
 ### Checklist — mark each item `[x]` when done
@@ -19,33 +20,36 @@ The repo already has `three@0.180.0`, `@react-three/fiber@9.3.0`, and `@react-th
 ---
 
 ### Subtask 1.1 — Install the package
+
 - Run: `pnpm add @react-three/xr@latest`
 - Verify the installed version is v6+ (the API changed significantly from v5 — do not use v5 patterns).
 - After install, confirm there are no peer dependency conflicts with the existing `three` and `@react-three/fiber` versions. If there are, flag them for David before proceeding.
 
 ### Subtask 1.2 — Vite configuration for WebXR
+
 - WebXR requires the page to be served over **HTTPS**, even locally. Configure Vite to use HTTPS in dev mode.
 - Install `@vitejs/plugin-basic-ssl` as a dev dependency and add it to `vite.config.ts`:
 
 ```ts
-import basicSsl from '@vitejs/plugin-basic-ssl'
+import basicSsl from '@vitejs/plugin-basic-ssl';
 
 export default defineConfig({
   plugins: [
     react(),
     basicSsl(), // Required for WebXR on mobile
   ],
-})
+});
 ```
 
 - **Flag for David:** after this change, the dev server will run on `https://localhost:5173`. The browser will show a security warning — click "Proceed anyway" (it's a self-signed cert, safe for local dev). On mobile, you'll need to accept the cert warning too.
 
 ### Subtask 1.3 — Verify Storybook can import XR without errors
+
 - Create a minimal smoke-test file `src/stories/three/stories-components/xr/xr.sanity.ts` that simply imports `createXRStore` from `@react-three/xr`:
 
 ```ts
-import { createXRStore } from '@react-three/xr'
-export const store = createXRStore()
+import { createXRStore } from '@react-three/xr';
+export const store = createXRStore();
 ```
 
 - Run `pnpm storybook` and confirm there are no import or bundling errors related to `@react-three/xr`.
@@ -56,6 +60,7 @@ export const store = createXRStore()
 ## Task 2 — Build the WebXR Hello World story
 
 ### Context
+
 The goal is a Storybook story that renders a simple interactive VR scene: a colored box in 3D space that toggles color when clicked. It must work on mobile via WebXR VR mode, and optionally be testable on desktop via the `@react-three/xr` built-in emulator.
 
 ### Checklist — mark each item `[x]` when done
@@ -68,12 +73,13 @@ The goal is a Storybook story that renders a simple interactive VR scene: a colo
 ---
 
 ### Subtask 2.1 — Create the XR Hello World component
+
 Create `src/stories/three/stories-components/xr/XRHelloWorld.tsx`:
 
 ```tsx
-import { Canvas } from '@react-three/fiber'
-import { XR, createXRStore } from '@react-three/xr'
-import { useState } from 'react'
+import { Canvas } from '@react-three/fiber';
+import { XR, createXRStore } from '@react-three/xr';
+import { useState } from 'react';
 
 const store = createXRStore({
   emulate: 'metaQuest3',
@@ -85,10 +91,10 @@ const store = createXRStore({
   planeDetection: false,
   hitTest: false,
   domOverlay: false,
-})
+});
 
 export function XRHelloWorld() {
-  const [active, setActive] = useState(false)
+  const [active, setActive] = useState(false);
 
   return (
     <div style={{ width: '100vw', height: '100vh', position: 'relative' }}>
@@ -110,26 +116,24 @@ export function XRHelloWorld() {
       <Canvas>
         <XR store={store}>
           <ambientLight intensity={0.8} />
-          <mesh
-            position={[0, 1, -1]}
-            onClick={() => setActive((v) => !v)}
-          >
+          <mesh position={[0, 1, -1]} onClick={() => setActive((v) => !v)}>
             <boxGeometry args={[0.3, 0.3, 0.3]} />
             <meshStandardMaterial color={active ? 'hotpink' : 'royalblue'} />
           </mesh>
         </XR>
       </Canvas>
     </div>
-  )
+  );
 }
 ```
 
 ### Subtask 2.2 — Create the Storybook story
+
 Create `src/stories/three/stories-components/xr/XRHelloWorld.stories.tsx`:
 
 ```tsx
-import type { Meta, StoryObj } from '@storybook/react'
-import { XRHelloWorld } from './XRHelloWorld'
+import type { Meta, StoryObj } from '@storybook/react';
+import { XRHelloWorld } from './XRHelloWorld';
 
 const meta: Meta<typeof XRHelloWorld> = {
   title: 'Three/Experiences/XR',
@@ -143,15 +147,16 @@ const meta: Meta<typeof XRHelloWorld> = {
       },
     },
   },
-}
+};
 
-export default meta
-type Story = StoryObj<typeof XRHelloWorld>
+export default meta;
+type Story = StoryObj<typeof XRHelloWorld>;
 
-export const HelloWorld: Story = {}
+export const HelloWorld: Story = {};
 ```
 
 ### Subtask 2.3 — Mobile testing instructions (no code required)
+
 No code changes needed for this subtask — create `src/stories/three/stories-components/xr/README.md` with testing instructions for VR on Android, desktop emulator, and iOS limitations.
 
 ---
@@ -159,6 +164,7 @@ No code changes needed for this subtask — create `src/stories/three/stories-co
 ## Task 3 — Migrate to VR session and downgrade to v5.5.0
 
 ### Context
+
 The v6 API (`createXRStore`, `store.enterVR()`) is fundamentally incompatible with the Immersive Web Emulator Chrome extension due to an `XRWebGLBinding` polyfill mismatch — the emulator's polyfill returns a session object that fails v6's type guard, crashing session startup. v5.5.0 uses a simpler session flow that the polyfill handles correctly, as confirmed by the official CodeSandbox demo. This task downgrades to v5.5.0 and rewrites the component using the v5 API.
 
 ### Checklist — mark each item `[x]` when done
@@ -172,10 +178,11 @@ The v6 API (`createXRStore`, `store.enterVR()`) is fundamentally incompatible wi
 - [x] **3.7** Move all XR files into `src/stories/three/stories-components/xr/`
 - [x] **3.8** Update all AR references in `TASKS.md` to VR
 
-
 ## Task 4
+
 [] Add an intro page to my storybook, el mejor ejemplo es https://designlanguage.adidas.com/?path=/docs/welcome--documentation
 [] Plase hide the controls panel on all the stories that do not have any parameter in the story
+
 ---
 
 ## Notes for Claude

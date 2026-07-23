@@ -1,16 +1,15 @@
-import { useState } from 'react'
-import reactLogo from '/assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Portfolio from './portfolio/components/portfolio.component'
+import { useState } from 'react';
+import reactLogo from '/assets/react.svg';
+import viteLogo from '/vite.svg';
+import './App.css';
+import Portfolio from './portfolio/components/portfolio.component';
 
 function App() {
-
   return (
     <>
-      <Portfolio/>
+      <Portfolio />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

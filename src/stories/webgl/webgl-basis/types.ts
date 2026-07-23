@@ -3,8 +3,13 @@
  */
 
 export type PrimitiveType =
-  | 'POINTS' | 'LINES' | 'LINE_LOOP' | 'LINE_STRIP'
-  | 'TRIANGLES' | 'TRIANGLE_STRIP' | 'TRIANGLE_FAN';
+  | 'POINTS'
+  | 'LINES'
+  | 'LINE_LOOP'
+  | 'LINE_STRIP'
+  | 'TRIANGLES'
+  | 'TRIANGLE_STRIP'
+  | 'TRIANGLE_FAN';
 
 /** Wireframe mode: drag vertex, deform face, scale face.
  *  Faces / Triangles mode: extrude face. */

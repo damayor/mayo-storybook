@@ -1,32 +1,27 @@
-
-import { useMemo } from 'react'
-import * as THREE from 'three'
-import { useThree } from '@react-three/fiber'
-
+import { useMemo } from 'react';
+import * as THREE from 'three';
+import { useThree } from '@react-three/fiber';
 
 export interface GradientTextureBackgroundProps {
-  firstColor: string
-  secondColor: string
-  direction?: "vertical" | "horizontal"
+  firstColor: string;
+  secondColor: string;
+  direction?: 'vertical' | 'horizontal';
 }
 
-
 export default function GradientTextureBackground({
-   firstColor,
+  firstColor,
   secondColor,
-  direction = "vertical",
+  direction = 'vertical',
 }: GradientTextureBackgroundProps) {
- 
-
   const { scene } = useThree();
   const texture = useMemo(() => {
-    const canvas = document.createElement("canvas");
+    const canvas = document.createElement('canvas');
     canvas.width = 256;
     canvas.height = 256;
-    const context = canvas.getContext("2d")!;
+    const context = canvas.getContext('2d')!;
 
     const gradient =
-      direction === "vertical"
+      direction === 'vertical'
         ? context.createLinearGradient(0, 0, 0, canvas.height)
         : context.createLinearGradient(0, 0, canvas.width, 0);
 

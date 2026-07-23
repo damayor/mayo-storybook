@@ -1,27 +1,27 @@
-import { type StoryObj, type Meta } from '@storybook/react'
-import { Suspense } from 'react'
-import MayoCanvas from '../../non-stories-components/mayo-canvas/mayo-canvas'
-import FluidShader from './fluid-shader'
-import { Canvas } from '@react-three/fiber'
+import { type StoryObj, type Meta } from '@storybook/react';
+import { Suspense } from 'react';
+import MayoCanvas from '../../non-stories-components/mayo-canvas/mayo-canvas';
+import FluidShader from './fluid-shader';
+import { Canvas } from '@react-three/fiber';
 
 const meta = {
   title: 'Three/ToReview/FluidShaderTest',
   component: FluidShader,
   decorators: [
-    (Story) => 
+    (Story) => (
       // <Canvas
 
-        // gl={{ antialias: true }}
-        // camera={{ position: [0, 0, 1], fov: 45 }}
-        // onPointerMove={(e) => e.stopPropagation()}
+      // gl={{ antialias: true }}
+      // camera={{ position: [0, 0, 1], fov: 45 }}
+      // onPointerMove={(e) => e.stopPropagation()}
 
-      <MayoCanvas enableOrbitControls={true} environmentPreset='studio' gizmoType='viewPort'>
-          <Suspense fallback={<mesh/>}>
-            <Story />
-          </Suspense>
+      <MayoCanvas enableOrbitControls={true} environmentPreset="studio" gizmoType="viewPort">
+        <Suspense fallback={<mesh />}>
+          <Story />
+        </Suspense>
         {/* </Canvas */}
-
       </MayoCanvas>
+    ),
   ],
   argTypes: {
     // gizmoType: {
@@ -31,15 +31,15 @@ const meta = {
     //   },
     // },
   },
-} satisfies Meta<typeof FluidShader>
+} satisfies Meta<typeof FluidShader>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 export const FluidShaderTest: Story = {
   args: {
-    // lineWidth: 15, 
+    // lineWidth: 15,
     // followMouse: true,
     // isPlaneTransparent: true,
     // enableOrbitControl: false
-  }
+  },
 };

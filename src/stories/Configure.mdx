@@ -1,13 +1,17 @@
-import { Meta } from "@storybook/addon-docs/blocks";
+import { Meta } from '@storybook/addon-docs/blocks';
 
 <Meta title="Welcome" />
 
 <div className="welcome-hero">
   <div className="welcome-hero-inner">
-    <h1 className="welcome-title">May Interactive<br />Storybook</h1>
+    <h1 className="welcome-title">
+      May Interactive
+      <br />
+      Storybook
+    </h1>
     <p className="welcome-subtitle">
-      A creative lab exploring 3D graphics, shaders, WebXR, and UI components —
-      built with React Three Fiber, Three.js, and WebGl.
+      A creative lab exploring 3D graphics, shaders, WebXR, and UI components — built with React
+      Three Fiber, Three.js, and WebGl.
     </p>
     <div className="welcome-badges">
       <span className="badge">React Three Fiber</span>
@@ -28,27 +32,25 @@ import { Meta } from "@storybook/addon-docs/blocks";
     <div className="category-icon">🎲</div>
     <h3>Three</h3>
     <p>
-      React Three Fiber scenes — 3D products, terrain generation, shader
-      experiments, post-processing, particles, and WebXR (VR) experiences.
+      React Three Fiber scenes — 3D products, terrain generation, shader experiments,
+      post-processing, particles, and WebXR (VR) experiences.
     </p>
   </div>
   <div className="category-card">
     <div className="category-icon">⚙️</div>
     <h3>C++</h3>
     <p>
-      WebAssembly experiments compiled from C++ — real-time waveform
-      generation rendered as 3D geometry.
+      WebAssembly experiments compiled from C++ — real-time waveform generation rendered as 3D
+      geometry.
     </p>
   </div>
   <div className="category-card">
     <div className="category-icon">🎨</div>
     <h3>HTML</h3>
     <p>
-      DaisyUI + Tailwind UI components — buttons, cards, badges, catalogues,
-      and interactive panels.
+      DaisyUI + Tailwind UI components — buttons, cards, badges, catalogues, and interactive panels.
     </p>
   </div>
- 
 </div>
 
 ---
@@ -62,11 +64,13 @@ import { Meta } from "@storybook/addon-docs/blocks";
   <div className="step-body">
     <h4>Browse stories in the sidebar</h4>
     <p>
-      Use the left panel to expand categories (<strong>Three</strong>, <strong>C++</strong>, <strong>Html</strong>).
-      Each folder contains a component with one or more story variants. Click any story name to open it.
+      Use the left panel to expand categories (<strong>Three</strong>, <strong>C++</strong>,{' '}
+      <strong>Html</strong>). Each folder contains a component with one or more story variants.
+      Click any story name to open it.
     </p>
     <div className="tip">
-      💡 Press <kbd>⌘K</kbd> / <kbd>Ctrl+K</kbd> to open the search bar and jump to any story by name.
+      💡 Press <kbd>⌘K</kbd> / <kbd>Ctrl+K</kbd> to open the search bar and jump to any story by
+      name.
     </div>
   </div>
 </div>
@@ -75,12 +79,15 @@ import { Meta } from "@storybook/addon-docs/blocks";
   <div className="step-number">2</div>
   <div className="step-body">
     <h4>Switch between Docs and Canvas</h4>
-    <p>
-      At the top of the preview area you'll see two tabs:
-    </p>
+    <p>At the top of the preview area you'll see two tabs:</p>
     <ul>
-      <li><strong>Docs</strong> — rendered documentation with all story variants and their props table.</li>
-      <li><strong>Canvas</strong> — isolated interactive preview of a single story variant.</li>
+      <li>
+        <strong>Docs</strong> — rendered documentation with all story variants and their props
+        table.
+      </li>
+      <li>
+        <strong>Canvas</strong> — isolated interactive preview of a single story variant.
+      </li>
     </ul>
     <div className="tip">
       💡 Most stories open in Docs mode by default so you can read context before diving in.
@@ -93,9 +100,9 @@ import { Meta } from "@storybook/addon-docs/blocks";
   <div className="step-body">
     <h4>Interact with Controls</h4>
     <p>
-      In <strong>Canvas</strong> mode, open the <strong>Controls</strong> panel at the bottom of the screen.
-      Stories that expose Leva or args-based controls let you tweak parameters (colors, sizes,
-      shader uniforms, speeds) in real time without touching code.
+      In <strong>Canvas</strong> mode, open the <strong>Controls</strong> panel at the bottom of the
+      screen. Stories that expose Leva or args-based controls let you tweak parameters (colors,
+      sizes, shader uniforms, speeds) in real time without touching code.
     </p>
     <div className="tip">
       💡 Not all stories have controls — if the panel is empty, the story is self-contained.
@@ -110,8 +117,8 @@ import { Meta } from "@storybook/addon-docs/blocks";
     <p>
       Click the <strong>paintbrush 🎨</strong> icon in the top toolbar to switch between
       <strong> Light</strong> and <strong> Dark</strong> themes. This propagates the
-      <code>data-theme</code> attribute used by DaisyUI components and the custom
-      3D background colors.
+      <code>data-theme</code> attribute used by DaisyUI components and the custom 3D background
+      colors.
     </p>
   </div>
 </div>
@@ -122,8 +129,8 @@ import { Meta } from "@storybook/addon-docs/blocks";
     <h4>Resize the viewport</h4>
     <p>
       Use the <strong>screen 📱</strong> icon in the toolbar to preview stories at common
-      breakpoints — mobile, tablet, desktop — and custom sizes like Instagram Post (4:5)
-      or Instagram Square (1:1).
+      breakpoints — mobile, tablet, desktop — and custom sizes like Instagram Post (4:5) or
+      Instagram Square (1:1).
     </p>
   </div>
 </div>
@@ -133,13 +140,34 @@ import { Meta } from "@storybook/addon-docs/blocks";
   <div className="step-body">
     <h4>Keyboard shortcuts</h4>
     <div className="shortcuts-grid">
-      <div className="shortcut"><kbd>S</kbd><span>Toggle sidebar</span></div>
-      <div className="shortcut"><kbd>A</kbd><span>Toggle addons panel</span></div>
-      <div className="shortcut"><kbd>D</kbd><span>Toggle Docs/Canvas</span></div>
-      <div className="shortcut"><kbd>F</kbd><span>Fullscreen</span></div>
-      <div className="shortcut"><kbd>⌘K</kbd><span>Search stories</span></div>
-      <div className="shortcut"><kbd>Alt+→</kbd><span>Next story</span></div>
-      <div className="shortcut"><kbd>Alt+←</kbd><span>Previous story</span></div>
+      <div className="shortcut">
+        <kbd>S</kbd>
+        <span>Toggle sidebar</span>
+      </div>
+      <div className="shortcut">
+        <kbd>A</kbd>
+        <span>Toggle addons panel</span>
+      </div>
+      <div className="shortcut">
+        <kbd>D</kbd>
+        <span>Toggle Docs/Canvas</span>
+      </div>
+      <div className="shortcut">
+        <kbd>F</kbd>
+        <span>Fullscreen</span>
+      </div>
+      <div className="shortcut">
+        <kbd>⌘K</kbd>
+        <span>Search stories</span>
+      </div>
+      <div className="shortcut">
+        <kbd>Alt+→</kbd>
+        <span>Next story</span>
+      </div>
+      <div className="shortcut">
+        <kbd>Alt+←</kbd>
+        <span>Previous story</span>
+      </div>
     </div>
   </div>
 </div>
@@ -149,11 +177,16 @@ import { Meta } from "@storybook/addon-docs/blocks";
 ---
 
 <div className="welcome-footer">
-  <p>Built by <strong>David Mayo</strong> · <a href="https://mayinteractive.io" target="_blank">mayinteractive.io</a></p>
+  <p>
+    Built by <strong>David Mayo</strong> ·{' '}
+    <a href="https://mayinteractive.io" target="_blank">
+      mayinteractive.io
+    </a>
+  </p>
 </div>
 
 <style>
-{`
+  {`
   /* ── Hero ─────────────────────────────── */
   .welcome-hero {
     background: linear-gradient(135deg, #1e1e1e 0%, #2a1020 50%, #1e1e1e 100%);

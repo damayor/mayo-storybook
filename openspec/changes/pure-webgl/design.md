@@ -26,6 +26,7 @@ WebglBasis (Main Container)
 ### State Management
 
 **Global State (useUI Hook):**
+
 ```typescript
 UIState {
   projection: Mat4                    // Camera projection matrix
@@ -42,6 +43,7 @@ UIState {
 ```
 
 **Component State:**
+
 - `showPickFrame` - Toggle for selection frame view
 - `selectedVertex` - Currently selected vertex index (future)
 - `selectedFace` - Currently selected face index (future)
@@ -53,30 +55,35 @@ UIState {
 The application supports multiple rendering modes for different visualization purposes:
 
 #### 1. **Wireframe (Edges)**
+
 - **Purpose:** See cube structure with edge visibility
 - **Rendering:** GL_LINES primitive type
 - **Data:** 24 line segments (12 edges × 2 vertices)
 - **Color:** Per-vertex coloring from color attribute
 
 #### 2. **Solid Faces** (Planned)
+
 - **Purpose:** View opaque cube faces with material colors
 - **Rendering:** GL_TRIANGLES primitive type
 - **Data:** 36 vertices (6 faces × 6 vertices per face)
 - **Color:** Per-face coloring (different material per face)
 
 #### 3. **Triangulated View** (Planned)
+
 - **Purpose:** Show triangle decomposition with distinct colors
 - **Rendering:** GL_TRIANGLES primitive type
 - **Data:** 36 vertices with unique face colors
 - **Color:** Each face (2 triangles) gets a unique color
 
 #### 4. **Vertices Only**
+
 - **Purpose:** View cube vertices with potential highlighting
 - **Rendering:** GL_POINTS primitive type
 - **Data:** 8 vertex positions
 - **Color:** Per-vertex coloring with selection highlighting
 
 #### 5. **Selection Frame** (Planned)
+
 - **Purpose:** 2D orthographic view of vertex picking
 - **Rendering:** Orthographic projection, GL_POINTS
 - **Data:** 8 vertices in 2D normalized space
@@ -85,6 +92,7 @@ The application supports multiple rendering modes for different visualization pu
 ### Shader Pipeline
 
 **Vertex Shader:**
+
 ```glsl
 attribute vec4 aVertexPosition;
 attribute vec4 aVertexColor;
@@ -105,6 +113,7 @@ void main(void) {
 ```
 
 **Fragment Shader:**
+
 ```glsl
 varying lowp vec4 vColor;
 varying lowp vec4 vPickColor;
@@ -115,7 +124,7 @@ void main(void) {
   // Circle falloff for points
   vec2 location = gl_PointCoord - vec2(0.5, 0.5);
   if(dot(location, location) > 0.25) discard;
-  
+
   if(uOffscreen) {
     gl_FragColor = vPickColor;
   } else if(uWireframe) {
@@ -131,6 +140,7 @@ void main(void) {
 ### Projection Matrices
 
 **Perspective Projection:**
+
 - Field of View (FOV): 55°
 - Aspect Ratio: Canvas width / height
 - Near Plane: 0.1
@@ -138,6 +148,7 @@ void main(void) {
 - Zoom: Applied as FOV divisor (FOV / zoom)
 
 **Orthogonal Projection:**
+
 - Width: 10 / zoom
 - Height: 10 / zoom
 - Near Plane: 0.1
@@ -146,6 +157,7 @@ void main(void) {
 ### Model-View Matrix
 
 Uses simplified lookAt implementation:
+
 ```
 Forward = normalize(center - eye)
 Right = normalize(cross(forward, [0,1,0]))
@@ -157,6 +169,7 @@ Up = cross(right, forward)
 ### Cube Geometry
 
 **Vertices (8 points):**
+
 ```
 p1 = (1.0, 3.0, -10.0)    // 0: top-left-far
 p2 = (3.0, 3.0, -10.0)    // 1: top-right-far
@@ -169,6 +182,7 @@ p8 = (1.0, -0.5, -5.0)    // 7: bottom-left-near
 ```
 
 **Edges (12):**
+
 ```
 Far face:     0-1, 1-2, 2-3, 3-0
 Near face:    4-5, 5-6, 6-7, 7-4
@@ -176,6 +190,7 @@ Connecting:   0-4, 1-5, 2-6, 3-7
 ```
 
 **Faces (6):**
+
 ```
 Far:    0-1-2, 2-3-0
 Near:   4-5-6, 6-7-4
@@ -186,6 +201,7 @@ Left:   3-0-4, 4-7-3
 ```
 
 **Colors (RGB per vertex):**
+
 ```
 Red (X):     1.0, 0.0, 0.0
 Green (Y):   0.0, 1.0, 0.0
@@ -198,12 +214,14 @@ Cyan:        0.0, 1.0, 1.0
 ## Interaction Flow
 
 ### Current Flow
+
 1. User clicks on canvas
 2. `handleInteractionStart` saves click position
 3. Multiple handlers track mouse movement
 4. `handleInteractionEnd` completes interaction
 
 ### Planned Flow
+
 1. Get mouse position in canvas space
 2. Convert to 3D ray via inverse MVP matrix
 3. Test ray intersection with cube geometry
@@ -240,28 +258,33 @@ Every Frame:
 ## Coordinate Systems
 
 ### World Space
+
 - X: Left-Right (positive right)
 - Y: Up-Down (positive up)
 - Z: Forward-Backward (positive toward camera)
 
 ### Screen Space
+
 - Origin: Top-left corner
 - X: Left to Right (0 to width)
 - Y: Top to Bottom (0 to height)
 
 ### Normalized Device Coordinates (NDC)
+
 - Range: [-1, 1] for X and Y
 - Depth: [-1, 1] where -1 is near plane, 1 is far plane
 
 ## UI/UX Design
 
 ### Control Panel (Top)
+
 - Interaction Mode: Deform/Scale/Extrude (planned interaction types)
 - View Settings: Switch between render modes
 - Projection: Perspective / Orthogonal toggle
 - Zoom: Slider [0-10] to control view zoom
 
 ### Overlays
+
 - Instructions Panel: Bottom-left, explains controls
 - Log Message: Status messages below instructions
 - Selection Frame: Optional overlay for vertex selection (when enabled)

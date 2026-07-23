@@ -1,4 +1,5 @@
 # Portfolio – Cinematic Scroll Experience
+
 ## Brandenburg Gate → Alexanderplatz fly-through
 
 > Stack already installed: `@theatre/core`, `@theatre/studio`, `@theatre/r3f`,
@@ -82,11 +83,11 @@ directly, to avoid fighting Theatre.js for camera control.
 Two sync modes implemented in `CameraPath.tsx`:
 
 - [x] `ScrollSyncNative` — uses `useScroll()` from Drei. Best for portfolio fullscreen:
-  native browser scroll handles trackpad momentum and inertia. Requires
-  `<ScrollControls>` wrapping. Exposed as `useNativeScroll={true}`.
+      native browser scroll handles trackpad momentum and inertia. Requires
+      `<ScrollControls>` wrapping. Exposed as `useNativeScroll={true}`.
 - [x] `ScrollSyncWheel` — wheel event listener on canvas parent. Works in any
-  embedding context (Storybook iframe, embedded frames). Own lerp damping (0.1).
-  Default (`useNativeScroll={false}`).
+      embedding context (Storybook iframe, embedded frames). Own lerp damping (0.1).
+      Default (`useNativeScroll={false}`).
 - [x] Storybook: `Default` story uses wheel mode; `NativeScroll` story uses ScrollControls.
 - [x] `SEQUENCE_DURATION = 10`, `PAGES = 6` constants match saved theatreState.
 
@@ -101,36 +102,36 @@ The point cloud is already rendered in `ThreePostprocessing.tsx`.
 The parallax goes on a `<group>` wrapper — not on the camera.
 
 - [ ] Create `useMouseParallax.ts` alongside `ThreePostprocessing.tsx`:
-  ```ts
-  import { useEffect } from 'react'
-  import { useFrame } from '@react-three/fiber'
-  import type { Group } from 'three'
 
-  const TARGET = { x: 0, y: 0 }
-  const LERP = 0.05
-  const STRENGTH = 0.015
+  ```ts
+  import { useEffect } from 'react';
+  import { useFrame } from '@react-three/fiber';
+  import type { Group } from 'three';
+
+  const TARGET = { x: 0, y: 0 };
+  const LERP = 0.05;
+  const STRENGTH = 0.015;
 
   export function useMouseParallax(groupRef: React.RefObject<Group>) {
     useEffect(() => {
       const onMove = (e: MouseEvent) => {
-        TARGET.x = (e.clientX / window.innerWidth - 0.5) * 2
-        TARGET.y = (e.clientY / window.innerHeight - 0.5) * 2
-      }
-      window.addEventListener('mousemove', onMove)
-      return () => window.removeEventListener('mousemove', onMove)
-    }, [])
+        TARGET.x = (e.clientX / window.innerWidth - 0.5) * 2;
+        TARGET.y = (e.clientY / window.innerHeight - 0.5) * 2;
+      };
+      window.addEventListener('mousemove', onMove);
+      return () => window.removeEventListener('mousemove', onMove);
+    }, []);
 
     useFrame(() => {
-      if (!groupRef.current) return
-      groupRef.current.rotation.y +=
-        (TARGET.x * STRENGTH - groupRef.current.rotation.y) * LERP
-      groupRef.current.rotation.x +=
-        (-TARGET.y * STRENGTH - groupRef.current.rotation.x) * LERP
-    })
+      if (!groupRef.current) return;
+      groupRef.current.rotation.y += (TARGET.x * STRENGTH - groupRef.current.rotation.y) * LERP;
+      groupRef.current.rotation.x += (-TARGET.y * STRENGTH - groupRef.current.rotation.x) * LERP;
+    });
   }
   ```
 
 - [ ] In `ThreePostprocessing.tsx`, wrap the `<points>` in a `<group>` and apply the hook:
+
   ```tsx
   const bgGroupRef = useRef<Group>(null)
   useMouseParallax(bgGroupRef)
@@ -141,9 +142,9 @@ The parallax goes on a `<group>` wrapper — not on the camera.
   ```
 
 - [ ] Optional — vertex shader displacement for a more organic feel.
-  `simplex-noise` is already installed. Replace `<pointsMaterial>` with a
-  `<shaderMaterial>` and offset vertex positions using mouse + time uniforms
-  in the vertex shader.
+      `simplex-noise` is already installed. Replace `<pointsMaterial>` with a
+      `<shaderMaterial>` and offset vertex positions using mouse + time uniforms
+      in the vertex shader.
 
 ---
 
@@ -162,47 +163,48 @@ WASM before this task can be wired up. See sub-task below.
 ### Sub-task 4a – Import the Alexanderplatz mesh
 
 - [ ] Add a WASM load for the Alexanderplatz OBJ alongside the Brandenburg Gate:
+
   ```tsx
   // In CameraPath.tsx (or the Scene component)
-  const [gateVertices, setGateVertices] = useState<Float32Array | null>(null)
-  const [alexVertices, setAlexVertices] = useState<Float32Array | null>(null)
+  const [gateVertices, setGateVertices] = useState<Float32Array | null>(null);
+  const [alexVertices, setAlexVertices] = useState<Float32Array | null>(null);
 
   useEffect(() => {
     async function loadMeshes() {
-      const instance = await cityParserModule()
+      const instance = await cityParserModule();
 
       // Brandenburg Gate (already loaded in ThreePostprocessing — reuse the same pattern)
-      const gateRes = await fetch('/assets/meshes/mesh_berlin/brandenburger-tor.obj')
-      const gateText = await gateRes.text()
-      const gateParser = new instance.CityParser()
-      gateParser.parse_obj(gateText)
-      setGateVertices(new Float32Array(gateParser.get_vertices_view()))
-      gateParser.delete()
+      const gateRes = await fetch('/assets/meshes/mesh_berlin/brandenburger-tor.obj');
+      const gateText = await gateRes.text();
+      const gateParser = new instance.CityParser();
+      gateParser.parse_obj(gateText);
+      setGateVertices(new Float32Array(gateParser.get_vertices_view()));
+      gateParser.delete();
 
       // Alexanderplatz — import this second mesh before the transition can work
-      const alexRes = await fetch('/assets/meshes/mesh_berlin/alexanderplatz.obj')
-      const alexText = await alexRes.text()
-      const alexParser = new instance.CityParser()
-      alexParser.parse_obj(alexText)
-      setAlexVertices(new Float32Array(alexParser.get_vertices_view()))
-      alexParser.delete()
+      const alexRes = await fetch('/assets/meshes/mesh_berlin/alexanderplatz.obj');
+      const alexText = await alexRes.text();
+      const alexParser = new instance.CityParser();
+      alexParser.parse_obj(alexText);
+      setAlexVertices(new Float32Array(alexParser.get_vertices_view()));
+      alexParser.delete();
     }
 
-    loadMeshes()
-  }, [])
+    loadMeshes();
+  }, []);
   ```
 
 - [ ] Confirm the Alexanderplatz `.obj` file exists at
-  `/public/assets/meshes/mesh_berlin/alexanderplatz.obj`. If not, add it before
-  proceeding to sub-tasks 4b–4e.
+      `/public/assets/meshes/mesh_berlin/alexanderplatz.obj`. If not, add it before
+      proceeding to sub-tasks 4b–4e.
 
 ### Sub-task 4b – Transition state tracking
 
 - [ ] Track transition state (only after both meshes are loaded):
   ```tsx
-  const [activeScene, setActiveScene] = useState<'gate' | 'alex'>('gate')
-  const [flashOpacity, setFlashOpacity] = useState(0)
-  const transitioned = useRef(false)
+  const [activeScene, setActiveScene] = useState<'gate' | 'alex'>('gate');
+  const [flashOpacity, setFlashOpacity] = useState(0);
+  const transitioned = useRef(false);
   ```
 
 ### Sub-task 4c – Flash trigger in useFrame
@@ -211,38 +213,44 @@ WASM before this task can be wired up. See sub-task below.
   ```tsx
   useFrame(() => {
     if (scroll.offset > 0.58 && !transitioned.current) {
-      transitioned.current = true
-      setFlashOpacity(1)
+      transitioned.current = true;
+      setFlashOpacity(1);
       setTimeout(() => {
-        setActiveScene('alex')
-        setFlashOpacity(0)
-      }, 250) // white frame lasts 250ms — enough to hide the geometry swap
+        setActiveScene('alex');
+        setFlashOpacity(0);
+      }, 250); // white frame lasts 250ms — enough to hide the geometry swap
     }
-  })
+  });
   ```
 
 ### Sub-task 4d – White flash overlay
 
 - [ ] White flash overlay — a `<div>` over the Canvas, not inside R3F:
   ```tsx
-  <div style={{
-    position: 'fixed', inset: 0, pointerEvents: 'none',
-    background: 'white',
-    opacity: flashOpacity,
-    transition: 'opacity 0.2s ease',
-    zIndex: 10
-  }} />
+  <div
+    style={{
+      position: 'fixed',
+      inset: 0,
+      pointerEvents: 'none',
+      background: 'white',
+      opacity: flashOpacity,
+      transition: 'opacity 0.2s ease',
+      zIndex: 10,
+    }}
+  />
   ```
 
 ### Sub-task 4e – Conditional point cloud render + fog
 
 - [ ] Conditionally render the active point cloud (requires both meshes from 4a):
+
   ```tsx
   <group ref={bgGroupRef}>
-    {activeScene === 'gate'
-      ? <points> {/* gateVertices Float32Array */} </points>
-      : <points> {/* alexVertices Float32Array */} </points>
-    }
+    {activeScene === 'gate' ? (
+      <points> {/* gateVertices Float32Array */} </points>
+    ) : (
+      <points> {/* alexVertices Float32Array */} </points>
+    )}
   </group>
   ```
 
@@ -256,6 +264,7 @@ WASM before this task can be wired up. See sub-task below.
 ## Bug 1 – `theatre:save` reports "sheetsById is empty" / `getTheatreState is not defined` ✅ FIXED
 
 **Symptoms:**
+
 - `pnpm theatre:save` → `⚠ No keyframes found — sheetsById is empty` — script
   opens a headless browser that has no `localStorage`, so the recorded state is
   never found.
@@ -275,11 +284,14 @@ iframe context, not the parent Storybook shell.
 from the DevTools console regardless of which frame context is selected:
 
 ```ts
-;(window as any).getTheatreState = getTheatreState
-try { (window.parent as any).getTheatreState = getTheatreState } catch (_) {}
+(window as any).getTheatreState = getTheatreState;
+try {
+  (window.parent as any).getTheatreState = getTheatreState;
+} catch (_) {}
 ```
 
 **How to export your keyframes (works in normal Storybook view now):**
+
 1. Open Storybook at `http://localhost:6006` and navigate to the CameraPath story.
 2. Open DevTools → Console (no need to switch to the iframe frame).
 3. Run: `getTheatreState()`
@@ -298,6 +310,7 @@ the browser step above, but the manual export above is sufficient for now.
 **Symptoms:** `MouseWarpEffectPass` renders inside the EffectComposer but produces no visible distortion. The screen-space UV warp never appears, even with `VITE_USE_MOUSE_WARP=true`.
 
 **What was tried:**
+
 - `<primitive object={effect}>` inside EffectComposer — doesn't register the Effect properly
 - `wrapEffect(MouseWarpEffect)` + `onInstance` callback for ref capture
 - Canvas-relative NDC via `gl.domElement.getBoundingClientRect()`
@@ -305,10 +318,12 @@ the browser step above, but the manual export above is sufficient for now.
 - Confirmed only ONE EffectComposer in canvas (two-composer bug is separate)
 
 **Files to investigate:**
+
 - `src/stories/three/non-stories-components/effects/MouseWarpEffect.ts` — custom Effect class, fragment shader, uniform setup
 - `src/stories/three/non-stories-components/effects/MouseWarpPass.tsx` — `wrapEffect` binding, `useMouseWarpUniforms` hook, NDC calculation
 
 **Suspected causes (not yet confirmed):**
+
 - The `onInstance` constructor callback pattern with `wrapEffect` may not correctly capture the Effect instance ref — `useMemo` uses `JSON.stringify(a)` which drops function references, so `onInstance` may get serialized to `{}` causing stale args
 - The uniform names (`uMouse`, `uMouseVel`) may not match what the fragment shader expects after `super()` call in the Effect constructor
 - The `postprocessing` Effect class may require `inputBuffer` to be declared differently
@@ -322,6 +337,7 @@ the browser step above, but the manual export above is sufficient for now.
 **Goal:** Redesign portfolio UI/UX to complement and enhance the Berlin point-cloud / line background that is always visible behind the content. The visual language of the interface should feel cohesive with the sparse, geometric, city-data aesthetic of the OBJ point cloud.
 
 **Design direction:**
+
 - UI elements (cards, panels, text containers) should feel transparent, minimal, or glassy — avoid heavy opaque blocks that hide the background
 - Typography and layout should work WITH the point cloud lines/dots, not against them — consider dark overlays with subtle blur (`backdrop-filter`) rather than solid fills
 - Colors should complement the dark background (`#111111`) and the point cloud color palette
@@ -329,6 +345,7 @@ the browser step above, but the manual export above is sufficient for now.
 - Possible: animate foreground elements in sync with scroll (parallax on content sections)
 
 **Constraints:**
+
 - Background renders as `fixed inset-0 pointer-events-none` — all pointer events go to the portfolio DOM
 - Portfolio uses DaisyUI + Tailwind v4, `data-theme="dark"` — glass/translucent variants via Tailwind `backdrop-blur-*` classes
 - Foreground z-index is above the canvas (`z-index: 0` on background, portfolio content at default stacking)

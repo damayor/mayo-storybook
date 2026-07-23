@@ -15,9 +15,9 @@ declare module '*/wave_gen.js' {
 declare module '*/obj_parser.js' {
   export interface CityParser {
     parse_obj(content: string): void;
-    
+
     get_vertices_view(): Float32Array;
-  
+
     delete(): void;
   }
   export interface CityParserModule {
@@ -28,7 +28,7 @@ declare module '*/obj_parser.js' {
    * La función por defecto es la factory generada por -s MODULARIZE=1
    */
   const cityParserModule: () => Promise<CityParserModule>;
-  
+
   export default cityParserModule;
 }
 

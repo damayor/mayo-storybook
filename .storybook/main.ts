@@ -7,34 +7,36 @@ const prodStories = [
   'pool-3d',
   'product-rotating-prd',
   'floating-card',
-  'material-selector', 
+  'material-selector',
   'terrain',
-  'wasm-cpp'
-]
+  'wasm-cpp',
+];
 
 //Pre: folder and story have the same name, with kebab notation
-const prodStoriesPaths = prodStories.map((title) => `../src/stories/three/stories-components/${title}/${title}.stories.tsx` )
+const prodStoriesPaths = prodStories.map(
+  (title) => `../src/stories/three/stories-components/${title}/${title}.stories.tsx`
+);
 
 const config: StorybookConfig = {
   // "stories" : ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
-  "stories": isProd
-  ? [
-    ...prodStoriesPaths,
-    '../src/stories/three/stories-components/webgl-basis/webgl-basis.stories.tsx',
-    '../src/stories/html/experiences/volvo-catalogue/volvo-catalogue.stories.tsx'
-  ]
-  : ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
-  "addons": [
-    "@chromatic-com/storybook",
-    "@storybook/addon-docs",
-    "@storybook/addon-onboarding",
+  stories: isProd
+    ? [
+        ...prodStoriesPaths,
+        '../src/stories/three/stories-components/webgl-basis/webgl-basis.stories.tsx',
+        '../src/stories/html/experiences/volvo-catalogue/volvo-catalogue.stories.tsx',
+      ]
+    : ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  addons: [
+    '@chromatic-com/storybook',
+    '@storybook/addon-docs',
+    '@storybook/addon-onboarding',
     // "@storybook/addon-vitest"
-    "@storybook/addon-a11y",
-    "@storybook/addon-themes"
+    '@storybook/addon-a11y',
+    '@storybook/addon-themes',
   ],
-  "framework": {
-    "name": "@storybook/react-vite",
-    "options": {}
+  framework: {
+    name: '@storybook/react-vite',
+    options: {},
   },
   env: (config) => ({
     ...config,

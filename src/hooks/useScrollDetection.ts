@@ -1,15 +1,12 @@
-import { type SectionType, SECTIONS_ARRAY } from "Interfaces/portfolio-sections";
-import { useEffect } from "react";
+import { type SectionType, SECTIONS_ARRAY } from 'Interfaces/portfolio-sections';
+import { useEffect } from 'react';
 
 interface UseScrollDetectionProps {
-  sectionRefs: Record<SectionType, React.RefObject<HTMLElement| null>>;
+  sectionRefs: Record<SectionType, React.RefObject<HTMLElement | null>>;
   setActiveSection: (section: SectionType) => void;
 }
 
-export const useScrollDetection = ({ 
-  sectionRefs, 
-  setActiveSection 
-}: UseScrollDetectionProps) => {
+export const useScrollDetection = ({ sectionRefs, setActiveSection }: UseScrollDetectionProps) => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 100;
@@ -18,10 +15,10 @@ export const useScrollDetection = ({
       for (let i = SECTIONS_ARRAY.length - 1; i >= 0; i--) {
         const section = SECTIONS_ARRAY[i];
         const element = sectionRefs[section].current;
-        
+
         if (element) {
           const offsetTop = element.offsetTop;
-          
+
           if (scrollPosition >= offsetTop) {
             setActiveSection(section);
             break;
@@ -43,7 +40,7 @@ export const useScrollDetection = ({
     };
 
     window.addEventListener('scroll', throttledScroll, { passive: true });
-    
+
     // Detectar seccion inicial
     handleScroll();
 

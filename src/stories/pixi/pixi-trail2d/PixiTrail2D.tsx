@@ -5,7 +5,7 @@ const TRAIL_LENGTH = 15;
 
 const PixiTrail2D: React.FC = () => {
   const canvasRef = useRef<HTMLDivElement>(null);
-  const positions = useRef<{x: number, y: number}[]>([]);
+  const positions = useRef<{ x: number; y: number }[]>([]);
   const appRef = useRef<PIXI.Application | null>(null);
 
   useEffect(() => {

@@ -9,12 +9,15 @@ This document outlines the mistakes and poor practices found in the 2018 WebGL c
 ## 🔴 Major Issues in 2018 Code
 
 ### 1. **No Component Architecture**
-**Problem:** 
+
+**Problem:**
+
 - All HTML, JavaScript, and styling was mixed in one file
 - No separation of concerns
 - Difficult to reuse or maintain
 
 **How it's fixed in 2026:**
+
 - ✅ Separated into focused React components (InteractionModeControl, ViewSettings, etc.)
 - ✅ Each component has a single responsibility
 - ✅ Easier to test, maintain, and reuse
@@ -29,18 +32,24 @@ This document outlines the mistakes and poor practices found in the 2018 WebGL c
 ---
 
 ### 2. **jQuery Dependency (Unnecessary)**
+
 **Problem:**
+
 ```javascript
 // 2018 code
-$(document).ready(function() {
-  $("input").click(function() { /* ... */ });
+$(document).ready(function () {
+  $('input').click(function () {
+    /* ... */
+  });
 });
 ```
+
 - jQuery was used only for document.ready, which is not necessary
 - Added unnecessary dependency overhead
 - Modern browsers have native APIs
 
 **How it's fixed in 2026:**
+
 - ✅ Removed jQuery entirely
 - ✅ Used React's `useEffect()` hook instead
 - ✅ Direct DOM manipulation via React state
@@ -49,7 +58,9 @@ $(document).ready(function() {
 ---
 
 ### 3. **Global Variables & State Management**
+
 **Problem:**
+
 ```javascript
 // 2018: Global variables scattered everywhere
 var ui;
@@ -58,15 +69,17 @@ var gl;
 var zFace1 = -10.0;
 var zFace2 = -5.0;
 var eye = vec3.fromValues(1, 2, 2);
-var angleX = Math.PI/3;
+var angleX = Math.PI / 3;
 // ... many more globals
 ```
+
 - Hard to track state changes
 - Difficult to debug and reason about
 - Name conflicts possible
 - Hard to make component reusable
 
 **How it's fixed in 2026:**
+
 - ✅ Centralized state in `useUI` custom hook
 - ✅ React state management with `useState`
 - ✅ Encapsulated state per component
@@ -80,12 +93,14 @@ const { state, setInteractionMode, setViewMode } = useUI();
 ---
 
 ### 4. **Commented Code Littered Throughout**
+
 **Problem:**
+
 ```javascript
 // 2018 code had lots of this:
 // position: absolute;
 // left: 79%;
-// top: 70px; 
+// top: 70px;
 // var default iPicked = -1;
 // Mensaje aca
 // Modo de uso: <br>
@@ -99,6 +114,7 @@ const { state, setInteractionMode, setViewMode } = useUI();
 - Indicates incomplete refactoring
 
 **How it's fixed in 2026:**
+
 - ✅ All commented code removed
 - ✅ Clean, readable source files
 - ✅ Version history tracked in Git
@@ -106,7 +122,9 @@ const { state, setInteractionMode, setViewMode } = useUI();
 ---
 
 ### 5. **No Type Safety**
+
 **Problem:**
+
 ```javascript
 // 2018: Pure JavaScript - no types
 function drawScene(gl, shadersInfo, deltaTime, shapeData) {
@@ -122,6 +140,7 @@ function drawScene(gl, shadersInfo, deltaTime, shapeData) {
 - Difficult to refactor safely
 
 **How it's fixed in 2026:**
+
 - ✅ Full TypeScript implementation
 - ✅ Interface definitions for all data structures
 - ✅ Compile-time error checking
@@ -150,7 +169,9 @@ function drawShape(
 ---
 
 ### 6. **Inline Matrix Math Without Proper Library**
+
 **Problem:**
+
 ```javascript
 // 2018: Manual matrix operations scattered around
 // Prone to mathematical errors
@@ -159,6 +180,7 @@ function drawShape(
 ```
 
 **How it's fixed in 2026:**
+
 - ✅ Created focused matrix utility functions in `webgl-utils.ts`
 - ✅ Clear, mathematical operations
 - ✅ Organized in logical namespaces (`mat4`, `vec3`)
@@ -167,17 +189,20 @@ function drawShape(
 ---
 
 ### 7. **Magic Numbers & Unclear Constants**
+
 **Problem:**
+
 ```javascript
 // 2018: What are these numbers?
-const FOV = 55 * Math.PI / 180;
+const FOV = (55 * Math.PI) / 180;
 const zNear = 0.1;
 const zFar = 100.0;
 var timeParameter = 0.0;
 var rotYSpeed = 2;
 var transSpeed = 0.001;
 var zDragFactor = 2;
-var orthoWidth = 10, orthoHeight = 10;
+var orthoWidth = 10,
+  orthoHeight = 10;
 ```
 
 - No explanation of where they come from
@@ -185,34 +210,37 @@ var orthoWidth = 10, orthoHeight = 10;
 - Hard to understand the code's intent
 
 **How it's fixed in 2026:**
+
 - ✅ All constants properly named and placed at top of files
 - ✅ Clear comments explaining their purpose
 - ✅ Grouped with related functionality
 
 ```typescript
-const FOV = (55 * Math.PI) / 180;  // Field of View in radians
-const Z_NEAR = 0.1;                 // Near clipping plane
-const Z_FAR = 100.0;                // Far clipping plane
+const FOV = (55 * Math.PI) / 180; // Field of View in radians
+const Z_NEAR = 0.1; // Near clipping plane
+const Z_FAR = 100.0; // Far clipping plane
 ```
 
 ---
 
 ### 8. **Callback Hell & Event Handler Complexity**
+
 **Problem:**
+
 ```javascript
 // 2018: Complex nested event handlers
-document.onmousedown = function(event) {
+document.onmousedown = function (event) {
   // ... 20+ lines of code
   if (moveCamera) {
     // nested logic
   }
 };
 
-document.onmousemove = function(event) {
+document.onmousemove = function (event) {
   // ... 20+ lines of code
 };
 
-document.onmouseup = function(event) {
+document.onmouseup = function (event) {
   // ... 30+ lines of code
 };
 ```
@@ -222,6 +250,7 @@ document.onmouseup = function(event) {
 - Events mixed with business logic
 
 **How it's fixed in 2026:**
+
 - ✅ Callback handlers extracted to small functions
 - ✅ Each component manages its own events
 - ✅ React event system provides consistent interface
@@ -236,12 +265,16 @@ const handleMouseDown = (e: React.MouseEvent) => {
 ---
 
 ### 9. **Inline String Literals for HTML/IDs**
+
 **Problem:**
+
 ```javascript
 // 2018: String magic numbers for IDs
 var showPickImg = document.querySelector('#pickImg');
 var zoomSlider = document.querySelector('#zoom');
-var moveCamera = false, oldX, oldY;
+var moveCamera = false,
+  oldX,
+  oldY;
 var selectDown = false;
 ```
 
@@ -250,6 +283,7 @@ var selectDown = false;
 - Tight coupling to HTML
 
 **How it's fixed in 2026:**
+
 - ✅ React components encapsulate HTML structure
 - ✅ Props system provides clear contracts
 - ✅ Type-safe prop passing
@@ -262,7 +296,9 @@ var selectDown = false;
 ---
 
 ### 10. **No Error Handling**
+
 **Problem:**
+
 ```javascript
 // 2018: No error checking
 gl.shaderSource(shader, source);
@@ -274,6 +310,7 @@ gl.linkProgram(program);
 ```
 
 **How it's fixed in 2026:**
+
 - ✅ Proper error checking in utility functions
 - ✅ Console logging for debugging
 - ✅ Null checks for critical operations
@@ -291,6 +328,7 @@ if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
 ## ✅ Architecture Improvements
 
 ### Directory Structure
+
 ```
 webgl-basis/
 ├── webgl-basis.tsx              # Main component
@@ -327,10 +365,12 @@ webgl-basis/
 ## 🔄 Migration Path
 
 ### Step 1: ✅ Convert to React + TypeScript
+
 - Organized into components
 - Type-safe interfaces
 
 ### Step 2: ⚠️ Replace CSS with Tailwind (Next)
+
 ```css
 /* Current: webgl-sketchup.css */
 .div-tool {
@@ -343,11 +383,13 @@ webgl-basis/
 ```
 
 ### Step 3: ⚠️ Complete WebGL Drawing Logic
+
 - Implement actual cube geometry
 - Add vertex picking
 - Implement interaction modes
 
 ### Step 4: ⚠️ Add Advanced Features
+
 - Undo/redo functionality
 - File export/import
 - More shape types
@@ -387,4 +429,3 @@ webgl-basis/
 - [ ] Storybook stories for components
 - [ ] Documentation with Storybook MDX
 - [ ] E2E testing with Cypress
-

@@ -1,4 +1,4 @@
-import {type StoryObj, type Meta } from '@storybook/react'
+import { type StoryObj, type Meta } from '@storybook/react';
 import CubeEditor from './cube-editor';
 
 const meta = {
@@ -9,6 +9,4 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Cube_Editor: Story = {
-
-};
+export const Cube_Editor: Story = {};

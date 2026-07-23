@@ -41,9 +41,8 @@ export const InteractionModeControl: React.FC<InteractionModeControlProps> = ({
             {radio('deformFace', 'Deform Face', true)}
           </>
         )}
-        {(viewMode === 'faces' || viewMode === 'triangles') && (
-          radio('extrudeFace', 'Extrude Face', true)
-        )}
+        {(viewMode === 'faces' || viewMode === 'triangles') &&
+          radio('extrudeFace', 'Extrude Face', true)}
       </div>
     </div>
   );

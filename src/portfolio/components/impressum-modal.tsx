@@ -13,14 +13,10 @@ export function ImpressumModal({ isOpen, onClose }: ImpressumModalProps) {
 
   return (
     <>
-      <div
-        className="fixed inset-0 bg-black/60 z-50 backdrop-blur-sm"
-        onClick={onClose}
-      />
+      <div className="fixed inset-0 bg-black/60 z-50 backdrop-blur-sm" onClick={onClose} />
 
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
         <div className="relative bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl max-w-xl w-full max-h-[85vh] overflow-y-auto pointer-events-auto">
-
           <div className="sticky top-0 bg-slate-900 border-b border-slate-700 px-6 py-4 flex items-center justify-between rounded-t-2xl">
             <h2 className="text-xl font-semibold text-gray-100">{t('impressum.title')}</h2>
             <button
@@ -33,8 +29,9 @@ export function ImpressumModal({ isOpen, onClose }: ImpressumModalProps) {
           </div>
 
           <div className="px-6 py-6 space-y-6 text-sm text-gray-300">
-
-            <p className="text-xs text-gray-500 uppercase tracking-widest">{t('impressum.legalBasis')}</p>
+            <p className="text-xs text-gray-500 uppercase tracking-widest">
+              {t('impressum.legalBasis')}
+            </p>
 
             {/* Owner */}
             <section>
@@ -42,9 +39,12 @@ export function ImpressumModal({ isOpen, onClose }: ImpressumModalProps) {
                 {t('impressum.ownerLabel')}
               </h3>
               <p className="leading-7">
-                {t('impressum.name')}<br />
-                {t('impressum.addressLine1')}<br />
-                {t('impressum.addressLine2')}<br />
+                {t('impressum.name')}
+                <br />
+                {t('impressum.addressLine1')}
+                <br />
+                {t('impressum.addressLine2')}
+                <br />
                 {t('impressum.addressLine3')}
               </p>
             </section>
@@ -82,7 +82,6 @@ export function ImpressumModal({ isOpen, onClose }: ImpressumModalProps) {
               </h3>
               <p className="text-gray-500 leading-6 text-xs">{t('impressum.disclaimerText')}</p>
             </section>
-
           </div>
         </div>
       </div>

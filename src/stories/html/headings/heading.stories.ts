@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { fn } from 'storybook/test';
-import {Heading} from './heading';
+import { Heading } from './heading';
 
 const meta = {
   title: 'Html/Components/Heading',
@@ -9,7 +9,7 @@ const meta = {
   parameters: {
     level: 'centered',
   },
-  tags: ['autodocs'], 
+  tags: ['autodocs'],
   args: { onClick: fn() },
 } satisfies Meta<typeof Heading>;
 
@@ -40,7 +40,7 @@ export const Heading1OnDark: Story = {
 export const Heading2: Story = {
   args: {
     level: 2,
-    children: 'Heading 2'
+    children: 'Heading 2',
   },
 };
 
@@ -59,13 +59,13 @@ export const Heading2OnDark: Story = {
 export const Heading3: Story = {
   args: {
     level: 3,
-    children: 'Heading 3'
+    children: 'Heading 3',
   },
 };
 export const Heading4: Story = {
   args: {
     level: 4,
-    children: 'Heading 4'
+    children: 'Heading 4',
   },
 };
 // export const Heading5: Story = {

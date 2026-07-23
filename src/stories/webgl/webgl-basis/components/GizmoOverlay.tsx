@@ -5,11 +5,11 @@ interface GizmoOverlayProps {
   modelview: Mat4;
 }
 
-const SIZE   = 80;   // canvas px
-const ORIGIN = 40;   // centre of canvas
-const LEN    = 28;   // axis arm length in px
+const SIZE = 80; // canvas px
+const ORIGIN = 40; // centre of canvas
+const LEN = 28; // axis arm length in px
 
-const AXES: Array<{ dir: [number,number,number]; color: string; label: string }> = [
+const AXES: Array<{ dir: [number, number, number]; color: string; label: string }> = [
   { dir: [1, 0, 0], color: '#e74c3c', label: 'X' },
   { dir: [0, 1, 0], color: '#2ecc71', label: 'Y' },
   { dir: [0, 0, 1], color: '#3498db', label: 'Z' },
@@ -17,12 +17,12 @@ const AXES: Array<{ dir: [number,number,number]; color: string; label: string }>
 
 /** Extract the upper-left 3×3 rotation block from a column-major mat4 and
  *  rotate a direction vector by it (no translation, no scale). */
-function rotateByMV(mv: Mat4, v: [number,number,number]): [number, number, number] {
+function rotateByMV(mv: Mat4, v: [number, number, number]): [number, number, number] {
   const m = mv as number[];
   return [
-    m[0]*v[0] + m[4]*v[1] + m[8]*v[2],
-    m[1]*v[0] + m[5]*v[1] + m[9]*v[2],
-    m[2]*v[0] + m[6]*v[1] + m[10]*v[2],
+    m[0] * v[0] + m[4] * v[1] + m[8] * v[2],
+    m[1] * v[0] + m[5] * v[1] + m[9] * v[2],
+    m[2] * v[0] + m[6] * v[1] + m[10] * v[2],
   ];
 }
 
@@ -36,7 +36,7 @@ export const GizmoOverlay: React.FC<GizmoOverlayProps> = ({ modelview }) => {
     if (!ctx) return;
 
     const dpr = window.devicePixelRatio || 1;
-    canvas.width  = SIZE * dpr;
+    canvas.width = SIZE * dpr;
     canvas.height = SIZE * dpr;
     ctx.scale(dpr, dpr);
 
@@ -49,12 +49,12 @@ export const GizmoOverlay: React.FC<GizmoOverlayProps> = ({ modelview }) => {
     ctx.fill();
 
     // Project each axis and collect for depth-sorted draw order
-    const projected = AXES.map(axis => {
+    const projected = AXES.map((axis) => {
       const rotated = rotateByMV(modelview, axis.dir);
       // In view-space: x→right, y→up, z→toward camera
       // Map to 2D canvas: canvas-x = view-x, canvas-y = -view-y (flip Y)
       const ex = ORIGIN + rotated[0] * LEN;
-      const ey = ORIGIN - rotated[1] * LEN;   // flip Y for screen coords
+      const ey = ORIGIN - rotated[1] * LEN; // flip Y for screen coords
       return { ...axis, ex, ey, depth: rotated[2] };
     });
 
@@ -116,7 +116,7 @@ export const GizmoOverlay: React.FC<GizmoOverlayProps> = ({ modelview }) => {
         position: 'absolute',
         bottom: 8,
         right: 8,
-        width:  SIZE,
+        width: SIZE,
         height: SIZE,
         pointerEvents: 'none',
         borderRadius: '50%',
