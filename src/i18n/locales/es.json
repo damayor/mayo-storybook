@@ -19,13 +19,14 @@
   },
   "about": {
     "title": "Sobre mí",
-    "intro": "Desde 2020 entregando plataformas web de nivel producción y productos digitales para marcas globales — disponible para proyectos freelance y abierto a oportunidades a tiempo completo.",
-    "experience": "Mi trabajo abarca marcas globales: configuradores de productos 3D para Volvo y Jeep, infraestructura de checkout en adidas con soporte para transacciones en más de 30 países, y visualizaciones arquitectónicas en tiempo real para Amarilo y otros líderes del sector inmobiliario a través de Umbra 3D Studio. Trabajo en todo el stack — desde React, Three.js y Angular en el frontend hasta Node.js, pipelines de CI/CD y Kubernetes en el lado de sistemas. Actualmente con un flujo de trabajo potenciado por IA (Claude Code, Gemini, NotebookLM) para entregar más rápido sin sacrificar la calidad.",
+    "intro": "Ingeniero Full Stack con base en Ingeniería de Gráficos, ahora construyendo un nuevo enfoque como referente en ingeniería de software potenciada por IA — disponible para proyectos freelance y abierto a oportunidades a tiempo completo.",
+    "experience": "Mi trabajo abarca marcas globales: configuradores de productos 3D para Volvo y Jeep, infraestructura de checkout en adidas con soporte para transacciones en más de 30 países, y visualizaciones arquitectónicas en tiempo real para Amarilo y otros líderes del sector inmobiliario a través de Umbra 3D Studio. Trabajo en todo el stack — desde React, Three.js y Angular en el frontend hasta Node.js, pipelines de CI/CD y Kubernetes en el lado de sistemas. En 2026 orienté mi enfoque hacia la ingeniería de software potenciada por IA: dicto un workshop de Spec Driven Development y trabajo a diario con Claude Code, NotebookLM y herramientas similares, con el objetivo de ser un referente para equipos que adoptan prácticas de ingeniería aumentadas por IA.",
     "tagline": "Escribo código en POO; pienso a punta de cuaterniones; celebro con salsa.",
     "mainSkills": {
       "frontend": "Ingeniería Frontend",
       "xr": "Desarrollo 3D / XR",
-      "reliability": "Sistemas y Confiabilidad"
+      "reliability": "Sistemas y Confiabilidad",
+      "ai": "Ingeniería de IA"
     }
   },
   "projects": {

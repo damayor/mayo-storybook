@@ -7,6 +7,7 @@ import {
   FileJson2,
   Terminal,
   RectangleGoggles,
+  BrainCircuit,
   Instagram,
   ChevronDown,
 } from 'lucide-react';
@@ -245,20 +246,24 @@ function AboutSection() {
             <p className="text-lm font-bold text-gray-100 mb-10 text-center leading-relaxed italic">
               {t('about.tagline')}
             </p>
-
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
+              <div className="text-center p-4 border-2 border-slate-700 rounded-lg">
+                <BrainCircuit className="mx-auto mb-2 text-emerald-400" size={32} />
+                <p className="font-semibold text-gray-200">{t('about.mainSkills.ai')}</p>
+              </div>
               <div className="text-center p-4 border-2 border-slate-700 rounded-lg">
                 <FileJson2 className="mx-auto mb-2 text-blue-400" size={32} />
                 <p className="font-semibold text-gray-200">{t('about.mainSkills.frontend')}</p>
               </div>
-              <div className="text-center p-4 border-2 border-slate-700 rounded-lg">
+              {/* <div className="text-center p-4 border-2 border-slate-700 rounded-lg">
                 <RectangleGoggles className="mx-auto mb-2 text-camelot-500" size={32} />
                 <p className="font-semibold text-gray-200">{t('about.mainSkills.xr')}</p>
-              </div>
+              </div> */}
               <div className="text-center p-4 border-2 border-slate-700 rounded-lg">
                 <Terminal className="mx-auto mb-2 text-purple-500" size={32} />
                 <p className="font-semibold text-gray-200">{t('about.mainSkills.reliability')}</p>
               </div>
+             
             </div>
           </div>
         </div>
@@ -384,7 +389,7 @@ function ContactSection({ lang }: { lang: Lang }) {
         <SoftPanel className="p-10 flex flex-col items-center gap-8">
           <p className="text-xl text-gray-300 text-center leading-relaxed">{t('contact.cta')}</p>
 
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:justify-center">
+          <div className="flex flex-col sm:flex-row p-4 gap-4 w-full sm:justify-center">
             <a
               href="https://calendly.com/may-interactive"
               target="_blank"

@@ -10,12 +10,24 @@ import type {
 
 export const tools: ToolsCategory[] = [
   {
+    category: 'AI Engineering & Agentic Workflows',
+    items: [
+      'Claude Code',
+      'Spec Driven Development (SDD)',
+      'Agentic Coding Workflows',
+      'Gemini',
+      'NotebookLM',
+      'Codex',
+      'MCP (Model Context Protocol)',
+      'Prompt & Context Engineering',
+    ],
+  },
+  {
     category: 'Frontend & Web 3D',
     items: [
       'React',
       'TypeScript',
       'Three.js',
-      'R3F',
       'Next.js',
       'Angular',
       'Tailwind CSS',
@@ -51,7 +63,6 @@ export const tools: ToolsCategory[] = [
       'LiDAR',
       'WebXR',
       'OpenCV',
-      'Oculus SDK',
     ],
   },
   {
@@ -69,20 +80,27 @@ export const tools: ToolsCategory[] = [
       'Groovy',
     ],
   },
-  {
-    category: 'AI-Augmented Workflow',
-    items: ['Claude', 'SDD', 'Gemini', 'NotebookLM', 'Google AI Studio', 'GitHub Copilot', 'Codex'],
-  },
-  {
-    category: 'Tooling & DX',
-    items: ['Git', 'Vite', 'Vitest', 'Jest', 'ESLint', 'Jira', 'Confluence'],
-  },
+
+  // {
+  //   category: 'Tooling & DX',
+  //   items: ['Git', 'Vite', 'Vitest', 'Jest', 'ESLint', 'Jira', 'Confluence'],
+  // },
 ];
 
 // ─── Skills — language-keyed ──────────────────────────────────────────────────
 
 const _skills: Record<Lang, SkillCategory[]> = {
   en: [
+    {
+      category: 'AI Engineering & Spec Driven Development',
+      items: [
+        'Spec Driven Development (SDD) — Workshop Instructor',
+        'Agentic Coding with Claude Code & AI-Native Tooling',
+        'Strategic LLM Integration in Software Architectures',
+        'Prompt & Context Engineering for Technical Research',
+        'Accelerated, AI-Augmented Prototyping Methodologies',
+      ],
+    },
     {
       category: 'Systems & Distributed Architecture',
       items: [
@@ -124,15 +142,6 @@ const _skills: Record<Lang, SkillCategory[]> = {
       ],
     },
     {
-      category: 'Strategic AI & Modern Workflow',
-      items: [
-        'AI-Augmented Development (SDD)',
-        'Strategic LLM Integration in Software Architectures',
-        'Prompt Engineering for Technical Research',
-        'Accelerated Prototyping Methodologies',
-      ],
-    },
-    {
       category: 'Leadership & Technical Excellence',
       items: [
         'Technical Mentoring',
@@ -144,6 +153,16 @@ const _skills: Record<Lang, SkillCategory[]> = {
     },
   ],
   es: [
+    {
+      category: 'Ingeniería de IA y Spec Driven Development',
+      items: [
+        'Spec Driven Development (SDD) — Instructor de Workshop',
+        'Programación Agéntica con Claude Code y Herramientas AI-Native',
+        'Integración Estratégica de LLMs en Arquitecturas de Software',
+        'Ingeniería de Prompts y Contexto para Investigación Técnica',
+        'Metodologías de Prototipado Acelerado y Potenciado por IA',
+      ],
+    },
     {
       category: 'Sistemas y Arquitectura Distribuida',
       items: [
@@ -185,15 +204,6 @@ const _skills: Record<Lang, SkillCategory[]> = {
       ],
     },
     {
-      category: 'IA Estratégica y Flujo de Trabajo Moderno',
-      items: [
-        'Desarrollo Aumentado por IA (SDD)',
-        'Integración Estratégica de LLMs en Arquitecturas de Software',
-        'Ingeniería de Prompts para Investigación Técnica',
-        'Metodologías de Prototipado Acelerado',
-      ],
-    },
-    {
       category: 'Liderazgo y Excelencia Técnica',
       items: [
         'Mentoría Técnica',
@@ -205,6 +215,16 @@ const _skills: Record<Lang, SkillCategory[]> = {
     },
   ],
   de: [
+    {
+      category: 'KI-Engineering & Spec Driven Development',
+      items: [
+        'Spec Driven Development (SDD) — Workshop-Leiter',
+        'Agentisches Programmieren mit Claude Code & KI-nativen Tools',
+        'Strategische LLM-Integration in Software-Architekturen',
+        'Prompt- und Context-Engineering für technische Forschung',
+        'Beschleunigte, KI-gestützte Prototyping-Methoden',
+      ],
+    },
     {
       category: 'Systeme & Verteilte Architektur',
       items: [
@@ -243,15 +263,6 @@ const _skills: Record<Lang, SkillCategory[]> = {
         'Fortgeschrittene Zustandsverwaltungsstrategien',
         'API-Design & Integrationsmuster',
         'Responsives & multisensoriales Interfacedesign',
-      ],
-    },
-    {
-      category: 'Strategische KI & Moderner Workflow',
-      items: [
-        'KI-gestützte Entwicklung (SDD)',
-        'Strategische LLM-Integration in Software-Architekturen',
-        'Prompt Engineering für technische Forschung',
-        'Beschleunigte Prototyping-Methoden',
       ],
     },
     {
@@ -332,8 +343,16 @@ const _milestones: Record<Lang, Milestone[]> = {
       title: 'Strategic Relocation to Germany',
       place: 'Germany',
       description:
-        'Relocated to Berlin following official ZAB/Anabin recognition of my degree as equivalent to System- und Computertechnik (A4/H+) and with Opportunity Card.',
+        'Relocated to Berlin following official ZAB/Anabin recognition of my degree as equivalent to System- und Computertechnik (A4/H+).',
       year: 2025,
+    },
+    {
+      id: '8',
+      title: 'Spec Driven Development Workshop',
+      place: 'Independent / AI Engineering',
+      description:
+        'Designed and delivered a workshop on Spec Driven Development, teaching engineers to pair specs with agentic tools like Claude Code — the start of a focused push to become a reference in AI-supported software engineering.',
+      year: 2026,
     },
   ],
   es: [
@@ -393,6 +412,14 @@ const _milestones: Record<Lang, Milestone[]> = {
         'Reubicado en Berlín tras el reconocimiento oficial de ZAB/Anabin del título equivalente a System- und Computertechnik (A4/H+) y Tarjeta de Búsqueda de Empleo.',
       year: 2025,
     },
+    {
+      id: '8',
+      title: 'Workshop de Spec Driven Development',
+      place: 'Independiente / Ingeniería de IA',
+      description:
+        'Diseño y presentacion del workshop de Spec Driven Development, enseñando a ingenieros a combinar especificaciones con herramientas agénticas como Claude Code — el inicio de un enfoque estratégico para convertirse en referente en ingeniería de software potenciada por IA.',
+      year: 2026,
+    },
   ],
   de: [
     {
@@ -450,6 +477,14 @@ const _milestones: Record<Lang, Milestone[]> = {
       description:
         'Umzug nach Berlin nach offizieller ZAB/Anabin-Anerkennung des Abschlusses als äquivalent zu System- und Computertechnik (A4/H+) sowie Chancenkarte.',
       year: 2025,
+    },
+    {
+      id: '8',
+      title: 'Spec Driven Development Workshop',
+      place: 'Unabhängig / KI-Engineering',
+      description:
+        'Konzeption und Durchführung eines Workshops zu Spec Driven Development, in dem Ingenieuren vermittelt wird, Spezifikationen mit agentischen Tools wie Claude Code zu kombinieren — der Beginn einer gezielten Ausrichtung als Referenz für KI-gestützte Softwareentwicklung.',
+      year: 2026,
     },
   ],
 };
