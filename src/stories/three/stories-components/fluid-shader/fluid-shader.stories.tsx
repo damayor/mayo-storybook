@@ -5,7 +5,7 @@ import FluidShader from './fluid-shader';
 import { Canvas } from '@react-three/fiber';
 
 const meta = {
-  title: 'Three/ToReview/FluidShaderTest',
+  title: 'ThreeJs/ToReview/FluidShaderTest',
   component: FluidShader,
   decorators: [
     (Story) => (

@@ -6,7 +6,7 @@ import DreiLine, { type DreiLineProps } from './drei-line';
 import type { JSX } from 'react/jsx-runtime';
 
 const meta = {
-  title: 'Three/Components/Drei Line',
+  title: 'ThreeJs/Components/Drei Line',
   component: DreiLine,
   decorators: [
     (Story) => (

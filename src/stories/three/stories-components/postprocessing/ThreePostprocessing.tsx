@@ -10,8 +10,8 @@ import { BlendFunction, GlitchMode } from 'postprocessing';
 import { Vector2 } from 'three';
 import { useCameraDebug } from '../../non-stories-components/hooks/useCameraDebug.js';
 import { ObjRenderer } from '../../../cpp/ObjRenderer/ObjRenderer.js';
-import { Ply3DRenderer } from '../../../cpp/PlyRenderer/PlyRenderer.stories.js';
-import { PlyRenderer } from '../../../cpp/PlyRenderer/PlyRenderer.js';
+import { Ply3DRenderer } from '../../../cpp/ply-renderer/ply-renderer.stories.js';
+import { PlyRenderer } from '../../../cpp/ply-renderer/ply-renderer.js';
 import { MouseWarpEffectPass } from '../../non-stories-components/effects/MouseWarpPass.js';
 
 // --- Mesh transform defaults (extracted from useControls) ---

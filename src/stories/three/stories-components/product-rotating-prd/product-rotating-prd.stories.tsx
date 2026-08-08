@@ -8,7 +8,7 @@ import { Html } from '@react-three/drei';
 import { Vector3 } from 'three';
 
 const meta = {
-  title: 'Three/Experiences/InteractivePDP',
+  title: 'ThreeJs/Experiences/InteractivePDP',
   component: ProductRotatingPrd,
   decorators: [
     (Story) => (

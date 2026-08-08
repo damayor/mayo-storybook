@@ -45,7 +45,7 @@ try {
 const sheet = getProject('BerlinTour', { state: theatreState }).sheet('Scene');
 
 const meta: Meta<typeof CameraPath> = {
-  title: 'three/Experiences/CameraPath',
+  title: 'ThreeJs/Experiences/CameraPath',
   component: CameraPath,
   argTypes: {
     scrollMode: {

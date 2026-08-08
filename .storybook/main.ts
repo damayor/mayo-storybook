@@ -2,19 +2,30 @@ import type { StorybookConfig } from '@storybook/react-vite';
 
 const isProd = process.env.STORYBOOK_ENV === 'production';
 
-//ToDo Map including also from HTML
-const prodStories = [
-  'pool-3d',
-  'product-rotating-prd',
-  'floating-card',
-  'material-selector',
-  'terrain',
-  'wasm-cpp',
+// Base path (relative to src/stories) for each story group. `three` nests its
+// components under an extra `stories-components` segment; other groups don't.
+const groupBasePaths: Record<string, string> = {
+  three: 'three/stories-components',
+  cpp: 'cpp',
+  html: 'html/experiences',
+  webgl: 'webgl',
+};
+
+//Pre: folder and story file share the same name, in kebab-case, inside one of the groups above
+const prodStories: Array<{ group: keyof typeof groupBasePaths; title: string }> = [
+  { group: 'three', title: 'pool-3d' },
+  { group: 'three', title: 'product-rotating-prd' },
+  { group: 'three', title: 'floating-card' },
+  { group: 'three', title: 'material-selector' },
+  { group: 'three', title: 'terrain' },
+  { group: 'cpp', title: 'webassembly' },
+  { group: 'cpp', title: 'ply-renderer' },
+  { group: 'webgl', title: 'webgl-basis' },
+  { group: 'html', title: 'volvo-catalogue' },
 ];
 
-//Pre: folder and story have the same name, with kebab notation
 const prodStoriesPaths = prodStories.map(
-  (title) => `../src/stories/three/stories-components/${title}/${title}.stories.tsx`
+  ({ group, title }) => `../src/stories/${groupBasePaths[group]}/${title}/${title}.stories.tsx`
 );
 
 const config: StorybookConfig = {
@@ -22,8 +33,7 @@ const config: StorybookConfig = {
   stories: isProd
     ? [
         ...prodStoriesPaths,
-        '../src/stories/three/stories-components/webgl-basis/webgl-basis.stories.tsx',
-        '../src/stories/html/experiences/volvo-catalogue/volvo-catalogue.stories.tsx',
+        '../src/stories/Configure.mdx',
       ]
     : ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [

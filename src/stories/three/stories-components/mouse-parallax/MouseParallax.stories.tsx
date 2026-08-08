@@ -3,7 +3,7 @@ import MayoCanvas from '../../non-stories-components/mayo-canvas/mayo-canvas';
 import { MouseParallaxDemo } from './MouseParallax';
 
 const meta: Meta<typeof MouseParallaxDemo> = {
-  title: 'three/Postprocessing/MouseParallax',
+  title: 'ThreeJs/Postprocessing/MouseParallax',
   component: MouseParallaxDemo,
   argTypes: {
     lerp: {

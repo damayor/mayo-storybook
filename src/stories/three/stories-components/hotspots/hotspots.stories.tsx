@@ -16,7 +16,7 @@ import Hotspots from './hotspots';
 import { defaultHotspotsConfiguration } from './constants/default-product-config';
 
 const meta = {
-  title: 'Three/Experiences/Hotspots',
+  title: 'ThreeJs/Experiences/Hotspots',
   component: ProductRotatingPrd,
   decorators: [
     (Story) => (

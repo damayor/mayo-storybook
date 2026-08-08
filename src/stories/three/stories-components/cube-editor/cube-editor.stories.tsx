@@ -2,7 +2,7 @@ import { type StoryObj, type Meta } from '@storybook/react';
 import CubeEditor from './cube-editor';
 
 const meta = {
-  title: 'Three/Native/CubeEditor',
+  title: 'ThreeJs/Native/CubeEditor',
   component: CubeEditor,
 } satisfies Meta<typeof CubeEditor>;
 
