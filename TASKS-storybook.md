@@ -12,9 +12,16 @@ Background dark
 
 Add my logo somewhere next to the title
 
+Different lenguages selector in Welcome page
+
 ## Task 2
 
-[] Plase hide the controls panel on all the stories that do not have any parameter in the story
+[x] Plase hide the controls panel on all the stories that do not have any parameter in the story
+
+
+## Task 3
+
+Add the Lidar to story
 
 ---
 

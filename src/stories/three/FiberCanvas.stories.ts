@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import FiberCanvas from './FiberCanvas';
 
 const meta = {
-  title: 'Three/Components/Hello Fiber Canvas',
+  title: 'ThreeJs/Components/Hello Fiber Canvas',
   component: FiberCanvas,
 } satisfies Meta<typeof FiberCanvas>;
 

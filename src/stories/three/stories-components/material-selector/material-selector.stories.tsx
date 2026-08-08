@@ -4,7 +4,7 @@ import { Suspense } from 'react';
 import MayoCanvas from '../../non-stories-components/mayo-canvas/mayo-canvas';
 
 const meta = {
-  title: 'Three/Experiences/DynamicMaterial',
+  title: 'ThreeJs/Experiences/DynamicMaterial',
   component: MaterialSelector,
   decorators: [
     (Story) => (

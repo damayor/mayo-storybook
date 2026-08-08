@@ -4,7 +4,7 @@ import { Suspense } from 'react';
 import MayoCanvas from '../../non-stories-components/mayo-canvas/mayo-canvas';
 
 const meta = {
-  title: 'Three/Components/TerrainGenerator',
+  title: 'ThreeJs/Components/TerrainGenerator',
   component: Terrain,
   decorators: [
     (Story) => (

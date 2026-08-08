@@ -5,7 +5,7 @@ import { ProductModels } from '../../helpers/constants/scene-constants';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'Three/Experiences/RotatingPDP',
+  title: 'ThreeJs/Experiences/RotatingPDP',
   component: ProductRotating,
   argTypes: {
     glbUrl: {

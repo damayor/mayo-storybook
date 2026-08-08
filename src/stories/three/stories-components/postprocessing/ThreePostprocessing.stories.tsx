@@ -4,7 +4,7 @@ import { OrbitControls } from '@react-three/drei';
 import { ThreePostprocessing } from './ThreePostprocessing';
 
 const meta: Meta<typeof ThreePostprocessing> = {
-  title: 'three/Postprocessing',
+  title: 'ThreeJs/Postprocessing',
   component: ThreePostprocessing,
   argTypes: {
     // — Noise (film grain) —

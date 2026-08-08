@@ -5,7 +5,7 @@ import MayoCanvas from '../../non-stories-components/mayo-canvas/mayo-canvas';
 import MouseTrail, { type MouseTrailProps } from './mouse-trail';
 
 const meta = {
-  title: 'Three/Components/MouseTrailLegacy',
+  title: 'ThreeJs/Components/MouseTrailLegacy',
   component: MouseTrail,
   decorators: [
     (Story) => (

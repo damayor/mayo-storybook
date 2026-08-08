@@ -8,7 +8,7 @@ import { Html } from '@react-three/drei';
 import { Vector3 } from 'three';
 
 const meta = {
-  title: 'Three/Experiences/HotspotsPDP',
+  title: 'ThreeJs/Experiences/HotspotsPDP',
   component: ProductHotspots,
   decorators: [
     (Story) => (

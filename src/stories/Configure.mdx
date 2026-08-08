@@ -3,23 +3,26 @@ import { Meta } from '@storybook/addon-docs/blocks';
 <Meta title="Welcome" />
 
 <div className="welcome-hero">
-  <div className="welcome-hero-inner">
-    <h1 className="welcome-title">
-      May Interactive
-      <br />
-      Storybook
-    </h1>
-    <p className="welcome-subtitle">
-      A creative lab exploring 3D graphics, shaders, WebXR, and UI components — built with React
-      Three Fiber, Three.js, and WebGl.
-    </p>
-    <div className="welcome-badges">
-      <span className="badge">React Three Fiber</span>
-      <span className="badge">Three.js</span>
-      <span className="badge">WebXR</span>
-      <span className="badge">GLSL Shaders</span>
-      <span className="badge">WASM / C++</span>
-    </div>
+  <div className="welcome-hero-glow" />
+  <div className="welcome-hero-top">
+    <span className="welcome-eyebrow">Welcome to</span>
+    <img className="welcome-logo" src="/mayov.svg" alt="May Interactive logo" />
+  </div>
+  <div className="welcome-title-wrap">
+    <h1 className="welcome-title">May Interactive</h1>
+    <p className="welcome-title-sub">Demos &amp; Stories</p>
+  </div>
+  <p className="welcome-subtitle">
+    A hands-on lab where 3D graphics, shaders, and interface engineering collide — real-time
+    WebGL scenes, GLSL experiments, and production UI, all built with React Three Fiber,
+    Three.js, and WebAssembly.
+  </p>
+  <div className="welcome-badges">
+    <span className="badge">React Three Fiber</span>
+    <span className="badge">Three.js</span>
+    <span className="badge">WebXR</span>
+    <span className="badge">GLSL Shaders</span>
+    <span className="badge">WASM / C++</span>
   </div>
 </div>
 
@@ -29,11 +32,19 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 <div className="category-grid">
   <div className="category-card">
-    <div className="category-icon">🎲</div>
+    <div className="category-icon">🧊</div>
     <h3>Three</h3>
     <p>
       React Three Fiber scenes — 3D products, terrain generation, shader experiments,
       post-processing, particles, and WebXR (VR) experiences.
+    </p>
+  </div>
+  <div className="category-card">
+    <div className="category-icon">🖥️</div>
+    <h3>WebGL</h3>
+    <p>
+      Low-level WebGL experiments — custom shaders and rendering pipelines outside the R3F
+      abstraction layer.
     </p>
   </div>
   <div className="category-card">
@@ -45,8 +56,8 @@ import { Meta } from '@storybook/addon-docs/blocks';
     </p>
   </div>
   <div className="category-card">
-    <div className="category-icon">🎨</div>
-    <h3>HTML</h3>
+    <div className="category-icon">🧩</div>
+    <h3>Html / React</h3>
     <p>
       DaisyUI + Tailwind UI components — buttons, cards, badges, catalogues, and interactive panels.
     </p>
@@ -64,67 +75,31 @@ import { Meta } from '@storybook/addon-docs/blocks';
   <div className="step-body">
     <h4>Browse stories in the sidebar</h4>
     <p>
-      Use the left panel to expand categories (<strong>Three</strong>, <strong>C++</strong>,{' '}
-      <strong>Html</strong>). Each folder contains a component with one or more story variants.
-      Click any story name to open it.
+      Use the left panel to expand categories (<strong>Three</strong>, <strong>WebGL</strong>,{' '}
+      <strong>C++</strong>, <strong>Html / React</strong>). Each folder contains a component with
+      one or more story variants. Click any story name to open it.
     </p>
-    <div className="tip">
-      💡 Press <kbd>⌘K</kbd> / <kbd>Ctrl+K</kbd> to open the search bar and jump to any story by
-      name.
-    </div>
   </div>
 </div>
 
 <div className="step">
   <div className="step-number">2</div>
   <div className="step-body">
-    <h4>Switch between Docs and Canvas</h4>
-    <p>At the top of the preview area you'll see two tabs:</p>
-    <ul>
-      <li>
-        <strong>Docs</strong> — rendered documentation with all story variants and their props
-        table.
-      </li>
-      <li>
-        <strong>Canvas</strong> — isolated interactive preview of a single story variant.
-      </li>
-    </ul>
+    <h4>Interact with Controls</h4>
+    <p>
+      Open the <strong>Controls</strong> panel at the bottom of the screen. Stories that expose
+      Leva or args-based controls let you tweak parameters (colors, sizes, shader uniforms,
+      speeds) in real time without touching code.
+    </p>
     <div className="tip">
-      💡 Most stories open in Docs mode by default so you can read context before diving in.
+      💡 Not all stories have controls — if the panel is empty, the story is self-contained. Press{' '}
+      <kbd>Alt+A</kbd> to toggle the addons panel and reveal the Controls tab.
     </div>
   </div>
 </div>
 
 <div className="step">
   <div className="step-number">3</div>
-  <div className="step-body">
-    <h4>Interact with Controls</h4>
-    <p>
-      In <strong>Canvas</strong> mode, open the <strong>Controls</strong> panel at the bottom of the
-      screen. Stories that expose Leva or args-based controls let you tweak parameters (colors,
-      sizes, shader uniforms, speeds) in real time without touching code.
-    </p>
-    <div className="tip">
-      💡 Not all stories have controls — if the panel is empty, the story is self-contained.
-    </div>
-  </div>
-</div>
-
-<div className="step">
-  <div className="step-number">4</div>
-  <div className="step-body">
-    <h4>Toggle the Theme</h4>
-    <p>
-      Click the <strong>paintbrush 🎨</strong> icon in the top toolbar to switch between
-      <strong> Light</strong> and <strong> Dark</strong> themes. This propagates the
-      <code>data-theme</code> attribute used by DaisyUI components and the custom 3D background
-      colors.
-    </p>
-  </div>
-</div>
-
-<div className="step">
-  <div className="step-number">5</div>
   <div className="step-body">
     <h4>Resize the viewport</h4>
     <p>
@@ -136,29 +111,21 @@ import { Meta } from '@storybook/addon-docs/blocks';
 </div>
 
 <div className="step">
-  <div className="step-number">6</div>
+  <div className="step-number">4</div>
   <div className="step-body">
     <h4>Keyboard shortcuts</h4>
     <div className="shortcuts-grid">
       <div className="shortcut">
-        <kbd>S</kbd>
+        <kbd>Alt+S</kbd>
         <span>Toggle sidebar</span>
       </div>
       <div className="shortcut">
-        <kbd>A</kbd>
+        <kbd>Alt+A</kbd>
         <span>Toggle addons panel</span>
       </div>
       <div className="shortcut">
-        <kbd>D</kbd>
-        <span>Toggle Docs/Canvas</span>
-      </div>
-      <div className="shortcut">
-        <kbd>F</kbd>
+        <kbd>Alt+F</kbd>
         <span>Fullscreen</span>
-      </div>
-      <div className="shortcut">
-        <kbd>⌘K</kbd>
-        <span>Search stories</span>
       </div>
       <div className="shortcut">
         <kbd>Alt+→</kbd>
@@ -178,7 +145,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 <div className="welcome-footer">
   <p>
-    Built by <strong>David Mayo</strong> ·{' '}
+    Built by <strong>David Mayorga Herrera</strong> ·{' '}
     <a href="https://mayinteractive.io" target="_blank">
       mayinteractive.io
     </a>
@@ -189,37 +156,93 @@ import { Meta } from '@storybook/addon-docs/blocks';
   {`
   /* ── Hero ─────────────────────────────── */
   .welcome-hero {
-    background: linear-gradient(135deg, #1e1e1e 0%, #2a1020 50%, #1e1e1e 100%);
-    border: 1px solid #8f3056;
-    border-radius: 8px;
-    padding: 56px 48px;
+    position: relative;
+    background: linear-gradient(160deg, #1a1015 0%, #1e1e1e 55%, #150a10 100%);
+    border: 1px solid #3a2430;
+    border-radius: 12px;
+    padding: 48px 56px 56px;
     margin-bottom: 48px;
+    overflow: hidden;
   }
 
-  .welcome-hero-inner {
-    max-width: 700px;
+  .welcome-hero-glow {
+    position: absolute;
+    top: -180px;
+    right: -140px;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, #8f305655 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .welcome-hero-top {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+  }
+
+  .welcome-logo {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+
+  .welcome-eyebrow {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #d68dab;
+  }
+
+  .welcome-title-wrap {
+    position: relative;
+    text-align: center;
+    padding: 16px 0 28px;
+    margin: 0 auto 32px;
+    max-width: 900px;
   }
 
   .welcome-title {
-    font-size: 3rem;
-    font-weight: 700;
-    line-height: 1.1;
-    color: #ffffff;
-    margin: 0 0 16px;
-    letter-spacing: -0.5px;
+    font-size: 4.5rem;
+    font-weight: 800;
+    line-height: 1.05;
+    color: #c26e94;
+    margin: 0;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+  }
+
+  .welcome-title-sub {
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #d68dab;
+    margin: 18px auto 0;
+    padding-top: 18px;
+    max-width: 480px;
+    border-top: 1px solid #8f3056;
   }
 
   .welcome-subtitle {
-    font-size: 1.1rem;
+    position: relative;
+    text-align: center;
+    font-size: 1.15rem;
     color: #cccccc;
     line-height: 1.7;
-    margin: 0 0 28px;
-    max-width: 560px;
+    margin: 0 auto 32px;
+    max-width: 620px;
   }
 
   .welcome-badges {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 8px;
   }
 
@@ -383,7 +406,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
   .welcome-footer {
     text-align: center;
     padding: 24px 0;
-    color: #777;
+    color: #999999;
     font-size: 0.9rem;
   }
 
@@ -403,10 +426,19 @@ import { Meta } from '@storybook/addon-docs/blocks';
   /* ── Responsive ─────────────────────────── */
   @media screen and (max-width: 700px) {
     .welcome-hero {
-      padding: 36px 24px;
+      padding: 28px 24px 36px;
+    }
+    .welcome-logo {
+      width: 30px;
+      height: 30px;
     }
     .welcome-title {
-      font-size: 2rem;
+      font-size: 2.5rem;
+      letter-spacing: -0.5px;
+    }
+    .welcome-title-sub {
+      font-size: 1rem;
+      letter-spacing: 2px;
     }
     .category-grid {
       grid-template-columns: 1fr;

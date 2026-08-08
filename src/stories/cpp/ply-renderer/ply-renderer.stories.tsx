@@ -2,7 +2,7 @@ import { type StoryObj, type Meta } from '@storybook/react';
 import { Suspense } from 'react';
 import { Vector3 } from 'three';
 import MayoCanvas from '../../three/non-stories-components/mayo-canvas/mayo-canvas';
-import { PlyRenderer } from './PlyRenderer';
+import { PlyRenderer } from './ply-renderer';
 
 const meta = {
   title: 'C++/Ply3DRenderer',
@@ -10,7 +10,7 @@ const meta = {
   decorators: [
     (Story) => (
       <MayoCanvas
-        overrideCameraPos={new Vector3(-30, 0.5, 0)}
+        overrideCameraPos={new Vector3(-22, 35, 199)}
         background="#111111"
         enableOrbitControls={true}
         environmentPreset="studio"

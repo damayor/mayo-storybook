@@ -1,6 +1,6 @@
 import type { Preview } from '@storybook/react-vite';
-import { themes } from 'storybook/internal/theming';
 import { withThemeByClassName } from '@storybook/addon-themes';
+import sbTheme from './sb-theme';
 import '../src/index.css'; // replace with the name of your tailwind css file
 import { MINIMAL_VIEWPORTS } from 'storybook/viewport';
 
@@ -75,11 +75,11 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ['Welcome', 'WebGL', 'Three', 'C++', 'Html', 'Pixi', '*', 'Example'],
+        order: ['Welcome', 'ThreeJs', 'WebGL', 'C++', 'Html', 'Pixi', '*', 'Example'],
       },
     },
     docs: {
-      theme: themes.normal,
+      theme: sbTheme,
     },
 
     test: { disable: true },

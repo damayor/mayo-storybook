@@ -8,7 +8,7 @@ import { Color } from 'three';
 import { bufferGeometry, metalness, roughness } from './background-texture-gradient.config';
 
 const meta = {
-  title: 'Three/Components/GradientBackground',
+  title: 'ThreeJs/Components/GradientBackground',
   component: GradientTextureBackground,
   decorators: [
     (Story) => (

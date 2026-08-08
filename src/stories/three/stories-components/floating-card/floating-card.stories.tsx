@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import FloatingCard from './floating-card';
 
 const meta: Meta<typeof FloatingCard> = {
-  title: 'Three/Experiences/SocialCard',
+  title: 'ThreeJs/Experiences/SocialCard',
   component: FloatingCard,
   parameters: {
     layout: 'fullscreen',

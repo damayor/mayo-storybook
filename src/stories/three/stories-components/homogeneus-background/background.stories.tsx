@@ -3,7 +3,7 @@ import type FiberCanvas from '../../FiberCanvas';
 import Background from './background';
 
 const meta = {
-  title: 'Three/Components/SolidBackground',
+  title: 'ThreeJs/Components/SolidBackground',
   component: Background,
 
   argTypes: {
