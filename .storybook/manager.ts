@@ -1,12 +1,11 @@
 import { addons } from 'storybook/manager-api';
-import { create, themes } from 'storybook/theming';
+import { STORY_PREPARED } from 'storybook/internal/core-events';
 import sbTheme from './sb-theme';
 
 addons.register('panel-visibility', (api) => {
-  api.on('storyChanged', () => {
-    const story = api.getCurrentStoryData();
-    const showPanel = (story as any)?.parameters?.showPanel ?? false;
-    api.togglePanel(showPanel);
+  // storyChanged fires before parameters are available; STORY_PREPARED's payload carries them.
+  api.on(STORY_PREPARED, ({ parameters }: { parameters?: { showPanel?: boolean } }) => {
+    api.togglePanel(parameters?.showPanel ?? false);
   });
 });
 
@@ -17,4 +16,7 @@ addons.setConfig({
     collapsedRoots: ['ThreeJs','WebGL', 'pixi', 'example'],
   },
   theme: sbTheme,
+  selectedPanel: 'storybook/controls/panel',
+  panelPosition: 'right',
+  rightPanelWidth: 400,
 });

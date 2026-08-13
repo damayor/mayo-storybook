@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import plyParserModule from './ply_parser.js';
 import { useCameraDebug } from '../../three/non-stories-components/hooks/useCameraDebug.js';
+import StarfieldBackground from '../../three/non-stories-components/starfield-background/starfield-background';
 
 export function PlyRenderer() {
   //verticesAlex
@@ -34,27 +35,38 @@ export function PlyRenderer() {
   if (!verticesB) return null;
 
   return (
-    <points>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={verticesB.length / 3}
-          args={[verticesB, 3]}
-        />
-      </bufferGeometry>
-      <pointsMaterial size={0.5} color="#ffffff" sizeAttenuation transparent opacity={0.8} />
-      {verticesA && (
-        <points position={[0, 500, 0]}>
-          <bufferGeometry>
-            <bufferAttribute
-              attach="attributes-position"
-              count={verticesA.length / 3}
-              args={[verticesA, 3]}
-            />
-          </bufferGeometry>
-          <pointsMaterial size={0.5} color="#bd457a" sizeAttenuation transparent opacity={0.8} />
-        </points>
-      )}
-    </points>
+    <>
+      <StarfieldBackground
+        count={1000}
+        spreadX={950}
+        spreadY={100}
+        spreadZ={950}
+        offsetZ={150}
+        radius={0.25}
+        color="#ffffff"
+      />
+      <points>
+        <bufferGeometry>
+          <bufferAttribute
+            attach="attributes-position"
+            count={verticesB.length / 3}
+            args={[verticesB, 3]}
+          />
+        </bufferGeometry>
+        <pointsMaterial size={0.5} color="#ffffff" sizeAttenuation transparent opacity={0.8} />
+        {verticesA && (
+          <points position={[0, 500, 0]}>
+            <bufferGeometry>
+              <bufferAttribute
+                attach="attributes-position"
+                count={verticesA.length / 3}
+                args={[verticesA, 3]}
+              />
+            </bufferGeometry>
+            <pointsMaterial size={0.5} color="#bd457a" sizeAttenuation transparent opacity={0.8} />
+          </points>
+        )}
+      </points>
+    </>
   );
 }

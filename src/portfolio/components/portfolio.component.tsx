@@ -100,6 +100,11 @@ function Sidebar({ isOpen, setIsOpen, onNavigate }: SidebarProps) {
     setIsOpen(false);
   };
 
+  const handleWorkClick = () => {
+    window.open(contactData.storybook, '_blank', 'noopener,noreferrer');
+    setIsOpen(false);
+  };
+
   return (
     <>
       {/* Overlay */}
@@ -137,6 +142,13 @@ function Sidebar({ isOpen, setIsOpen, onNavigate }: SidebarProps) {
                 <span className="font-medium">{section.label}</span>
               </button>
             ))}
+
+            <button
+              onClick={handleWorkClick}
+              className="w-full flex items-center gap-4 px-4 py-3 rounded-lg transition-all duration-200 text-camelot-400 hover:bg-slate-700 hover:translate-x-1 mt-2 pt-4"
+            >
+              <span className="font-medium">{t('nav.work')}</span>
+            </button>
           </nav>
 
           <div className="border-t border-slate-700 pt-6 space-y-4">
@@ -391,12 +403,18 @@ function ContactSection({ lang }: { lang: Lang }) {
 
           <div className="flex flex-col sm:flex-row p-4 gap-4 w-full sm:justify-center">
             <a
-              href="https://calendly.com/may-interactive"
+              href={contactData.storybook}
               target="_blank"
               rel="noopener noreferrer"
+              className="flex-1 sm:flex-none px-8 py-4 rounded-xl font-semibold text-center border-2 border-camelot-700 text-camelot-400 hover:bg-camelot-700/20 hover:scale-105 transition-all"
+            >
+              {t('contact.exploreLab')}
+            </a>
+            <a
+              href="mailto:david@mayinteractive.io"
               className="flex-1 sm:flex-none px-8 py-4 bg-gradient-to-r from-camelot-700 to-camelot-800 rounded-xl font-semibold text-center hover:scale-105 transition-transform shadow-lg"
             >
-              {t('contact.calendly')}
+              {t('contact.sayHello')}
             </a>
             <a
               href={CV_BY_LANG[lang]}
@@ -429,12 +447,6 @@ function ContactSection({ lang }: { lang: Lang }) {
               className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors"
             >
               <Instagram size={24} />
-            </a>
-            <a
-              href="mailto:david@mayinteractive.io"
-              className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors"
-            >
-              <Mail size={24} />
             </a>
           </div>
         </SoftPanel>
@@ -488,14 +500,16 @@ export default function Portfolio() {
 
       <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} onNavigate={scrollToSection} />
 
-      <button
-        onClick={() => setSidebarOpen(true)}
-        className="fixed top-3 left-3 md:top-6 md:left-6 z-30 w-15 h-15 md:w-18 md:h-18 mx-auto rounded-full bg-gradient-to-br from-camelot-950 to-camelot-500 p-1 cursor-pointer"
-      >
-        <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-5xl font-lato">
-          <img className="rounded-full" src={mayintLogo} alt="May Interactive Logo" />
-        </div>
-      </button>
+      <div className="fixed top-3 left-3 md:top-6 md:left-6 z-30 flex items-center gap-3">
+        <button
+          onClick={() => setSidebarOpen(true)}
+          className="w-15 h-15 md:w-18 md:h-18 mx-auto rounded-full bg-gradient-to-br from-camelot-950 to-camelot-500 p-1 cursor-pointer"
+        >
+          <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-5xl font-lato">
+            <img className="rounded-full" src={mayintLogo} alt="May Interactive Logo" />
+          </div>
+        </button>
+      </div>
 
       <LanguageSelector />
 

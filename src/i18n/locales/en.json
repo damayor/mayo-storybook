@@ -4,7 +4,8 @@
     "about": "About me",
     "projects": "Projects",
     "skills": "Skills",
-    "contact": "Contact me"
+    "contact": "Contact me",
+    "work": "Work"
   },
   "home": {
     "title": "David Mayorga-Herrera",
@@ -46,8 +47,9 @@
   "contact": {
     "title": "Contact",
     "cta": "Open to freelance projects and full-time roles",
-    "calendly": "Let's Work Together!",
-    "cv": "Resume"
+    "sayHello": "Say Hello",
+    "cv": "Resume",
+    "exploreLab": "Explore the Lab"
   },
   "impressum": {
     "footerLink": "Legal Notice",
