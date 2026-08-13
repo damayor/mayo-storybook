@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Html, OrbitControls } from '@react-three/drei';
 import { SocialCard } from 'HtmlComponents/social-card';
+import StarfieldBackground from '../../non-stories-components/starfield-background/starfield-background';
 
 // Componente que hace flotar la carta en el espacio 3D
 const FloatingCard = () => {
@@ -53,19 +54,7 @@ const FloatingCardScene = () => {
         <FloatingCard />
 
         {/* Estrellas de fondo */}
-        {[...Array(200)].map((_, i) => (
-          <mesh
-            key={i}
-            position={[
-              (Math.random() - 0.5) * 20,
-              (Math.random() - 0.5) * 20,
-              (Math.random() - 0.5) * 20 - 5,
-            ]}
-          >
-            <sphereGeometry args={[0.02, 8, 8]} />
-            <meshBasicMaterial color="white" />
-          </mesh>
-        ))}
+        <StarfieldBackground />
 
         <OrbitControls
           enableZoom={true}

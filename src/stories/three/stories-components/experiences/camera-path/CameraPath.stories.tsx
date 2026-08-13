@@ -75,5 +75,5 @@ export const Default: Story = {
   // 'none' while tuning keyframes/far in the Theatre Studio panel — a scroll
   // listener fights the timeline scrubber every frame. Switch to 'native' to
   // test scroll-driven playback.
-  args: { scrollMode: 'none' },
+  args: { scrollMode: 'native' },
 };

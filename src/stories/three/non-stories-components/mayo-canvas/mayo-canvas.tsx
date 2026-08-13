@@ -34,9 +34,9 @@ export default function MayoCanvas({
   fullscreen = false,
 }: MayoCanvasProps) {
   const containerStyle = fullscreen
-    ? { width: '100%', height: '100%' }
-    : // ? { width: '100vw', height: '100vh' }
-      { width: '800px', height: '600px', border: '1px solid black' };
+     ? { width: '100%', height: '100%' }
+    // ? { width: '100vw', height: '100vh' }
+    : { width: '800px', height: '600px', border: '1px solid black' };
 
   return (
     <div style={containerStyle}>

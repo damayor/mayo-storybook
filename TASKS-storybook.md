@@ -23,6 +23,11 @@ Different lenguages selector in Welcome page
 
 Add the Lidar to story
 
+
+## Bugs
+
+Si estoy en un story y vuelvo al Welcome. la fuente sale chiquita. 
+
 ---
 
 ## Notes for Claude
