@@ -311,7 +311,7 @@ function ProjectsSection({ lang }: { lang: Lang }) {
               </Heading>
             </SoftPanel>
           </div>
-          <div className="grid grids-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {projData.map((project) => (
               <Card
                 picture={project.images.at(0)!}
@@ -496,7 +496,8 @@ export default function Portfolio() {
 
   return (
     <div data-theme={'dark'} className="min-h-screen w-screen text-white overflow-x-hidden">
-      {flags.USE_CAMERA_PATH_BG ? <CameraPathBackground /> : <InteractiveBackground3D />}
+      {/* {flags.USE_CAMERA_PATH_BG ? <CameraPathBackground /> : <InteractiveBackground3D />} */}
+      <CameraPathBackground />
 
       <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} onNavigate={scrollToSection} />
 

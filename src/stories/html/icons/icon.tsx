@@ -21,7 +21,7 @@ export const techIconMap: Record<string, { name: string; variant: string }> = {
   // 'Oculus': { name: 'oculus', variant: 'original' }, //:(
   // 'Hololens': { name: 'windows8', variant: 'original' }, // :(( No hay icono específico de Hololens
   ThreeJs: { name: 'threejs', variant: 'original' },
-  // 'WebGL': { name: 'webpack', variant: 'plain' }, // No hay icono específico de WebGL
+  WebGL: { name: 'opengl', variant: 'plain' },
   HTML: { name: 'html5', variant: 'plain' },
   SCSS: { name: 'sass', variant: 'original' },
   Vuforia: { name: 'vitess', variant: 'original' }, // No hay icono específico de Vuforia
@@ -41,6 +41,9 @@ export const techIconMap: Record<string, { name: string; variant: string }> = {
   K8: { name: 'kubernetes', variant: 'original' },
   Grafana: { name: 'grafana', variant: 'original' },
   Docker: { name: 'docker', variant: 'original' },
+  Wordpress: { name: 'wordpress', variant: 'original' },
+  Python: { name: 'python', variant: 'original' },
+  FastAPI: { name: 'fastapi', variant: 'original-wordmark' },
 };
 
 // Tamaños en píxeles

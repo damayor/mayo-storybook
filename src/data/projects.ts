@@ -3,6 +3,21 @@ import type { Lang, MiniProject, Project } from 'Interfaces/projects';
 // ─── Shared non-translatable fields ──────────────────────────────────────────
 
 const _sharedProjects = {
+  ai: {
+    projectRealTitle: 'LiDAR Sensors Web Microservice',
+    tags: [
+      'Full Stack',
+      'Rest APIs',
+      'Graphics',
+      'IA Assisted',
+      "Signal Tracking",
+    ],
+    technologies: ['Python', 'FastAPI', 'Typescript', 'React', 'NodeJS', ],
+    projectField: 'AI Engineering',
+    images: ['/assets/images/projects/ia/Lidar03.png'],
+    initDate: new Date(2026, 0, 1),
+    endDate: new Date(2026, 3, 1),
+  },
   frontend: {
     projectRealTitle: '3d-das',
     tags: ['Frontend', 'UI/UX', 'WebGL', 'Visual Computing', 'Responsive', 'Storybook'],
@@ -50,6 +65,12 @@ const _sharedProjects = {
 };
 
 const _sharedMiniProjects = [
+  {
+    projectRealTitle: 'Umbra 3D Studio Landing Page',
+    tags: ['Wordpress', 'Landing Page', 'Responsive Web Design', 'FTP', 'Web Hosting'],
+    technologies: ['Wordpress', 'Javascript', 'React', 'Filezilla'],
+    image: '/assets/images/projects/frontend/umbra3d_1.png',
+  },
   {
     projectRealTitle: 'ORTHÁPTICA',
     tags: ['Virtual Reality', 'Oculus', 'Haptic Interacion'],
@@ -102,6 +123,12 @@ type MiniProjectText = Pick<MiniProject, 'projectPublicTitle' | 'resume'>;
 
 const _projectsText: Record<Lang, Record<string, ProjectText>> = {
   en: {
+    ai: {
+      projectPublicTitle: 'LiDAR Sensors with Orchestrated API',
+      subtitle:
+        'Multi-sensor viewer for the nuScenes dataset, integrating FastAPI (Python) and R3F for LiDAR point clouds.',
+      content: `Multi-sensor viewer architecture for the nuScenes dataset, integrating FastAPI (Python) and React Three Fiber for real-time 3D visualization of LiDAR point clouds.`,
+    },
     frontend: {
       projectPublicTitle: '3D Apparel Microservice',
       subtitle:
@@ -124,6 +151,12 @@ const _projectsText: Record<Lang, Record<string, ProjectText>> = {
     },
   },
   es: {
+    ai: {
+      projectPublicTitle: 'LiDAR Sensors con API Orquestada',
+      subtitle:
+        'Arquitectura de visores multi-sensor para el dataset nuScenes, integrando FastAPI (Python) y R3F para la visualización 3D de nubes de puntos LiDAR.',
+      content: `Arquitectura de visores multi-sensor para el dataset nuScenes, integrando FastAPI (Python) y React Three Fiber para la visualización 3D en tiempo real de nubes de puntos LiDAR.`,
+    },
     frontend: {
       projectPublicTitle: 'Microservicio 3D de Indumentaria',
       subtitle:
@@ -146,6 +179,12 @@ const _projectsText: Record<Lang, Record<string, ProjectText>> = {
     },
   },
   de: {
+    ai: {
+      projectPublicTitle: 'LiDAR-Sensoren mit orchestrierter API',
+      subtitle:
+        'Multi-Sensor-Viewer für den nuScenes-Datensatz, mit FastAPI (Python) und R3F für LiDAR-Punktwolken.',
+      content: `Multi-Sensor-Viewer-Architektur für den nuScenes-Datensatz, mit FastAPI (Python) und React Three Fiber für die 3D-Echtzeitvisualisierung von LiDAR-Punktwolken.`,
+    },
     frontend: {
       projectPublicTitle: '3D-Bekleidungs-Microservice',
       subtitle:
@@ -171,6 +210,11 @@ const _projectsText: Record<Lang, Record<string, ProjectText>> = {
 
 const _miniProjectsText: Record<Lang, MiniProjectText[]> = {
   en: [
+    {
+      projectPublicTitle: 'Any Landing Page, Anywhere',
+      resume:
+        'I can build any Landing Page or Portfolio you need, and keep it live via FTP deployment and hosting management.',
+    },
     {
       projectPublicTitle: 'Immersive Medical Trainer',
       resume:
@@ -200,6 +244,11 @@ const _miniProjectsText: Record<Lang, MiniProjectText[]> = {
   ],
   es: [
     {
+      projectPublicTitle: 'Cualquier Landing Page, en Cualquier Lugar',
+      resume:
+        'Puedo crear cualquier Landing Page o Portafolio que necesites, y mantenerlo activo con despliegue vía FTP y gestión de hosting.',
+    },
+    {
       projectPublicTitle: 'Simulador Médico Inmersivo',
       resume:
         'Videojuego serio a escala real que combina interacción visual y háptica para experiencias de entrenamiento inmersivo.',
@@ -227,6 +276,11 @@ const _miniProjectsText: Record<Lang, MiniProjectText[]> = {
     { projectPublicTitle: 'Swap Puzzle', resume: 'Juego casual para dispositivos móviles.' },
   ],
   de: [
+    {
+      projectPublicTitle: 'Jede Landing Page, Überall',
+      resume:
+        'Ich kann jede Landing Page oder jedes Portfolio erstellen und es per FTP-Deployment und Hosting-Verwaltung online halten.',
+    },
     {
       projectPublicTitle: 'Immersiver Medizintrainer',
       resume:
