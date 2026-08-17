@@ -6,13 +6,13 @@
 
 [x] Add an intro page to my storybook, el mejor ejemplo es https://designlanguage.adidas.com/?path=/docs/welcome--documentation
 
-Task 1.2
+[x] Task 1.2
 
 Background dark
 
 Add my logo somewhere next to the title
 
-Different lenguages selector in Welcome page
+Different lenguages selector in Welcome page... ufff
 
 ## Task 2
 
@@ -21,7 +21,7 @@ Different lenguages selector in Welcome page
 
 ## Task 3
 
-Add the Lidar to story
+[x] Add the Lidar to story
 
 
 ## Bugs
