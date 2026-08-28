@@ -14,7 +14,7 @@ export const socialNetworkLinks = [
   },
   {
     label: 'LinkedIn',
-    link: 'https://www.linkedin.com/in/demayorgaherrera/',
+    link: 'https://www.linkedin.com/in/davidmayorga-software/',
   },
   {
     label: 'GitHub',
@@ -22,12 +22,16 @@ export const socialNetworkLinks = [
   },
   {
     label: 'Instagram',
-    link: 'https://www.instagram.com/may_interactive/',
+    link: 'https://www.instagram.com/may.interactive/',
   },
   {
     label: 'Behance',
     link: 'https://www.behance.net/may_interactive',
   },
+  {
+    label: 'Workana',
+    link: 'https://www.workana.com/freelancer/b55c6c35afdc0068ad44e53bb10693de'
+  }
   //   {
   //   label: "X",
   //   link: "https://x.com/damayor11"

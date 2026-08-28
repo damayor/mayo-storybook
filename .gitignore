@@ -29,3 +29,6 @@ dist-ssr
 storybook-static
 
 .claude/*
+
+# Playwright MCP diagnostic artifacts (accessibility snapshots, console logs, screenshots)
+.playwright-mcp/
