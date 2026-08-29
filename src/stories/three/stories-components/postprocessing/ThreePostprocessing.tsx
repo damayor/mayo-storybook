@@ -85,7 +85,7 @@ export function ThreePostprocessingEffects({
         active
         ratio={glitchRatio}
       />
-      {/* <MouseWarpEffectPass /> */}
+      <MouseWarpEffectPass mode='lens' wake={1} strength={0.06}/>
     </>
   );
 }

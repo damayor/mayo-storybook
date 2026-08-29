@@ -30,6 +30,7 @@ export default function MayoCanvas({
   lightPosition,
   background = '#ffffff',
   overrideCameraPos = undefined,
+  // overrideCameraRot = undefined,
   renderShadows = true,
   fullscreen = false,
 }: MayoCanvasProps) {
@@ -45,10 +46,10 @@ export default function MayoCanvas({
         gl={{ antialias: false }}
       >
         <color attach="background" args={[background]} />
-        {children}
         <SceneEnvironment lightPosition={lightPosition} renderShadows={renderShadows} />
         {enableOrbitControls && <Controls />}
         <Gizmos gizmoType={gizmoType} />
+        {children}
       </Canvas>
     </div>
   );

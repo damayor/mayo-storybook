@@ -87,7 +87,7 @@ export function CameraPath({ scrollMode = 'page' }: CameraPathProps) {
       </group>
       <EffectComposer multisampling={0}>
         {/* <ThreePostprocessingEffects /> disabled for long time*/}
-        <MouseWarpEffectPass />
+        <MouseWarpEffectPass mode='lens' wake={1} strength={0.04}/>
       </EffectComposer>
     </>
   );

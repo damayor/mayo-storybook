@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { ThreePostprocessing } from './ThreePostprocessing';
+import MayoCanvas from '../../non-stories-components/mayo-canvas/mayo-canvas';
 
 const meta: Meta<typeof ThreePostprocessing> = {
   title: 'ThreeJs/Postprocessing',
@@ -73,21 +74,16 @@ const meta: Meta<typeof ThreePostprocessing> = {
       description: 'Fraction of time spent in weak-glitch mode vs strong',
     },
   },
-  // TodDo MayoCanvas
   decorators: [
     (Story) => (
-      <div style={{ width: '800px', height: '600px' }}>
-        <Canvas
-          camera={{ position: [-30, 0.5, 0], rotation: [-0.3, -0.94, -0.24], fov: 60 }}
-          gl={{ antialias: false }}
-        >
-          <color attach="background" args={['#111111']} />
-          <ambientLight intensity={0.4} />
-          <directionalLight position={[5, 5, 5]} intensity={1.5} />
-          <OrbitControls />
-          <Story />
-        </Canvas>
-      </div>
+      <MayoCanvas
+        background="#111111"
+        renderShadows={false}
+        enableOrbitControls
+        overrideCameraPos={[-30, 5, 0]}
+      >
+        <Story />
+      </MayoCanvas>
     ),
   ],
 };

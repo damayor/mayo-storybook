@@ -33,14 +33,18 @@
   color: var(--sb-color-white);
 }
 
-#storybook-explorer-tree .sidebar-item svg {
-  color: var(--sb-color-white);
-  display: none;
+/* Oculta el icono de tipo (story / component / group) sin sacarlo del flujo:
+   Storybook cuenta su ancho dentro de la sangria por nivel. Se colapsa a 0 y
+   el hueco por nivel lo aporta el chevron, que es igual para todos. */
+#storybook-explorer-tree .sidebar-item svg[type] {
+  visibility: hidden;
+  width: 0;
+  margin: 0;
 }
 
 #storybook-explorer-tree .sidebar-item[data-selected='true'] svg {
   color: var(--sb-color-yellow);
-}
+} 
 
 #storybook-explorer-tree .sidebar-item[id*='-e2e'] {
   display: none;
