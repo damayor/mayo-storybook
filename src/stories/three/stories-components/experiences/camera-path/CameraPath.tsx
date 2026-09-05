@@ -9,7 +9,7 @@ import { EffectComposer } from '@react-three/postprocessing';
 import { ObjRenderer } from '../../../../cpp/ObjRenderer/ObjRenderer';
 import { useMouseParallax } from '../../../non-stories-components/hooks/useMouseParallax';
 import { MouseWarpEffectPass } from '../../../non-stories-components/effects/MouseWarpPass';
-import { ThreePostprocessingEffects } from '../../postprocessing/ThreePostprocessing';
+import { ThreePostprocessingEffects } from '../../three-postprocessing/ThreePostprocessing';
 import { flags } from '../../../../../config/flags';
 import { PlyRenderer } from '../../../../cpp/ply-renderer/ply-renderer';
 

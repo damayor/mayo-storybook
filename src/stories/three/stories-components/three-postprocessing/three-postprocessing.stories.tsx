@@ -80,7 +80,9 @@ const meta: Meta<typeof ThreePostprocessing> = {
         background="#111111"
         renderShadows={false}
         enableOrbitControls
-        overrideCameraPos={[-30, 5, 0]}
+        overrideCameraPos={[30, 30, 30]}
+        overrideCameraRot={[0, 2, 0]}
+        fullscreen
       >
         <Story />
       </MayoCanvas>
@@ -91,7 +93,7 @@ const meta: Meta<typeof ThreePostprocessing> = {
 export default meta;
 type Story = StoryObj<typeof ThreePostprocessing>;
 
-export const Default: Story = {
+export const Demo: Story = {
   args: {
     noiseOpacity: 0.5,
     scanlineDensity: 0.5,
