@@ -15,7 +15,8 @@
     "format:check": "prettier --check .",
     "deploy:portfolio": "bash deploy.sh",
     "deploy:storybook": "bash deploy.sh",
-    "theatre:save": "node src/stories/three/stories-components/experiences/camera-path/save-theatre-state.mjs"
+    "theatre:save": "node src/stories/three/stories-components/experiences/camera-path/save-theatre-state.mjs",
+    "prd:add-story": "node scripts/add-prod-story.mjs"
   },
   "dependencies": {
     "@react-spring/three": "^10.0.2",

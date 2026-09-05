@@ -22,6 +22,8 @@ const prodStories: Array<{ group: keyof typeof groupBasePaths; title: string }> 
   { group: 'cpp', title: 'ply-renderer' },
   { group: 'webgl', title: 'webgl-basis' },
   { group: 'html', title: 'volvo-catalogue' },
+  { group: 'three', title: 'webgpu-vs-webgl' },
+  { group: 'three', title: 'three-postprocessing' },
 ];
 
 const prodStoriesPaths = prodStories.map(

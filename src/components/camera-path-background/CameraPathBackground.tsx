@@ -4,7 +4,7 @@ import MayoCanvas from '../../stories/three/non-stories-components/mayo-canvas/m
 import { CameraPath } from '../../stories/three/stories-components/experiences/camera-path/CameraPath';
 import theatreState from '../../stories/three/stories-components/experiences/camera-path/theatreState.json';
 import type { EffectComposer } from 'postprocessing';
-import { ThreePostprocessingEffects } from '../../stories/three/stories-components/postprocessing/ThreePostprocessing';
+import { ThreePostprocessingEffects } from '../../stories/three/stories-components/three-postprocessing/ThreePostprocessing';
 
 // theatreState.json must be re-exported via getTheatreState() in Storybook after any keyframe edit.
 // studio.__experimental.__experimental_createContentOfSaveFileTyped('BerlinTour') gives the correct format.
