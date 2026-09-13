@@ -19,6 +19,7 @@
     "prd:add-story": "node scripts/add-prod-story.mjs"
   },
   "dependencies": {
+    "@pnext/three-loader": "^1.0.0",
     "@react-spring/three": "^10.0.2",
     "@react-three/drei": "10.7.5",
     "@react-three/fiber": "9.3.0",
