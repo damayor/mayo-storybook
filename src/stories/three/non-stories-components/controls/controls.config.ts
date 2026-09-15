@@ -1,5 +1,5 @@
 import { Vector3 } from 'three';
-import { DEFAULT_RADIAL_DISTANCE } from '../../stories-components/hotspots/constants/scene-constants';
+import { DEFAULT_RADIAL_DISTANCE } from '../../helpers/constants/scene-constants';
 
 export const orbitMinPolarAngle = 0; //Math.PI / 4
 export const orbitMaxPolarAngle = Math.PI / 1.4;

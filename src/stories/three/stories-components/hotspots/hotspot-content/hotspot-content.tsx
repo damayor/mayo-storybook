@@ -5,27 +5,28 @@ import {
   remQuotient,
   drawContentPointer,
   imgBorderAndPadding,
+  CONTENT_TEXT_WIDTH,
+  IMAGE_SIZES,
 } from './hotspot-content.config';
 import './hotspot-content.css';
-import type { HotspotDataType, ModalAnchorType } from '../../../helpers/types/commonTypes';
+import type {
+  HotspotDataType,
+  HotspotImageSizeType,
+  ModalAnchorType,
+} from '../../../helpers/types/commonTypes';
 
 interface HotspotContentProps {
-  hidden?: boolean;
   modalAnchor: ModalAnchorType;
-  imageSize: number;
-  contentTextWidth: number;
+  imageSize: HotspotImageSizeType;
   hotspotData?: HotspotDataType;
-  customContent?: React.ReactNode;
 }
 
 export default function HotspotContent({
-  hidden,
   modalAnchor,
   hotspotData = notFoundContentData,
-  customContent,
   imageSize,
-  contentTextWidth,
 }: HotspotContentProps) {
+  const imageSizeInPx = IMAGE_SIZES[imageSize];
   const contentRef = useRef<HTMLDivElement>(null);
   const [pointerLeft, setPointerLeft] = useState(0);
   const [pointerTop, setPointerTop] = useState(0);
@@ -44,7 +45,7 @@ export default function HotspotContent({
 
   useEffect(() => {
     handleBoxPointers();
-  }, [modalAnchor, customContent, imageSize, contentTextWidth, hotspotData]);
+  }, [modalAnchor, imageSizeInPx, hotspotData]);
 
   useEffect(() => {
     window.addEventListener('resize', handleBoxPointers);
@@ -55,66 +56,61 @@ export default function HotspotContent({
     return modalAnchor.includes('left');
   }, [modalAnchor]);
 
-  const divBoxClassName = useMemo(() => {
-    return `hotspot-content__box 
-      ${hidden ? 'content--hidden' : 'content--shown'}
-      hotspot-content__box--${modalAnchor}
-      `;
-  }, [hidden, modalAnchor]);
+  // El componente se monta y desmonta con la selección, así que siempre está en
+  // su estado visible: no hay variante `content--hidden` que aplicar.
+  const divBoxClassName = useMemo(
+    () => `hotspot-content__box content--shown hotspot-content__box--${modalAnchor}`,
+    [modalAnchor]
+  );
 
   const boxStyles = useMemo(() => {
     return {
       image: {
-        width: imageSize,
-        height: imageSize,
+        width: imageSizeInPx,
+        height: imageSizeInPx,
       },
       content: {
-        width: contentTextWidth,
+        width: CONTENT_TEXT_WIDTH,
       },
     };
-  }, [imageSize, contentTextWidth]);
+  }, [imageSizeInPx]);
 
   return (
     <div
       className="hotspot-content"
       style={
         {
-          '--content-text-width': `${contentTextWidth / remQuotient}rem`,
+          '--content-text-width': `${CONTENT_TEXT_WIDTH / remQuotient}rem`,
           '--origin-x-offset': `${isLeftAnchor ? 1 : -1}px`,
         } as React.CSSProperties
       }
     >
-      {customContent ? (
-        <div ref={contentRef} className={divBoxClassName}>
-          {customContent}
-        </div>
-      ) : (
-        <>
-          <svg className="hotspot-content_pointer">
-            <path d={drawContentPointer(isLeftAnchor, pointerTop, pointerLeft)} />
-          </svg>
-          <figure ref={contentRef} className={divBoxClassName}>
-            {hotspotData.imageUrl ? (
-              <img
-                src={hotspotData.imageUrl}
-                alt=""
-                style={boxStyles.image}
-                className="hotspot-content__image"
-              />
-            ) : (
-              <div
-                style={boxStyles.image}
-                className="hotspot-content__image hotspot-content__image--default"
-              />
-            )}
-            <div className="hotspot-content__vl"></div>
-            <figcaption style={boxStyles.content} className="hotspot-content__text">
-              <div className="hotspot-content__header">{hotspotData.header}</div>
-              <p className="hotspot-content__paragraph">{hotspotData.description}</p>
-            </figcaption>
-          </figure>
-        </>
-      )}
+      <svg className="hotspot-content_pointer">
+        <path d={drawContentPointer(isLeftAnchor, pointerTop, pointerLeft)} />
+      </svg>
+      <figure ref={contentRef} className={divBoxClassName}>
+        {hotspotData.imageUrl ? (
+          <img
+            src={hotspotData.imageUrl}
+            alt=""
+            style={boxStyles.image}
+            className="hotspot-content__image"
+          />
+        ) : (
+          <div
+            style={boxStyles.image}
+            className="hotspot-content__image hotspot-content__image--default"
+          />
+        )}
+        <div className="hotspot-content__vl"></div>
+        {/* Tipografía en Tailwind: el resto del layout sigue en el CSS. */}
+        <figcaption style={boxStyles.content} className="hotspot-content__text">
+          <div className="mt-0 mb-1.5 text-2xl leading-tight font-semibold tracking-[0.1em] uppercase">
+            {hotspotData.header}
+          </div>
+          <p className="m-0 text-base leading-snug">{hotspotData.description}</p>
+        </figcaption>
+      </figure>
     </div>
   );
 }

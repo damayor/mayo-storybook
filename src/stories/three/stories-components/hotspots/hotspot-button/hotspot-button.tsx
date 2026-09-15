@@ -1,15 +1,23 @@
 import { Html } from '@react-three/drei';
-import { useState, type JSX } from 'react';
+import { useState } from 'react';
 import { Vector3 } from 'three';
 import { hotspotsZIndexRange } from './hotspot-button.config';
 import './hotspot-button.css';
+
+/**
+ * Cómo mostrar el `meshIndex` del pin:
+ * - `none`   : el icono "+" de siempre.
+ * - `inside` : el número reemplaza al "+".
+ * - `badge`  : "+" con el número en una chapita al lado.
+ */
+export type HotspotIndexLabelMode = 'none' | 'inside' | 'badge';
 
 export interface HotspotButtonProps {
   position?: Vector3;
   index?: number;
   isChecked?: boolean;
   onToggle: (value: boolean) => void;
-  customButton?: JSX.Element;
+  indexLabel?: HotspotIndexLabelMode;
 }
 
 export default function HotspotButton({
@@ -17,13 +25,16 @@ export default function HotspotButton({
   index = 0,
   onToggle,
   isChecked,
-  customButton,
+  indexLabel = 'none',
 }: HotspotButtonProps) {
   const [hidden, setHidden] = useState(false);
   const handleOcclusion = (toggle: boolean) => {
     setHidden(toggle);
     return null;
   };
+
+  const showsNumberInside = indexLabel === 'inside';
+  const showsBadge = indexLabel === 'badge';
 
   return (
     <group>
@@ -39,30 +50,32 @@ export default function HotspotButton({
         }}
         zIndexRange={hotspotsZIndexRange}
       >
-        {customButton !== undefined ? (
-          <div
-            className="hotspot-button--custom"
-            id={`hotspot-button-custom-${index}`}
-            onClick={() => onToggle(true)}
+        <div className="hotspot-button">
+          <input
+            type="checkbox"
+            className="hotspot-button__checkbox"
+            id={`hotspot-button-${index}`}
+            onChange={(e) => onToggle(e.target.checked)}
+            checked={isChecked}
+          />
+          <label
+            htmlFor={`hotspot-button-${index}`}
+            className="hotspot-button__btn"
+            title={`Hotspot ${index}`}
           >
-            {customButton}
-          </div>
-        ) : (
-          <div className="hotspot-button">
-            <input
-              type="checkbox"
-              className="hotspot-button__checkbox"
-              id={`hotspot-button-${index}`}
-              onChange={(e) => onToggle(e.target.checked)}
-              checked={isChecked}
-            />
-            <label htmlFor={`hotspot-button-${index}`} className="hotspot-button__btn">
-              <div className="hotspot-button__circle">
-                <div className="hotspot-button__icon"></div>
+            <div className="hotspot-button__circle">
+              {/* El modificador --number oculta las barras del "+" vía CSS. */}
+              <div
+                className={`hotspot-button__icon${
+                  showsNumberInside ? ' hotspot-button__icon--number' : ''
+                }`}
+              >
+                {showsNumberInside && <span className="hotspot-button__index">{index}</span>}
               </div>
-            </label>
-          </div>
-        )}
+            </div>
+          </label>
+          {showsBadge && <span className="hotspot-button__badge">{index}</span>}
+        </div>
       </Html>
     </group>
   );

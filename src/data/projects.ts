@@ -27,10 +27,44 @@ const _sharedProjects = {
     mediaLinks: [
       'https://mayinteractive.io/storybook/?path=/story/three-experiences-interactivepdp--interactive-pdp',
     ],
-    gifs: ['/assets/images/projects/frontend/volvo-3d.gif'],
-    initDate: new Date(2022, 0, 1),
-    endDate: new Date(2023, 10, 1),
+    gifs: ['/assets/images/projects/frontend/volvo-3d.gif'],//todo
+    initDate: new Date(2026, 0, 1),
+    endDate: new Date(2026, 5, 1),
   },
+  // proptech20: {
+  //   projectRealTitle: 'Interactive 3D Masterplan Viewer',
+  //   tags: [
+  //     'Real-Time 3D',
+  //     'WebGL',
+  //     'Asset Pipeline',
+  //     '3D Optimization',
+  //     'CI/CD',
+  //     'Monorepo',
+  //   ],
+  //   technologies: [
+  //     'React Three Fiber',
+  //     'Three.js',
+  //     'TypeScript',
+  //     'Vite',
+  //     'Next.js',
+  //     'glTF-Transform',
+  //     'Blender',
+  //     '3ds Max',
+  //     'Gaussian Splatting',
+  //   ],
+  //   projectField: 'Graphics Engineer',
+  //   images: [
+  //     '/assets/images/projects/interactive/ambar_masterplan.JPG', //TODO
+  //     '/assets/images/projects/interactive/ambar_gaussian_splat.JPG',
+  //     '/assets/images/projects/interactive/scene_editor_leva.JPG',
+  //   ],
+  //   gifs: ['/assets/images/projects/interactive/drone_mode.gif'],
+  //   mediaLinks: [
+  //     'https://mayinteractive.io/perfectinteractive/?tenant=ambar'
+  //   ],
+  //   initDate: new Date(2026, 0, 29),
+  //   endDate: new Date(2026, 7, 25),
+  // },
   proptech: {
     projectRealTitle: 'Primera Este',
     tags: ['Full-Stack', 'Microservices', 'SRE', 'REST APIs', 'Web Hosting', 'Observability'],
@@ -57,8 +91,8 @@ const _sharedProjects = {
       '/assets/images/projects/xr/VolvoS60.png',
       '/assets/images/projects/frontend/volvo-home.PNG',
     ],
-    mediaLinks: ['https://umbraint.com/catalogosdigitales/catalogovolvo'],
-    gifs: ['/assets/images/projects/frontend/volvo-3d.gif'],
+    mediaLinks: ['https://umbraint.com/catalogosdigitales/catalogovolvo'], //todo
+    gifs: ['/assets/images/projects/frontend/volvo-3d.gif'], //todo
     initDate: new Date(2020, 0, 1),
     endDate: new Date(2020, 10, 1),
   },
@@ -107,13 +141,6 @@ const _sharedMiniProjects = [
     technologies: ['Unreal', 'Cpp', 'Android'],
     image: '/assets/images/projects/xr/swapPuzzle_random.jpg',
   },
-  // { todo
-  //    projectRealTitle: "LiDAR Sensors with Three.Js",
-  //   tags: ["Singal Tracking"],
-  //   technologies: ["React", "Python", "Three.js"],
-  //   image: "/assets/images/projects/xr/swapPuzzle_random.jpg",
-  //   // Arquitectura de visores multi-sensor para el dataset nuScenes, integrando FastAPI (Python) y R3F para la visualización 3D de nubes de puntos LiDAR
-  // }
 ];
 
 // ─── Language-keyed translatable content ─────────────────────────────────────

@@ -1,22 +1,40 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useEffect } from 'react';
 import { getProject } from '@theatre/core';
 import { SheetProvider } from '@theatre/r3f';
-import studio from '@theatre/studio';
+import type StudioType from '@theatre/studio';
 import { ScrollControls } from '@react-three/drei';
 import MayoCanvas from '../../../non-stories-components/mayo-canvas/mayo-canvas';
 import { CameraPath } from './CameraPath';
 import theatreState from './theatreState.json';
 
-// usePersistentStorage: false — always load theatreState.json fresh instead of
-// whatever Studio last persisted to the browser's local storage. Edit the file
-// (or record in Studio + run getTheatreState()) and reload to see changes.
-studio.initialize({ usePersistentStorage: false });
-(window as any).studio = studio;
+// The camera path is already recorded in theatreState.json, so Studio is OFF by default.
+// Storybook bundles every story into the same page: initializing Studio at module scope
+// injected its toolbar into *all* stories permanently. Flip this to true (or add
+// ?theatre=1 to the Storybook URL) only when re-recording keyframes.
+const ENABLE_STUDIO = new URLSearchParams(window.location.search).has('theatre');
+
+let studio: typeof StudioType | null = null;
+
+// Lazily imported so @theatre/studio never even loads unless we're editing.
+const initStudio = async () => {
+  if (studio) return;
+  // usePersistentStorage: false — always load theatreState.json fresh instead of
+  // whatever Studio last persisted to the browser's local storage.
+  const mod = await import('@theatre/studio');
+  studio = mod.default;
+  studio.initialize({ usePersistentStorage: false });
+  (window as any).studio = studio;
+};
 
 // Exports the per-project on-disk state in the format getProject(id, { state }) expects.
 // studio.__experimental.createContentOfSaveFileTyped returns { definitionVersion, sheetsById, revisionHistory }
 // — the exact shape Theatre.js validates. The old approach saved the full Studio event log, which breaks.
 const getTheatreState = () => {
+  if (!studio) {
+    console.warn('Theatre Studio is not running — open this story with ?theatre=1 in the URL.');
+    return null;
+  }
   const state = studio.__experimental.__experimental_createContentOfSaveFileTyped('BerlinTour');
   if (!state) {
     console.warn('No state found for project "BerlinTour" — add at least one keyframe first.');
@@ -44,6 +62,24 @@ try {
 
 const sheet = getProject('BerlinTour', { state: theatreState }).sheet('Scene');
 
+// Studio's toolbar lives in a portal on document.body, outside React's tree, so it
+// survives story navigation. Hiding it on unmount keeps other stories clean —
+// Theatre has no public teardown, and re-initializing after one would throw.
+const StudioLifecycle = () => {
+  useEffect(() => {
+    if (!ENABLE_STUDIO) return;
+    let cancelled = false;
+    initStudio().then(() => {
+      if (!cancelled) studio?.ui.restore();
+    });
+    return () => {
+      cancelled = true;
+      studio?.ui.hide();
+    };
+  }, []);
+  return null;
+};
+
 const meta: Meta<typeof CameraPath> = {
   title: 'ThreeJs/Experiences/CameraPath',
   component: CameraPath,
@@ -57,13 +93,21 @@ const meta: Meta<typeof CameraPath> = {
   },
   decorators: [
     (Story) => (
-      <MayoCanvas enableOrbitControls={false} background="#111111" renderShadows={false} fullscreen>
-        <ScrollControls pages={6} damping={0.15}>
-          <SheetProvider sheet={sheet}>
-            <Story />
-          </SheetProvider>
-        </ScrollControls>
-      </MayoCanvas>
+      <>
+        <StudioLifecycle />
+        <MayoCanvas
+          enableOrbitControls={false}
+          background="#111111"
+          renderShadows={false}
+          fullscreen
+        >
+          <ScrollControls pages={6} damping={0.15}>
+            <SheetProvider sheet={sheet}>
+              <Story />
+            </SheetProvider>
+          </ScrollControls>
+        </MayoCanvas>
+      </>
     ),
   ],
 };
