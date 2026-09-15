@@ -13,10 +13,11 @@ const groupBasePaths: Record<string, string> = {
 
 //Pre: folder and story file share the same name, in kebab-case, inside one of the groups above
 const prodStories: Array<{ group: keyof typeof groupBasePaths; title: string }> = [
-  { group: 'three', title: 'pool-3d' },
-  { group: 'three', title: 'product-rotating-prd' },
   { group: 'three', title: 'floating-card' },
   { group: 'three', title: 'material-selector' },
+  { group: 'three', title: 'hotspots' },
+  { group: 'three', title: 'product-rotating-prd' },
+  { group: 'three', title: 'pool-3d' },
   { group: 'three', title: 'terrain' },
   { group: 'cpp', title: 'webassembly' },
   { group: 'cpp', title: 'ply-renderer' },

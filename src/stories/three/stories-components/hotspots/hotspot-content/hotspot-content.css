@@ -1,12 +1,6 @@
-html {
-  font-size: 16px;
-}
-
-@media only screen and (max-width: 599px) {
-  html {
-    font-size: 10px;
-  }
-}
+/* Nota: aquí había un `html { font-size: 16px }` —y 10px en móvil— que
+   reescalaba cada `rem` del documento ENTERO desde el CSS de un componente.
+   Eliminado: encogía también las clases de Tailwind del contenido. */
 
 .hotspot-content__container {
   pointer-events: none;
@@ -23,6 +17,11 @@ html {
 }
 
 .hotspot-content__box {
+  /* El modal vive sobre un fondo de escena claro, así que el color de texto se
+     fija aquí. Sin esto hereda el `color` de DaisyUI —que en el theme `dark`
+     (el activo por defecto en el toolbar de Storybook) es casi blanco— y el
+     contenido quedaba ilegible sobre la caja clara. */
+  color: #111111;
   display: flex;
   align-items: center;
   padding: 1rem;
@@ -61,12 +60,6 @@ html {
   text-align: right;
 }
 
-.hotspot-content__text--custom {
-  width: 20rem;
-  border-radius: 1rem;
-  padding: 1rem;
-}
-
 .hotspot-content__vl {
   border-left: 1px solid black;
   height: 100%;
@@ -77,24 +70,8 @@ html {
   flex: 1;
 }
 
-.hotspot-content__header {
-  font-family: 'AdihausDIN';
-  line-height: 1.5rem;
-  letter-spacing: 1.5px;
-  margin-bottom: 0;
-  margin-top: 0;
-  text-transform: uppercase;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-}
-
-.hotspot-content__paragraph {
-  font-family: 'AdihausDIN';
-  font-size: 0.8rem;
-  line-height: 1.2rem;
-  margin: 0;
-}
+/* La tipografía del header y del párrafo vive en clases de Tailwind, en
+   hotspot-content.tsx. Aquí solo queda el layout y las animaciones. */
 
 .content--shown {
   animation-name: fadeIn;
@@ -142,25 +119,25 @@ html {
   stroke: black;
   stroke-width: 1;
   stroke-dasharray: var(--pointer-length);
-  stroke-dashoffset: var(--pointer-length);
-  animation: dash 1s linear;
-  animation-fill-mode: forwards;
+  /* Offset NEGATIVO: el trazo se revela desde el final del path (el centro del
+     canvas, donde está el hotspot) hacia M0 0 (la esquina del modal). Se dibuja
+     saliendo del contenido y terminando sobre el hotspot, no al revés. */
+  stroke-dashoffset: calc(var(--pointer-length) * -1);
+  /* Espera a que la caja haya aparecido (fadeIn 0.5s con 0.3s de retraso) para
+     que la línea salga de un modal ya visible.
+     `both` = `backwards` (se mantiene oculta durante el retraso) + `forwards`
+     (conserva el trazo completo al terminar). Solo con `backwards` la línea
+     revertía a su estado inicial y desaparecía. */
+  animation: dash 1.2s 0.5s ease-out;
+  animation-fill-mode: both;
   stroke-linejoin: round;
   filter: drop-shadow(var(--origin-x-offset) -1px 0 white);
-}
-
-.hotspot-content--story-container {
-  width: inherit;
-  height: inherit;
 }
 
 @media only screen and (max-width: 599px) {
   .hotspot-content {
     top: initial;
     left: initial;
-    transform: none;
-  }
-  .hotspot-content--story-container {
     transform: none;
   }
   .hotspot-content_pointer {
@@ -171,9 +148,6 @@ html {
     height: 12rem !important;
     box-sizing: border-box;
     padding: 1.5rem 3rem;
-  }
-  .hotspot-content__text--custom {
-    width: auto;
   }
   .hotspot-content__box--top-left,
   .hotspot-content__box--top-right {
@@ -186,20 +160,11 @@ html {
     left: 0;
     bottom: 0;
   }
-
-  .hotspot-content__header {
-    line-height: 1.8rem;
-    margin-bottom: 0.5rem;
-  }
-  .hotspot-content__paragraph {
-    font-size: 1.2rem;
-    line-height: 1.5rem;
-  }
 }
 
 @keyframes dash {
   0% {
-    stroke-dashoffset: var(--pointer-length);
+    stroke-dashoffset: calc(var(--pointer-length) * -1);
   }
   100% {
     stroke-dashoffset: 0;

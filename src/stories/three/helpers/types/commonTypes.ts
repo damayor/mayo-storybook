@@ -1,12 +1,8 @@
 // import { BaseInstance } from '@react-three/fiber/dist/declarations/src/core/renderer'
-import type { JSX } from 'react';
-import { Group, Material, Mesh, Vector3 } from 'three';
+import { Vector3 } from 'three';
 
 export type CopyWithOptional<T, K extends keyof T> = Omit<T, K> & Partial<T>;
 
-type MakePartialWithException<T, Exception extends keyof T> = {
-  [P in keyof T]: P extends Exception ? T[P] : Partial<T[P]>;
-};
 
 export type GizmoType = 'none' | 'viewCube' | 'viewPort';
 
@@ -77,10 +73,11 @@ export type HotspotDataType = {
 
 export type ModalAnchorType = 'top-left' | 'top-right' | 'bottom-right' | 'bottom-left';
 
+/** Tamaño de la miniatura del modal. Tres pasos fijos: no hay razón de producto
+ *  para ofrecer un continuo de píxeles. */
+export type HotspotImageSizeType = 'S' | 'M' | 'L';
+
 export type HotspotsConfigType = {
-  customButton?: JSX.Element;
   modalAnchor: ModalAnchorType;
-  imageSize: number;
-  contentTextWidth: number;
-  //TODO: Add an example of custom hotspots view
+  imageSize: HotspotImageSizeType;
 };

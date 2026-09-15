@@ -78,3 +78,6 @@ Objetivo: no es una feature grande, es una story simple para dejar demostrado el
 ## Notes for Claude
 
 - Este archivo es solo para tareas del portafolio (no Storybook stories) — ver `TASKS-storybook.md` para ese scope.
+
+
+- [x] Ojo que esa interrfaz del BerlinTour theatron sale en todas las stories...

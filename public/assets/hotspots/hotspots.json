@@ -1,0 +1,20 @@
+[
+  {
+    "meshIndex": 4,
+    "header": "Boost Midsole & Rubber Outsole",
+    "description": "Full-length BOOST cushioning wrapped in a TPU frame, riding on a 100% rubber outsole for everyday grip.",
+    "imageUrl": "https://assets.adidas.com/images/h_400,f_auto,q_auto,fl_lossy,c_fill,g_auto/912f2a705ce44ce4b18dac9801161814_9366/ZX_Black_FX6229_03_standard.jpg"
+  },
+  {
+    "meshIndex": 6,
+    "header": "TPU Heel Cage",
+    "description": "The moulded heel counter that gives every ZX its silhouette — reflexive support, straight from the 1980s archive.",
+    "imageUrl": "https://assets.adidas.com/images/w_320,f_auto,q_auto/6f2eea258b42410bab49ac98011627bc_9366/ZX_Black_FX6229_41_detail.jpg"
+  },
+  {
+    "meshIndex": 8,
+    "header": "Breathable Mesh Toe",
+    "description": "A 100% mesh forefoot keeps air moving over the toes, with lace-up closure locking down the fit.",
+    "imageUrl": "https://assets.adidas.com/images/w_320,f_auto,q_auto/f5dd775eb24e4cac93ceac9801162c74_9366/ZX_Black_FX6229_42_detail.jpg"
+  }
+]

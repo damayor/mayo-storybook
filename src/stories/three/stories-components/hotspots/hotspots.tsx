@@ -1,314 +1,318 @@
-import { Html, type OrbitControlsProps } from '@react-three/drei';
-import { useEffect, useState, useRef } from 'react';
-import { Group, PerspectiveCamera, Vector3, Euler } from 'three';
+import { Html } from '@react-three/drei';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Group, Vector3 } from 'three';
 import { useFrame, useThree } from '@react-three/fiber';
 import {
-  CAMERA_FOCUS,
-  getOrbitAngle,
-  getShortestWayAngles,
-  TRANSITION_DURATION,
-  defaultTheta,
-  convertThetaToAzimuthAngle,
-  zoomTargetRadius,
-  zoomThetaLimit,
-  animateCameraSpherically,
+  defaultHotspotsConfiguration,
+  getCameraSpherical,
   getModalAnchorOrigin,
+  getPositionFromSpherical,
+  getSphericalAnglesFacingPin,
   hotspotContentZIndexRange,
+  projectToCanvas,
+  shortestAngleDelta,
+  TRANSITION_DURATION,
 } from './hotspots.config';
-import { DEFAULT_RADIAL_DISTANCE, DEFAULT_CAMERA_POSITION } from './constants/scene-constants';
 
 import { useSpring } from '@react-spring/three';
 
 import type {
   HotspotDataType,
   HotspotsConfigType,
-  ProductViewModeType,
   HotspotPositionsDictionary,
 } from '../../helpers/types/commonTypes';
-import { defaultHotspotsConfiguration } from './constants/default-product-config';
-import HotspotButton from './hotspot-button/hotspot-button';
-import { outsideOfProductOffset } from './hotspot-button/hotspot-button.config';
-import { renderControlsOffHelper } from '../../non-stories-components/controls/controls.component';
+import HotspotButton, { type HotspotIndexLabelMode } from './hotspot-button/hotspot-button';
+import HotspotContent from './hotspot-content/hotspot-content';
+import HotspotDebugCubes from './hotspot-debug-cubes';
+import { outsideOfProductOffset as defaultOffset } from './hotspot-button/hotspot-button.config';
 import { getHotspotPositions } from '../../helpers/functions/scene';
-import { minZoom } from '../../non-stories-components/controls/controls.config';
 
 export interface HotspotProps {
+  /** Group del GLB ya montado. Las posiciones se leen en espacio de mundo. */
   scene: Group;
   hotspotsData: HotspotDataType[];
-  onZoom: (newVale: boolean) => void;
   hotspotsConfig?: HotspotsConfigType;
-  productViewMode?: ProductViewModeType;
-  productView: string; // 'front', 'right', 'back', 'left', etc.
-  isProductFloating?: boolean;
-  scale?: number;
+  /** Separación del botón respecto a la superficie del mesh. */
+  hotspotOffset?: number;
+  /** Duración del viaje de cámara, en ms. */
+  transitionDuration?: number;
+  /**
+   * Dibuja un cubo clicable sobre cada pin que, al pincharlo, cambia de color e
+   * imprime en consola su posición 3D y su proyección en píxeles del canvas.
+   */
+  debugShowPinCubes?: boolean;
+  /** Muestra el `meshIndex` en el botón: dentro, en una chapita, o nada. */
+  indexLabel?: HotspotIndexLabelMode;
+  /**
+   * Renderiza también los pines del GLB que no tienen entrada en los datos.
+   * El GLB puede traer más pines que contenido — esto los revela para poder
+   * emparejar `meshIndex` mirando la escena.
+   */
+  showOrphanPins?: boolean;
 }
 
 export default function Hotspots({
   scene,
   hotspotsData,
-  onZoom,
   hotspotsConfig = defaultHotspotsConfiguration,
-  productViewMode,
-  productView,
-  isProductFloating = false,
-  scale,
+  hotspotOffset = defaultOffset,
+  transitionDuration = TRANSITION_DURATION,
+  debugShowPinCubes = false,
+  indexLabel = 'none',
+  showOrphanPins = false,
 }: HotspotProps) {
-  const { camera } = useThree();
-  const [controlEnabled, setControlEnabled] = useState(true);
-  const [contentShownIndex, setContentShownIndex] = useState(-1);
-  const [isContentShown, setIsContentShown] = useState(false);
+  const { camera, size } = useThree();
   const controls = useThree((state) => state.controls) as any;
-  const [hotspotsPositions, setHotspotsPositions] = useState<HotspotPositionsDictionary>(
-    getHotspotPositions(scene, outsideOfProductOffset)
+
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+  // El modal solo aparece cuando el viaje terminó y el pin ya está en el centro.
+  const [isPinCentered, setIsPinCentered] = useState(false);
+  // Los empties del GLB se dejan SIEMPRE ocultos: el modo debug dibuja sus
+  // propios cubos sobre las posiciones ya calculadas, y revelar también los
+  // originales pintaría dos cosas distintas en el mismo sitio.
+  const [hotspotsPositions, setHotspotsPositions] = useState<HotspotPositionsDictionary>(() =>
+    getHotspotPositions(scene, hotspotOffset)
   );
 
-  // Referencias para detectar cambios
-  const previousViewRef = useRef(productView);
-  const previousViewModeRef = useRef(productViewMode);
-  const previousCameraPositionRef = useRef(camera.position.clone());
-  const previousSceneRotationRef = useRef(new Euler());
+  // Se compara contra el dict vigente para no re-renderizar cuando nada se movió.
+  const positionsRef = useRef(hotspotsPositions);
+  positionsRef.current = hotspotsPositions;
+
+  // Mientras la cámara viaja es el spring quien la mueve; el evento `start` de
+  // OrbitControls se dispara igual, y sin esta bandera se cerraría el modal a sí
+  // mismo en cuanto empieza la animación.
   const isAnimatingRef = useRef(false);
 
-  // Detectar si la escena está siendo animada
-  const detectSceneAnimation = () => {
-    if (!scene) return false;
+  const controlsRef = useRef(controls);
+  controlsRef.current = controls;
 
-    // Detectar rotación del producto
-    const currentRotation = scene.rotation;
-    const hasRotationChanged =
-      Math.abs(currentRotation.x - previousSceneRotationRef.current.x) > 0.001 ||
-      Math.abs(currentRotation.y - previousSceneRotationRef.current.y) > 0.001 ||
-      Math.abs(currentRotation.z - previousSceneRotationRef.current.z) > 0.001;
+  const cameraRef = useRef(camera);
+  cameraRef.current = camera;
 
-    previousSceneRotationRef.current.copy(currentRotation);
-    return hasRotationChanged;
-  };
+  // El radio se congela al arrancar el viaje: la cámara recorre la superficie de
+  // una esfera, no una recta entre dos puntos.
+  const orbitRadiusRef = useRef(0);
 
-  // Detectar cambios en la cámara
-  const detectCameraMovement = () => {
-    const currentPosition = camera.position;
-    const hasPositionChanged =
-      Math.abs(currentPosition.x - previousCameraPositionRef.current.x) > 0.001 ||
-      Math.abs(currentPosition.y - previousCameraPositionRef.current.y) > 0.001 ||
-      Math.abs(currentPosition.z - previousCameraPositionRef.current.z) > 0.001;
-
-    previousCameraPositionRef.current.copy(currentPosition);
-    return hasPositionChanged;
-  };
-
-  const [cameraSpringValues, setCameraSpring] = useSpring(() => ({
-    cameraY: camera.position.y,
-    theta: getOrbitAngle(camera.position),
-    radius: camera.position.length(),
-    targetPos: CAMERA_FOCUS.toArray(),
-    config: {
-      duration: TRANSITION_DURATION,
-    },
-    onStart: () => {
-      console.log('🚀 Camera animation started');
-      isAnimatingRef.current = true;
-      if (controls) {
-        controls.enabled = false; // Deshabilitar controles durante animación
-        controls.minAzimuthAngle = -Infinity;
-        controls.maxAzimuthAngle = Infinity;
-        controls.minDistance = 0;
-      }
-    },
+  const [, setCameraSpring] = useSpring(() => ({
+    // Se interpolan ÁNGULOS, no posiciones. Interpolar posiciones en línea recta
+    // atraviesa la esfera y acerca la cámara al zapato a mitad de camino.
+    from: { theta: 0, phi: 0 },
+    config: { duration: transitionDuration },
     onChange: ({ value }) => {
-      console.log('📹 Camera animating:', {
-        radius: value.radius,
-        theta: value.theta,
-        cameraY: value.cameraY,
-        targetPos: value.targetPos,
-      });
+      const activeCamera = cameraRef.current;
+      const activeControls = controlsRef.current;
+      if (!activeControls?.target) return;
+
+      activeCamera.position.copy(
+        getPositionFromSpherical(
+          value.theta,
+          value.phi,
+          orbitRadiusRef.current,
+          activeControls.target
+        )
+      );
+
+      // La cámara mira SIEMPRE al centro de órbita; eso es lo que deja el pin
+      // —que está sobre ese mismo rayo— clavado en el centro del canvas.
+      //
+      // Sin `update()` a propósito: OrbitControls recalcularía la posición desde
+      // su propio estado interno y pelearía con el spring, tirando de la cámara
+      // hacia el producto. Se sincroniza una sola vez, al terminar.
+      activeCamera.lookAt(activeControls.target);
     },
-    onRest: ({ value }) => {
-      console.log('✅ Camera animation finished', value);
+    onRest: () => {
       isAnimatingRef.current = false;
-      setControlEnabled(true);
-      setIsContentShown(true);
-      if (controls) {
-        controls.enabled = true; // Re-habilitar controles
-        if (value.radius !== DEFAULT_RADIAL_DISTANCE) {
-          controls.minAzimuthAngle = convertThetaToAzimuthAngle(value.theta) - zoomThetaLimit;
-          controls.maxAzimuthAngle = convertThetaToAzimuthAngle(value.theta) + zoomThetaLimit;
-          controls.minDistance = zoomTargetRadius;
-        } else {
-          controls.minDistance = minZoom;
-        }
-      }
+      // Ahora sí: OrbitControls reabsorbe la posición final como suya, para que
+      // el siguiente arrastre del usuario parta de donde quedó la cámara.
+      controlsRef.current?.update?.();
+      setIsPinCentered(true);
     },
   }));
 
-  const handleClick = (index: number) => {
-    console.log('🎯 handleClick called with index:', index);
-    const pos = hotspotsPositions[index];
-    console.log('📍 Hotspot position:', pos);
+  /**
+   * Orbita la cámara hasta ver el pin en el centro del canvas.
+   *
+   * El destino son los ángulos del vector centro→pin; el radio se mantiene
+   * exactamente el que la cámara ya tenía, así que el zoom del usuario se
+   * respeta y el recorrido es un arco sobre la esfera, sin acercarse.
+   */
+  const focusHotspot = useCallback(
+    (index: number) => {
+      const pinPosition = positionsRef.current[index];
+      const activeControls = controlsRef.current;
+      if (!pinPosition || !activeControls?.target) return;
 
-    const isHotspotClicked = index !== -1;
-    const startRefPos = camera.position.clone();
-    const startTheta = getOrbitAngle(startRefPos);
+      const orbitTarget = activeControls.target as Vector3;
+      const destination = getSphericalAnglesFacingPin(pinPosition, orbitTarget);
+      if (!destination) return;
 
-    const endRefPos = isHotspotClicked
-      ? new Vector3(...pos.toArray()).setLength(pos.length() + zoomTargetRadius)
-      : DEFAULT_CAMERA_POSITION;
-    const endTheta = isHotspotClicked ? getOrbitAngle(endRefPos) : defaultTheta;
-    const startTarget = hotspotsPositions[contentShownIndex] ?? CAMERA_FOCUS;
-    const shortestWayAngles = getShortestWayAngles(startTheta, endTheta);
+      const current = getCameraSpherical(camera.position, orbitTarget);
+      orbitRadiusRef.current = current.radius;
 
-    console.log('🎬 Animation parameters:', {
-      from: {
-        cameraY: startRefPos.y,
-        theta: shortestWayAngles[0],
-        radius: startRefPos.length(),
-      },
-      to: {
-        cameraY: endRefPos.y,
-        theta: shortestWayAngles[1],
-        radius: endRefPos.length(),
-      },
-    });
+      isAnimatingRef.current = true;
+      setCameraSpring.start({
+        from: { theta: current.theta, phi: current.phi },
+        to: {
+          // Por el camino corto: sumar el delta en vez de saltar al ángulo
+          // absoluto evita que la cámara dé la vuelta larga cruzando ±π.
+          theta: current.theta + shortestAngleDelta(current.theta, destination.theta),
+          phi: destination.phi,
+        },
+      });
+    },
+    [camera, setCameraSpring]
+  );
 
-    setCameraSpring.start({
-      from: {
-        cameraY: startRefPos.y,
-        theta: shortestWayAngles[0],
-        radius: startRefPos.length(),
-        targetPos: startTarget.toArray(),
-      },
-      to: {
-        cameraY: endRefPos.y,
-        theta: shortestWayAngles[1],
-        radius: endRefPos.length(),
-        targetPos: isHotspotClicked ? pos.toArray() : CAMERA_FOCUS.toArray(),
-      },
-    });
+  const handleSelect = useCallback(
+    (index: number) => {
+      setSelectedIndex(index);
+      setIsPinCentered(false);
+      if (index !== -1) focusHotspot(index);
+    },
+    [focusHotspot]
+  );
 
-    setContentShownIndex(index);
-    setControlEnabled(false);
-    setIsContentShown(false);
-    onZoom(isHotspotClicked);
-  };
-
-  // Aplicar valores del spring a la cámara en cada frame
-  useFrame((_) => {
-    // Aplicar animación de cámara si está activa
-    if (isAnimatingRef.current && controls) {
-      const radiusValue = cameraSpringValues.radius.get();
-      const thetaValue = cameraSpringValues.theta.get();
-      const cameraYValue = cameraSpringValues.cameraY.get();
-      const targetPosValue = cameraSpringValues.targetPos.get();
-
-      controls.target.set(targetPosValue[0], targetPosValue[1], targetPosValue[2]);
-      animateCameraSpherically(radiusValue, thetaValue, cameraYValue, camera as PerspectiveCamera);
-
-      // Type guard para asegurar que update existe
-      if (controls.update) {
-        controls.update();
-      }
-    }
-
-    // Actualizar posiciones de hotspots cuando hay animación
-    const isSceneAnimating = detectSceneAnimation();
-    const isCameraMoving = detectCameraMovement();
-    const isBeingAnimated =
-      isSceneAnimating || isCameraMoving || isProductFloating || isAnimatingRef.current;
-
-    if (isBeingAnimated) {
-      setHotspotsPositions(getHotspotPositions(scene, outsideOfProductOffset));
-    }
-  });
-
-  // Detectar cambio de vista (front -> right, etc.)
+  /**
+   * Orbitar cierra el modal.
+   *
+   * El modal se dibuja anclado a una esquina del canvas y traza una línea hasta
+   * el CENTRO exacto — donde la cámara dejó el pin. En cuanto el usuario mueve
+   * la cámara ese punto deja de ser el pin, así que el modal se retira en vez de
+   * quedarse señalando un sitio vacío.
+   */
   useEffect(() => {
-    const hasViewChanged = previousViewRef.current !== productView;
-    const hasViewModeChanged = previousViewModeRef.current !== productViewMode;
+    if (!controls) return;
+    const handleOrbitStart = () => {
+      // El propio viaje de cámara dispara `start`: no debe cerrarse solo.
+      if (isAnimatingRef.current) return;
+      setSelectedIndex(-1);
+      setIsPinCentered(false);
+    };
+    controls.addEventListener('start', handleOrbitStart);
+    return () => controls.removeEventListener('start', handleOrbitStart);
+  }, [controls]);
 
-    if ((hasViewChanged || hasViewModeChanged) && contentShownIndex !== -1) {
-      resetHotspotsView();
-    }
+  /** Refresca el dict solo si alguna posición cambió de verdad. */
+  const syncPositions = useCallback(() => {
+    const next = getHotspotPositions(scene, hotspotOffset);
+    const previous = positionsRef.current;
 
-    previousViewRef.current = productView;
-    previousViewModeRef.current = productViewMode;
-  }, [productView, productViewMode]);
+    const previousKeys = Object.keys(previous);
+    const nextKeys = Object.keys(next);
+    const hasSameShape =
+      previousKeys.length === nextKeys.length &&
+      nextKeys.every((key) => previous[key] && previous[key].distanceToSquared(next[key]) < 1e-8);
 
-  // Actualizar posiciones cuando cambia la vista
+    if (!hasSameShape) setHotspotsPositions(next);
+  }, [hotspotOffset, scene]);
+
+  // El producto se orienta con un spring fuera de React, así que las posiciones
+  // de mundo hay que muestrearlas por frame; syncPositions corta el re-render
+  // cuando nada cambió.
+  useFrame(syncPositions);
+
+  // Avisa del desajuste entre pines del GLB y entradas de datos — es silencioso
+  // de otro modo, y es la causa habitual de "el botón no aparece".
   useEffect(() => {
-    // Pequeño delay para permitir que la animación del producto termine
-    const timeoutId = setTimeout(() => {
-      setHotspotsPositions(getHotspotPositions(scene, outsideOfProductOffset));
-    }, 100);
-
-    return () => clearTimeout(timeoutId);
-  }, [productView, productViewMode, scene]);
-
-  const resetHotspotsView = () => {
-    if (productViewMode === 'cameraAngle') {
-      forceResetCamera();
-    } else {
-      handleClick(-1);
+    const pinIndices = Object.keys(hotspotsPositions).map(Number);
+    if (!pinIndices.length) {
+      console.warn('[hotspots] el GLB no expone ningún nodo `hotspotN`.');
+      return;
     }
-  };
 
-  const forceResetCamera = () => {
-    setContentShownIndex(-1);
-    setControlEnabled(true);
-    setIsContentShown(false);
-    onZoom(false);
+    const dataIndices = hotspotsData.map((hotspot) => hotspot.meshIndex ?? -1);
+    const missingContent = pinIndices.filter((index) => !dataIndices.includes(index));
+    const missingPin = dataIndices.filter((index) => !hotspotsPositions[index]);
 
-    if (controls) {
-      controls.target = CAMERA_FOCUS;
-      controls.minAzimuthAngle = -Infinity;
-      controls.maxAzimuthAngle = Infinity;
-      controls.minDistance = minZoom;
+    if (missingContent.length) {
+      console.info(
+        `[hotspots] pines sin contenido: ${missingContent.join(', ')}. ` +
+          'Usa `showOrphanPins` para verlos en la escena.'
+      );
     }
-  };
+    if (missingPin.length) {
+      console.warn(`[hotspots] meshIndex sin pin en el GLB: ${missingPin.join(', ')}.`);
+    }
+  }, [hotspotsData, hotspotsPositions]);
 
-  // Hotfix para bug de R3F
-  const [allowGlobalOrbit, setAllowGlobalOrbit] = useState(true);
+  // Al terminar el viaje, deja por consola cuánto se desvió el pin del centro.
+  // Es la comprobación de que la geometría del encuadre es correcta.
+  useEffect(() => {
+    if (!debugShowPinCubes || !isPinCentered || selectedIndex === -1) return;
+    const pinPosition = positionsRef.current[selectedIndex];
+    if (!pinPosition) return;
+
+    const screen = projectToCanvas(pinPosition, camera, size);
+    console.log(
+      `[hotspots] pin ${selectedIndex} centrado — desviación del centro:`,
+      `${Math.round(screen.x - size.width / 2)}px, ${Math.round(screen.y - size.height / 2)}px`
+    );
+  }, [camera, debugShowPinCubes, isPinCentered, selectedIndex, size]);
+
+  const activeHotspot = useMemo(
+    () => hotspotsData.find((hotspot) => hotspot.meshIndex === selectedIndex),
+    [hotspotsData, selectedIndex]
+  );
+
+  /**
+   * Un pin del GLB y una entrada de datos son cosas distintas: el mesh puede
+   * traer 8 pines y los datos cubrir solo 5. Se renderiza un botón por cada
+   * entrada con pin existente; con `showOrphanPins`, también los pines sueltos
+   * (sin contenido) para poder emparejar índices mirando la escena.
+   */
+  const renderableHotspots = useMemo(() => {
+    const withContent = hotspotsData
+      .map((hotspotData) => ({ index: hotspotData.meshIndex ?? -1, hasContent: true }))
+      .filter(({ index }) => hotspotsPositions[index]);
+
+    if (!showOrphanPins) return withContent;
+
+    const claimed = new Set(withContent.map(({ index }) => index));
+    const orphans = Object.keys(hotspotsPositions)
+      .map(Number)
+      .filter((index) => !claimed.has(index))
+      .map((index) => ({ index, hasContent: false }));
+
+    return [...withContent, ...orphans].sort((a, b) => a.index - b.index);
+  }, [hotspotsData, hotspotsPositions, showOrphanPins]);
+
+  const isContentShown = isPinCentered && !!activeHotspot;
 
   return (
     <group
-      scale={scale}
-      onPointerMissed={(e) => {
-        if (allowGlobalOrbit && hotspotsPositions[contentShownIndex]) {
-          resetHotspotsView();
-        }
+      onPointerMissed={() => {
+        if (selectedIndex !== -1) handleSelect(-1);
       }}
     >
-      {hotspotsData.map((hotspotData) => {
-        const index = hotspotData.meshIndex ?? -1;
-        return (
-          hotspotsPositions[index] && (
-            <HotspotButton
-              key={`hotspot-${index}`}
-              position={hotspotsPositions[index]}
-              index={index}
-              isChecked={index === contentShownIndex}
-              onToggle={(check: boolean) => (check ? handleClick(index) : resetHotspotsView())}
-              customButton={hotspotsConfig?.customButton}
-            />
-          )
-        );
-      })}
+      {renderableHotspots.map(({ index }) => (
+        <HotspotButton
+          key={`hotspot-${index}`}
+          position={hotspotsPositions[index]}
+          index={index}
+          isChecked={index === selectedIndex}
+          indexLabel={indexLabel}
+          onToggle={(checked: boolean) => handleSelect(checked ? index : -1)}
+        />
+      ))}
+
+      {debugShowPinCubes && (
+        <HotspotDebugCubes positions={hotspotsPositions} selectedIndex={selectedIndex} />
+      )}
+
       <Html
         fullscreen
-        wrapperClass={'hotspot-content__container'}
+        wrapperClass="hotspot-content__container"
         calculatePosition={getModalAnchorOrigin}
         zIndexRange={hotspotContentZIndexRange}
       >
-        {isContentShown && contentShownIndex !== -1 && (
-          <h3>Aca otro hotspot!</h3>
-          // <HotspotContent
-          //     modalAnchor={hotspotsConfig.modalAnchor}
-          //     imageSize={hotspotsConfig.imageSize}
-          //     contentTextWidth={hotspotsConfig.contentTextWidth}
-          //     hidden={!isContentShown}
-          //     hotspotData={hotspotsData.find((hs) => hs.meshIndex === contentShownIndex) ?? {}}
-          //   />
+        {isContentShown && (
+          <HotspotContent
+            modalAnchor={hotspotsConfig.modalAnchor}
+            imageSize={hotspotsConfig.imageSize}
+            hotspotData={activeHotspot}
+          />
         )}
       </Html>
-      {!controlEnabled && renderControlsOffHelper()}
     </group>
   );
 }

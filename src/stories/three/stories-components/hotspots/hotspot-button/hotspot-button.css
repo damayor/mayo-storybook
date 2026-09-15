@@ -5,6 +5,11 @@
   transition: background-color 200ms;
 }
 
+/* Ancla para el badge del índice, que se posiciona absoluto. */
+.hotspot-button {
+  position: relative;
+}
+
 .hotspot-button__btn {
   cursor: pointer;
   display: flex;
@@ -70,6 +75,47 @@
   transform: rotate(90deg);
 }
 
+/* --- Índice del hotspot (modo `inside`) --- */
+
+/* Reemplaza las barras del "+" por el número del meshIndex. */
+.hotspot-button__icon--number::before,
+.hotspot-button__icon--number::after {
+  content: none;
+}
+
+.hotspot-button__index {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  color: black;
+  user-select: none;
+}
+
+/* --- Índice del hotspot (modo `badge`) --- */
+
+.hotspot-button__badge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  display: flex;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  background-color: hsla(0, 0%, 0%, 0.75);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  color: white;
+  pointer-events: none;
+  user-select: none;
+}
+
 .hotspot-button__checkbox {
   display: none;
 }
@@ -89,15 +135,4 @@
 
 .hotspot-button__checkbox:checked + .hotspot-button__btn .hotspot-button__icon::after {
   opacity: 0;
-}
-
-.hotspot-button--custom {
-  cursor: pointer;
-  display: block;
-  min-width: 2rem;
-  min-height: 1.5rem;
-}
-
-.hotspot-button--custom > * {
-  pointer-events: none;
 }
