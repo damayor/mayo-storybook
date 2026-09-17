@@ -3,7 +3,11 @@ import plyParserModule from './ply_parser.js';
 import { useCameraDebug } from '../../three/non-stories-components/hooks/useCameraDebug.js';
 import StarfieldBackground from '../../three/non-stories-components/starfield-background/starfield-background';
 
-export function PlyRenderer() {
+interface PlyRendererProps {
+  onLoaded?: () => void;
+}
+
+export function PlyRenderer({ onLoaded }: PlyRendererProps = {}) {
   //verticesAlex
   const [verticesA, setVerticesA] = useState<Float32Array | null>(null);
 
@@ -28,9 +32,10 @@ export function PlyRenderer() {
       setVerticesB(new Float32Array(parser.get_vertices_b()));
 
       parser.delete();
+      onLoaded?.();
     }
     loadData();
-  }, []);
+  }, [onLoaded]);
 
   if (!verticesB) return null;
 

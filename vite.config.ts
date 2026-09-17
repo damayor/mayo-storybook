@@ -11,7 +11,7 @@ export default defineConfig({
     tailwindcss(),
     react(),
     tsconfigPaths(),
-    basicSsl(), // Required for WebXR on mobile
+    // basicSsl(), // Required for WebXR on mobile
   ],
   base: './',
 });

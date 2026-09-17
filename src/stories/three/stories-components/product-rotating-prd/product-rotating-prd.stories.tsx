@@ -6,6 +6,22 @@ import { Suspense } from 'react';
 import MayoCanvas from '../../non-stories-components/mayo-canvas/mayo-canvas';
 import { Vector3 } from 'three';
 
+// NOTE: product-rotating-prd (ProductRotatingPrd) duplicates the logic in
+// ../product-rotating/product-rotating.tsx (ProductRotating) with fewer exposed
+// props — it's the curated/prod variant, while product-rotating is the full dev
+// playground. If you decide to drop one of the two components:
+// - To keep only this one: point this story's `component` at `ProductRotating`
+//   instead (with fixed args: enableOrbitControl=false, gizmoType='none', a
+//   single glbUrl), delete product-rotating-prd.tsx, and delete
+//   product-rotating.stories.tsx (or fold RotatingPDP into this file as a second
+//   story export). Update .storybook/main.ts's production story whitelist to
+//   reference the surviving story file.
+// - To keep only product-rotating: delete this file and product-rotating-prd.tsx,
+//   then update .storybook/main.ts's production whitelist to point at
+//   product-rotating.stories.tsx with args pinned the same way as above.
+// Either way, .storybook/main.ts currently whitelists 'product-rotating-prd' for
+// STORYBOOK_ENV=production — that entry must be updated or prod builds will lose
+// this story.
 const meta = {
   title: 'ThreeJs/Experiences/EcommerceInteractive',
   component: ProductRotatingPrd,

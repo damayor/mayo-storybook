@@ -27,6 +27,7 @@ import { type SectionType, SECTIONS, SECTIONS_ARRAY } from 'Interfaces/portfolio
 import { useScrollDetection } from '../../hooks/useScrollDetection';
 import { useInView } from 'react-intersection-observer';
 import CameraPathBackground from '../../components/camera-path-background/CameraPathBackground';
+import { Loader } from '../../components/loader/Loader';
 import InteractiveBackground3D from '../../components/interactive-background-3d/InteractiveBackground3D';
 import { MiniCard } from 'HtmlComponents/mini-card';
 import { flags } from '../../config/flags';
@@ -275,7 +276,6 @@ function AboutSection() {
                 <Terminal className="mx-auto mb-2 text-purple-500" size={32} />
                 <p className="font-semibold text-gray-200">{t('about.mainSkills.reliability')}</p>
               </div>
-             
             </div>
           </div>
         </div>
@@ -471,6 +471,7 @@ export default function Portfolio() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<SectionType>(SECTIONS.home);
   const [impressumOpen, setImpressumOpen] = useState(false);
+  const [backgroundLoaded, setBackgroundLoaded] = useState(false);
 
   const sectionRefs = {
     home: useRef<HTMLDivElement>(null),
@@ -497,73 +498,83 @@ export default function Portfolio() {
   return (
     <div data-theme={'dark'} className="min-h-screen w-screen text-white overflow-x-hidden">
       {/* {flags.USE_CAMERA_PATH_BG ? <CameraPathBackground /> : <InteractiveBackground3D />} */}
-      <CameraPathBackground />
+      <CameraPathBackground onLoaded={() => setBackgroundLoaded(true)} />
 
-      <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} onNavigate={scrollToSection} />
+      {(flags.FORCE_LOADER || !backgroundLoaded) && <Loader />}
 
-      <div className="fixed top-3 left-3 md:top-6 md:left-6 z-30 flex items-center gap-3">
-        <button
-          onClick={() => setSidebarOpen(true)}
-          className="w-15 h-15 md:w-18 md:h-18 mx-auto rounded-full bg-gradient-to-br from-camelot-950 to-camelot-500 p-1 cursor-pointer"
-        >
-          <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-5xl font-lato">
-            <img className="rounded-full" src={mayintLogo} alt="May Interactive Logo" />
-          </div>
-        </button>
-      </div>
+      <div
+        className={
+          !flags.FORCE_LOADER && backgroundLoaded
+            ? ''
+            : 'invisible pointer-events-none h-0 overflow-hidden'
+        }
+      >
+        <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} onNavigate={scrollToSection} />
 
-      <LanguageSelector />
-
-      {/* Contenido principal */}
-      <main className="pointer-events-none">
-        <div ref={sectionRefs.home} className="pointer-events-auto z-10">
-          <HomeSection />
-        </div>
-
-        <div ref={sectionRefs.about} className="pointer-events-auto z-10">
-          <AboutSection />
-        </div>
-
-        <div ref={sectionRefs.projects} className="pointer-events-auto z-10">
-          <ProjectsSection lang={lang} />
-        </div>
-
-        <div ref={sectionRefs.skills} className="pointer-events-auto z-10">
-          <SkillsRevealWrapper>
-            <SkillsTabPanel
-              milestones={getMilestones(lang)}
-              skills={getSkills(lang)}
-              tools={tools}
-            />
-          </SkillsRevealWrapper>
-        </div>
-
-        <div ref={sectionRefs.contact} className="pointer-events-auto">
-          <ContactSection lang={lang} />
-        </div>
-
-        <div className="pointer-events-auto">
-          <Footer onImpressumOpen={() => setImpressumOpen(true)} />
-        </div>
-      </main>
-
-      <ImpressumModal isOpen={impressumOpen} onClose={() => setImpressumOpen(false)} />
-
-      {/* Indicador de sección */}
-      <div className="fixed right-1 sm:right-6 top-1/2 -translate-y-1/2 z-30 space-y-1 sm:space-y-3 hidden sm:block">
-        {SECTIONS_ARRAY.map((section) => (
+        <div className="fixed top-3 left-3 md:top-6 md:left-6 z-30 flex items-center gap-3">
           <button
-            key={section}
-            onClick={() => scrollToSection(section)}
-            className={`block w-3 h-3 rounded-full transition-all duration-300 ${
-              activeSection === section
-                ? 'bg-camelot-700 scale-150'
-                : 'bg-slate-600 hover:bg-slate-500'
-            }`}
-            title={section}
-            aria-label={`Go to ${section} section`}
-          />
-        ))}
+            onClick={() => setSidebarOpen(true)}
+            className="w-15 h-15 md:w-18 md:h-18 mx-auto rounded-full bg-gradient-to-br from-camelot-950 to-camelot-500 p-1 cursor-pointer"
+          >
+            <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-5xl font-lato">
+              <img className="rounded-full" src={mayintLogo} alt="May Interactive Logo" />
+            </div>
+          </button>
+        </div>
+
+        <LanguageSelector />
+
+        {/* Contenido principal */}
+        <main className="pointer-events-none">
+          <div ref={sectionRefs.home} className="pointer-events-auto z-10">
+            <HomeSection />
+          </div>
+
+          <div ref={sectionRefs.about} className="pointer-events-auto z-10">
+            <AboutSection />
+          </div>
+
+          <div ref={sectionRefs.projects} className="pointer-events-auto z-10">
+            <ProjectsSection lang={lang} />
+          </div>
+
+          <div ref={sectionRefs.skills} className="pointer-events-auto z-10">
+            <SkillsRevealWrapper>
+              <SkillsTabPanel
+                milestones={getMilestones(lang)}
+                skills={getSkills(lang)}
+                tools={tools}
+              />
+            </SkillsRevealWrapper>
+          </div>
+
+          <div ref={sectionRefs.contact} className="pointer-events-auto">
+            <ContactSection lang={lang} />
+          </div>
+
+          <div className="pointer-events-auto">
+            <Footer onImpressumOpen={() => setImpressumOpen(true)} />
+          </div>
+        </main>
+
+        <ImpressumModal isOpen={impressumOpen} onClose={() => setImpressumOpen(false)} />
+
+        {/* Indicador de sección */}
+        <div className="fixed right-1 sm:right-6 top-1/2 -translate-y-1/2 z-30 space-y-1 sm:space-y-3 hidden sm:block">
+          {SECTIONS_ARRAY.map((section) => (
+            <button
+              key={section}
+              onClick={() => scrollToSection(section)}
+              className={`block w-3 h-3 rounded-full transition-all duration-300 ${
+                activeSection === section
+                  ? 'bg-camelot-700 scale-150'
+                  : 'bg-slate-600 hover:bg-slate-500'
+              }`}
+              title={section}
+              aria-label={`Go to ${section} section`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

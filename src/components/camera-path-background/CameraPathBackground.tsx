@@ -3,14 +3,16 @@ import { SheetProvider } from '@theatre/r3f';
 import MayoCanvas from '../../stories/three/non-stories-components/mayo-canvas/mayo-canvas';
 import { CameraPath } from '../../stories/three/stories-components/experiences/camera-path/CameraPath';
 import theatreState from '../../stories/three/stories-components/experiences/camera-path/theatreState.json';
-import type { EffectComposer } from 'postprocessing';
-import { ThreePostprocessingEffects } from '../../stories/three/stories-components/three-postprocessing/ThreePostprocessing';
 
 // theatreState.json must be re-exported via getTheatreState() in Storybook after any keyframe edit.
 // studio.__experimental.__experimental_createContentOfSaveFileTyped('BerlinTour') gives the correct format.
 const sheet = getProject('BerlinTour', { state: theatreState }).sheet('Scene');
 
-export function CameraPathBackground() {
+interface CameraPathBackgroundProps {
+  onLoaded?: () => void;
+}
+
+export function CameraPathBackground({ onLoaded }: CameraPathBackgroundProps = {}) {
   return (
     <div
       style={{
@@ -25,7 +27,7 @@ export function CameraPathBackground() {
       <MayoCanvas fullscreen background="#111111" renderShadows={false} enableOrbitControls={false}>
         <fog attach="fog" args={['#111122', 200, 900]} />
         <SheetProvider sheet={sheet}>
-          <CameraPath scrollMode="page" />
+          <CameraPath scrollMode="page" onLoaded={onLoaded} />
         </SheetProvider>
         {/* ToDo */}
         {/* <EffectComposer multisampling={0}>

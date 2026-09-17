@@ -69,9 +69,10 @@ interface CameraPathProps {
   // page   → window.scroll listener (portfolio fixed background)
   // none   → no scroll listener; scrub the sequence directly in Theatre Studio (dev/testing)
   scrollMode?: ScrollMode;
+  onLoaded?: () => void;
 }
 
-export function CameraPath({ scrollMode = 'page' }: CameraPathProps) {
+export function CameraPath({ scrollMode = 'page', onLoaded }: CameraPathProps) {
   const meshGroupRef = useRef<Group>(null);
   useMouseParallax(meshGroupRef);
 
@@ -82,12 +83,12 @@ export function CameraPath({ scrollMode = 'page' }: CameraPathProps) {
       {scrollMode === 'page' && <ScrollSyncPage />}
       <group ref={meshGroupRef}>
         <Suspense fallback={null}>
-          <PlyRenderer />
+          <PlyRenderer onLoaded={onLoaded} />
         </Suspense>
       </group>
       <EffectComposer multisampling={0}>
         {/* <ThreePostprocessingEffects /> disabled for long time*/}
-        <MouseWarpEffectPass mode='lens' wake={1} strength={0.04}/>
+        <MouseWarpEffectPass mode="lens" wake={1} strength={0.04} />
       </EffectComposer>
     </>
   );

@@ -1,4 +1,7 @@
 {
+  "loader": {
+    "label": "Ideen werden kompiliert…"
+  },
   "nav": {
     "home": "Start",
     "about": "Über mich",
