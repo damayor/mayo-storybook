@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import plyParserModule from './ply_parser.js';
 import { useCameraDebug } from '../../three/non-stories-components/hooks/useCameraDebug.js';
 import StarfieldBackground from '../../three/non-stories-components/starfield-background/starfield-background';
@@ -16,6 +16,12 @@ export function PlyRenderer({ onLoaded }: PlyRendererProps = {}) {
 
   useCameraDebug();
 
+  // Los callers pasan `onLoaded` como arrow inline, así que su referencia cambia
+  // en cada render. Guardarlo en un ref mantiene el efecto con deps vacías: sin
+  // esto el PLY se reparsea en cada render, trabando el scroll.
+  const onLoadedRef = useRef(onLoaded);
+  onLoadedRef.current = onLoaded;
+
   useEffect(() => {
     async function loadData() {
       const instance = await plyParserModule();
@@ -32,10 +38,10 @@ export function PlyRenderer({ onLoaded }: PlyRendererProps = {}) {
       setVerticesB(new Float32Array(parser.get_vertices_b()));
 
       parser.delete();
-      onLoaded?.();
+      onLoadedRef.current?.();
     }
     loadData();
-  }, [onLoaded]);
+  }, []);
 
   if (!verticesB) return null;
 

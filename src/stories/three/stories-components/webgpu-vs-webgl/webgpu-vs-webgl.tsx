@@ -1,6 +1,6 @@
 import { BakeShadows, Environment, OrbitControls, useGLTF } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { WebGPURenderer } from 'three/webgpu';
 
@@ -26,6 +26,38 @@ interface BackendPanelProps {
   label: string;
   forceRenderer: 'webgpu' | 'webgl';
   bustCount: number;
+}
+
+// DEBUG: mismo instancedMesh que ya se ve cian, pero con la geometría del GLB
+// en vez de una esfera local. Aísla la geometría como única variable.
+function DebugInstancedSpheres() {
+  const ref = useRef<THREE.InstancedMesh>(null);
+  const [{ nodes }] = useGLTF([LOD_GLTF_PATHS_WEBGL]) as any[];
+
+  // DEBUG: imita a los bustos — buffer grande, count dinámico y reescritura
+  // periódica desde useFrame, en vez de escribir las matrices una sola vez.
+  const lastAt = useRef(-Infinity);
+  useFrame(({ clock }) => {
+    const now = clock.getElapsedTime() * 1000;
+    if (now - lastAt.current < 250) return;
+    lastAt.current = now;
+    const mesh = ref.current;
+    if (!mesh) return;
+    const dummy = new THREE.Object3D();
+    for (let i = 0; i < 5; i++) {
+      dummy.position.set(-8 + i * 4, -12, 0);
+      dummy.updateMatrix();
+      mesh.setMatrixAt(i, dummy.matrix);
+    }
+    mesh.count = 5;
+    mesh.instanceMatrix.needsUpdate = true;
+  });
+
+  return (
+    <instancedMesh ref={ref} args={[undefined, undefined, 200]} geometry={nodes.Mesh_0001.geometry}>
+      <meshStandardMaterial color="cyan" />
+    </instancedMesh>
+  );
 }
 
 function makeBustTransforms(count: number) {
@@ -118,7 +150,23 @@ function BackendPanel({ label, forceRenderer, bustCount }: BackendPanelProps) {
             <BakeShadows />
           </>
         )}
-        {backend === 'webgl' && <spotLight intensity={2.5} position={[50, 50, 50]} />}
+        {backend === 'webgl' && (
+          <>
+            <spotLight intensity={1} position={[10, 10, 10]} />
+            <ambientLight intensity={1.5} />
+            <mesh position={[10, 10, 10]}>
+              <sphereGeometry args={[2, 16, 16]} />
+              <meshBasicMaterial color="red" />
+            </mesh>
+            <mesh position={[0, 0, 0]}>
+              <sphereGeometry args={[3, 32, 32]} />
+              <meshStandardMaterial color="white" />
+            </mesh>
+            {/* DEBUG: instancedMesh con geometría y material 100% locales. Si esta
+                sale negra, el fallback WebGL rompe todo InstancedMesh. */}
+            <DebugInstancedSpheres />
+          </>
+        )}
       </Canvas>
     </div>
   );
@@ -133,10 +181,10 @@ interface BustTransform {
 
 interface InstancedBustProps {
   transforms: BustTransform[];
-  // El material PBR del GLTF (con envMap) sale negro en el fallback WebGL de
-  // WebGPURenderer sin importar las luces/sombras — es el material en sí, no
-  // una prop opcional. En WebGL usamos un MeshStandardMaterial simplificado
-  // (mismo color base, sin envMap) para que al menos se vea la forma/color.
+  // El material PBR del GLTF (con envMap embebido) sale negro en el fallback
+  // WebGL de WebGPURenderer. En WebGL usamos un MeshStandardMaterial propio
+  // con el mismo color/roughness/metalness, iluminado vía <Environment> en
+  // vez del envMap embebido del GLTF.
   usePbrEnvMaterial: boolean;
 }
 
@@ -146,6 +194,8 @@ const LOD_GLTF_PATHS = [
   '/assets/meshes/lod/bust-3-d.glb',
   '/assets/meshes/lod/bust-4-d.glb',
 ];
+
+const LOD_GLTF_PATHS_WEBGL = '/assets/meshes/lod/bust-3-d.glb'
 // Distance thresholds matching the old <Detailed distances={[0, 15, 25, 35, 100]}>:
 // level i is used for distances in [LOD_DISTANCES[i], LOD_DISTANCES[i + 1]).
 const LOD_DISTANCES = [0, 15, 25, 35, 100];
@@ -168,12 +218,19 @@ function lodLevelForDistance(distance: number) {
 // — the InstancedMesh equivalent of what <Detailed> does per-object every frame.
 function InstancedBust({ transforms, usePbrEnvMaterial }: InstancedBustProps) {
   const meshRefs = useRef<(THREE.InstancedMesh | null)[]>([]);
-  const levels = useGLTF(LOD_GLTF_PATHS) as any[];
+  // DEBUG: el panel WebGL carga un GLB que el panel WebGPU no toca, para
+  // descartar que el caché compartido de useGLTF sea la causa del negro.
+  const pbrLevels = useGLTF(LOD_GLTF_PATHS) as any[];
+  const webglLevels = useGLTF([LOD_GLTF_PATHS_WEBGL]) as any[];
+  const levels = usePbrEnvMaterial ? pbrLevels : webglLevels;
   const lastEvaluatedAt = useRef(-Infinity);
 
-  // Fallback material para el backend WebGL: mismo color base que el material
-  // del GLTF, sin envMap. Uno por nivel LOD, memoizado por nivel para no violar
-  // la estabilidad de `args` (ver nota abajo).
+  // Fallback material para el backend WebGL: MeshStandardMaterial (reactiva
+  // iluminación PBR). El material `default` del GLTF no trae baseColorFactor
+  // propio (ver bust-1-d.glb) — su apariencia depende de reflejos vía envMap,
+  // por eso el panel WebGL también necesita <Environment> para mostrar algo
+  // distinto de blanco plano. Uno por nivel LOD, memoizado por nivel para no
+  // violar la estabilidad de `args` (ver nota abajo).
   const fallbackMaterials = useMemo(
     () =>
       levels.map(
@@ -186,27 +243,50 @@ function InstancedBust({ transforms, usePbrEnvMaterial }: InstancedBustProps) {
       ),
     [levels],
   );
+  // useGLTF cachea el GLTF parseado globalmente por URL, así que `materials.default`
+  // es el MISMO objeto Three.js en los dos paneles (WebGPU y WebGL) al usar los
+  // mismos LOD_GLTF_PATHS. El panel PBR (usePbrEnvMaterial) no puede usarlo
+  // directamente como material del InstancedMesh: el otro panel lo pisaría
+  // (envMap, uniforms) al montarse simultáneamente. Clonarlo por nivel evita
+  // que ambos Canvas compartan y muten la misma instancia de material.
+  const pbrMaterials = useMemo(
+    () => levels.map(({ materials }) => materials.default.clone()),
+    [levels],
+  );
+  // Los GLB están comprimidos con Draco (KHR_draco_mesh_compression) y sus
+  // normales decodificadas no iluminan bajo InstancedMesh: la malla sale plana,
+  // que con el material blanco del busto se ve negra. Recalcularlas tras clonar
+  // arregla el sombreado. El clon además evita compartir buffers entre paneles.
+  const geometries = useMemo(
+    () =>
+      levels.map(({ nodes }) => {
+        const geometry = nodes.Mesh_0001.geometry.clone();
+        geometry.computeVertexNormals();
+        return geometry;
+      }),
+    [levels],
+  );
   // Stable per-index ref callbacks: an inline `ref={(mesh) => ...}` is a new
   // function every render, which makes React detach + reattach the ref (calling
   // it with null, then the mesh again) on every re-render instead of only on
   // mount/unmount.
   const setMeshRef = useMemo(
     () =>
-      LOD_GLTF_PATHS.map(
+      levels.map(
         (_, levelIndex) => (mesh: THREE.InstancedMesh | null) => {
           meshRefs.current[levelIndex] = mesh;
         },
       ),
-    [],
+    [levels],
   );
 
   const updateLevels = useMemo(() => {
     const dummy = new THREE.Object3D();
     return (camera: THREE.Camera) => {
-      const groups: BustTransform[][] = LOD_GLTF_PATHS.map(() => []);
+      const groups: BustTransform[][] = levels.map(() => []);
       transforms.forEach((transform) => {
         const distance = camera.position.distanceTo(new THREE.Vector3(...transform.position));
-        groups[lodLevelForDistance(distance)].push(transform);
+        groups[Math.min(lodLevelForDistance(distance), levels.length - 1)].push(transform);
       });
       groups.forEach((group, levelIndex) => {
         const mesh = meshRefs.current[levelIndex];
@@ -221,7 +301,7 @@ function InstancedBust({ transforms, usePbrEnvMaterial }: InstancedBustProps) {
         mesh.instanceMatrix.needsUpdate = true;
       });
     };
-  }, [transforms]);
+  }, [transforms, levels]);
 
   useFrame(({ camera, clock }) => {
     const now = clock.getElapsedTime() * 1000;
@@ -232,24 +312,28 @@ function InstancedBust({ transforms, usePbrEnvMaterial }: InstancedBustProps) {
 
   return (
     <>
-      {levels.map(({ nodes, materials }, levelIndex) => (
+      {levels.map((_, levelIndex) => (
         <instancedMesh
           key={levelIndex}
           ref={setMeshRef[levelIndex]}
-          // `args` son los argumentos del constructor de InstancedMesh: si aquí
-          // llegara un objeto nuevo en cada render (material inline sin memo,
-          // por ejemplo) R3F destruiría y recrearía el mesh entero, vaciando la
-          // escena por un frame — por eso fallbackMaterials está memoizado arriba.
-          args={[
-            nodes.Mesh_0001.geometry,
-            usePbrEnvMaterial ? materials.default : fallbackMaterials[levelIndex],
-            transforms.length,
-          ]}
+          // El tercer arg (count) define el tamaño del buffer de instancias. La
+          // geometría y el material van como hijos en vez de por `args`: pasarlos
+          // al constructor hacía que el fallback WebGL de WebGPURenderer los
+          // renderizara negros, mientras que declarados como hijos se iluminan.
+          args={[undefined, undefined, transforms.length]}
+          geometry={geometries[levelIndex]}
+          material={usePbrEnvMaterial ? pbrMaterials[levelIndex] : fallbackMaterials[levelIndex]}
           receiveShadow={usePbrEnvMaterial}
           castShadow={usePbrEnvMaterial}
-          material-envMapIntensity={usePbrEnvMaterial ? 0.25 : 0}
         />
       ))}
+      {/* DEBUG: mismo busto como <mesh> normal (no instanced) para separar si el
+          negro viene de InstancedMesh o de la geometría del GLB. */}
+      {!usePbrEnvMaterial && (
+        <mesh geometry={geometries[0]} position={[0, -6, 0]} scale={3}>
+          <meshStandardMaterial color="white" />
+        </mesh>
+      )}
     </>
   );
 }
