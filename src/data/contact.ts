@@ -4,13 +4,13 @@ export const contactData: Record<string, string> = {
   linkedin: 'https://www.linkedin.com/in/davidmayorga-software/',
   behance: 'https://www.behance.net/may_interactive',
   email: 'dr.mayorga20@gmail.com',
-  storybook: 'https://mayinteractive.io/storybook',
+  storybook: 'https://mayit.dev/storybook',
 };
 
 export const socialNetworkLinks = [
   {
     label: 'Portfolio',
-    link: 'https://mayinteractive.io/',
+    link: 'https://mayit.dev/',
   },
   {
     label: 'LinkedIn',

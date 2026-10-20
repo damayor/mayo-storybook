@@ -23,7 +23,7 @@ export const emailConfig = {
 
   // Sender Configuration
   sender: {
-    name: process.env.VITE_EMAIL_SENDER_NAME || 'May Interactive Contact Form',
+    name: process.env.VITE_EMAIL_SENDER_NAME || 'MayIT.Dev Contact Form',
     email: process.env.VITE_EMAIL_SENDER || 'noreply@mayinteractive.io',
   },
 };

@@ -29,4 +29,4 @@ lftp -c "
   bye
 "
 
-echo "✅ Deploy complete → https://mayinteractive.io"
+echo "✅ Deploy complete → https://mayit.dev"

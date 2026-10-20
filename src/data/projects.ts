@@ -25,7 +25,7 @@ const _sharedProjects = {
     projectField: 'Frontend',
     images: ['/assets/images/projects/frontend/3ddas_tbt.png'],
     mediaLinks: [
-      'https://mayinteractive.io/storybook/?path=/story/three-experiences-interactivepdp--interactive-pdp',
+      'https://mayit.dev/storybook/?path=/story/three-experiences-interactivepdp--interactive-pdp',
     ],
     gifs: ['/assets/images/projects/frontend/volvo-3d.gif'],//todo
     initDate: new Date(2026, 0, 1),
@@ -60,7 +60,7 @@ const _sharedProjects = {
   //   ],
   //   gifs: ['/assets/images/projects/interactive/drone_mode.gif'],
   //   mediaLinks: [
-  //     'https://mayinteractive.io/perfectinteractive/?tenant=ambar'
+  //     'https://mayit.dev/perfectinteractive/?tenant=ambar'
   //   ],
   //   initDate: new Date(2026, 0, 29),
   //   endDate: new Date(2026, 7, 25),

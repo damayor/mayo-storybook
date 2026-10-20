@@ -8,7 +8,7 @@ export function Footer({ onImpressumOpen }: FooterProps) {
   const { t } = useTranslation();
   return (
     <footer className="relative z-10 border-t border-slate-800 py-6 px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500">
-      <span>© {new Date().getFullYear()} David Mayorga-Herrera · May Interactive</span>
+      <span>© {new Date().getFullYear()} David Mayorga Herrera · MayIT.Dev</span>
       <div className="flex gap-4">
         <button
           onClick={onImpressumOpen}

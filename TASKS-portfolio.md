@@ -23,7 +23,7 @@
 
 The portfolio text/content is hard to read because the Berlin PLY point
 cloud renders directly behind it with no separation. See `image.png`
-(hero section: "DAVID MAYORGA-HERRERA" title sits directly on dense point
+(hero section: "DAVID MAYORGA HERRERA" title sits directly on dense point
 cloud lines).
 
 - [x] Add a background treatment behind text/content blocks — avoid hard-edged
@@ -71,7 +71,7 @@ both Projects headings) and the Skills section heading in
 
 **Bonus fix (found while in this file):** both `Mail` icon links (Sidebar +
 Contact section) were wired to `contactData.behance` instead of an email
-action — copy-paste leftover. Now `mailto:david@mayinteractive.io`.
+action — copy-paste leftover. Now `mailto:davidrmayo@hotmail.com`.
 
 ---
 
@@ -209,3 +209,9 @@ real viewport aspect ratio from 5a.
   focused WASM demo per existing project convention.
 - Test changes in both the CameraPath Storybook story and the actual
   portfolio (`pnpm dev`) since `scrollMode` differs between the two contexts.
+
+
+Bug
+Ojo que el link de Work, linkea a mayinteractive no a /storybook
+
+mail to, ya no a david@mayinter

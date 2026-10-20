@@ -30,7 +30,7 @@ export default create({
   inputTextColor: 'white',
   inputBorderRadius: 4,
 
-  brandTitle: 'May Interactive Storybook',
+  brandTitle: 'MayIt.Dev Storybook',
   brandUrl: '/',
   brandImage: '/mayint_header.png',
   brandTarget: '_self',
