@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, lazy, Suspense } from 'react';
 import {
   X,
   Mail,
@@ -26,9 +26,15 @@ import { contactData } from 'Data/contact';
 import { type SectionType, SECTIONS, SECTIONS_ARRAY } from 'Interfaces/portfolio-sections';
 import { useScrollDetection } from '../../hooks/useScrollDetection';
 import { useInView } from 'react-intersection-observer';
-import CameraPathBackground from '../../components/camera-path-background/CameraPathBackground';
+import VideoBackground from '../../components/video-background/VideoBackground';
+
+// Lazy: phones never download the three.js/Theatre chunk nor the 36 MB of PLY point clouds.
+const CameraPathBackground = lazy(
+  () => import('../../components/camera-path-background/CameraPathBackground')
+);
+
+const MOBILE_BG_QUERY = '(max-width: 767px), (pointer: coarse)';
 import { Loader } from '../../components/loader/Loader';
-import InteractiveBackground3D from '../../components/interactive-background-3d/InteractiveBackground3D';
 import { MiniCard } from 'HtmlComponents/mini-card';
 import { flags } from '../../config/flags';
 import { SoftPanel } from '../../components/soft-panel/soft-panel-component';
@@ -294,7 +300,7 @@ function AboutSection() {
                 <RectangleGoggles className="mx-auto mb-2 text-blue-500" size={32} />
                 <p className="font-semibold text-gray-200">{t('about.mainSkills.frontend')}</p>
               </div>
-             
+
               <div className="text-center p-4 border-2 border-slate-700 rounded-lg">
                 <Terminal className="mx-auto mb-2 text-purple-500" size={32} />
                 <p className="font-semibold text-gray-200">{t('about.mainSkills.reliability')}</p>
@@ -324,10 +330,10 @@ function ProjectsSection({ lang }: { lang: Lang }) {
       <div className="max-w-6xl w-full z-10">
         <div ref={mainRef} className={mainInView ? revealed : hidden}>
           <div className="flex justify-center mb-12">
-            <SoftPanel className="inline-block px-16 py-8 sm:px-24 sm:py-12">
+            <SoftPanel className="inline-block px-6 py-8 sm:px-24 sm:py-12">
               <Heading
                 level={2}
-                className="text-5xl font-lato font-bold bg-gradient-to-r from-camelot-500 to-camelot-800 bg-clip-text text-transparent text-center"
+                className="text-3xl sm:text-5xl font-lato font-bold bg-gradient-to-r from-camelot-500 to-camelot-800 bg-clip-text text-transparent text-center"
                 variant="primary"
               >
                 {t('projects.title')}
@@ -352,7 +358,7 @@ function ProjectsSection({ lang }: { lang: Lang }) {
         <div className="max-w-7xl mx-auto py-16 sm:py-20">
           {visibleCount === 0 ? (
             <div className="flex justify-center pt-4">
-              <SoftPanel className="inline-block px-8 py-8 sm:px-24 sm:py-12">
+              <SoftPanel className="inline-block px-6 py-8 sm:px-24 sm:py-12">
                 <button
                   onClick={showMore}
                   className="flex flex-col items-center gap-2 text-gray-500 hover:text-camelot-400 transition-colors group"
@@ -368,10 +374,10 @@ function ProjectsSection({ lang }: { lang: Lang }) {
           ) : (
             <>
               <div className="flex justify-center mb-12">
-                <SoftPanel className="inline-block px-16 py-8 sm:px-24 sm:py-12">
+                <SoftPanel className="inline-block px-6 py-8 sm:px-24 sm:py-12">
                   <Heading
                     level={2}
-                    className="text-5xl font-lato font-bold bg-gradient-to-r from-camelot-500 to-camelot-800 bg-clip-text text-transparent text-center"
+                    className="text-3xl sm:text-5xl font-lato font-bold bg-gradient-to-r from-camelot-500 to-camelot-800 bg-clip-text text-transparent text-center"
                     variant="primary"
                   >
                     {t('projects.otherProjects')}
@@ -485,7 +491,6 @@ function ContactSection({ lang }: { lang: Lang }) {
             >
               <FaInstagram size={24} />
             </a>
-            
           </div>
         </SoftPanel>
       </div>
@@ -510,6 +515,7 @@ export default function Portfolio() {
   const [activeSection, setActiveSection] = useState<SectionType>(SECTIONS.home);
   const [impressumOpen, setImpressumOpen] = useState(false);
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
+  const [useVideoBg] = useState(() => window.matchMedia(MOBILE_BG_QUERY).matches);
 
   const sectionRefs = {
     home: useRef<HTMLDivElement>(null),
@@ -535,8 +541,13 @@ export default function Portfolio() {
 
   return (
     <div data-theme={'dark'} className="min-h-screen w-screen text-white overflow-x-hidden">
-      {/* {flags.USE_CAMERA_PATH_BG ? <CameraPathBackground /> : <InteractiveBackground3D />} */}
-      <CameraPathBackground onLoaded={() => setBackgroundLoaded(true)} />
+      {useVideoBg ? (
+        <VideoBackground onLoaded={() => setBackgroundLoaded(true)} />
+      ) : (
+        <Suspense fallback={null}>
+          <CameraPathBackground onLoaded={() => setBackgroundLoaded(true)} />
+        </Suspense>
+      )}
 
       {(flags.FORCE_LOADER || !backgroundLoaded) && <Loader />}
 

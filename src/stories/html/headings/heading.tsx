@@ -34,7 +34,7 @@ export const Heading: React.FC<HeadingProps> = ({
       //Todo 5xl este si para title de cada secion, bold
       return (
         <h2
-          className={`text-5xl font-roboto font-bold uppercase tracking-widest ${getHeadingColor()} ${className}`}
+          className={`text-3xl sm:text-5xl font-roboto font-bold uppercase tracking-wide sm:tracking-widest ${getHeadingColor()} ${className}`}
           {...props}
         >
           {children}

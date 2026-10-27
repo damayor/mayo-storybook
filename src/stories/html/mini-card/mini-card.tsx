@@ -32,8 +32,8 @@ export const MiniCard = ({
         }}
       />
 
-      {/* Degradado sutil solo en las esquinas */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/95 via-transparent to-black/60" />
+      {/* Móvil: oscurecido en toda la imagen (iconos sobre la imagen). md+: solo esquinas */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/95 via-black/50 to-black/80 md:via-transparent md:to-black/60" />
 
       {/* Overlay hover */}
       <div className="absolute inset-0 bg-camelot-600/0 group-hover:bg-camelot-600/15 group-active:bg-camelot-600/15  transition-all duration-300" />
@@ -42,7 +42,7 @@ export const MiniCard = ({
       <div className="relative h-full p-5 z-10">
         <div className="h-full flex flex-col">
           {/* Parte superior: Título, descripción e iconos en grid */}
-          <div className="grid grid-cols-[1fr_auto] gap-4 mb-auto">
+          <div className="mb-auto md:grid md:grid-cols-[1fr_auto] md:gap-4">
             {/* Columna izquierda: Título y descripción */}
             <div className="flex flex-col">
               {/* Título */}
@@ -55,9 +55,8 @@ export const MiniCard = ({
                 {resume}
               </p>
             </div>
-
-            {/* Columna derecha: Iconos en vertical */}
-            <div className="flex flex-col gap-2 items-center">
+            {/* Columna derecha (md+): iconos en vertical */}
+            <div className="hidden md:flex flex-col gap-2 items-center">
               {technologies.map((tech, index) => (
                 <div
                   key={index}
@@ -67,6 +66,18 @@ export const MiniCard = ({
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Iconos: fila horizontal en móvil, columna vertical en md+ */}
+          <div className="flex flex-wrap gap-2 mt-3 justify-center md:hidden">
+            {technologies.map((tech, index) => (
+              <div
+                key={index}
+                className="bg-black/40 backdrop-blur-sm rounded-lg p-1.5 border border-white/20"
+              >
+                <Icon size="x-small" technology={tech} />
+              </div>
+            ))}
           </div>
 
           {/* Parte inferior: Tags */}

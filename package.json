@@ -16,6 +16,7 @@
     "format:check": "prettier --check .",
     "deploy:portfolio": "bash deploy.sh",
     "deploy:storybook": "bash deploy.sh",
+    "render:bg": "node scripts/render-bg-video.mjs",
     "theatre:save": "node src/stories/three/stories-components/experiences/camera-path/save-theatre-state.mjs",
     "prd:add-story": "node scripts/add-prod-story.mjs"
   },

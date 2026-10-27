@@ -9,10 +9,10 @@ const _sharedProjects = {
       'Full Stack',
       'Rest APIs',
       'Graphics',
-      'IA Assisted',
+      'Spec Driven Dev',
       "Signal Tracking",
     ],
-    technologies: ['Python', 'FastAPI', 'Typescript', 'React', 'NodeJS', ],
+    technologies: ['Python', 'FastAPI', 'Typescript', 'React', 'ClaudeCode', ],
     projectField: 'AI Engineering',
     images: ['/assets/images/projects/ia/Lidar03.png'],
     initDate: new Date(2026, 0, 1),
@@ -25,7 +25,7 @@ const _sharedProjects = {
     projectField: 'Frontend',
     images: ['/assets/images/projects/frontend/3ddas_tbt.png'],
     mediaLinks: [
-      'https://mayit.dev/storybook/?path=/story/three-experiences-interactivepdp--interactive-pdp',
+      'https://mayit.dev/storybook/?path=/story/threejs-experiences-hotspots--hotspots',
     ],
     gifs: ['/assets/images/projects/frontend/volvo-3d.gif'],//todo
     initDate: new Date(2026, 0, 1),
@@ -101,8 +101,8 @@ const _sharedProjects = {
 const _sharedMiniProjects = [
   {
     projectRealTitle: 'Umbra 3D Studio Landing Page',
-    tags: ['Wordpress', 'Landing Page', 'Responsive Web Design', 'FTP', 'Web Hosting'],
-    technologies: ['Wordpress', 'Javascript', 'React', 'Filezilla'],
+    tags: ['Amazon Web Services', 'Wordpress', 'Landing Page', 'Responsive', 'FTP', 'Hosting'],
+    technologies: ['Aws', 'Wordpress', 'Javascript', 'React'],
     image: '/assets/images/projects/frontend/umbra3d_1.png',
   },
   {

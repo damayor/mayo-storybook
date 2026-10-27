@@ -15,9 +15,9 @@ Objetivo: dejar el portafolio en `/` y Storybook en `/storybook/` sirviéndose d
 ```bash
 export AWS_PROFILE=mayit
 export REGION=eu-central-1
-export BUCKET=mayinteractive-site-CAMBIA-ESTE-SUFIJO   # único a nivel global, solo minúsculas
+export BUCKET=mayit-eu-prd   # único a nivel global, solo minúsculas
 export BUILD_DIR=dist                                  # cambia a "build" si tu proyecto usa esa carpeta
-export DIST_ID=PENDIENTE                               # se llena en la Fase 4
+export DIST_ID=E1C1HWY060ZWD7                               # se llena en la Fase 4
 ```
 
 ## Reglas para Claude Code (si lo ejecutas ahí)

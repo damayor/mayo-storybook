@@ -1,16 +1,12 @@
 import { Suspense, useEffect, useRef } from 'react';
 import { useCurrentSheet } from '@theatre/r3f';
 import { PerspectiveCamera } from '@theatre/r3f';
-import { types } from '@theatre/core';
 import { useScroll } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import { type Group, type PerspectiveCamera as ThreePerspectiveCamera } from 'three';
 import { EffectComposer } from '@react-three/postprocessing';
-import { ObjRenderer } from '../../../../cpp/ObjRenderer/ObjRenderer';
 import { useMouseParallax } from '../../../non-stories-components/hooks/useMouseParallax';
 import { MouseWarpEffectPass } from '../../../non-stories-components/effects/MouseWarpPass';
-import { ThreePostprocessingEffects } from '../../three-postprocessing/ThreePostprocessing';
-import { flags } from '../../../../../config/flags';
 import { PlyRenderer } from '../../../../cpp/ply-renderer/ply-renderer';
 
 const SEQUENCE_DURATION = 24;
@@ -69,10 +65,12 @@ interface CameraPathProps {
   // page   → window.scroll listener (portfolio fixed background)
   // none   → no scroll listener; scrub the sequence directly in Theatre Studio (dev/testing)
   scrollMode?: ScrollMode;
+  // false → no mouse warp (used when rendering the background to video)
+  interactive?: boolean;
   onLoaded?: () => void;
 }
 
-export function CameraPath({ scrollMode = 'page', onLoaded }: CameraPathProps) {
+export function CameraPath({ scrollMode = 'page', onLoaded, interactive = true }: CameraPathProps) {
   const meshGroupRef = useRef<Group>(null);
   useMouseParallax(meshGroupRef);
 
@@ -87,8 +85,7 @@ export function CameraPath({ scrollMode = 'page', onLoaded }: CameraPathProps) {
         </Suspense>
       </group>
       <EffectComposer multisampling={0}>
-        {/* <ThreePostprocessingEffects /> disabled for long time*/}
-        <MouseWarpEffectPass mode="lens" wake={1} strength={0.04} />
+        {interactive ? <MouseWarpEffectPass mode="lens" wake={1} strength={0.04} /> : <></>}
       </EffectComposer>
     </>
   );

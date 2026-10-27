@@ -8,7 +8,7 @@ interface IconProps {
   className?: string;
 }
 
-// Mapeo de tecnologías a sus nombres en devicons y variantes
+// Mapeo de tecnologías a sus nombres en devicons y variantes https://devicon.dev/
 export const techIconMap: Record<string, { name: string; variant: string }> = {
   Unity: { name: 'unity', variant: 'original' },
   Unreal: { name: 'unrealengine', variant: 'original' },
@@ -44,6 +44,9 @@ export const techIconMap: Record<string, { name: string; variant: string }> = {
   Wordpress: { name: 'wordpress', variant: 'original' },
   Python: { name: 'python', variant: 'original' },
   FastAPI: { name: 'fastapi', variant: 'original-wordmark' },
+  Aws: { name: 'amazonwebservices', variant: 'plain' },
+  Claude: { name: 'claude', variant: 'original' },
+  ClaudeCode: { name: 'claudecode', variant: 'original' },
 };
 
 // Tamaños en píxeles

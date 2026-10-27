@@ -113,10 +113,10 @@ export default function SkillsTabPanel({
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
       <div className="max-w-4xl w-full z-10">
         <div className="flex justify-center mb-8">
-          <SoftPanel className="inline-block px-16 py-8 sm:px-24 sm:py-12">
+          <SoftPanel className="inline-block px-6 py-8 sm:px-24 sm:py-12">
             <Heading
               level={2}
-              className="text-5xl font-lato font-bold bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center"
+              className="text-3xl sm:text-5xl font-lato font-bold bg-gradient-to-r from-camelot-500 to-camelot-950 bg-clip-text text-transparent text-center"
               variant="primary"
             >
               {t('skills.heading')}
