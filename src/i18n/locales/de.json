@@ -23,7 +23,7 @@
   },
   "about": {
     "title": "Über mich",
-    "intro": "3D-Web-Engineer mit über 5 Jahren Erfahrung in der Entwicklung produktiver Anwendungen, von Volvo-Konfiguratoren bis adidas. M.Sc. in System- und Computertechnik mit Schwerpunkt Visual Computing. In letzter Zeit automatisiere ich außerdem Prozesse mit KI. Lies weiter oder, noch besser, lass uns sprechen.",
+    "intro": "3D-Web-Engineer mit über 6 Jahren Erfahrung in der Entwicklung produktiver Anwendungen, von Volvo-Konfiguratoren bis adidas. M.Sc. in System- und Computertechnik mit Schwerpunkt Visual Computing. In letzter Zeit automatisiere ich außerdem Prozesse mit KI. Lies weiter oder, noch besser, lass uns sprechen.",
     "experience": "Meine Arbeit umfasst globale Marken: 3D-Produktkonfiguratoren für Volvo und Jeep, Checkout-Infrastruktur bei adidas für Transaktionen in über 30 Ländern sowie Echtzeit-Architekturvisualisierungen für Amarilo und andere Immobilienführer über Umbra 3D Studio. Ich arbeite im gesamten Stack, von React, Three.js und Angular im Frontend bis zu Node.js, CI/CD-Pipelines und Kubernetes auf der Systemseite. Seit 2025 habe ich dieser Basis eine neue Ebene hinzugefügt: den Einsatz von KI zur Automatisierung von Prozessen. Ich arbeite täglich mit Claude Code, Codex, MCPs und ähnlichen Tools und verwandle repetitive Arbeit in automatisierte Workflows. Offen für Freelance-Projekte und Festanstellungen",
     "readMore": "Mehr lesen",
     "readLess": "Weniger lesen",
@@ -53,6 +53,7 @@
     "title": "Kontakt",
     "cta": "Offen für Freelance-Projekte und Festanstellungen",
     "sayHello": "Hallo sagen",
+    "whatsappMessage": "Hallo David, ich habe dein Portfolio auf mayit.dev gesehen und möchte mit dir über Folgendes sprechen: ",
     "cv": "Lebenslauf",
     "exploreLab": "Das Labor entdecken"
   },

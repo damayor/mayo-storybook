@@ -1,18 +1,18 @@
 import React, { useState, useRef } from 'react';
 import {
   X,
-  Github,
-  Linkedin,
   Mail,
   FileJson2,
   Terminal,
   RectangleGoggles,
   BrainCircuit,
-  Instagram,
   ChevronDown,
+  CalendarPlus,
 } from 'lucide-react';
+import { FaGithub, FaLinkedin, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { ImpressumModal } from './impressum-modal';
 import { Footer } from './footer';
+import { useWhatsappLink } from '../../components/whatsapp/whatsapp';
 import mayintLogo from '/assets/mayint.svg';
 import { useTranslation } from 'react-i18next';
 
@@ -87,6 +87,7 @@ interface SidebarProps {
 // Componente Sidebar
 function Sidebar({ isOpen, setIsOpen, onNavigate }: SidebarProps) {
   const { t } = useTranslation();
+  const whatsappLink = useWhatsappLink();
 
   const sections = [
     { id: 'home' as const, label: t('nav.home') },
@@ -159,27 +160,38 @@ function Sidebar({ isOpen, setIsOpen, onNavigate }: SidebarProps) {
                 href={contactData.github}
                 className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors"
               >
-                <Github size={20} />
+                <FaGithub size={20} />
               </a>
               <a
                 target="_blank"
                 href={contactData.linkedin}
                 className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors"
               >
-                <Linkedin size={20} />
+                <FaLinkedin size={20} />
               </a>
               <a
-                target="_blank"
-                href={contactData.instagram}
-                className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors"
-              >
-                <Instagram size={20} />
-              </a>
-              <a
-                href="mailto:david@mayinteractive.io"
+                href="mailto:davidrmayo@hotmail.com"
                 className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors"
               >
                 <Mail size={20} />
+              </a>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={whatsappLink}
+                aria-label="WhatsApp"
+                className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors"
+              >
+                <FaWhatsapp size={20} aria-hidden="true" />
+              </a>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={contactData.calendar}
+                aria-label="Book an appointment"
+                className="p-2 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors"
+              >
+                <CalendarPlus size={20} aria-hidden="true" />
               </a>
             </div>
           </div>
@@ -205,14 +217,14 @@ function HomeSection() {
           <div className="mb-6">
             <div className="w-27 h-27 mx-auto mb-6 rounded-full bg-gradient-to-br from-camelot-950 to-camelot-500 p-1">
               <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-5xl font-lato">
-                <img className="rounded-full" src={mayintLogo} alt="May Interactive Logo" />
+                <img className="rounded-full" src={mayintLogo} alt="MayIT.Dev Logo" />
               </div>
             </div>
           </div>
           <Heading level={1} children={t('home.title')} variant="primary" />
           <hr className="h-px my-6 bg-camelot-900 border-0 dark:bg-gray-700" />
           <p className="text-2xl text-camelot-800 mb-8 uppercase tracking-widest">
-            {t('home.brand')} • {t('home.role')}
+            • {t('home.role')} •
           </p>
           <hr className="h-px my-6 bg-camelot-900 border-0 dark:bg-gray-700" />
         </SoftPanel>
@@ -226,6 +238,7 @@ function AboutSection() {
   const { t } = useTranslation();
   const { ref: classRef, inView: classInView } = useInView({ threshold: 0.15 });
   const { ref: bioRef, inView: bioInView } = useInView({ threshold: 0.1 });
+  const [expanded, setExpanded] = useState(false);
 
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20">
@@ -250,28 +263,38 @@ function AboutSection() {
               className="text-lg text-gray-200 mb-6 leading-relaxed"
               dangerouslySetInnerHTML={{ __html: t('about.intro') }}
             />
-            <p
-              className="text-lg text-gray-200 mb-6 leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: t('about.experience') }}
-            />
+            <button
+              type="button"
+              onClick={() => setExpanded((v) => !v)}
+              aria-expanded={expanded}
+              className="block mx-auto mb-8 text-sm tracking-[0.2em] uppercase text-gray-300 hover:text-white underline underline-offset-4 cursor-pointer"
+            >
+              {expanded ? t('about.readLess') : t('about.readMore')}
+            </button>
 
-            {/* Tagline */}
-            <p className="text-lm font-bold text-gray-100 mb-10 text-center leading-relaxed italic">
-              {t('about.tagline')}
-            </p>
+            {expanded && (
+              <>
+                <p
+                  className="text-lg text-gray-200 mb-6 leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: t('about.experience') }}
+                />
+
+                {/* Tagline */}
+                <p className="text-lm font-bold text-gray-100 mb-10 text-center leading-relaxed italic">
+                  {t('about.tagline')}
+                </p>
+              </>
+            )}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
               <div className="text-center p-4 border-2 border-slate-700 rounded-lg">
                 <BrainCircuit className="mx-auto mb-2 text-emerald-400" size={32} />
                 <p className="font-semibold text-gray-200">{t('about.mainSkills.ai')}</p>
               </div>
               <div className="text-center p-4 border-2 border-slate-700 rounded-lg">
-                <FileJson2 className="mx-auto mb-2 text-blue-400" size={32} />
+                <RectangleGoggles className="mx-auto mb-2 text-blue-500" size={32} />
                 <p className="font-semibold text-gray-200">{t('about.mainSkills.frontend')}</p>
               </div>
-              {/* <div className="text-center p-4 border-2 border-slate-700 rounded-lg">
-                <RectangleGoggles className="mx-auto mb-2 text-camelot-500" size={32} />
-                <p className="font-semibold text-gray-200">{t('about.mainSkills.xr')}</p>
-              </div> */}
+             
               <div className="text-center p-4 border-2 border-slate-700 rounded-lg">
                 <Terminal className="mx-auto mb-2 text-purple-500" size={32} />
                 <p className="font-semibold text-gray-200">{t('about.mainSkills.reliability')}</p>
@@ -362,19 +385,21 @@ function ProjectsSection({ lang }: { lang: Lang }) {
               </div>
               {hasMore && (
                 <div className="flex justify-center mt-10">
-                  <button
-                    onClick={showMore}
-                    className="flex flex-col items-center gap-2 text-gray-500 hover:text-camelot-400 transition-colors group"
-                    aria-label={t('projects.viewMore')}
-                  >
-                    <span className="text-xs uppercase tracking-widest">
-                      {t('projects.viewMore')}
-                    </span>
-                    <ChevronDown
-                      size={28}
-                      className="animate-bounce group-hover:text-camelot-400"
-                    />
-                  </button>
+                  <SoftPanel className="px-12 py-6">
+                    <button
+                      onClick={showMore}
+                      className="flex flex-col items-center gap-2 text-gray-300 hover:text-camelot-400 transition-colors group"
+                      aria-label={t('projects.viewMore')}
+                    >
+                      <span className="text-xs uppercase tracking-widest">
+                        {t('projects.viewMore')}
+                      </span>
+                      <ChevronDown
+                        size={28}
+                        className="animate-bounce group-hover:text-camelot-400"
+                      />
+                    </button>
+                  </SoftPanel>
                 </div>
               )}
             </>
@@ -393,6 +418,7 @@ const CV_BY_LANG: Record<Lang, string> = {
 
 function ContactSection({ lang }: { lang: Lang }) {
   const { t } = useTranslation();
+  const whatsappLink = useWhatsappLink();
   const { ref, inView } = useInView({ threshold: 0.1 });
 
   return (
@@ -411,7 +437,9 @@ function ContactSection({ lang }: { lang: Lang }) {
               {t('contact.exploreLab')}
             </a>
             <a
-              href="mailto:david@mayinteractive.io"
+              href={contactData.calendar}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex-1 sm:flex-none px-8 py-4 bg-gradient-to-r from-camelot-700 to-camelot-800 rounded-xl font-semibold text-center hover:scale-105 transition-transform shadow-lg"
             >
               {t('contact.sayHello')}
@@ -429,25 +457,35 @@ function ContactSection({ lang }: { lang: Lang }) {
           <div className="flex justify-center gap-6 pt-6 border-t border-slate-700 w-full">
             <a
               target="_blank"
-              href={contactData.github}
-              className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors"
-            >
-              <Github size={24} />
-            </a>
-            <a
-              target="_blank"
               href={contactData.linkedin}
               className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors"
             >
-              <Linkedin size={24} />
+              <FaLinkedin size={24} />
+            </a>
+            <a
+              target="_blank"
+              href={contactData.github}
+              className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors"
+            >
+              <FaGithub size={24} />
+            </a>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={whatsappLink}
+              aria-label="WhatsApp"
+              className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors"
+            >
+              <FaWhatsapp size={24} aria-hidden="true" />
             </a>
             <a
               target="_blank"
               href={contactData.instagram}
               className="p-3 bg-slate-700 hover:bg-camelot-700 rounded-lg transition-colors"
             >
-              <Instagram size={24} />
+              <FaInstagram size={24} />
             </a>
+            
           </div>
         </SoftPanel>
       </div>
@@ -517,7 +555,7 @@ export default function Portfolio() {
             className="w-15 h-15 md:w-18 md:h-18 mx-auto rounded-full bg-gradient-to-br from-camelot-950 to-camelot-500 p-1 cursor-pointer"
           >
             <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-5xl font-lato">
-              <img className="rounded-full" src={mayintLogo} alt="May Interactive Logo" />
+              <img className="rounded-full" src={mayintLogo} alt="MayIT.Dev Logo" />
             </div>
           </button>
         </div>

@@ -5,6 +5,8 @@ export const contactData: Record<string, string> = {
   behance: 'https://www.behance.net/may_interactive',
   email: 'dr.mayorga20@gmail.com',
   storybook: 'https://mayit.dev/storybook',
+  whatsapp: 'https://wa.me/4915252198970',
+  calendar: 'https://cal.com/david-mayit-dev/30min',
 };
 
 export const socialNetworkLinks = [

@@ -23,7 +23,7 @@
   },
   "about": {
     "title": "Sobre mí",
-    "intro": "Ingeniero web 3D con más de 5 años construyendo experiencias en producción, desde configuradores de Volvo hasta adidas. M.Sc. en Ingeniería de Sistemas y Computación, con enfoque en Computación Visual. Últimamente también automatizo procesos con IA. Sigue leyendo o, mejor aún, hablemos.",
+    "intro": "Ingeniero web 3D con más de 6 años construyendo experiencias en producción, desde configuradores de Volvo hasta adidas. M.Sc. en Ingeniería de Sistemas y Computación, con enfoque en Computación Visual. Últimamente también automatizo procesos con IA. Sigue leyendo o, mejor aún, hablemos.",
     "experience": "Mi trabajo abarca marcas globales: configuradores de productos 3D para Volvo y Jeep, infraestructura de checkout en adidas con soporte para transacciones en más de 30 países, y visualizaciones arquitectónicas en tiempo real para Amarilo y otros líderes del sector inmobiliario a través de Umbra 3D Studio. Trabajo en todo el stack, desde React, Three.js y Angular en el frontend hasta Node.js, pipelines de CI/CD y Kubernetes en el lado de sistemas. Desde 2025 sumé una nueva capa a esa base: usar IA para automatizar procesos. Construyo a diario con Claude Code, Codex, MCPs y herramientas similares, convirtiendo el trabajo repetitivo en flujos automatizados. Abierto a proyectos freelance y a roles de tiempo completo",
     "readMore": "Leer más",
     "readLess": "Leer menos",
@@ -52,7 +52,8 @@
   "contact": {
     "title": "Contacto",
     "cta": "Disponible para proyectos freelance y roles de tiempo completo",
-    "sayHello": "Saludar",
+    "sayHello": "¡Hablemos!",
+    "whatsappMessage": "Hola David, vi tu portafolio en mayit.dev y me gustaría hablar sobre: ",
     "cv": "Curriculum",
     "exploreLab": "Explora el Laboratorio"
   },
