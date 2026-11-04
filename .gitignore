@@ -35,3 +35,6 @@ storybook-static
 # Private assets (served only from S3/CloudFront, keep local)
 public/assets/meshes/HotspotsShoe.glb
 public/assets/meshes/adiglb.glb
+
+# Local-only 3D models
+src/gltf/
