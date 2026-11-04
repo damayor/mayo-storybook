@@ -32,3 +32,6 @@ storybook-static
 
 # Playwright MCP diagnostic artifacts (accessibility snapshots, console logs, screenshots)
 .playwright-mcp/
+# Private assets (served only from S3/CloudFront, keep local)
+public/assets/meshes/HotspotsShoe.glb
+public/assets/meshes/adiglb.glb
